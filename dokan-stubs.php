@@ -1,6 +1,6 @@
 <?php
 /**
- * Generated stub declarations for dokan.
+ * Generated stub declarations for Dokan.
  * @see https://dokan.co
  * @see https://github.com/mralaminahamed/phpstan-dokan-stubs
  */
@@ -622,7 +622,7 @@ namespace WeDevs\Dokan\REST {
          *
          * @return int
          */
-        public function validate_post_author_override(\WP_REST_Request $request, int $store_id) : int
+        public function validate_post_author_override(\WP_REST_Request $request, int $store_id): int
         {
         }
         /**
@@ -663,12 +663,12 @@ namespace WeDevs\Dokan\REST {
         /**
          * Prepare links for the request.
          *
-         * @param WC_Data $object Object data.
-         * @param WP_REST_Request $request Request object.
+         * @param WC_Data           $data_object Object data.
+         * @param WP_REST_Request   $request Request object.
          *
-         * @return array                   Links for the given post.
+         * @return array Links for the given post.
          */
-        protected function prepare_links($object, $request)
+        protected function prepare_links($data_object, $request)
         {
         }
         /**
@@ -1100,7 +1100,7 @@ namespace WeDevs\Dokan\REST {
          *
          * @return array Query parameters for the collection.
          */
-        public function get_store_collection_params() : array
+        public function get_store_collection_params(): array
         {
         }
     }
@@ -3003,7 +3003,7 @@ namespace WeDevs\Dokan\Vendor {
          *
          * @return string
          */
-        public function get_profile_url() : string
+        public function get_profile_url(): string
         {
         }
     }
@@ -3093,7 +3093,7 @@ namespace WeDevs\Dokan\Withdraw {
          *
          * @return Withdraw[]
          */
-        public function get_withdraw_requests($user_id = '', $status = 0, $limit = 10, $offset = 0) : array
+        public function get_withdraw_requests($user_id = '', $status = 0, $limit = 10, $offset = 0): array
         {
         }
         /**
@@ -3264,7 +3264,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '3.11.0';
+        public $version = '3.11.5';
         /**
          * Instance of self
          *
@@ -3814,7 +3814,7 @@ namespace WeDevs\Dokan\Abstracts {
          *
          * @return string
          */
-        protected static abstract function get_cache_group_prefix();
+        abstract protected static function get_cache_group_prefix();
         /**
          * Get Cache Key Prefix.
          *
@@ -3822,7 +3822,7 @@ namespace WeDevs\Dokan\Abstracts {
          *
          * @return string
          */
-        protected static abstract function get_cache_prefix();
+        abstract protected static function get_cache_prefix();
         /**
          * Add Cache Group Prefix to group.
          *
@@ -3858,7 +3858,7 @@ namespace WeDevs\Dokan\Abstracts {
          *
          * @param array $data
          */
-        protected abstract function set_data($data);
+        abstract protected function set_data($data);
         /**
          * Get model data
          *
@@ -3876,7 +3876,7 @@ namespace WeDevs\Dokan\Abstracts {
          *
          * @return \WeDevs\Dokan\Abstracts\Model
          */
-        public abstract function save();
+        abstract public function save();
         /**
          * Create a model
          *
@@ -3884,7 +3884,7 @@ namespace WeDevs\Dokan\Abstracts {
          *
          * @return \WeDevs\Dokan\Abstracts\Model
          */
-        protected abstract function create();
+        abstract protected function create();
         /**
          * Update a model
          *
@@ -3892,7 +3892,7 @@ namespace WeDevs\Dokan\Abstracts {
          *
          * @return \WeDevs\Dokan\Abstracts\Model
          */
-        protected abstract function update();
+        abstract protected function update();
         /**
          * Delete a model
          *
@@ -3900,7 +3900,7 @@ namespace WeDevs\Dokan\Abstracts {
          *
          * @return \WeDevs\Dokan\Abstracts\Model
          */
-        public abstract function delete();
+        abstract public function delete();
     }
     /**
      * Promotion class
@@ -3940,7 +3940,7 @@ namespace WeDevs\Dokan\Abstracts {
          *
          * @return array
          */
-        public abstract function get_promotion_data();
+        abstract public function get_promotion_data();
         /**
          * Module promotion notices
          *
@@ -3992,7 +3992,7 @@ namespace WeDevs\Dokan\Abstracts {
         public function get_shortcode()
         {
         }
-        public abstract function render_shortcode($atts);
+        abstract public function render_shortcode($atts);
     }
     abstract class DokanUpgrader
     {
@@ -4205,7 +4205,7 @@ namespace WeDevs\Dokan\Abstracts {
          *
          * @return int[]
          */
-        public abstract function get_products();
+        abstract public function get_products();
         /**
          * Add products to queue
          *
@@ -4382,7 +4382,7 @@ namespace WeDevs\Dokan\Admin {
          *
          * @return void
          */
-        public function override_product_author_by_admin($product_id, $post)
+        public function override_product_author_by_admin($product_id)
         {
         }
         /**
@@ -4490,7 +4490,7 @@ namespace WeDevs\Dokan\Admin\Notices {
          *
          * @return bool
          */
-        public static function is_pro_license_active() : bool
+        public static function is_pro_license_active(): bool
         {
         }
         /**
@@ -5717,7 +5717,7 @@ namespace WeDevs\Dokan {
          *
          * @return array dst_height and dst_width of header image
          */
-        public final function get_header_dimensions($dimensions)
+        final public function get_header_dimensions($dimensions)
         {
         }
         /**
@@ -5730,7 +5730,7 @@ namespace WeDevs\Dokan {
          *
          * @return array attachment object
          */
-        public final function create_attachment_object($cropped, $parent_attachment_id)
+        final public function create_attachment_object($cropped, $parent_attachment_id)
         {
         }
         /**
@@ -5743,7 +5743,7 @@ namespace WeDevs\Dokan {
          *
          * @return int attachment ID
          */
-        public final function insert_attachment($object, $cropped)
+        final public function insert_attachment($object, $cropped)
         {
         }
         /**
@@ -7044,7 +7044,7 @@ namespace WeDevs\Dokan {
          *
          * @return string
          */
-        public function get_shipping_tax_fee_recipient($order) : string
+        public function get_shipping_tax_fee_recipient($order): string
         {
         }
         /**
@@ -7056,7 +7056,7 @@ namespace WeDevs\Dokan {
          *
          * @return float
          */
-        public function get_total_shipping_tax_refunded(\WC_Order $order) : float
+        public function get_total_shipping_tax_refunded(\WC_Order $order): float
         {
         }
         /**
@@ -7389,7 +7389,7 @@ namespace WeDevs\Dokan\Dashboard\Templates {
          *
          * @return string
          */
-        public function add_notification_count(string $menu_title, array $menu_details) : string
+        public function add_notification_count(string $menu_title, array $menu_details): string
         {
         }
     }
@@ -9262,7 +9262,7 @@ namespace WeDevs\Dokan\Exceptions {
          *
          * @return string
          */
-        public final function get_error_code()
+        final public function get_error_code()
         {
         }
         /**
@@ -9272,7 +9272,7 @@ namespace WeDevs\Dokan\Exceptions {
          *
          * @return string
          */
-        public final function get_message()
+        final public function get_message()
         {
         }
         /**
@@ -9282,7 +9282,7 @@ namespace WeDevs\Dokan\Exceptions {
          *
          * @return int
          */
-        public final function get_status_code()
+        final public function get_status_code()
         {
         }
     }
@@ -9647,15 +9647,15 @@ namespace WeDevs\Dokan\Order\Admin {
          * @since 3.8.0 Moved from includes/Admin/Hooks.php file
          * @since 3.8.0 Rewritten for HPOS
          *
-         * @param string[] $classes An array of post class names.
-         * @param string[] $class   An array of additional class names added to the post.
+         * @param string[] $classes     An array of post class names.
+         * @param string[] $css_class   An array of additional class names added to the post.
          * @param int      $post_id The post ID.
          *
          * @global WP_Post $post
          *
          * @return array
          */
-        public function admin_shop_order_row_classes($classes, $class, $post_id)
+        public function admin_shop_order_row_classes($classes, $css_class, $post_id)
         {
         }
         /**
@@ -10541,7 +10541,7 @@ namespace WeDevs\Dokan\Order {
 }
 namespace WeDevs\Dokan {
     /**
-     * Pageviews - for counting product post views.
+     * Page views - for counting product post views.
      */
     class PageViews
     {
@@ -10549,15 +10549,32 @@ namespace WeDevs\Dokan {
         public function __construct()
         {
         }
+        /**
+         * Load the scripts
+         *
+         * @return void
+         */
         public function load_scripts()
         {
         }
         public function load_views()
         {
         }
+        /**
+         * Update the view count
+         *
+         * @param int $post_id The post ID
+         *
+         * @return void
+         */
         public function update_view($post_id = '')
         {
         }
+        /**
+         * Update the view count via AJAX
+         *
+         * @return void
+         */
         public function update_ajax()
         {
         }
@@ -11536,7 +11553,7 @@ namespace WeDevs\Dokan\ProductSections {
          *
          * @return void
          */
-        protected abstract function set_section_id();
+        abstract protected function set_section_id();
         /**
          * Get single store page section title.
          *
@@ -11544,7 +11561,7 @@ namespace WeDevs\Dokan\ProductSections {
          *
          * @return string
          */
-        public abstract function get_section_title();
+        abstract public function get_section_title();
         /**
          * Get label for this section.
          *
@@ -11552,7 +11569,7 @@ namespace WeDevs\Dokan\ProductSections {
          *
          * @return string
          */
-        public abstract function get_section_label();
+        abstract public function get_section_label();
         /**
          * Get products for this section
          *
@@ -11560,7 +11577,7 @@ namespace WeDevs\Dokan\ProductSections {
          *
          * @return \WP_Query
          */
-        public abstract function get_products($vendor_id);
+        abstract public function get_products($vendor_id);
         /**
          * Get unique section id for this section.
          *
@@ -14081,6 +14098,17 @@ namespace WeDevs\Dokan {
          * @return array
          */
         public function check_and_set_address_profile_completion($vendor_id, $new_dokan_settings, $old_profile_settings)
+        {
+        }
+        /**
+         * Validate nonce for seller registration.
+         * This function checks the nonce value to ensure the request is valid and secure.
+         * If the "dokan_register_nonce_check" filter returns false, the validation is bypassed,
+         * third-party developers to override the nonce check if necessary.
+         *
+         * @return bool True if nonce is valid or validation is bypassed, false otherwise.
+         */
+        protected function validate_nonce()
         {
         }
     }
@@ -17151,7 +17179,7 @@ namespace WeDevs\Dokan\Utilities {
          *
          * @return bool
          */
-        public static function is_hpos_enabled() : bool
+        public static function is_hpos_enabled(): bool
         {
         }
         /**
@@ -17161,7 +17189,7 @@ namespace WeDevs\Dokan\Utilities {
          *
          * @return bool
          */
-        public static function is_custom_order_tables_in_sync() : bool
+        public static function is_custom_order_tables_in_sync(): bool
         {
         }
         /**
@@ -17171,7 +17199,7 @@ namespace WeDevs\Dokan\Utilities {
          *
          * @return bool True if the order cache should be used, false otherwise.
          */
-        public static function is_order_cache_usages_enabled() : bool
+        public static function is_order_cache_usages_enabled(): bool
         {
         }
         /**
@@ -17195,7 +17223,7 @@ namespace WeDevs\Dokan\Utilities {
          *
          * @return int Order or post ID.
          */
-        public static function get_post_or_order_id($post_or_order_object) : int
+        public static function get_post_or_order_id($post_or_order_object): int
         {
         }
         /**
@@ -17211,7 +17239,7 @@ namespace WeDevs\Dokan\Utilities {
          *
          * @return bool Whether the passed param is an order.
          */
-        public static function is_order($order_id, $types = []) : bool
+        public static function is_order($order_id, $types = []): bool
         {
         }
         /**
@@ -17224,7 +17252,7 @@ namespace WeDevs\Dokan\Utilities {
          *
          * @return string
          */
-        public static function get_order_admin_screen() : string
+        public static function get_order_admin_screen(): string
         {
         }
         /**
@@ -17234,7 +17262,7 @@ namespace WeDevs\Dokan\Utilities {
          *
          * @return string
          */
-        public static function get_admin_order_list_url() : string
+        public static function get_admin_order_list_url(): string
         {
         }
         /**
@@ -17244,7 +17272,7 @@ namespace WeDevs\Dokan\Utilities {
          *
          * @return string Link for new order.
          */
-        public static function get_order_admin_new_url() : string
+        public static function get_order_admin_new_url(): string
         {
         }
         /**
@@ -17256,7 +17284,7 @@ namespace WeDevs\Dokan\Utilities {
          *
          * @return string
          */
-        public static function get_admin_order_edit_url($order_id = 0) : string
+        public static function get_admin_order_edit_url($order_id = 0): string
         {
         }
         /**
@@ -17450,7 +17478,7 @@ namespace WeDevs\Dokan\Vendor\SettingsApi\Abstracts {
          *
          * @return array
          */
-        public abstract function render_settings(array $settings) : array;
+        abstract public function render_settings(array $settings): array;
     }
     /**
      * Vendor Settings Page.
@@ -17484,7 +17512,7 @@ namespace WeDevs\Dokan\Vendor\SettingsApi\Abstracts {
          *
          * @return array
          */
-        public abstract function render_settings(array $settings) : array;
+        abstract public function render_settings(array $settings): array;
         /**
          * Render the settings page with tab, cad, fields.
          *
@@ -17494,7 +17522,7 @@ namespace WeDevs\Dokan\Vendor\SettingsApi\Abstracts {
          *
          * @return array
          */
-        public abstract function render_group(array $groups) : array;
+        abstract public function render_group(array $groups): array;
     }
 }
 namespace WeDevs\Dokan\Vendor\SettingsApi {
@@ -17718,7 +17746,7 @@ namespace WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Payments\Gateways {
          *
          * @return array
          */
-        public function render_settings(array $settings) : array
+        public function render_settings(array $settings): array
         {
         }
     }
@@ -17738,7 +17766,7 @@ namespace WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Payments\Gateways {
          *
          * @return array
          */
-        public function render_settings(array $settings) : array
+        public function render_settings(array $settings): array
         {
         }
     }
@@ -17772,7 +17800,7 @@ namespace WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Payments {
          *
          * @return array
          */
-        public function render_group(array $groups) : array
+        public function render_group(array $groups): array
         {
         }
         /**
@@ -17780,7 +17808,7 @@ namespace WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Payments {
          *
          * @since 3.7.10
          */
-        public function render_settings(array $settings) : array
+        public function render_settings(array $settings): array
         {
         }
         /**
@@ -17815,7 +17843,7 @@ namespace WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages {
          *
          * @return array
          */
-        public function render_group(array $groups) : array
+        public function render_group(array $groups): array
         {
         }
         /**
@@ -17823,7 +17851,7 @@ namespace WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages {
          *
          * @since 3.7.10
          */
-        public function render_settings(array $settings) : array
+        public function render_settings(array $settings): array
         {
         }
     }
@@ -18326,8 +18354,8 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Outputs the HTML for this widget.
          *
-         * @param array  An array of standard parameters for widgets in this theme
-         * @param array  An array of settings for this widget instance
+         * @param array $args       An array of standard parameters for widgets in this theme
+         * @param array $instance   An array of settings for this widget instance
          * @return void Echoes it's output
          **/
         public function widget($args, $instance)
@@ -18337,8 +18365,8 @@ namespace WeDevs\Dokan\Widgets {
          * Deals with the settings when they are saved by the admin. Here is
          * where any validation should be dealt with.
          *
-         * @param array  An array of new settings as submitted by the admin
-         * @param array  An array of the previous settings
+         * @param array $new_instance   An array of new settings as submitted by the admin
+         * @param array $old_instance   An array of the previous settings
          * @return array The validated and (if necessary) amended settings
          **/
         public function update($new_instance, $old_instance)
@@ -18347,7 +18375,7 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Displays the form for this widget on the Widgets page of the WP Admin area.
          *
-         * @param array  An array of the current settings for this widget
+         * @param array $instance  array of the current settings for this widget
          * @return void Echoes it's output
          **/
         public function form($instance)
@@ -18367,8 +18395,8 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Outputs the HTML for this widget.
          *
-         * @param array  An array of standard parameters for widgets in this theme
-         * @param array  An array of settings for this widget instance
+         * @param array $args       An array of standard parameters for widgets in this theme
+         * @param array $instance   An array of settings for this widget instance
          * @return void Echoes it's output
          **/
         public function widget($args, $instance)
@@ -18378,8 +18406,8 @@ namespace WeDevs\Dokan\Widgets {
          * Deals with the settings when they are saved by the admin. Here is
          * where any validation should be dealt with.
          *
-         * @param array  An array of new settings as submitted by the admin
-         * @param array  An array of the previous settings
+         * @param array $new_instance   An array of new settings as submitted by the admin
+         * @param array $old_instance   An array of the previous settings
          * @return array The validated and (if necessary) amended settings
          **/
         public function update($new_instance, $old_instance)
@@ -18388,7 +18416,7 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Displays the form for this widget on the Widgets page of the WP Admin area.
          *
-         * @param array  An array of the current settings for this widget
+         * @param array $instance An array of the current settings for this widget
          * @return void Echoes it's output
          **/
         public function form($instance)
@@ -18415,8 +18443,8 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Outputs the HTML for this widget.
          *
-         * @param array  An array of standard parameters for widgets in this theme
-         * @param array  An array of settings for this widget instance
+         * @param array $args       An array of standard parameters for widgets in this theme
+         * @param array $instance   An array of settings for this widget instance
          *
          * @return void Echoes it's output
          **/
@@ -18427,8 +18455,8 @@ namespace WeDevs\Dokan\Widgets {
          * Deals with the settings when they are saved by the admin. Here is
          * where any validation should be dealt with.
          *
-         * @param array  An array of new settings as submitted by the admin
-         * @param array  An array of the previous settings
+         * @param array $new_instance   An array of new settings as submitted by the admin
+         * @param array $old_instance   An array of the previous settings
          *
          * @return array The validated and (if necessary) amended settings
          */
@@ -18438,7 +18466,7 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Displays the form for this widget on the Widgets page of the WP Admin area.
          *
-         * @param array  An array of the current settings for this widget
+         * @param array $instance An array of the current settings for this widget
          *
          * @return void Echoes it's output
          */
@@ -18478,8 +18506,8 @@ namespace WeDevs\Dokan\Widgets {
          * Deals with the settings when they are saved by the admin. Here is
          * where any validation should be dealt with.
          *
-         * @param array  An array of new settings as submitted by the admin
-         * @param array  An array of the previous settings
+         * @param array $new_instance array of new settings as submitted by the admin
+         * @param array $old_instance array of the previous settings
          *
          * @return array The validated and (if necessary) amended settings
          */
@@ -18489,7 +18517,7 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Displays the form for this widget on the Widgets page of the WP Admin area.
          *
-         * @param array  An array of the current settings for this widget
+         * @param array $instance array of the current settings for this widget
          *
          * @return void Echoes it's output
          */
@@ -18517,8 +18545,8 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Outputs the HTML for this widget.
          *
-         * @param array  An array of standard parameters for widgets in this theme
-         * @param array  An array of settings for this widget instance
+         * @param array $args       array of standard parameters for widgets in this theme
+         * @param array $instance   An array of settings for this widget instance
          *
          * @return void Echoes it's output
          **/
@@ -18529,8 +18557,8 @@ namespace WeDevs\Dokan\Widgets {
          * Deals with the settings when they are saved by the admin. Here is
          * where any validation should be dealt with.
          *
-         * @param array  An array of new settings as submitted by the admin
-         * @param array  An array of the previous settings
+         * @param array $new_instance array of new settings as submitted by the admin
+         * @param array $old_instance array of the previous settings
          *
          * @return array The validated and (if necessary) amended settings
          */
@@ -18540,7 +18568,7 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Displays the form for this widget on the Widgets page of the WP Admin area.
          *
-         * @param array  An array of the current settings for this widget
+         * @param array $instance array of the current settings for this widget
          *
          * @return void Echoes it's output
          */
@@ -19019,7 +19047,7 @@ namespace WeDevs\Dokan\Withdraw {
          *
          * @return array
          */
-        public function get_data() : array
+        public function get_data(): array
         {
         }
         /**
@@ -20119,7 +20147,7 @@ namespace Appsero {
     /**
      * Appsero Updater
      *
-     * This class will show new updates project
+     * This class will show new updates for the project
      */
     class Updater
     {
@@ -20144,16 +20172,22 @@ namespace Appsero {
         /**
          * Initialize the class
          *
-         * @param $client
+         * @param object $client
          */
         public function __construct($client)
         {
         }
+        /**
+         * Initialize the Updater
+         *
+         * @param object $client
+         * @return object
+         */
         public static function init($client)
         {
         }
         /**
-         * Set up WordPress filter to hooks to get update.
+         * Set up WordPress filter hooks to get plugin updates
          *
          * @return void
          */
@@ -20161,7 +20195,7 @@ namespace Appsero {
         {
         }
         /**
-         * Set up WordPress filter to hooks to get update.
+         * Set up WordPress filter hooks to get theme updates
          *
          * @return void
          */
@@ -20169,60 +20203,112 @@ namespace Appsero {
         {
         }
         /**
-         * Check for Update for this specific project
+         * Check for plugin updates
+         *
+         * @param object $transient_data
+         * @return object
          */
         public function check_plugin_update($transient_data)
         {
         }
         /**
-         * Get version info from database
+         * Get cached version info from the database
          *
-         * @return object or Boolean
+         * @return object|bool
          */
         private function get_cached_version_info()
         {
         }
         /**
-         * Set version info to database
+         * Set version info to the database
+         *
+         * @param object $value
+         * @return void
          */
         private function set_cached_version_info($value)
         {
         }
         /**
-         * Get plugin info from Appsero
+         * Get project latest version info from Appsero
+         *
+         * @return object|bool
          */
         private function get_project_latest_version()
         {
         }
         /**
-         * Updates information on the "View version x.x details" page with custom data.
+         * Update information on the "View version x.x details" page with custom data
          *
          * @param mixed  $data
          * @param string $action
          * @param object $args
-         *
-         * @return object $data
+         * @return object
          */
         public function plugins_api_filter($data, $action = '', $args = null)
         {
         }
         /**
-         * Check theme upate
+         * Check for theme updates
+         *
+         * @param object $transient_data
+         * @return object
          */
         public function check_theme_update($transient_data)
         {
         }
         /**
          * Get version information
+         *
+         * @return object|bool
          */
         private function get_version_info()
+        {
+        }
+        /**
+         * Check required plugins
+         *
+         * @param array $required_plugins
+         * @return array
+         */
+        private function check_required_plugins($required_plugins = [])
+        {
+        }
+        /**
+         * Get plugin file from slug
+         *
+         * @param string $plugin_slug
+         * @param array  $installed_plugins
+         * @return string|null
+         */
+        private function get_plugin_file($plugin_slug, $installed_plugins)
+        {
+        }
+        /**
+         * Show warning notice for required plugins
+         *
+         * @param array $warnings
+         * @return void
+         */
+        public function show_warning_notice($warnings)
+        {
+        }
+        /**
+         * Add custom plugin row with warnings
+         *
+         * @param string $plugin_file
+         * @param array  $plugin_data
+         * @param string $status
+         * @param array  $warnings
+         * @return void
+         */
+        public function add_custom_plugin_row($plugin_file, $plugin_data, $status, $warnings)
         {
         }
     }
 }
 namespace {
     // autoload_real.php @generated by Composer
-    class ComposerAutoloaderInit1e669f7f5259d0a69bc52936935bb40c
+    class ComposerAutoloaderInitacc6c52464de5e312268058e6bdf7155
     {
         private static $loader;
         public static function loadClassLoader($class)
@@ -20237,12 +20323,12 @@ namespace {
     }
 }
 namespace Composer\Autoload {
-    class ComposerStaticInit1e669f7f5259d0a69bc52936935bb40c
+    class ComposerStaticInitacc6c52464de5e312268058e6bdf7155
     {
         public static $files = array('b45b351e6b6f7487d819961fef2fda77' => __DIR__ . '/..' . '/jakeasmith/http_build_url/src/http_build_url.php', '0ea370e600bbac1ed14210d26fb957e5' => __DIR__ . '/../..' . '/includes/functions-rest-api.php', '5002a4b4787d157353289afe21b0d460' => __DIR__ . '/../..' . '/includes/functions-dashboard-navigation.php');
-        public static $prefixLengthsPsr4 = array('W' => array('WeDevs\\Dokan\\' => 13), 'A' => array('Appsero\\' => 8));
-        public static $prefixDirsPsr4 = array('WeDevs\\Dokan\\' => array(0 => __DIR__ . '/../..' . '/includes'), 'Appsero\\' => array(0 => __DIR__ . '/..' . '/appsero/client/src', 1 => __DIR__ . '/..' . '/appsero/updater/src'));
-        public static $classMap = array('Appsero\\Client' => __DIR__ . '/..' . '/appsero/client/src/Client.php', 'Appsero\\Insights' => __DIR__ . '/..' . '/appsero/client/src/Insights.php', 'Appsero\\License' => __DIR__ . '/..' . '/appsero/client/src/License.php', 'Appsero\\Updater' => __DIR__ . '/..' . '/appsero/updater/src/Updater.php', 'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php', 'WeDevs\\Dokan\\Abstracts\\DokanBackgroundProcesses' => __DIR__ . '/../..' . '/includes/Abstracts/DokanBackgroundProcesses.php', 'WeDevs\\Dokan\\Abstracts\\DokanCache' => __DIR__ . '/../..' . '/includes/Abstracts/DokanCache.php', 'WeDevs\\Dokan\\Abstracts\\DokanModel' => __DIR__ . '/../..' . '/includes/Abstracts/DokanModel.php', 'WeDevs\\Dokan\\Abstracts\\DokanPromotion' => __DIR__ . '/../..' . '/includes/Abstracts/DokanPromotion.php', 'WeDevs\\Dokan\\Abstracts\\DokanRESTAdminController' => __DIR__ . '/../..' . '/includes/Abstracts/DokanRESTAdminController.php', 'WeDevs\\Dokan\\Abstracts\\DokanRESTController' => __DIR__ . '/../..' . '/includes/Abstracts/DokanRESTController.php', 'WeDevs\\Dokan\\Abstracts\\DokanShortcode' => __DIR__ . '/../..' . '/includes/Abstracts/DokanShortcode.php', 'WeDevs\\Dokan\\Abstracts\\DokanUpgrader' => __DIR__ . '/../..' . '/includes/Abstracts/DokanUpgrader.php', 'WeDevs\\Dokan\\Abstracts\\ProductStatusChanger' => __DIR__ . '/../..' . '/includes/Abstracts/ProductStatusChanger.php', 'WeDevs\\Dokan\\Admin\\AdminBar' => __DIR__ . '/../..' . '/includes/Admin/AdminBar.php', 'WeDevs\\Dokan\\Admin\\Hooks' => __DIR__ . '/../..' . '/includes/Admin/Hooks.php', 'WeDevs\\Dokan\\Admin\\Menu' => __DIR__ . '/../..' . '/includes/Admin/Menu.php', 'WeDevs\\Dokan\\Admin\\Notices\\Helper' => __DIR__ . '/../..' . '/includes/Admin/Notices/Helper.php', 'WeDevs\\Dokan\\Admin\\Notices\\LimitedTimePromotion' => __DIR__ . '/../..' . '/includes/Admin/Notices/LimitedTimePromotion.php', 'WeDevs\\Dokan\\Admin\\Notices\\Manager' => __DIR__ . '/../..' . '/includes/Admin/Notices/Manager.php', 'WeDevs\\Dokan\\Admin\\Notices\\PluginReview' => __DIR__ . '/../..' . '/includes/Admin/Notices/PluginReview.php', 'WeDevs\\Dokan\\Admin\\Notices\\SetupWizard' => __DIR__ . '/../..' . '/includes/Admin/Notices/SetupWizard.php', 'WeDevs\\Dokan\\Admin\\Notices\\WhatsNew' => __DIR__ . '/../..' . '/includes/Admin/Notices/WhatsNew.php', 'WeDevs\\Dokan\\Admin\\Pointers' => __DIR__ . '/../..' . '/includes/Admin/Pointers.php', 'WeDevs\\Dokan\\Admin\\Promotion' => __DIR__ . '/../..' . '/includes/Admin/Promotion.php', 'WeDevs\\Dokan\\Admin\\Settings' => __DIR__ . '/../..' . '/includes/Admin/Settings.php', 'WeDevs\\Dokan\\Admin\\SetupWizard' => __DIR__ . '/../..' . '/includes/Admin/SetupWizard.php', 'WeDevs\\Dokan\\Admin\\SetupWizardNoWC' => __DIR__ . '/../..' . '/includes/Admin/SetupWizardNoWC.php', 'WeDevs\\Dokan\\Admin\\SetupWizardWCAdmin' => __DIR__ . '/../..' . '/includes/Admin/SetupWizardWCAdmin.php', 'WeDevs\\Dokan\\Admin\\UserProfile' => __DIR__ . '/../..' . '/includes/Admin/UserProfile.php', 'WeDevs\\Dokan\\Admin\\WithdrawLogExporter' => __DIR__ . '/../..' . '/includes/Admin/WithdrawLogExporter.php', 'WeDevs\\Dokan\\Ajax' => __DIR__ . '/../..' . '/includes/Ajax.php', 'WeDevs\\Dokan\\Assets' => __DIR__ . '/../..' . '/includes/Assets.php', 'WeDevs\\Dokan\\BackgroundProcess\\Manager' => __DIR__ . '/../..' . '/includes/BackgroundProcess/Manager.php', 'WeDevs\\Dokan\\BackgroundProcess\\RewriteVariableProductsAuthor' => __DIR__ . '/../..' . '/includes/BackgroundProcess/RewriteVariableProductsAuthor.php', 'WeDevs\\Dokan\\Blocks\\ProductBlock' => __DIR__ . '/../..' . '/includes/Blocks/ProductBlock.php', 'WeDevs\\Dokan\\Cache' => __DIR__ . '/../..' . '/includes/Cache.php', 'WeDevs\\Dokan\\CacheInvalidate' => __DIR__ . '/../..' . '/includes/CacheInvalidate.php', 'WeDevs\\Dokan\\CatalogMode\\Admin\\Settings' => __DIR__ . '/../..' . '/includes/CatalogMode/Admin/Settings.php', 'WeDevs\\Dokan\\CatalogMode\\Controller' => __DIR__ . '/../..' . '/includes/CatalogMode/Controller.php', 'WeDevs\\Dokan\\CatalogMode\\Dashboard\\ProductBulkEdit' => __DIR__ . '/../..' . '/includes/CatalogMode/Dashboard/ProductBulkEdit.php', 'WeDevs\\Dokan\\CatalogMode\\Dashboard\\Products' => __DIR__ . '/../..' . '/includes/CatalogMode/Dashboard/Products.php', 'WeDevs\\Dokan\\CatalogMode\\Dashboard\\Settings' => __DIR__ . '/../..' . '/includes/CatalogMode/Dashboard/Settings.php', 'WeDevs\\Dokan\\CatalogMode\\Helper' => __DIR__ . '/../..' . '/includes/CatalogMode/Helper.php', 'WeDevs\\Dokan\\CatalogMode\\Hooks' => __DIR__ . '/../..' . '/includes/CatalogMode/Hooks.php', 'WeDevs\\Dokan\\Commission' => __DIR__ . '/../..' . '/includes/Commission.php', 'WeDevs\\Dokan\\Core' => __DIR__ . '/../..' . '/includes/Core.php', 'WeDevs\\Dokan\\Customizer' => __DIR__ . '/../..' . '/includes/Customizer.php', 'WeDevs\\Dokan\\Customizer\\HeadingControl' => __DIR__ . '/../..' . '/includes/Customizer/HeadingControl.php', 'WeDevs\\Dokan\\Customizer\\RadioImageControl' => __DIR__ . '/../..' . '/includes/Customizer/RadioImageControl.php', 'WeDevs\\Dokan\\Dashboard\\Manager' => __DIR__ . '/../..' . '/includes/Dashboard/Manager.php', 'WeDevs\\Dokan\\Dashboard\\Templates\\Dashboard' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Dashboard.php', 'WeDevs\\Dokan\\Dashboard\\Templates\\Main' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Main.php', 'WeDevs\\Dokan\\Dashboard\\Templates\\Manager' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Manager.php', 'WeDevs\\Dokan\\Dashboard\\Templates\\MultiStepCategories' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/MultiStepCategories.php', 'WeDevs\\Dokan\\Dashboard\\Templates\\Orders' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Orders.php', 'WeDevs\\Dokan\\Dashboard\\Templates\\Products' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Products.php', 'WeDevs\\Dokan\\Dashboard\\Templates\\ReverseWithdrawal' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/ReverseWithdrawal.php', 'WeDevs\\Dokan\\Dashboard\\Templates\\Settings' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Settings.php', 'WeDevs\\Dokan\\Dashboard\\Templates\\Withdraw' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Withdraw.php', 'WeDevs\\Dokan\\DummyData\\Importer' => __DIR__ . '/../..' . '/includes/DummyData/Importer.php', 'WeDevs\\Dokan\\Emails\\ContactSeller' => __DIR__ . '/../..' . '/includes/Emails/ContactSeller.php', 'WeDevs\\Dokan\\Emails\\Manager' => __DIR__ . '/../..' . '/includes/Emails/Manager.php', 'WeDevs\\Dokan\\Emails\\NewProduct' => __DIR__ . '/../..' . '/includes/Emails/NewProduct.php', 'WeDevs\\Dokan\\Emails\\NewProductPending' => __DIR__ . '/../..' . '/includes/Emails/NewProductPending.php', 'WeDevs\\Dokan\\Emails\\NewSeller' => __DIR__ . '/../..' . '/includes/Emails/NewSeller.php', 'WeDevs\\Dokan\\Emails\\ProductPublished' => __DIR__ . '/../..' . '/includes/Emails/ProductPublished.php', 'WeDevs\\Dokan\\Emails\\ReverseWithdrawalInvoice' => __DIR__ . '/../..' . '/includes/Emails/ReverseWithdrawalInvoice.php', 'WeDevs\\Dokan\\Emails\\VendorCompletedOrder' => __DIR__ . '/../..' . '/includes/Emails/VendorCompletedOrder.php', 'WeDevs\\Dokan\\Emails\\VendorNewOrder' => __DIR__ . '/../..' . '/includes/Emails/VendorNewOrder.php', 'WeDevs\\Dokan\\Emails\\VendorProductReview' => __DIR__ . '/../..' . '/includes/Emails/VendorProductReview.php', 'WeDevs\\Dokan\\Emails\\VendorWithdrawRequest' => __DIR__ . '/../..' . '/includes/Emails/VendorWithdrawRequest.php', 'WeDevs\\Dokan\\Emails\\WithdrawApproved' => __DIR__ . '/../..' . '/includes/Emails/WithdrawApproved.php', 'WeDevs\\Dokan\\Emails\\WithdrawCancelled' => __DIR__ . '/../..' . '/includes/Emails/WithdrawCancelled.php', 'WeDevs\\Dokan\\Exceptions\\DokanException' => __DIR__ . '/../..' . '/includes/Exceptions/DokanException.php', 'WeDevs\\Dokan\\FakeMailer' => __DIR__ . '/../..' . '/includes/FakeMailer.php', 'WeDevs\\Dokan\\Frontend\\Frontend' => __DIR__ . '/../..' . '/includes/Frontend/Frontend.php', 'WeDevs\\Dokan\\Frontend\\MyAccount\\BecomeAVendor' => __DIR__ . '/../..' . '/includes/Frontend/MyAccount/BecomeAVendor.php', 'WeDevs\\Dokan\\Install\\Installer' => __DIR__ . '/../..' . '/includes/Install/Installer.php', 'WeDevs\\Dokan\\Order\\Admin\\Hooks' => __DIR__ . '/../..' . '/includes/Order/Admin/Hooks.php', 'WeDevs\\Dokan\\Order\\Admin\\Permissions' => __DIR__ . '/../..' . '/includes/Order/Admin/Permissions.php', 'WeDevs\\Dokan\\Order\\Ajax' => __DIR__ . '/../..' . '/includes/Order/Ajax.php', 'WeDevs\\Dokan\\Order\\Controller' => __DIR__ . '/../..' . '/includes/Order/Controller.php', 'WeDevs\\Dokan\\Order\\EmailHooks' => __DIR__ . '/../..' . '/includes/Order/EmailHooks.php', 'WeDevs\\Dokan\\Order\\Frontend\\Hooks' => __DIR__ . '/../..' . '/includes/Order/Frontend/Hooks.php', 'WeDevs\\Dokan\\Order\\Hooks' => __DIR__ . '/../..' . '/includes/Order/Hooks.php', 'WeDevs\\Dokan\\Order\\Manager' => __DIR__ . '/../..' . '/includes/Order/Manager.php', 'WeDevs\\Dokan\\Order\\MiscHooks' => __DIR__ . '/../..' . '/includes/Order/MiscHooks.php', 'WeDevs\\Dokan\\Order\\OrderCache' => __DIR__ . '/../..' . '/includes/Order/OrderCache.php', 'WeDevs\\Dokan\\PageViews' => __DIR__ . '/../..' . '/includes/PageViews.php', 'WeDevs\\Dokan\\Privacy' => __DIR__ . '/../..' . '/includes/Privacy.php', 'WeDevs\\Dokan\\ProductCategory\\Categories' => __DIR__ . '/../..' . '/includes/ProductCategory/Categories.php', 'WeDevs\\Dokan\\ProductCategory\\Helper' => __DIR__ . '/../..' . '/includes/ProductCategory/Helper.php', 'WeDevs\\Dokan\\ProductCategory\\Hooks' => __DIR__ . '/../..' . '/includes/ProductCategory/Hooks.php', 'WeDevs\\Dokan\\ProductCategory\\ProductCategoryCache' => __DIR__ . '/../..' . '/includes/ProductCategory/ProductCategoryCache.php', 'WeDevs\\Dokan\\ProductSections\\AbstractProductSection' => __DIR__ . '/../..' . '/includes/ProductSections/AbstractProductSection.php', 'WeDevs\\Dokan\\ProductSections\\BestSelling' => __DIR__ . '/../..' . '/includes/ProductSections/BestSelling.php', 'WeDevs\\Dokan\\ProductSections\\Featured' => __DIR__ . '/../..' . '/includes/ProductSections/Featured.php', 'WeDevs\\Dokan\\ProductSections\\Latest' => __DIR__ . '/../..' . '/includes/ProductSections/Latest.php', 'WeDevs\\Dokan\\ProductSections\\Manager' => __DIR__ . '/../..' . '/includes/ProductSections/Manager.php', 'WeDevs\\Dokan\\ProductSections\\TopRated' => __DIR__ . '/../..' . '/includes/ProductSections/TopRated.php', 'WeDevs\\Dokan\\Product\\Hooks' => __DIR__ . '/../..' . '/includes/Product/Hooks.php', 'WeDevs\\Dokan\\Product\\Manager' => __DIR__ . '/../..' . '/includes/Product/Manager.php', 'WeDevs\\Dokan\\Product\\ProductAttribute' => __DIR__ . '/../..' . '/includes/Product/ProductAttribute.php', 'WeDevs\\Dokan\\Product\\ProductCache' => __DIR__ . '/../..' . '/includes/Product/ProductCache.php', 'WeDevs\\Dokan\\Product\\VendorStoreInfo' => __DIR__ . '/../..' . '/includes/Product/VendorStoreInfo.php', 'WeDevs\\Dokan\\REST\\AdminDashboardController' => __DIR__ . '/../..' . '/includes/REST/AdminDashboardController.php', 'WeDevs\\Dokan\\REST\\AdminMiscController' => __DIR__ . '/../..' . '/includes/REST/AdminMiscController.php', 'WeDevs\\Dokan\\REST\\AdminNoticeController' => __DIR__ . '/../..' . '/includes/REST/AdminNoticeController.php', 'WeDevs\\Dokan\\REST\\AdminReportController' => __DIR__ . '/../..' . '/includes/REST/AdminReportController.php', 'WeDevs\\Dokan\\REST\\ChangeLogController' => __DIR__ . '/../..' . '/includes/REST/ChangeLogController.php', 'WeDevs\\Dokan\\REST\\DummyDataController' => __DIR__ . '/../..' . '/includes/REST/DummyDataController.php', 'WeDevs\\Dokan\\REST\\Manager' => __DIR__ . '/../..' . '/includes/REST/Manager.php', 'WeDevs\\Dokan\\REST\\OrderController' => __DIR__ . '/../..' . '/includes/REST/OrderController.php', 'WeDevs\\Dokan\\REST\\OrderControllerV2' => __DIR__ . '/../..' . '/includes/REST/OrderControllerV2.php', 'WeDevs\\Dokan\\REST\\ProductAttributeController' => __DIR__ . '/../..' . '/includes/REST/ProductAttributeController.php', 'WeDevs\\Dokan\\REST\\ProductAttributeTermsController' => __DIR__ . '/../..' . '/includes/REST/ProductAttributeTermsController.php', 'WeDevs\\Dokan\\REST\\ProductBlockController' => __DIR__ . '/../..' . '/includes/REST/ProductBlockController.php', 'WeDevs\\Dokan\\REST\\ProductController' => __DIR__ . '/../..' . '/includes/REST/ProductController.php', 'WeDevs\\Dokan\\REST\\ProductControllerV2' => __DIR__ . '/../..' . '/includes/REST/ProductControllerV2.php', 'WeDevs\\Dokan\\REST\\ReverseWithdrawalController' => __DIR__ . '/../..' . '/includes/REST/ReverseWithdrawalController.php', 'WeDevs\\Dokan\\REST\\StoreController' => __DIR__ . '/../..' . '/includes/REST/StoreController.php', 'WeDevs\\Dokan\\REST\\StoreSettingController' => __DIR__ . '/../..' . '/includes/REST/StoreSettingController.php', 'WeDevs\\Dokan\\REST\\StoreSettingControllerV2' => __DIR__ . '/../..' . '/includes/REST/StoreSettingControllerV2.php', 'WeDevs\\Dokan\\REST\\VendorDashboardController' => __DIR__ . '/../..' . '/includes/REST/VendorDashboardController.php', 'WeDevs\\Dokan\\REST\\WithdrawController' => __DIR__ . '/../..' . '/includes/REST/WithdrawController.php', 'WeDevs\\Dokan\\REST\\WithdrawControllerV2' => __DIR__ . '/../..' . '/includes/REST/WithdrawControllerV2.php', 'WeDevs\\Dokan\\Registration' => __DIR__ . '/../..' . '/includes/Registration.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\Admin\\Hooks' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Admin/Hooks.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\Admin\\Settings' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Admin/Settings.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\Ajax' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Ajax.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\BackgroundProcess\\AsyncRequests' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/BackgroundProcess/AsyncRequests.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\BackgroundProcess\\CronActions' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/BackgroundProcess/CronActions.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\Cache' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Cache.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\Cart' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Cart.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\FailedActions' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/FailedActions.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\Helper' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Helper.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\Hooks' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Hooks.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\InstallerHelper' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/InstallerHelper.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\Manager' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Manager.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\Order' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Order.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\ReverseWithdrawal' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/ReverseWithdrawal.php', 'WeDevs\\Dokan\\ReverseWithdrawal\\SettingsHelper' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/SettingsHelper.php', 'WeDevs\\Dokan\\Rewrites' => __DIR__ . '/../..' . '/includes/Rewrites.php', 'WeDevs\\Dokan\\Shipping\\Hooks' => __DIR__ . '/../..' . '/includes/Shipping/Hooks.php', 'WeDevs\\Dokan\\Shortcodes\\BestSellingProduct' => __DIR__ . '/../..' . '/includes/Shortcodes/BestSellingProduct.php', 'WeDevs\\Dokan\\Shortcodes\\Dashboard' => __DIR__ . '/../..' . '/includes/Shortcodes/Dashboard.php', 'WeDevs\\Dokan\\Shortcodes\\MyOrders' => __DIR__ . '/../..' . '/includes/Shortcodes/MyOrders.php', 'WeDevs\\Dokan\\Shortcodes\\Shortcodes' => __DIR__ . '/../..' . '/includes/Shortcodes/Shortcodes.php', 'WeDevs\\Dokan\\Shortcodes\\Stores' => __DIR__ . '/../..' . '/includes/Shortcodes/Stores.php', 'WeDevs\\Dokan\\Shortcodes\\TopRatedProduct' => __DIR__ . '/../..' . '/includes/Shortcodes/TopRatedProduct.php', 'WeDevs\\Dokan\\Shortcodes\\VendorRegistration' => __DIR__ . '/../..' . '/includes/Shortcodes/VendorRegistration.php', 'WeDevs\\Dokan\\ThemeSupport\\Astra' => __DIR__ . '/../..' . '/includes/ThemeSupport/Astra.php', 'WeDevs\\Dokan\\ThemeSupport\\Divi' => __DIR__ . '/../..' . '/includes/ThemeSupport/Divi.php', 'WeDevs\\Dokan\\ThemeSupport\\Electro' => __DIR__ . '/../..' . '/includes/ThemeSupport/Electro.php', 'WeDevs\\Dokan\\ThemeSupport\\Enfold' => __DIR__ . '/../..' . '/includes/ThemeSupport/Enfold.php', 'WeDevs\\Dokan\\ThemeSupport\\Flatsome' => __DIR__ . '/../..' . '/includes/ThemeSupport/Flatsome.php', 'WeDevs\\Dokan\\ThemeSupport\\Manager' => __DIR__ . '/../..' . '/includes/ThemeSupport/Manager.php', 'WeDevs\\Dokan\\ThemeSupport\\Rehub' => __DIR__ . '/../..' . '/includes/ThemeSupport/Rehub.php', 'WeDevs\\Dokan\\ThemeSupport\\Storefront' => __DIR__ . '/../..' . '/includes/ThemeSupport/Storefront.php', 'WeDevs\\Dokan\\ThemeSupport\\TwentyTwenty' => __DIR__ . '/../..' . '/includes/ThemeSupport/TwentyTwenty.php', 'WeDevs\\Dokan\\Tracker' => __DIR__ . '/../..' . '/includes/Tracker.php', 'WeDevs\\Dokan\\Traits\\AjaxResponseError' => __DIR__ . '/../..' . '/includes/Traits/AjaxResponseError.php', 'WeDevs\\Dokan\\Traits\\ChainableContainer' => __DIR__ . '/../..' . '/includes/Traits/ChainableContainer.php', 'WeDevs\\Dokan\\Traits\\ObjectCache' => __DIR__ . '/../..' . '/includes/Traits/ObjectCache.php', 'WeDevs\\Dokan\\Traits\\RESTResponseError' => __DIR__ . '/../..' . '/includes/Traits/RESTResponseError.php', 'WeDevs\\Dokan\\Traits\\Singleton' => __DIR__ . '/../..' . '/includes/Traits/Singleton.php', 'WeDevs\\Dokan\\Traits\\TransientCache' => __DIR__ . '/../..' . '/includes/Traits/TransientCache.php', 'WeDevs\\Dokan\\Upgrade\\AdminNotice' => __DIR__ . '/../..' . '/includes/Upgrade/AdminNotice.php', 'WeDevs\\Dokan\\Upgrade\\Hooks' => __DIR__ . '/../..' . '/includes/Upgrade/Hooks.php', 'WeDevs\\Dokan\\Upgrade\\Manager' => __DIR__ . '/../..' . '/includes/Upgrade/Manager.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_2_8_3_VendorBalance' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_8_3_VendorBalance.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_2_9_16_StoreSettings' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_9_16_StoreSettings.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_2_9_23_StoreName' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_9_23_StoreName.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_2_9_4_OrderPostAuthor' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_9_4_OrderPostAuthor.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_3_0_10_ProductAttributesAuthorId' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_0_10_ProductAttributesAuthorId.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_3_1_1_RefundTableUpdate' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_1_1_RefundTableUpdate.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_3_3_8_VendorStoreTimes' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_3_8_VendorStoreTimes.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_3_6_2_UpdateProductCategories' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_6_2_UpdateProductCategories.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\BackgroundProcesses\\V_3_7_19_UpdateOrderMeta' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_7_19_UpdateOrderMeta.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_1_2' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_1_2.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_1.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_3' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_3.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_4_11' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_4_11.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_4_12' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_4_12.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_5_7' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_5_7.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_6_9' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_6_9.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_7_3' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_7_3.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_7_6' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_7_6.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_8_0' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_8_0.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_8_3' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_8_3.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_8_6' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_8_6.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_9_13' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_13.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_9_16' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_16.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_9_19' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_19.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_9_23' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_23.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_2_9_4' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_4.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_0_10' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_0_10.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_0_4' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_0_4.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_1_0' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_1_0.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_1_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_1_1.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_2_12' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_2_12.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_3_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_3_1.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_3_7' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_3_7.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_3_8' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_3_8.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_5_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_5_1.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_6_2' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_6_2.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_6_4' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_6_4.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_6_5' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_6_5.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_7_10' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_7_10.php', 'WeDevs\\Dokan\\Upgrade\\Upgrades\\V_3_7_19' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_7_19.php', 'WeDevs\\Dokan\\Utilities\\OrderUtil' => __DIR__ . '/../..' . '/includes/Utilities/OrderUtil.php', 'WeDevs\\Dokan\\Vendor\\ChangeProductStatus' => __DIR__ . '/../..' . '/includes/Vendor/ChangeProductStatus.php', 'WeDevs\\Dokan\\Vendor\\Hooks' => __DIR__ . '/../..' . '/includes/Vendor/Hooks.php', 'WeDevs\\Dokan\\Vendor\\Manager' => __DIR__ . '/../..' . '/includes/Vendor/Manager.php', 'WeDevs\\Dokan\\Vendor\\SettingsApi\\Abstracts\\Gateways' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Abstracts/Gateways.php', 'WeDevs\\Dokan\\Vendor\\SettingsApi\\Abstracts\\Page' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Abstracts/Page.php', 'WeDevs\\Dokan\\Vendor\\SettingsApi\\Manager' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Manager.php', 'WeDevs\\Dokan\\Vendor\\SettingsApi\\Processor' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Processor.php', 'WeDevs\\Dokan\\Vendor\\SettingsApi\\Settings\\Pages\\Payments\\Gateways\\Bank' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Payments/Gateways/Bank.php', 'WeDevs\\Dokan\\Vendor\\SettingsApi\\Settings\\Pages\\Payments\\Gateways\\PayPal' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Payments/Gateways/PayPal.php', 'WeDevs\\Dokan\\Vendor\\SettingsApi\\Settings\\Pages\\Payments\\Payments' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Payments/Payments.php', 'WeDevs\\Dokan\\Vendor\\SettingsApi\\Settings\\Pages\\Store' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Store.php', 'WeDevs\\Dokan\\Vendor\\SetupWizard' => __DIR__ . '/../..' . '/includes/Vendor/SetupWizard.php', 'WeDevs\\Dokan\\Vendor\\StoreListsFilter' => __DIR__ . '/../..' . '/includes/Vendor/StoreListsFilter.php', 'WeDevs\\Dokan\\Vendor\\UserSwitch' => __DIR__ . '/../..' . '/includes/Vendor/UserSwitch.php', 'WeDevs\\Dokan\\Vendor\\Vendor' => __DIR__ . '/../..' . '/includes/Vendor/Vendor.php', 'WeDevs\\Dokan\\Vendor\\VendorCache' => __DIR__ . '/../..' . '/includes/Vendor/VendorCache.php', 'WeDevs\\Dokan\\Walkers\\Category' => __DIR__ . '/../..' . '/includes/Walkers/Category.php', 'WeDevs\\Dokan\\Walkers\\CategoryDropdownSingle' => __DIR__ . '/../..' . '/includes/Walkers/CategoryDropdownSingle.php', 'WeDevs\\Dokan\\Walkers\\StoreCategory' => __DIR__ . '/../..' . '/includes/Walkers/StoreCategory.php', 'WeDevs\\Dokan\\Walkers\\TaxonomyDropdown' => __DIR__ . '/../..' . '/includes/Walkers/TaxonomyDropdown.php', 'WeDevs\\Dokan\\Widgets\\BestSellingProducts' => __DIR__ . '/../..' . '/includes/Widgets/BestSellingProducts.php', 'WeDevs\\Dokan\\Widgets\\FilterByAttributes' => __DIR__ . '/../..' . '/includes/Widgets/FilterByAttributes.php', 'WeDevs\\Dokan\\Widgets\\Manager' => __DIR__ . '/../..' . '/includes/Widgets/Manager.php', 'WeDevs\\Dokan\\Widgets\\ProductCategoryMenu' => __DIR__ . '/../..' . '/includes/Widgets/ProductCategoryMenu.php', 'WeDevs\\Dokan\\Widgets\\StoreCategoryMenu' => __DIR__ . '/../..' . '/includes/Widgets/StoreCategoryMenu.php', 'WeDevs\\Dokan\\Widgets\\StoreContactForm' => __DIR__ . '/../..' . '/includes/Widgets/StoreContactForm.php', 'WeDevs\\Dokan\\Widgets\\StoreLocation' => __DIR__ . '/../..' . '/includes/Widgets/StoreLocation.php', 'WeDevs\\Dokan\\Widgets\\StoreOpenClose' => __DIR__ . '/../..' . '/includes/Widgets/StoreOpenClose.php', 'WeDevs\\Dokan\\Widgets\\TopratedProducts' => __DIR__ . '/../..' . '/includes/Widgets/TopratedProducts.php', 'WeDevs\\Dokan\\Withdraw\\Export\\CSV' => __DIR__ . '/../..' . '/includes/Withdraw/Export/CSV.php', 'WeDevs\\Dokan\\Withdraw\\Export\\Manager' => __DIR__ . '/../..' . '/includes/Withdraw/Export/Manager.php', 'WeDevs\\Dokan\\Withdraw\\Hooks' => __DIR__ . '/../..' . '/includes/Withdraw/Hooks.php', 'WeDevs\\Dokan\\Withdraw\\Manager' => __DIR__ . '/../..' . '/includes/Withdraw/Manager.php', 'WeDevs\\Dokan\\Withdraw\\Withdraw' => __DIR__ . '/../..' . '/includes/Withdraw/Withdraw.php', 'WeDevs\\Dokan\\Withdraw\\WithdrawCache' => __DIR__ . '/../..' . '/includes/Withdraw/WithdrawCache.php', 'WeDevs\\Dokan\\Withdraw\\Withdraws' => __DIR__ . '/../..' . '/includes/Withdraw/Withdraws.php');
+        public static $prefixLengthsPsr4 = array('W' => array('WeDevs\Dokan\\' => 13), 'A' => array('Appsero\\' => 8));
+        public static $prefixDirsPsr4 = array('WeDevs\Dokan\\' => array(0 => __DIR__ . '/../..' . '/includes'), 'Appsero\\' => array(0 => __DIR__ . '/..' . '/appsero/client/src', 1 => __DIR__ . '/..' . '/appsero/updater/src'));
+        public static $classMap = array('Appsero\Client' => __DIR__ . '/..' . '/appsero/client/src/Client.php', 'Appsero\Insights' => __DIR__ . '/..' . '/appsero/client/src/Insights.php', 'Appsero\License' => __DIR__ . '/..' . '/appsero/client/src/License.php', 'Appsero\Updater' => __DIR__ . '/..' . '/appsero/updater/src/Updater.php', 'Composer\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php', 'WeDevs\Dokan\Abstracts\DokanBackgroundProcesses' => __DIR__ . '/../..' . '/includes/Abstracts/DokanBackgroundProcesses.php', 'WeDevs\Dokan\Abstracts\DokanCache' => __DIR__ . '/../..' . '/includes/Abstracts/DokanCache.php', 'WeDevs\Dokan\Abstracts\DokanModel' => __DIR__ . '/../..' . '/includes/Abstracts/DokanModel.php', 'WeDevs\Dokan\Abstracts\DokanPromotion' => __DIR__ . '/../..' . '/includes/Abstracts/DokanPromotion.php', 'WeDevs\Dokan\Abstracts\DokanRESTAdminController' => __DIR__ . '/../..' . '/includes/Abstracts/DokanRESTAdminController.php', 'WeDevs\Dokan\Abstracts\DokanRESTController' => __DIR__ . '/../..' . '/includes/Abstracts/DokanRESTController.php', 'WeDevs\Dokan\Abstracts\DokanShortcode' => __DIR__ . '/../..' . '/includes/Abstracts/DokanShortcode.php', 'WeDevs\Dokan\Abstracts\DokanUpgrader' => __DIR__ . '/../..' . '/includes/Abstracts/DokanUpgrader.php', 'WeDevs\Dokan\Abstracts\ProductStatusChanger' => __DIR__ . '/../..' . '/includes/Abstracts/ProductStatusChanger.php', 'WeDevs\Dokan\Admin\AdminBar' => __DIR__ . '/../..' . '/includes/Admin/AdminBar.php', 'WeDevs\Dokan\Admin\Hooks' => __DIR__ . '/../..' . '/includes/Admin/Hooks.php', 'WeDevs\Dokan\Admin\Menu' => __DIR__ . '/../..' . '/includes/Admin/Menu.php', 'WeDevs\Dokan\Admin\Notices\Helper' => __DIR__ . '/../..' . '/includes/Admin/Notices/Helper.php', 'WeDevs\Dokan\Admin\Notices\LimitedTimePromotion' => __DIR__ . '/../..' . '/includes/Admin/Notices/LimitedTimePromotion.php', 'WeDevs\Dokan\Admin\Notices\Manager' => __DIR__ . '/../..' . '/includes/Admin/Notices/Manager.php', 'WeDevs\Dokan\Admin\Notices\PluginReview' => __DIR__ . '/../..' . '/includes/Admin/Notices/PluginReview.php', 'WeDevs\Dokan\Admin\Notices\SetupWizard' => __DIR__ . '/../..' . '/includes/Admin/Notices/SetupWizard.php', 'WeDevs\Dokan\Admin\Notices\WhatsNew' => __DIR__ . '/../..' . '/includes/Admin/Notices/WhatsNew.php', 'WeDevs\Dokan\Admin\Pointers' => __DIR__ . '/../..' . '/includes/Admin/Pointers.php', 'WeDevs\Dokan\Admin\Promotion' => __DIR__ . '/../..' . '/includes/Admin/Promotion.php', 'WeDevs\Dokan\Admin\Settings' => __DIR__ . '/../..' . '/includes/Admin/Settings.php', 'WeDevs\Dokan\Admin\SetupWizard' => __DIR__ . '/../..' . '/includes/Admin/SetupWizard.php', 'WeDevs\Dokan\Admin\SetupWizardNoWC' => __DIR__ . '/../..' . '/includes/Admin/SetupWizardNoWC.php', 'WeDevs\Dokan\Admin\SetupWizardWCAdmin' => __DIR__ . '/../..' . '/includes/Admin/SetupWizardWCAdmin.php', 'WeDevs\Dokan\Admin\UserProfile' => __DIR__ . '/../..' . '/includes/Admin/UserProfile.php', 'WeDevs\Dokan\Admin\WithdrawLogExporter' => __DIR__ . '/../..' . '/includes/Admin/WithdrawLogExporter.php', 'WeDevs\Dokan\Ajax' => __DIR__ . '/../..' . '/includes/Ajax.php', 'WeDevs\Dokan\Assets' => __DIR__ . '/../..' . '/includes/Assets.php', 'WeDevs\Dokan\BackgroundProcess\Manager' => __DIR__ . '/../..' . '/includes/BackgroundProcess/Manager.php', 'WeDevs\Dokan\BackgroundProcess\RewriteVariableProductsAuthor' => __DIR__ . '/../..' . '/includes/BackgroundProcess/RewriteVariableProductsAuthor.php', 'WeDevs\Dokan\Blocks\ProductBlock' => __DIR__ . '/../..' . '/includes/Blocks/ProductBlock.php', 'WeDevs\Dokan\Cache' => __DIR__ . '/../..' . '/includes/Cache.php', 'WeDevs\Dokan\CacheInvalidate' => __DIR__ . '/../..' . '/includes/CacheInvalidate.php', 'WeDevs\Dokan\CatalogMode\Admin\Settings' => __DIR__ . '/../..' . '/includes/CatalogMode/Admin/Settings.php', 'WeDevs\Dokan\CatalogMode\Controller' => __DIR__ . '/../..' . '/includes/CatalogMode/Controller.php', 'WeDevs\Dokan\CatalogMode\Dashboard\ProductBulkEdit' => __DIR__ . '/../..' . '/includes/CatalogMode/Dashboard/ProductBulkEdit.php', 'WeDevs\Dokan\CatalogMode\Dashboard\Products' => __DIR__ . '/../..' . '/includes/CatalogMode/Dashboard/Products.php', 'WeDevs\Dokan\CatalogMode\Dashboard\Settings' => __DIR__ . '/../..' . '/includes/CatalogMode/Dashboard/Settings.php', 'WeDevs\Dokan\CatalogMode\Helper' => __DIR__ . '/../..' . '/includes/CatalogMode/Helper.php', 'WeDevs\Dokan\CatalogMode\Hooks' => __DIR__ . '/../..' . '/includes/CatalogMode/Hooks.php', 'WeDevs\Dokan\Commission' => __DIR__ . '/../..' . '/includes/Commission.php', 'WeDevs\Dokan\Core' => __DIR__ . '/../..' . '/includes/Core.php', 'WeDevs\Dokan\Customizer' => __DIR__ . '/../..' . '/includes/Customizer.php', 'WeDevs\Dokan\Customizer\HeadingControl' => __DIR__ . '/../..' . '/includes/Customizer/HeadingControl.php', 'WeDevs\Dokan\Customizer\RadioImageControl' => __DIR__ . '/../..' . '/includes/Customizer/RadioImageControl.php', 'WeDevs\Dokan\Dashboard\Manager' => __DIR__ . '/../..' . '/includes/Dashboard/Manager.php', 'WeDevs\Dokan\Dashboard\Templates\Dashboard' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Dashboard.php', 'WeDevs\Dokan\Dashboard\Templates\Main' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Main.php', 'WeDevs\Dokan\Dashboard\Templates\Manager' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Manager.php', 'WeDevs\Dokan\Dashboard\Templates\MultiStepCategories' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/MultiStepCategories.php', 'WeDevs\Dokan\Dashboard\Templates\Orders' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Orders.php', 'WeDevs\Dokan\Dashboard\Templates\Products' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Products.php', 'WeDevs\Dokan\Dashboard\Templates\ReverseWithdrawal' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/ReverseWithdrawal.php', 'WeDevs\Dokan\Dashboard\Templates\Settings' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Settings.php', 'WeDevs\Dokan\Dashboard\Templates\Withdraw' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Withdraw.php', 'WeDevs\Dokan\DummyData\Importer' => __DIR__ . '/../..' . '/includes/DummyData/Importer.php', 'WeDevs\Dokan\Emails\ContactSeller' => __DIR__ . '/../..' . '/includes/Emails/ContactSeller.php', 'WeDevs\Dokan\Emails\Manager' => __DIR__ . '/../..' . '/includes/Emails/Manager.php', 'WeDevs\Dokan\Emails\NewProduct' => __DIR__ . '/../..' . '/includes/Emails/NewProduct.php', 'WeDevs\Dokan\Emails\NewProductPending' => __DIR__ . '/../..' . '/includes/Emails/NewProductPending.php', 'WeDevs\Dokan\Emails\NewSeller' => __DIR__ . '/../..' . '/includes/Emails/NewSeller.php', 'WeDevs\Dokan\Emails\ProductPublished' => __DIR__ . '/../..' . '/includes/Emails/ProductPublished.php', 'WeDevs\Dokan\Emails\ReverseWithdrawalInvoice' => __DIR__ . '/../..' . '/includes/Emails/ReverseWithdrawalInvoice.php', 'WeDevs\Dokan\Emails\VendorCompletedOrder' => __DIR__ . '/../..' . '/includes/Emails/VendorCompletedOrder.php', 'WeDevs\Dokan\Emails\VendorNewOrder' => __DIR__ . '/../..' . '/includes/Emails/VendorNewOrder.php', 'WeDevs\Dokan\Emails\VendorProductReview' => __DIR__ . '/../..' . '/includes/Emails/VendorProductReview.php', 'WeDevs\Dokan\Emails\VendorWithdrawRequest' => __DIR__ . '/../..' . '/includes/Emails/VendorWithdrawRequest.php', 'WeDevs\Dokan\Emails\WithdrawApproved' => __DIR__ . '/../..' . '/includes/Emails/WithdrawApproved.php', 'WeDevs\Dokan\Emails\WithdrawCancelled' => __DIR__ . '/../..' . '/includes/Emails/WithdrawCancelled.php', 'WeDevs\Dokan\Exceptions\DokanException' => __DIR__ . '/../..' . '/includes/Exceptions/DokanException.php', 'WeDevs\Dokan\FakeMailer' => __DIR__ . '/../..' . '/includes/FakeMailer.php', 'WeDevs\Dokan\Frontend\Frontend' => __DIR__ . '/../..' . '/includes/Frontend/Frontend.php', 'WeDevs\Dokan\Frontend\MyAccount\BecomeAVendor' => __DIR__ . '/../..' . '/includes/Frontend/MyAccount/BecomeAVendor.php', 'WeDevs\Dokan\Install\Installer' => __DIR__ . '/../..' . '/includes/Install/Installer.php', 'WeDevs\Dokan\Order\Admin\Hooks' => __DIR__ . '/../..' . '/includes/Order/Admin/Hooks.php', 'WeDevs\Dokan\Order\Admin\Permissions' => __DIR__ . '/../..' . '/includes/Order/Admin/Permissions.php', 'WeDevs\Dokan\Order\Ajax' => __DIR__ . '/../..' . '/includes/Order/Ajax.php', 'WeDevs\Dokan\Order\Controller' => __DIR__ . '/../..' . '/includes/Order/Controller.php', 'WeDevs\Dokan\Order\EmailHooks' => __DIR__ . '/../..' . '/includes/Order/EmailHooks.php', 'WeDevs\Dokan\Order\Frontend\Hooks' => __DIR__ . '/../..' . '/includes/Order/Frontend/Hooks.php', 'WeDevs\Dokan\Order\Hooks' => __DIR__ . '/../..' . '/includes/Order/Hooks.php', 'WeDevs\Dokan\Order\Manager' => __DIR__ . '/../..' . '/includes/Order/Manager.php', 'WeDevs\Dokan\Order\MiscHooks' => __DIR__ . '/../..' . '/includes/Order/MiscHooks.php', 'WeDevs\Dokan\Order\OrderCache' => __DIR__ . '/../..' . '/includes/Order/OrderCache.php', 'WeDevs\Dokan\PageViews' => __DIR__ . '/../..' . '/includes/PageViews.php', 'WeDevs\Dokan\Privacy' => __DIR__ . '/../..' . '/includes/Privacy.php', 'WeDevs\Dokan\ProductCategory\Categories' => __DIR__ . '/../..' . '/includes/ProductCategory/Categories.php', 'WeDevs\Dokan\ProductCategory\Helper' => __DIR__ . '/../..' . '/includes/ProductCategory/Helper.php', 'WeDevs\Dokan\ProductCategory\Hooks' => __DIR__ . '/../..' . '/includes/ProductCategory/Hooks.php', 'WeDevs\Dokan\ProductCategory\ProductCategoryCache' => __DIR__ . '/../..' . '/includes/ProductCategory/ProductCategoryCache.php', 'WeDevs\Dokan\ProductSections\AbstractProductSection' => __DIR__ . '/../..' . '/includes/ProductSections/AbstractProductSection.php', 'WeDevs\Dokan\ProductSections\BestSelling' => __DIR__ . '/../..' . '/includes/ProductSections/BestSelling.php', 'WeDevs\Dokan\ProductSections\Featured' => __DIR__ . '/../..' . '/includes/ProductSections/Featured.php', 'WeDevs\Dokan\ProductSections\Latest' => __DIR__ . '/../..' . '/includes/ProductSections/Latest.php', 'WeDevs\Dokan\ProductSections\Manager' => __DIR__ . '/../..' . '/includes/ProductSections/Manager.php', 'WeDevs\Dokan\ProductSections\TopRated' => __DIR__ . '/../..' . '/includes/ProductSections/TopRated.php', 'WeDevs\Dokan\Product\Hooks' => __DIR__ . '/../..' . '/includes/Product/Hooks.php', 'WeDevs\Dokan\Product\Manager' => __DIR__ . '/../..' . '/includes/Product/Manager.php', 'WeDevs\Dokan\Product\ProductAttribute' => __DIR__ . '/../..' . '/includes/Product/ProductAttribute.php', 'WeDevs\Dokan\Product\ProductCache' => __DIR__ . '/../..' . '/includes/Product/ProductCache.php', 'WeDevs\Dokan\Product\VendorStoreInfo' => __DIR__ . '/../..' . '/includes/Product/VendorStoreInfo.php', 'WeDevs\Dokan\REST\AdminDashboardController' => __DIR__ . '/../..' . '/includes/REST/AdminDashboardController.php', 'WeDevs\Dokan\REST\AdminMiscController' => __DIR__ . '/../..' . '/includes/REST/AdminMiscController.php', 'WeDevs\Dokan\REST\AdminNoticeController' => __DIR__ . '/../..' . '/includes/REST/AdminNoticeController.php', 'WeDevs\Dokan\REST\AdminReportController' => __DIR__ . '/../..' . '/includes/REST/AdminReportController.php', 'WeDevs\Dokan\REST\ChangeLogController' => __DIR__ . '/../..' . '/includes/REST/ChangeLogController.php', 'WeDevs\Dokan\REST\DummyDataController' => __DIR__ . '/../..' . '/includes/REST/DummyDataController.php', 'WeDevs\Dokan\REST\Manager' => __DIR__ . '/../..' . '/includes/REST/Manager.php', 'WeDevs\Dokan\REST\OrderController' => __DIR__ . '/../..' . '/includes/REST/OrderController.php', 'WeDevs\Dokan\REST\OrderControllerV2' => __DIR__ . '/../..' . '/includes/REST/OrderControllerV2.php', 'WeDevs\Dokan\REST\ProductAttributeController' => __DIR__ . '/../..' . '/includes/REST/ProductAttributeController.php', 'WeDevs\Dokan\REST\ProductAttributeTermsController' => __DIR__ . '/../..' . '/includes/REST/ProductAttributeTermsController.php', 'WeDevs\Dokan\REST\ProductBlockController' => __DIR__ . '/../..' . '/includes/REST/ProductBlockController.php', 'WeDevs\Dokan\REST\ProductController' => __DIR__ . '/../..' . '/includes/REST/ProductController.php', 'WeDevs\Dokan\REST\ProductControllerV2' => __DIR__ . '/../..' . '/includes/REST/ProductControllerV2.php', 'WeDevs\Dokan\REST\ReverseWithdrawalController' => __DIR__ . '/../..' . '/includes/REST/ReverseWithdrawalController.php', 'WeDevs\Dokan\REST\StoreController' => __DIR__ . '/../..' . '/includes/REST/StoreController.php', 'WeDevs\Dokan\REST\StoreSettingController' => __DIR__ . '/../..' . '/includes/REST/StoreSettingController.php', 'WeDevs\Dokan\REST\StoreSettingControllerV2' => __DIR__ . '/../..' . '/includes/REST/StoreSettingControllerV2.php', 'WeDevs\Dokan\REST\VendorDashboardController' => __DIR__ . '/../..' . '/includes/REST/VendorDashboardController.php', 'WeDevs\Dokan\REST\WithdrawController' => __DIR__ . '/../..' . '/includes/REST/WithdrawController.php', 'WeDevs\Dokan\REST\WithdrawControllerV2' => __DIR__ . '/../..' . '/includes/REST/WithdrawControllerV2.php', 'WeDevs\Dokan\Registration' => __DIR__ . '/../..' . '/includes/Registration.php', 'WeDevs\Dokan\ReverseWithdrawal\Admin\Hooks' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Admin/Hooks.php', 'WeDevs\Dokan\ReverseWithdrawal\Admin\Settings' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Admin/Settings.php', 'WeDevs\Dokan\ReverseWithdrawal\Ajax' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Ajax.php', 'WeDevs\Dokan\ReverseWithdrawal\BackgroundProcess\AsyncRequests' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/BackgroundProcess/AsyncRequests.php', 'WeDevs\Dokan\ReverseWithdrawal\BackgroundProcess\CronActions' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/BackgroundProcess/CronActions.php', 'WeDevs\Dokan\ReverseWithdrawal\Cache' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Cache.php', 'WeDevs\Dokan\ReverseWithdrawal\Cart' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Cart.php', 'WeDevs\Dokan\ReverseWithdrawal\FailedActions' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/FailedActions.php', 'WeDevs\Dokan\ReverseWithdrawal\Helper' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Helper.php', 'WeDevs\Dokan\ReverseWithdrawal\Hooks' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Hooks.php', 'WeDevs\Dokan\ReverseWithdrawal\InstallerHelper' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/InstallerHelper.php', 'WeDevs\Dokan\ReverseWithdrawal\Manager' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Manager.php', 'WeDevs\Dokan\ReverseWithdrawal\Order' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Order.php', 'WeDevs\Dokan\ReverseWithdrawal\ReverseWithdrawal' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/ReverseWithdrawal.php', 'WeDevs\Dokan\ReverseWithdrawal\SettingsHelper' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/SettingsHelper.php', 'WeDevs\Dokan\Rewrites' => __DIR__ . '/../..' . '/includes/Rewrites.php', 'WeDevs\Dokan\Shipping\Hooks' => __DIR__ . '/../..' . '/includes/Shipping/Hooks.php', 'WeDevs\Dokan\Shortcodes\BestSellingProduct' => __DIR__ . '/../..' . '/includes/Shortcodes/BestSellingProduct.php', 'WeDevs\Dokan\Shortcodes\Dashboard' => __DIR__ . '/../..' . '/includes/Shortcodes/Dashboard.php', 'WeDevs\Dokan\Shortcodes\MyOrders' => __DIR__ . '/../..' . '/includes/Shortcodes/MyOrders.php', 'WeDevs\Dokan\Shortcodes\Shortcodes' => __DIR__ . '/../..' . '/includes/Shortcodes/Shortcodes.php', 'WeDevs\Dokan\Shortcodes\Stores' => __DIR__ . '/../..' . '/includes/Shortcodes/Stores.php', 'WeDevs\Dokan\Shortcodes\TopRatedProduct' => __DIR__ . '/../..' . '/includes/Shortcodes/TopRatedProduct.php', 'WeDevs\Dokan\Shortcodes\VendorRegistration' => __DIR__ . '/../..' . '/includes/Shortcodes/VendorRegistration.php', 'WeDevs\Dokan\ThemeSupport\Astra' => __DIR__ . '/../..' . '/includes/ThemeSupport/Astra.php', 'WeDevs\Dokan\ThemeSupport\Divi' => __DIR__ . '/../..' . '/includes/ThemeSupport/Divi.php', 'WeDevs\Dokan\ThemeSupport\Electro' => __DIR__ . '/../..' . '/includes/ThemeSupport/Electro.php', 'WeDevs\Dokan\ThemeSupport\Enfold' => __DIR__ . '/../..' . '/includes/ThemeSupport/Enfold.php', 'WeDevs\Dokan\ThemeSupport\Flatsome' => __DIR__ . '/../..' . '/includes/ThemeSupport/Flatsome.php', 'WeDevs\Dokan\ThemeSupport\Manager' => __DIR__ . '/../..' . '/includes/ThemeSupport/Manager.php', 'WeDevs\Dokan\ThemeSupport\Rehub' => __DIR__ . '/../..' . '/includes/ThemeSupport/Rehub.php', 'WeDevs\Dokan\ThemeSupport\Storefront' => __DIR__ . '/../..' . '/includes/ThemeSupport/Storefront.php', 'WeDevs\Dokan\ThemeSupport\TwentyTwenty' => __DIR__ . '/../..' . '/includes/ThemeSupport/TwentyTwenty.php', 'WeDevs\Dokan\Tracker' => __DIR__ . '/../..' . '/includes/Tracker.php', 'WeDevs\Dokan\Traits\AjaxResponseError' => __DIR__ . '/../..' . '/includes/Traits/AjaxResponseError.php', 'WeDevs\Dokan\Traits\ChainableContainer' => __DIR__ . '/../..' . '/includes/Traits/ChainableContainer.php', 'WeDevs\Dokan\Traits\ObjectCache' => __DIR__ . '/../..' . '/includes/Traits/ObjectCache.php', 'WeDevs\Dokan\Traits\RESTResponseError' => __DIR__ . '/../..' . '/includes/Traits/RESTResponseError.php', 'WeDevs\Dokan\Traits\Singleton' => __DIR__ . '/../..' . '/includes/Traits/Singleton.php', 'WeDevs\Dokan\Traits\TransientCache' => __DIR__ . '/../..' . '/includes/Traits/TransientCache.php', 'WeDevs\Dokan\Upgrade\AdminNotice' => __DIR__ . '/../..' . '/includes/Upgrade/AdminNotice.php', 'WeDevs\Dokan\Upgrade\Hooks' => __DIR__ . '/../..' . '/includes/Upgrade/Hooks.php', 'WeDevs\Dokan\Upgrade\Manager' => __DIR__ . '/../..' . '/includes/Upgrade/Manager.php', 'WeDevs\Dokan\Upgrade\Upgrades' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_2_8_3_VendorBalance' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_8_3_VendorBalance.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_2_9_16_StoreSettings' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_9_16_StoreSettings.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_2_9_23_StoreName' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_9_23_StoreName.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_2_9_4_OrderPostAuthor' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_9_4_OrderPostAuthor.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_3_0_10_ProductAttributesAuthorId' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_0_10_ProductAttributesAuthorId.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_3_1_1_RefundTableUpdate' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_1_1_RefundTableUpdate.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_3_3_8_VendorStoreTimes' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_3_8_VendorStoreTimes.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_3_6_2_UpdateProductCategories' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_6_2_UpdateProductCategories.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_3_7_19_UpdateOrderMeta' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_7_19_UpdateOrderMeta.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_1_2' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_1_2.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_1.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_3' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_3.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_4_11' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_4_11.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_4_12' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_4_12.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_5_7' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_5_7.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_6_9' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_6_9.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_7_3' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_7_3.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_7_6' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_7_6.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_8_0' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_8_0.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_8_3' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_8_3.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_8_6' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_8_6.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_9_13' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_13.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_9_16' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_16.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_9_19' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_19.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_9_23' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_23.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_9_4' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_4.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_0_10' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_0_10.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_0_4' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_0_4.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_1_0' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_1_0.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_1_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_1_1.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_2_12' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_2_12.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_3_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_3_1.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_3_7' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_3_7.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_3_8' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_3_8.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_5_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_5_1.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_6_2' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_6_2.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_6_4' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_6_4.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_6_5' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_6_5.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_7_10' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_7_10.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_7_19' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_7_19.php', 'WeDevs\Dokan\Utilities\OrderUtil' => __DIR__ . '/../..' . '/includes/Utilities/OrderUtil.php', 'WeDevs\Dokan\Vendor\ChangeProductStatus' => __DIR__ . '/../..' . '/includes/Vendor/ChangeProductStatus.php', 'WeDevs\Dokan\Vendor\Hooks' => __DIR__ . '/../..' . '/includes/Vendor/Hooks.php', 'WeDevs\Dokan\Vendor\Manager' => __DIR__ . '/../..' . '/includes/Vendor/Manager.php', 'WeDevs\Dokan\Vendor\SettingsApi\Abstracts\Gateways' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Abstracts/Gateways.php', 'WeDevs\Dokan\Vendor\SettingsApi\Abstracts\Page' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Abstracts/Page.php', 'WeDevs\Dokan\Vendor\SettingsApi\Manager' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Manager.php', 'WeDevs\Dokan\Vendor\SettingsApi\Processor' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Processor.php', 'WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Payments\Gateways\Bank' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Payments/Gateways/Bank.php', 'WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Payments\Gateways\PayPal' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Payments/Gateways/PayPal.php', 'WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Payments\Payments' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Payments/Payments.php', 'WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Store' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Store.php', 'WeDevs\Dokan\Vendor\SetupWizard' => __DIR__ . '/../..' . '/includes/Vendor/SetupWizard.php', 'WeDevs\Dokan\Vendor\StoreListsFilter' => __DIR__ . '/../..' . '/includes/Vendor/StoreListsFilter.php', 'WeDevs\Dokan\Vendor\UserSwitch' => __DIR__ . '/../..' . '/includes/Vendor/UserSwitch.php', 'WeDevs\Dokan\Vendor\Vendor' => __DIR__ . '/../..' . '/includes/Vendor/Vendor.php', 'WeDevs\Dokan\Vendor\VendorCache' => __DIR__ . '/../..' . '/includes/Vendor/VendorCache.php', 'WeDevs\Dokan\Walkers\Category' => __DIR__ . '/../..' . '/includes/Walkers/Category.php', 'WeDevs\Dokan\Walkers\CategoryDropdownSingle' => __DIR__ . '/../..' . '/includes/Walkers/CategoryDropdownSingle.php', 'WeDevs\Dokan\Walkers\StoreCategory' => __DIR__ . '/../..' . '/includes/Walkers/StoreCategory.php', 'WeDevs\Dokan\Walkers\TaxonomyDropdown' => __DIR__ . '/../..' . '/includes/Walkers/TaxonomyDropdown.php', 'WeDevs\Dokan\Widgets\BestSellingProducts' => __DIR__ . '/../..' . '/includes/Widgets/BestSellingProducts.php', 'WeDevs\Dokan\Widgets\FilterByAttributes' => __DIR__ . '/../..' . '/includes/Widgets/FilterByAttributes.php', 'WeDevs\Dokan\Widgets\Manager' => __DIR__ . '/../..' . '/includes/Widgets/Manager.php', 'WeDevs\Dokan\Widgets\ProductCategoryMenu' => __DIR__ . '/../..' . '/includes/Widgets/ProductCategoryMenu.php', 'WeDevs\Dokan\Widgets\StoreCategoryMenu' => __DIR__ . '/../..' . '/includes/Widgets/StoreCategoryMenu.php', 'WeDevs\Dokan\Widgets\StoreContactForm' => __DIR__ . '/../..' . '/includes/Widgets/StoreContactForm.php', 'WeDevs\Dokan\Widgets\StoreLocation' => __DIR__ . '/../..' . '/includes/Widgets/StoreLocation.php', 'WeDevs\Dokan\Widgets\StoreOpenClose' => __DIR__ . '/../..' . '/includes/Widgets/StoreOpenClose.php', 'WeDevs\Dokan\Widgets\TopratedProducts' => __DIR__ . '/../..' . '/includes/Widgets/TopratedProducts.php', 'WeDevs\Dokan\Withdraw\Export\CSV' => __DIR__ . '/../..' . '/includes/Withdraw/Export/CSV.php', 'WeDevs\Dokan\Withdraw\Export\Manager' => __DIR__ . '/../..' . '/includes/Withdraw/Export/Manager.php', 'WeDevs\Dokan\Withdraw\Hooks' => __DIR__ . '/../..' . '/includes/Withdraw/Hooks.php', 'WeDevs\Dokan\Withdraw\Manager' => __DIR__ . '/../..' . '/includes/Withdraw/Manager.php', 'WeDevs\Dokan\Withdraw\Withdraw' => __DIR__ . '/../..' . '/includes/Withdraw/Withdraw.php', 'WeDevs\Dokan\Withdraw\WithdrawCache' => __DIR__ . '/../..' . '/includes/Withdraw/WithdrawCache.php', 'WeDevs\Dokan\Withdraw\Withdraws' => __DIR__ . '/../..' . '/includes/Withdraw/Withdraws.php');
         public static function getInitializer(\Composer\Autoload\ClassLoader $loader)
         {
         }
@@ -21328,7 +21414,7 @@ namespace {
      *
      * @return array
      */
-    function dokan_get_dashboard_nav() : array
+    function dokan_get_dashboard_nav(): array
     {
     }
     /**
@@ -21650,7 +21736,7 @@ namespace {
      *
      * @param string $status
      *
-     * @return string
+     * @return array
      */
     function dokan_get_product_types($status = '')
     {
@@ -21766,11 +21852,11 @@ namespace {
      *
      * @param string $option  settings field name
      * @param string $section the section name this field belongs to
-     * @param string $default default text if it's not found
+     * @param string $default_value default text if it's not found
      *
      * @return mixed
      */
-    function dokan_get_option($option, $section, $default = '')
+    function dokan_get_option($option, $section, $default_value = '')
     {
     }
     /**
@@ -21791,7 +21877,7 @@ namespace {
      *
      * @return bool
      */
-    function dokan_is_seller_enabled($user_id) : bool
+    function dokan_is_seller_enabled($user_id): bool
     {
     }
     /**
@@ -22184,7 +22270,8 @@ namespace {
      *
      * @since 2.3
      *
-     * @param bool verified
+     * @param bool $verified verified
+     * @param bool $required required
      *
      * @return void
      */
@@ -23109,7 +23196,7 @@ namespace {
      *
      * @return void
      */
-    function dokan_store_category_menu($seller_id, $title = '')
+    function dokan_store_category_menu($seller_id)
     {
     }
     /**
@@ -23215,7 +23302,7 @@ namespace {
      *
      * @return string values can be 'customer' or 'seller'
      */
-    function dokan_get_seller_registration_default_role() : string
+    function dokan_get_seller_registration_default_role(): string
     {
     }
     /**
@@ -23266,7 +23353,7 @@ namespace {
      *
      * @return int
      */
-    function dokan_sub_order_get_total_coupon(int $order_id) : int
+    function dokan_sub_order_get_total_coupon(int $order_id): int
     {
     }
     /**
@@ -23360,7 +23447,7 @@ namespace {
      *
      * @return WP_Query
      */
-    function dokan_get_on_sale_products(int $per_page = 10, int $paged = 1, int $seller_id = 0) : \WP_Query
+    function dokan_get_on_sale_products(int $per_page = 10, int $paged = 1, int $seller_id = 0): \WP_Query
     {
     }
     /**
@@ -23488,7 +23575,7 @@ namespace {
      *
      * @return boolean
      */
-    function dokan_vendor_own_product_purchase_restriction(bool $is_purchasable, $product) : bool
+    function dokan_vendor_own_product_purchase_restriction(bool $is_purchasable, $product): bool
     {
     }
     /**
@@ -23499,7 +23586,7 @@ namespace {
      * @param array $data
      * @return array
      */
-    function dokan_vendor_product_review_restriction(array $data) : array
+    function dokan_vendor_product_review_restriction(array $data): array
     {
     }
     /**
@@ -23703,7 +23790,7 @@ namespace {
      * @param string $file
      * @return void
      */
-    function composerRequire1e669f7f5259d0a69bc52936935bb40c($fileIdentifier, $file)
+    function composerRequireacc6c52464de5e312268058e6bdf7155($fileIdentifier, $file)
     {
     }
     /**

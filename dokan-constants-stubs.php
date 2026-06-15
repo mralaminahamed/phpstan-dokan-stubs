@@ -1,6 +1,6 @@
 <?php
 /**
- * Generated stub declarations for dokan.
+ * Generated stub declarations for Dokan.
  * @see https://dokan.co
  * @see https://github.com/mralaminahamed/phpstan-dokan-stubs
  */
