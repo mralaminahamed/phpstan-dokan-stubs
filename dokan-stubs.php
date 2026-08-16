@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.8';
+        public $version = '5.0.9';
         /**
          * Instance of self
          *
@@ -2910,6 +2910,53 @@ namespace WeDevs\Dokan\Admin\Dashboard\Pages {
          * @since 4.0.0
          *
          * @return void
+         */
+        public function register(): void
+        {
+        }
+    }
+    /**
+     * Admin Tools page (React dashboard).
+     *
+     * Renders the free Tools sections; Dokan Pro injects its own sections into the
+     * same page via the `dokan_admin_dashboard_tools_sections` JS filter.
+     *
+     * @since 5.0.9
+     */
+    class Tools extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function menu(string $capability, string $position): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * @inheritDoc
          */
         public function register(): void
         {
@@ -6844,6 +6891,68 @@ namespace WeDevs\Dokan\Admin\Status {
         }
     }
 }
+namespace WeDevs\Dokan\Admin\Tools {
+    /**
+     * Shared service hosting the free admin Tools actions.
+     *
+     * The same logic backs both the REST controller (React dashboard) and the AJAX
+     * handlers (legacy Vue admin), so a tool behaves identically across both UIs.
+     *
+     * @since 5.0.9
+     */
+    class ToolsActions
+    {
+        /**
+         * Default Dokan pages the "Installation Guide" tool ensures exist.
+         *
+         * @since 5.0.9
+         *
+         * @return array<int, array<string, string>>
+         */
+        protected function get_default_pages(): array
+        {
+        }
+        /**
+         * Create any missing Dokan default pages.
+         *
+         * Unlike the installer (which bails once `dokan_pages_created` is set), this
+         * recreates only the pages that are actually missing, so an admin can recover
+         * an accidentally-deleted page from the Tools screen at any time.
+         *
+         * @since 5.0.9
+         *
+         * @return array
+         */
+        public function create_default_pages()
+        {
+        }
+        /**
+         * Whether the Dokan default pages have already been created.
+         *
+         * @since 5.0.9
+         *
+         * @return array
+         */
+        public function check_all_dokan_pages_exists()
+        {
+        }
+        /**
+         * Clear all Dokan-related caches (transients + object cache).
+         *
+         * Removes Dokan's DB transients (cached data, group version markers and their
+         * timeouts) so installs without a persistent object cache are trimmed, then
+         * flushes the object cache so data held in a persistent backend (Redis/Memcached)
+         * is rebuilt on demand.
+         *
+         * @since 5.0.9
+         *
+         * @return array
+         */
+        public function clear_dokan_caches()
+        {
+        }
+    }
+}
 namespace WeDevs\Dokan\Admin {
     /**
      * User List related tasks for wp-admin.
@@ -7109,6 +7218,36 @@ namespace WeDevs\Dokan {
          * @return void
          */
         public function __construct()
+        {
+        }
+        /**
+         * Create the Dokan default pages (legacy Vue admin Tools page).
+         *
+         * @since 5.0.9
+         *
+         * @return void
+         */
+        public function create_pages()
+        {
+        }
+        /**
+         * Check whether all Dokan pages exist (legacy Vue admin Tools page).
+         *
+         * @since 5.0.9
+         *
+         * @return void
+         */
+        public function check_all_dokan_pages_exists()
+        {
+        }
+        /**
+         * Clear all Dokan caches (legacy Vue admin Tools page).
+         *
+         * @since 5.0.9
+         *
+         * @return void
+         */
+        public function clear_caches()
         {
         }
         /**
@@ -15364,6 +15503,7 @@ namespace WeDevs\Dokan\DependencyManagement\Providers {
             \WeDevs\Dokan\Admin\Dashboard\Dashboard::class,
             \WeDevs\Dokan\Admin\Dashboard\LegacySwitcher::class,
             \WeDevs\Dokan\Admin\Dashboard\Pages\Modules::class,
+            \WeDevs\Dokan\Admin\Dashboard\Pages\Tools::class,
             \WeDevs\Dokan\Admin\Dashboard\Pages\Status::class,
             \WeDevs\Dokan\Admin\Dashboard\Pages\ProFeatures::class,
             \WeDevs\Dokan\Admin\Dashboard\Pages\Withdraw::class,
@@ -27111,6 +27251,82 @@ namespace WeDevs\Dokan\REST {
          * @return array
          */
         private function update_settings_group_args()
+        {
+        }
+    }
+    /**
+     * Tools REST controller for the free admin Tools page.
+     *
+     * Pro keeps its own paths under the same `tools` base for its Pro-only actions.
+     *
+     * @since 5.0.9
+     */
+    class ToolsController extends \WeDevs\Dokan\REST\DokanBaseAdminController
+    {
+        /**
+         * Route base.
+         *
+         * @var string
+         */
+        protected $rest_base = 'tools';
+        /**
+         * Tools actions service.
+         *
+         * @var ToolsActions
+         */
+        private $tools;
+        /**
+         * Constructor.
+         *
+         * @since 5.0.9
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Register routes.
+         *
+         * @since 5.0.9
+         *
+         * @return void
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Create the Dokan default pages.
+         *
+         * @since 5.0.9
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return WP_REST_Response
+         */
+        public function create_pages(\WP_REST_Request $request)
+        {
+        }
+        /**
+         * Check whether all Dokan pages exist.
+         *
+         * @since 5.0.9
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return WP_REST_Response
+         */
+        public function check_all_dokan_pages_exists(\WP_REST_Request $request)
+        {
+        }
+        /**
+         * Clear all Dokan caches.
+         *
+         * @since 5.0.9
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return WP_REST_Response
+         */
+        public function clear_caches(\WP_REST_Request $request)
         {
         }
     }
