@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.7';
+        public $version = '5.0.8';
         /**
          * Instance of self
          *
