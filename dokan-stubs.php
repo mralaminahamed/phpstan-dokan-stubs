@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.6';
+        public $version = '5.0.7';
         /**
          * Instance of self
          *
@@ -26111,6 +26111,22 @@ namespace WeDevs\Dokan\REST {
         {
         }
         /**
+         * Whether the current user owns the product targeted by the request.
+         *
+         * Centralizes the per-product authorship gate shared by the update and delete
+         * permission checks. A request without an `id` has no product to own, so it
+         * passes here and the capability check stays the gate.
+         *
+         * @since 5.0.7
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return bool
+         */
+        protected function check_ownership($request): bool
+        {
+        }
+        /**
          * Check if the current user has permission for batch operations.
          *
          * @since 5.0.0
@@ -26120,6 +26136,37 @@ namespace WeDevs\Dokan\REST {
          * @return true|WP_Error
          */
         public function batch_items_permissions_check($request)
+        {
+        }
+        /**
+         * Check ownership before a batched product update.
+         *
+         * WooCommerce's WC_REST_Controller::batch_items() calls this once per "update"
+         * item, so this — not the route-level batch_items_permissions_check() — is where
+         * a vendor is stopped from editing another vendor's product.
+         *
+         * @since 5.0.7
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return true|WP_Error
+         */
+        public function update_item_permissions_check($request)
+        {
+        }
+        /**
+         * Check ownership before a batched product delete.
+         *
+         * Mirrors update_item_permissions_check(); the batch route is the only delete
+         * path the v3 controller exposes, so the ownership gate must live here.
+         *
+         * @since 5.0.7
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return true|WP_Error
+         */
+        public function delete_item_permissions_check($request)
         {
         }
         /**
