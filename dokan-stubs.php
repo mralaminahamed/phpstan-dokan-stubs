@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.4';
+        public $version = '5.0.5';
         /**
          * Instance of self
          *
@@ -22579,6 +22579,23 @@ namespace WeDevs\Dokan\ProductEditor {
         {
         }
         /**
+         * Resolve and format values for a set of schema fields against a product.
+         *
+         * Lets callers that already hold field definitions resolve per-product
+         * values without rebuilding the whole schema. The frontend variation
+         * renderer uses this to avoid one full schema build per variation.
+         *
+         * @since 5.0.5
+         *
+         * @param array      $fields  Schema field items (each with at least 'id', 'type', 'variant').
+         * @param WC_Product $product Product to resolve values against.
+         *
+         * @return array<string, mixed> Map of field id => formatted value.
+         */
+        public function get_field_values(array $fields, \WC_Product $product): array
+        {
+        }
+        /**
          * Format a resolved field value to the shape expected by the frontend based on variant.
          *
          * Resolve_field_value() returns raw values (int, array of ints, etc.).
@@ -22612,6 +22629,22 @@ namespace WeDevs\Dokan\ProductEditor {
          * @return array
          */
         public static function get_product_tags(): array
+        {
+        }
+        /**
+         * Convert a list of term IDs to async-select options: [ { value, label }, ... ].
+         *
+         * Used by async-select fields (e.g. tags) so the currently selected terms render
+         * their labels without embedding the whole taxonomy in the form schema.
+         *
+         * @since 5.0.5
+         *
+         * @param array  $term_ids Term IDs.
+         * @param string $taxonomy Taxonomy name.
+         *
+         * @return array
+         */
+        public static function terms_to_async_options(array $term_ids, string $taxonomy): array
         {
         }
         /**
@@ -25119,6 +25152,21 @@ namespace WeDevs\Dokan\REST {
         {
         }
         /**
+         * Check if a given request has access to create a new attribute term.
+         *
+         * Creating terms is only allowed when vendors are permitted to add new
+         * attributes from the selling options.
+         *
+         * @since 5.0.5
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return bool|WP_Error
+         */
+        public function create_attribute_term_permissions_check($request)
+        {
+        }
+        /**
          * Check if a given request has access to delete a attribute.
          *
          * @param  WP_REST_Request $request Full details about the request.
@@ -25169,6 +25217,58 @@ namespace WeDevs\Dokan\REST {
          * @return WP_Error|WP_REST_Response Rest Response
          */
         public function update_product_default_attribute($request)
+        {
+        }
+        /**
+         * Resolve a global attribute taxonomy from its attribute ID.
+         *
+         * @since 5.0.5
+         *
+         * @param int $attribute_id Global attribute ID.
+         *
+         * @return string|WP_Error Taxonomy name, or error if the attribute is invalid.
+         */
+        protected function get_attribute_taxonomy_by_id($attribute_id)
+        {
+        }
+        /**
+         * Format a term for the product editor response.
+         *
+         * @since 5.0.5
+         *
+         * @param \WP_Term $term Term object.
+         *
+         * @return array
+         */
+        protected function prepare_attribute_term($term)
+        {
+        }
+        /**
+         * Get terms of a global product attribute (searchable + paginated).
+         *
+         * Terms are loaded lazily by the product editor instead of being embedded
+         * into the form schema, so stores with very large attribute taxonomies do
+         * not exhaust memory while building the editor payload.
+         *
+         * @since 5.0.5
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function get_attribute_terms($request)
+        {
+        }
+        /**
+         * Create a new term for a global product attribute.
+         *
+         * @since 5.0.5
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function create_attribute_term($request)
         {
         }
     }
@@ -25394,10 +25494,11 @@ namespace WeDevs\Dokan\REST {
          * Get_single_product_permissions_check
          *
          * @since 2.8.0
+         * @since 5.0.5 Added check for dokan_is_product_author()
          *
          * @return bool
          */
-        public function get_single_product_permissions_check()
+        public function get_single_product_permissions_check($request)
         {
         }
         /**
@@ -27032,6 +27133,22 @@ namespace WeDevs\Dokan\REST {
          * @return WP_Error|WP_REST_Response
          */
         public function get_item($request)
+        {
+        }
+        /**
+         * Get the full nested product category tree.
+         *
+         * Returns the hierarchy as [ { value, label, children: [...] }, ... ] so the
+         * product editor can render an indented category picker without embedding the
+         * tree in the form schema.
+         *
+         * @since 5.0.5
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_REST_Response
+         */
+        public function get_tree($request)
         {
         }
     }
@@ -37643,6 +37760,8 @@ namespace {
      * Dokan Admin menu capability
      *
      * @since 3.0.0
+     *
+     * @deprecated 5.0.5 Misspelled name; use dokan_admin_menu_capability() instead.
      *
      * @return string
      */
