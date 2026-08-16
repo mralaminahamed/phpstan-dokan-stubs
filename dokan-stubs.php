@@ -5,3257 +5,23 @@
  * @see https://github.com/mralaminahamed/phpstan-dokan-stubs
  */
 
-namespace Dokan\Traits {
-    /**
-     * Singleton Trait
-     *
-     * @since 1.0.0
-     */
-    trait Singleton
-    {
-        /**
-         * Singleton class instance holder
-         *
-         * @since 1.0.0
-         *
-         * @var object
-         */
-        protected static $instance;
-        /**
-         * Make a class instance
-         *
-         * @since 1.0.0
-         *
-         * @return object
-         */
-        public static function instance()
-        {
-        }
-    }
-}
-namespace WeDevs\Dokan\Abstracts {
-    /**
-     * Abstract Dokan_Background_Processes class
-     */
-    abstract class DokanBackgroundProcesses extends \WP_Background_Process
-    {
-        /**
-         * Action
-         *
-         * Override this action in your processor class
-         *
-         * @since 2.8.7
-         *
-         * @var string
-         */
-        protected $action = null;
-        /**
-         * Class constructor
-         *
-         * @since 3.0.0
-         *
-         * @return void
-         */
-        public function __construct()
-        {
-        }
-        /**
-         * Execute after complete a task
-         *
-         * @since 2.8.7
-         *
-         * @return void
-         */
-        public function complete()
-        {
-        }
-        /**
-         * Schedule cron healthcheck
-         *
-         * This override method supports cron_interval
-         * property in extended child class.
-         *
-         * @see https://github.com/woocommerce/woocommerce/pull/21353
-         *
-         * @since 2.8.7
-         *
-         * @param mixed $schedules Schedules.
-         *
-         * @return mixed
-         */
-        public function schedule_cron_healthcheck($schedules)
-        {
-        }
-        /**
-         * Cancel background process
-         *
-         * Override method to clear dokan_background_processes option
-         *
-         * @since 2.8.7
-         *
-         * @return void
-         */
-        public function cancel_process()
-        {
-        }
-        /**
-         * Set process action
-         *
-         * @since 3.0.0
-         *
-         * @return void
-         */
-        protected function set_action()
-        {
-        }
-        /**
-         * Dispatch process
-         *
-         * Calls save and dispatch and update dokan_background_processes option
-         *
-         * @since 2.8.7
-         *
-         * @param string $processor_file
-         *
-         * @return $this
-         */
-        public function dispatch_process($processor_file = null)
-        {
-        }
-        /**
-         * Clean up dokan_background_processes option
-         *
-         * @since 2.8.7
-         *
-         * @return $this
-         */
-        public function clear_process()
-        {
-        }
-    }
-}
 namespace {
-    /**
-     * Abstract Dokan_Background_Processes class
-     */
-    abstract class Abstract_Dokan_Background_Processes extends \WeDevs\Dokan\Abstracts\DokanBackgroundProcesses
-    {
-    }
-}
-namespace WeDevs\Dokan\Abstracts {
-    /**
-    * Admin Dashboard
-    *
-    * @since 2.8.0
-    *
-    * @package dokan
-    */
-    abstract class DokanRESTAdminController extends \WP_REST_Controller
-    {
-        /**
-         * Endpoint namespace.
-         *
-         * @var string
-         */
-        protected $namespace = 'dokan/v1/admin';
-        /**
-         * Perform permission checking
-         *
-         * @since 2.8.0
-         *
-         * @return void
-         */
-        public function check_permission()
-        {
-        }
-        /**
-         * Format item's collection for response
-         *
-         * @param  object $response
-         * @param  object $request
-         * @param  array $items
-         * @param  int $total_items
-         *
-         *  @since 2.9.8
-         *
-         * @return object
-         */
-        public function format_collection_response($response, $request, $total_items)
-        {
-        }
-    }
-}
-namespace {
-    abstract class Dokan_REST_Admin_Controller extends \WeDevs\Dokan\Abstracts\DokanRESTAdminController
-    {
-    }
-    /**
-    * Fallback for depricated
-    * Dokan Email Class
-    */
-    class Dokan_Email
-    {
-        public static function init()
-        {
-        }
-    }
-}
-namespace WeDevs\Dokan\Abstracts {
-    /**
-    * Base REST Controller for dokan
-    *
-    * @since 2.8.0
-    *
-    * @package dokan
-    */
-    abstract class DokanRESTController extends \WP_REST_Controller
-    {
-        /**
-         * Get object.
-         *
-         * @param  int $id Object ID.
-         * @return object WC_Data object or WP_Error object.
-         */
-        protected function get_object($id)
-        {
-        }
-        /**
-         * Get a collection of posts.
-         *
-         * @param WP_REST_Request $request Full details about the request.
-         * @return WP_Error|WP_REST_Response
-         */
-        public function get_items($request)
-        {
-        }
-        /**
-         * Get Item for an object
-         *
-         * @since 2.8.0
-         *
-         * @return object
-         */
-        public function get_item($request)
-        {
-        }
-        /**
-         * Create Item
-         *
-         * @since 2.8.0
-         *
-         * @return WP_Error|WP_REST_Response
-         */
-        public function create_item($request)
-        {
-        }
-        /**
-         * Update an Item
-         *
-         * @since 2.8.0
-         *
-         * @return WP_Error|WP_REST_Response
-         */
-        public function update_item($request)
-        {
-        }
-        /**
-         * Delete an item
-         *
-         * @since 2.8.0
-         *
-         * @return WP_REST_Response|WP_Error
-         */
-        public function delete_item($request)
-        {
-        }
-        /**
-         * Prepare_object_for_database
-         *
-         * @since 2.8.0
-         *
-         * @return void
-         */
-        protected function prepare_object_for_database($request)
-        {
-        }
-        /**
-         * Prepares a response for insertion into a collection.
-         *
-         * @since 4.7.0
-         *
-         * @param WP_REST_Response $response Response object.
-         * @return array|mixed Response data, ready for insertion into collection data.
-         */
-        public function prepare_response_for_collection($response)
-        {
-        }
-        /**
-         * Validate before create an Item
-         *
-         * @since 2.8.0
-         *
-         * @return bool|WP_Error
-         */
-        protected function validation_before_create_item($request)
-        {
-        }
-        /**
-         * Validate before update an Item
-         *
-         * @since 2.8.0
-         *
-         * @return bool|WP_Error
-         */
-        protected function validation_before_update_item($request)
-        {
-        }
-        /**
-         * Validate before delete an Item
-         *
-         * @since 2.8.0
-         *
-         * @return bool|WP_Error
-         */
-        protected function validation_before_delete_item($request)
-        {
-        }
-        /**
-         * Prepares the object for the REST response.
-         *
-         * @since  2.8.0
-         * @param  Dokan_Data         $object  Object data.
-         * @param  WP_REST_Request $request Request object.
-         * @return WP_Error|WP_REST_Response Response object on success, or WP_Error object on failure.
-         */
-        protected function prepare_data_for_response($object, $request)
-        {
-        }
-        /**
-         * Prepare objects query.
-         *
-         * @since  2.8.0
-         * @param  WP_REST_Request $request Full details about the request.
-         * @return array
-         */
-        protected function prepare_objects_query($request)
-        {
-        }
-        /**
-         * Determine the allowed query_vars for a get_items() response and
-         * prepare for WP_Query.
-         *
-         * @param array           $prepared_args
-         * @param WP_REST_Request $request
-         * @return array          $query_args
-         */
-        protected function prepare_items_query($prepared_args = array(), $request = null)
-        {
-        }
-        /**
-         * Get all the WP Query vars that are allowed for the API request.
-         *
-         * @return array
-         */
-        protected function get_allowed_query_vars()
-        {
-        }
-        /**
-         * Format item's collection for response
-         *
-         * @param  WP_REST_Response $response
-         * @param  WP_REST_Request $request
-         * @param  int $total_items
-         *
-         * @return WP_REST_Response
-         */
-        public function format_collection_response($response, $request, $total_items)
-        {
-        }
-        /**
-         * Update post author if requested.
-         *
-         * @since 3.10.3
-         *
-         * @param WP_REST_Request $request Request object.
-         * @param int $object_id Object ID.
-         *
-         * @return void
-         */
-        public function update_post_author_if_needed(\WP_REST_Request $request, int $object_id)
-        {
-        }
-        /**
-         * Add meta query.
-         *
-         * @since 3.0.2
-         *
-         * @param array $args       Query args.
-         * @param array $meta_query Meta query.
-         *
-         * @return array
-         */
-        protected function add_meta_query($args, $meta_query)
-        {
-        }
-    }
-}
-namespace {
-    class Dokan_REST_Controller extends \WeDevs\Dokan\Abstracts\DokanRESTController
-    {
-    }
-}
-namespace WeDevs\Dokan\REST {
-    /**
-     * Store API Controller
-     *
-     * phpcs:disable WordPress.WP.Capabilities.Unknown
-     *
-     * @package dokan
-     *
-     * @author weDevs <info@wedevs.com>
-     */
-    class ProductController extends \WeDevs\Dokan\Abstracts\DokanRESTController
-    {
-        /**
-         * Endpoint namespace
-         *
-         * @var string
-         */
-        protected $namespace = 'dokan/v1';
-        /**
-         * Route name
-         *
-         * @var string
-         */
-        protected $base = 'products';
-        /**
-         * Post type
-         *
-         * @var string
-         */
-        protected $post_type = 'product';
-        /**
-         * Post status
-         */
-        protected $post_status = ['publish', 'pending', 'draft'];
-        /**
-         * Register all routes related with stores
-         *
-         * @return void
-         */
-        public function register_routes()
-        {
-        }
-        /**
-         * Get product object
-         *
-         * @since 2.8.0
-         *
-         * @return WC_Product|null|false
-         */
-        public function get_object($id)
-        {
-        }
-        /**
-         * Validation_before_create_product
-         *
-         * @param $request
-         *
-         * @since 1.0.0
-         *
-         * @return bool|WP_Error
-         */
-        public function validation_before_create_item($request)
-        {
-        }
-        /**
-         * Validation before update product
-         *
-         * @param $request
-         *
-         * @since 2.8.0
-         *
-         * @return bool|WP_Error
-         */
-        public function validation_before_update_item($request)
-        {
-        }
-        /**
-         * Validation_before_delete_item
-         *
-         * @since 2.8.0
-         *
-         * @return WP_Error|Boolean
-         */
-        public function validation_before_delete_item($request)
-        {
-        }
-        /**
-         * Get product permissions check
-         *
-         * @since 2.8.0
-         *
-         * @return bool
-         */
-        public function get_product_permissions_check()
-        {
-        }
-        /**
-         * Create_product_permissions_check
-         *
-         * @since 2.8.0
-         *
-         * @return bool
-         */
-        public function create_product_permissions_check()
-        {
-        }
-        /**
-         * Get_single_product_permissions_check
-         *
-         * @since 2.8.0
-         *
-         * @return bool
-         */
-        public function get_single_product_permissions_check()
-        {
-        }
-        /**
-         * Update_product_permissions_check
-         *
-         * @since 2.8.0
-         *
-         * @return bool
-         */
-        public function update_product_permissions_check()
-        {
-        }
-        /**
-         * Delete product permission checking
-         *
-         * @since 2.8.0
-         *
-         * @return bool
-         */
-        public function delete_product_permissions_check()
-        {
-        }
-        /**
-         * Get product summary report
-         *
-         * @since 2.8.0
-         *
-         * @return bool
-         */
-        public function get_product_summary_permissions_check()
-        {
-        }
-        /**
-         * Get product summary report in dashboard
-         *
-         * @since 2.8.0
-         *
-         * @return WP_REST_Response|WP_Error
-         */
-        public function get_product_summary($request)
-        {
-        }
-        /**
-         * Get related product
-         *
-         * @since 2.9.1
-         *
-         * @param WP_REST_Request $request
-         *
-         * @return WP_REST_Response|WP_Error
-         */
-        public function get_related_product($request)
-        {
-        }
-        /**
-         * Top rated product
-         *
-         * @since 2.9.1
-         *
-         * @return array|object|WP_Error|WP_REST_Response
-         */
-        public function get_top_rated_product($request)
-        {
-        }
-        /**
-         * Best selling product
-         *
-         * @since 2.9.1
-         *
-         * @return WP_REST_Response|array|WP_Error
-         */
-        public function get_best_selling_product($request)
-        {
-        }
-        /**
-         * Featured product
-         *
-         * @since 2.9.1
-         *
-         * @return WP_REST_Response|array|WP_Error
-         */
-        public function get_featured_product($request)
-        {
-        }
-        /**
-         * Latest product
-         *
-         * @since 2.9.1
-         *
-         * @return WP_REST_Response|array|WP_Error
-         */
-        public function get_latest_product($request)
-        {
-        }
-        /**
-         * Validate post author overrides.
-         *
-         * @since 3.10.3
-         *
-         * @param WP_REST_Request $request Request object.
-         * @param int $store_id fallback Store or author id.
-         *
-         * @return int
-         */
-        public function validate_post_author_override(\WP_REST_Request $request, int $store_id): int
-        {
-        }
-        /**
-         * Prepare objects query
-         *
-         * @param WP_REST_Request|array $request
-         *
-         * @return array
-         */
-        protected function prepare_objects_query($request)
-        {
-        }
-        /**
-         * Get product data.
-         *
-         * @param WC_Product $product Product instance.
-         * @param WP_REST_Request $request Request context.
-         *                            Options: 'view' and 'edit'.
-         *
-         * @return WP_REST_Response|array|WP_Error
-         */
-        protected function prepare_data_for_response($product, $request)
-        {
-        }
-        /**
-         * Prepare object for database mapping
-         *
-         * @param WP_REST_Request $request
-         * @param boolean $creating
-         *
-         * @return object
-         * @throws WC_REST_Exception
-         * @throws \WC_Data_Exception
-         */
-        protected function prepare_object_for_database($request, $creating = false)
-        {
-        }
-        /**
-         * Prepare links for the request.
-         *
-         * @param WC_Data           $data_object Object data.
-         * @param WP_REST_Request   $request Request object.
-         *
-         * @return array Links for the given post.
-         */
-        protected function prepare_links($data_object, $request)
-        {
-        }
-        /**
-         * Get taxonomy terms.
-         *
-         * @param WC_Product $product Product instance.
-         * @param string $taxonomy Taxonomy slug.
-         *
-         * @return array
-         */
-        protected function get_taxonomy_terms($product, $taxonomy = 'cat')
-        {
-        }
-        /**
-         * Get the images for a product or product variation.
-         *
-         * @param WC_Product|WC_Product_Variation $product Product instance.
-         *
-         * @return array
-         */
-        protected function get_images($product)
-        {
-        }
-        /**
-         * Get attribute taxonomy label.
-         *
-         * @param string $name Taxonomy name.
-         *
-         * @return string
-         * @deprecated 2.8.0
-         */
-        protected function get_attribute_taxonomy_label($name)
-        {
-        }
-        /**
-         * Get product attribute taxonomy name.
-         *
-         * @param string $slug Taxonomy name.
-         * @param WC_Product $product Product data.
-         *
-         * @since  2.8.0
-         * @return string
-         */
-        protected function get_attribute_taxonomy_name($slug, $product)
-        {
-        }
-        /**
-         * Get default attributes.
-         *
-         * @param WC_Product $product Product instance.
-         *
-         * @return array
-         */
-        protected function get_default_attributes($product)
-        {
-        }
-        /**
-         * Get attribute options.
-         *
-         * @param int $product_id Product ID.
-         * @param array $attribute Attribute data.
-         *
-         * @return array
-         */
-        protected function get_attribute_options($product_id, $attribute)
-        {
-        }
-        /**
-         * Get the attributes for a product or product variation.
-         *
-         * @param WC_Product|WC_Product_Variation $product Product instance.
-         *
-         * @return array
-         */
-        protected function get_attributes($product)
-        {
-        }
-        /**
-         * Get the downloads for a product or product variation.
-         *
-         * @param WC_Product|WC_Product_Variation $product Product instance.
-         *
-         * @return array
-         */
-        protected function get_downloads($product)
-        {
-        }
-        /**
-         * Set product images.
-         *
-         * @param WC_Product $product Product instance.
-         * @param array $images Images data.
-         *
-         * @return WC_Product
-         * @throws WC_REST_Exception REST API exceptions.
-         */
-        protected function set_product_images($product, $images)
-        {
-        }
-        /**
-         * Save product shipping data.
-         *
-         * @param WC_Product $product Product instance.
-         * @param array $data Shipping data.
-         *
-         * @return WC_Product
-         */
-        protected function save_product_shipping_data($product, $data)
-        {
-        }
-        /**
-         * Save downloadable files.
-         *
-         * @param WC_Product $product Product instance.
-         * @param array $downloads Downloads data.
-         * @param int $deprecated Deprecated since 3.0.
-         *
-         * @return WC_Product
-         */
-        protected function save_downloadable_files($product, $downloads, $deprecated = 0)
-        {
-        }
-        /**
-         * Save taxonomy terms.
-         *
-         * @param WC_Product $product Product instance.
-         * @param array $terms Terms data.
-         * @param string $taxonomy Taxonomy name.
-         *
-         * @return WC_Product
-         */
-        protected function save_taxonomy_terms($product, $terms, $taxonomy = 'cat')
-        {
-        }
-        /**
-         * Save default attributes.
-         *
-         * @param WC_Product $product Product instance.
-         * @param WP_REST_Request $request Request data.
-         *
-         * @since 3.0.0
-         *
-         * @return WC_Product
-         */
-        protected function save_default_attributes($product, $request)
-        {
-        }
-        /**
-         * Returns all categories.
-         *
-         * @since 3.6.2
-         *
-         * @return WP_REST_Response|WP_Error
-         */
-        public function get_multistep_categories()
-        {
-        }
-        /**
-         * Get the Product's schema, conforming to JSON Schema.
-         *
-         * @return array
-         */
-        public function get_item_schema()
-        {
-        }
-    }
-}
-namespace {
-    class Dokan_REST_Product_Controller extends \WeDevs\Dokan\REST\ProductController
-    {
-        public function __construct()
-        {
-        }
-    }
-}
-namespace WeDevs\Dokan\REST {
-    /**
-     * Store API Controller
-     *
-     * @package dokan
-     *
-     * @author weDevs <info@wedevs.com>
-     */
-    class StoreController extends \WP_REST_Controller
-    {
-        /**
-         * Endpoint namespace
-         *
-         * @var string
-         */
-        protected $namespace = 'dokan/v1';
-        /**
-         * Route name
-         *
-         * @var string
-         */
-        protected $base = 'stores';
-        /**
-         * Register all routes releated with stores
-         *
-         * @return void
-         */
-        public function register_routes()
-        {
-        }
-        /**
-         * Get stores
-         *
-         * @since 1.0.0
-         *
-         * @param $request
-         *
-         * @return object|WP_Error|WP_REST_Response
-         */
-        public function get_stores($request)
-        {
-        }
-        /**
-         * Get singe store
-         *
-         * @since 1.0.0
-         *
-         * @param $request
-         *
-         * @return WP_Error|WP_REST_Response
-         */
-        public function get_store($request)
-        {
-        }
-        /**
-         * Delete store
-         *
-         * @since 2.8.0
-         *
-         * @param $request
-         *
-         * @return WP_Error|WP_REST_Response
-         */
-        public function delete_store($request)
-        {
-        }
-        /**
-         * Update store permission check method
-         *
-         * @param $request
-         *
-         * @since 2.9.2
-         *
-         * @return bool
-         */
-        public function update_store_permissions_check($request)
-        {
-        }
-        /**
-         * Update Store
-         *
-         * @since 2.9.2
-         *
-         * @param WP_REST_Request $request
-         *
-         * @return WP_Error|WP_REST_Response
-         */
-        public function update_store($request)
-        {
-        }
-        /**
-         * Create store
-         *
-         * @param $request
-         *
-         * @return WP_Error|WP_REST_Response
-         */
-        public function create_store($request)
-        {
-        }
-        /**
-         * Undocumented function
-         *
-         * @since 1.0.0
-         *
-         * @return bool
-         */
-        public function permission_check_for_manageable_part()
-        {
-        }
-        /**
-         * Prepare links for the request.
-         *
-         * @param \WC_Data $object Object data.
-         * @param WP_REST_Request $request Request object.
-         *
-         * @return array                   Links for the given post.
-         */
-        protected function prepare_links($object, $request)
-        {
-        }
-        /**
-         * Format item's collection for response
-         *
-         * @param object $response
-         * @param object $request
-         * @param int $total_items
-         *
-         * @return object
-         */
-        public function format_collection_response($response, $request, $total_items)
-        {
-        }
-        /**
-         * Get store Products
-         *
-         * @param WP_REST_Request|array $request
-         *
-         * @return WP_Error|WP_REST_Response
-         */
-        public function get_store_products($request)
-        {
-        }
-        /**
-         * Get store reviews
-         *
-         * @since 2.8.0
-         *
-         * @return object|WP_Error|WP_REST_Response
-         */
-        public function get_store_reviews($request)
-        {
-        }
-        /**
-         * Get total counting for store review
-         *
-         * @param integer $id [hold store id]
-         * @param string $post_type
-         * @param string $status
-         *
-         * @since 2.8.0
-         *
-         * @return integer
-         */
-        public function get_total_review_count($id, $post_type, $status)
-        {
-        }
-        /**
-         * Prepare a single user output for response
-         *
-         * @param $store
-         * @param WP_REST_Request $request Request object.
-         * @param array $additional_fields (optional)
-         *
-         * @return WP_REST_Response $response Response data.
-         */
-        public function prepare_item_for_response($store, $request, $additional_fields = [])
-        {
-        }
-        /**
-         * Prepare a single user output for response
-         *
-         * @param object $item
-         * @param WP_REST_Request $request Request object.
-         * @param array $additional_fields (optional)
-         *
-         * @return array $response Response data.
-         */
-        public function prepare_reviews_for_response($item, $request, $additional_fields = [])
-        {
-        }
-        /**
-         * Check store availability
-         *
-         * @param WP_REST_Request $request
-         *
-         * @since 2.9.13
-         *
-         * @return WP_REST_Response
-         */
-        public function check_store_availability($request)
-        {
-        }
-        /**
-         * Send email to vendor
-         *
-         * @param WP_REST_Request
-         *
-         * @since 2.9.23
-         *
-         * @return WP_REST_Response
-         */
-        public function send_email($request)
-        {
-        }
-        /**
-         * Update vendor status
-         *
-         * @since 2.9.23
-         *
-         * @return WP_REST_Response|WP_Error
-         */
-        public function update_vendor_status($request)
-        {
-        }
-        /**
-         * Batch update for vendor listing
-         *
-         * @param $request
-         *
-         * @since 2.9.23
-         *
-         * @return array|WP_Error
-         */
-        public function batch_update($request)
-        {
-        }
-        /**
-         * Get singe store
-         *
-         * @since 3.2.11
-         *
-         * @param $request
-         *
-         * @return WP_Error|WP_REST_Response
-         */
-        public function get_store_category($request)
-        {
-        }
-        /**
-         * Retrieves the query params for the collections.
-         *
-         * @since 3.7.22
-         *
-         * @return array Query parameters for the collection.
-         */
-        public function get_store_collection_params(): array
-        {
-        }
-    }
-}
-namespace {
-    class Dokan_REST_Store_Controller extends \WeDevs\Dokan\REST\StoreController
-    {
-    }
-}
-namespace WeDevs\Dokan\Admin {
-    /**
-     * Setup wizard class
-     *
-     * Walkthrough to the basic setup upon installation
-     */
-    class SetupWizard
-    {
-        /** @var string Currenct Step */
-        protected $step = '';
-        /** @var array Steps for the setup wizard */
-        protected $steps = [];
-        /**
-         * Actions to be executed after the HTTP response has completed
-         *
-         * @var array
-         */
-        private $deferred_actions = [];
-        /**
-         * Hook in tabs.
-         */
-        public function __construct()
-        {
-        }
-        /**
-         * Give manage_woocommerce cap to admin if not there.
-         *
-         * @param array $caps
-         *
-         * @return array
-         */
-        public function set_user_cap($caps)
-        {
-        }
-        /**
-         * Enqueue scripts & styles
-         *
-         * @return void
-         */
-        public function enqueue_scripts()
-        {
-        }
-        /**
-         * Helper method to get postcode configurations from `WC()->countries->get_country_locale()`.
-         * We don't use `wp_list_pluck` because it will throw notices when postcode configuration is not defined for a country.
-         *
-         * @return array
-         */
-        protected static function get_postcodes()
-        {
-        }
-        /**
-         * Add admin menus/screens.
-         */
-        public function admin_menus()
-        {
-        }
-        /**
-         * Set wizard steps
-         *
-         * @since 2.9.27
-         *
-         * @return void
-         */
-        protected function set_steps()
-        {
-        }
-        /**
-         * Get wizard steps
-         *
-         * @since 2.9.27
-         *
-         * @return array
-         */
-        public function get_steps()
-        {
-        }
-        /**
-         * Wizard templates
-         *
-         * @since 2.9.27
-         *
-         * @return void
-         */
-        protected function set_setup_wizard_template()
-        {
-        }
-        /**
-         * Show the setup wizard.
-         */
-        public function setup_wizard()
-        {
-        }
-        public function get_next_step_link()
-        {
-        }
-        /**
-         * Setup Wizard Header.
-         */
-        public function setup_wizard_header()
-        {
-        }
-        /**
-         * Setup Wizard Footer.
-         */
-        public function setup_wizard_footer()
-        {
-        }
-        /**
-         * Output the steps.
-         */
-        public function setup_wizard_steps()
-        {
-        }
-        /**
-         * Output the content for the current step.
-         */
-        public function setup_wizard_content()
-        {
-        }
-        /**
-         * Introduction step.
-         */
-        public function dokan_setup_introduction()
-        {
-        }
-        /**
-         * Store step.
-         */
-        public function dokan_setup_store()
-        {
-        }
-        /**
-         * Save store options.
-         */
-        public function dokan_setup_store_save()
-        {
-        }
-        /**
-         * Selling step.
-         */
-        public function dokan_setup_selling()
-        {
-        }
-        /**
-         * Save selling options.
-         */
-        public function dokan_setup_selling_save()
-        {
-        }
-        /**
-         * Withdraw Step.
-         */
-        public function dokan_setup_withdraw()
-        {
-        }
-        /**
-         * Recommended Step
-         *
-         * @since 2.8.7
-         *
-         * @return void
-         */
-        public function dokan_setup_recommended()
-        {
-        }
-        /**
-         * Save data from recommended step
-         *
-         * @since 2.8.7
-         *
-         * @return void
-         */
-        public function dokan_setup_recommended_save()
-        {
-        }
-        /**
-         * Save withdraw options.
-         */
-        public function dokan_setup_withdraw_save()
-        {
-        }
-        /**
-         * Final step.
-         */
-        public function dokan_setup_ready()
-        {
-        }
-        /**
-         * Should we display the 'Recommended' step?
-         *
-         * True if at least one of the recommendations will be displayed.
-         *
-         * @return boolean
-         */
-        protected function should_show_recommended_step()
-        {
-        }
-        /**
-         * Check if WC Conversion Tracking is active or not
-         *
-         * @since 2.8.7
-         *
-         * @return bool
-         */
-        protected function is_wc_conversion_tracking_active()
-        {
-        }
-        /**
-         * Check if weMail is active or not
-         *
-         * @since 3.0.0
-         *
-         * @return bool
-         */
-        protected function is_wemail_active()
-        {
-        }
-        /**
-         * Check if texty is active or not
-         *
-         * @since 3.2.11
-         *
-         * @return bool
-         */
-        protected function is_texty_active()
-        {
-        }
-        /**
-         * Should we show the WooCommerce Conversion Tracking install option?
-         *
-         * True only if the user can install plugins.
-         *
-         * @return boolean
-         */
-        protected function user_can_install_plugin()
-        {
-        }
-        protected function display_recommended_item($item_info)
-        {
-        }
-        /**
-         * Plugin install info message markup with heading.
-         */
-        public function plugin_install_info()
-        {
-        }
-        /**
-         * Helper method to queue the background install of a plugin.
-         *
-         * @param string $plugin_id   Plugin id used for background install.
-         * @param array  $plugin_info Plugin info array containing name and repo-slug, and optionally file if different from [repo-slug].php.
-         */
-        protected function install_plugin($plugin_id, $plugin_info)
-        {
-        }
-        /**
-         * Function called after the HTTP request is finished, so it's executed without the client having to wait for it.
-         *
-         * @see WC_Admin_Setup_Wizard::install_plugin
-         * @see WC_Admin_Setup_Wizard::install_theme
-         */
-        public function run_deferred_actions()
-        {
-        }
-        /**
-         * Finishes replying to the client, but keeps the process running for further (async) code execution.
-         *
-         * @see https://core.trac.wordpress.org/ticket/41358 .
-         */
-        protected function close_http_connection()
-        {
-        }
-    }
-}
-namespace WeDevs\Dokan\Vendor {
-    /**
-     * Seller setup wizard class
-     */
-    class SetupWizard extends \WeDevs\Dokan\Admin\SetupWizard
-    {
-        /** @var string Currenct Step */
-        protected $step = '';
-        /** @var array Steps for the setup wizard */
-        protected $steps = [];
-        /** @var string custom logo url of the theme */
-        protected $custom_logo = '';
-        /**
-         * @var int
-         */
-        public $store_id;
-        /**
-         * @var array
-         */
-        public $store_info;
-        /**
-         * Hook in tabs.
-         */
-        public function __construct()
-        {
-        }
-        // define the woocommerce_registration_redirect callback
-        public function filter_woocommerce_registration_redirect($var)
-        {
-        }
-        /**
-         * Show the setup wizard.
-         */
-        public function setup_wizard()
-        {
-        }
-        /**
-         * Enqueue vendor setup wizard scripts
-         *
-         * @since 3.7.0
-         *
-         * @return void
-         */
-        public function frontend_enqueue_scripts()
-        {
-        }
-        /**
-         * Setup Wizard Header.
-         */
-        public function setup_wizard_header()
-        {
-        }
-        /**
-         * Setup Wizard Footer.
-         */
-        public function setup_wizard_footer()
-        {
-        }
-        /**
-         * Introduction step.
-         */
-        public function dokan_setup_introduction()
-        {
-        }
-        /**
-         * Store step.
-         */
-        public function dokan_setup_store()
-        {
-        }
-        /**
-         * Save store options.
-         */
-        public function dokan_setup_store_save()
-        {
-        }
-        /**
-         * Payment step.
-         */
-        public function dokan_setup_payment()
-        {
-        }
-        /**
-         * Save payment options.
-         */
-        public function dokan_setup_payment_save()
-        {
-        }
-        /**
-         * Final step.
-         */
-        public function dokan_setup_ready()
-        {
-        }
-    }
-}
-namespace {
-    class Dokan_Seller_Setup_Wizard extends \WeDevs\Dokan\Vendor\SetupWizard
-    {
-    }
-}
-namespace WeDevs\Dokan\Walkers {
-    class Category extends \Walker
-    {
-        public $tree_type = 'category';
-        public $db_fields = ['parent' => 'parent', 'id' => 'term_id'];
-        //TODO: decouple this
-        public function start_lvl(&$output, $depth = 0, $args = [])
-        {
-        }
-        public function end_lvl(&$output, $depth = 0, $args = [])
-        {
-        }
-        public function start_el(&$output, $category, $depth = 0, $args = [], $id = 0)
-        {
-        }
-        public function end_el(&$output, $category, $depth = 0, $args = [])
-        {
-        }
-    }
-}
-namespace {
-    class Dokan_Store_Category_Walker extends \WeDevs\Dokan\Walkers\Category
-    {
-    }
-    class Dokan_Store_Location
-    {
-    }
-    class DokanTaxonomyWalker extends \WeDevs\Dokan\Walkers\TaxonomyDropdown\DokanTaxonomyWalker
-    {
-    }
-}
-namespace WeDevs\Dokan\Dashboard\Templates {
-    /**
-     * Dokan Template Dashboard Class
-     *
-     * @author weDves
-     */
-    class Dashboard
-    {
-        /**
-         * @var int $user_id current user id
-         */
-        protected $user_id;
-        /**
-         * @var array $order_count
-         */
-        protected $orders_count;
-        /**
-         * Load autometically when class inistantiate
-         * hooked up all actions and filters
-         *
-         * @since 2.4
-         */
-        public function __construct()
-        {
-        }
-        /**
-         * Get Seller Dashboard Notice
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function show_seller_dashboard_notice()
-        {
-        }
-        /**
-         * Get big counter widget in dashboard
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function get_big_counter_widgets()
-        {
-        }
-        /**
-         * Get order widget in Dashboard
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function get_orders_widgets()
-        {
-        }
-        /**
-         * Get product widgets in dashboard
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function get_products_widgets()
-        {
-        }
-        /**
-         * Get sales report chart widget in dashboard
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function get_sales_report_chart_widget()
-        {
-        }
-        /**
-         * Get orders Count
-         *
-         * @since 2.4
-         *
-         * @return array
-         */
-        public function get_orders_count()
-        {
-        }
-        /**
-         * Get Post Count
-         *
-         * @since 2.4
-         *
-         * @return array
-         */
-        public function get_post_counts()
-        {
-        }
-        /**
-         * Get Comments Count
-         *
-         * @since 2.4
-         *
-         * @return array
-         */
-        public function get_comment_counts()
-        {
-        }
-        /**
-         * Get Pageview Count
-         *
-         * @since 2.4
-         *
-         * @return integer
-         */
-        public function get_pageviews()
-        {
-        }
-        /**
-         * Get Author Sales Count
-         *
-         * @since 2.4
-         *
-         * @return integer
-         */
-        public function get_earning()
-        {
-        }
-        /**
-         * Get Seller Balance
-         *
-         * @since 2.4
-         *
-         * @return integer
-         */
-        public function get_seller_balance()
-        {
-        }
-    }
-}
-namespace {
-    class Dokan_Template_Dashboard extends \WeDevs\Dokan\Dashboard\Templates\Dashboard
-    {
-    }
-}
-namespace WeDevs\Dokan\Dashboard\Templates {
-    /**
-     *  Product Functionality for Product Handler
-     *
-     * @since   2.4
-     *
-     * @package dokan
-     */
-    class Products
-    {
-        public static $errors;
-        public static $product_cat;
-        public static $post_content;
-        /**
-         *  Load autometially when class initiate
-         *
-         * @since 2.4
-         *
-         * @uses  actions
-         * @uses  filters
-         */
-        public function __construct()
-        {
-        }
-        /**
-         * Set errors
-         *
-         * @since 3.0.0
-         *
-         * @param void $errors
-         *
-         * @return void
-         */
-        public function set_errors($errors)
-        {
-        }
-        /**
-         * Verify if the instance contains errors
-         *
-         * @since 3.0.0
-         *
-         * @return bool
-         */
-        public function has_errors()
-        {
-        }
-        /**
-         * Retrieve all errors
-         *
-         * @since 3.0.0
-         *
-         * @return array
-         */
-        public function get_errors()
-        {
-        }
-        /**
-         * Load product
-         *
-         * @since 1.0.0
-         *
-         * @return void
-         */
-        public static function load_download_virtual_template($post, $post_id)
-        {
-        }
-        /**
-         * Load invendor template
-         *
-         * @since 2.9.2
-         *
-         * @return void
-         */
-        public static function load_inventory_template($post, $post_id)
-        {
-        }
-        /**
-         * Load downloadable template
-         *
-         * @since 2.9.2
-         *
-         * @return void
-         */
-        public static function load_downloadable_template($post, $post_id)
-        {
-        }
-        /**
-         * Load others item template
-         *
-         * @since 2.9.2
-         *
-         * @return void
-         */
-        public static function load_others_template($post, $post_id)
-        {
-        }
-        /**
-         * Render New Product Template for only free version
-         *
-         * @since 2.4
-         *
-         * @param array $query_vars
-         *
-         * @return void
-         */
-        public function render_new_product_template($query_vars)
-        {
-        }
-        /**
-         * Load Product Edit Template
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function load_product_edit_template()
-        {
-        }
-        /**
-         * Render Product Edit Page for Email.
-         *
-         * @since 3.9.1
-         *
-         * @return void
-         */
-        public function render_product_edit_page_for_email()
-        {
-        }
-        /**
-         * Render Product Listing Template
-         *
-         * @since 2.4
-         *
-         * @param string $action
-         *
-         * @return void
-         */
-        public function render_product_listing_template($action)
-        {
-        }
-        /**
-         * Handle product add
-         *
-         * @return void
-         */
-        public function handle_product_add()
-        {
-        }
-        /**
-         * Handle product update
-         *
-         * @return void
-         */
-        public function handle_product_update()
-        {
-        }
-        public function load_add_new_product_popup()
-        {
-        }
-        /**
-         * Add new product open modal html
-         *
-         * @since 3.7.0
-         *
-         * @return void
-         */
-        public function load_add_new_product_modal()
-        {
-        }
-        /**
-         * Handle delete product link
-         *
-         * @return void
-         */
-        public function handle_delete_product()
-        {
-        }
-    }
-}
-namespace {
-    class Dokan_Template_Products extends \WeDevs\Dokan\Dashboard\Templates\Products
-    {
-    }
-}
-namespace WeDevs\Dokan\Dashboard\Templates {
-    /**
-     * Dokan settings Class
-     *
-     * @author weDves
-     */
-    class Settings
-    {
-        public $currentuser;
-        public $profile_info;
-        /**
-         * Loading autometically when class initiate
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function __construct()
-        {
-        }
-        /**
-         * Show Seller Enable Error Message
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function show_enable_seller_message()
-        {
-        }
-        /**
-         * Render Settings Header
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function render_settings_header()
-        {
-        }
-        /**
-         * Render Settings help
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function render_settings_help()
-        {
-        }
-        /**
-         * Render Settings Progressbar
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function render_settings_load_progressbar()
-        {
-        }
-        /**
-         * Render Settings Content
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function render_settings_content()
-        {
-        }
-        /**
-         * Load Store Content
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function load_store_content()
-        {
-        }
-        /**
-         * Load Payment Content
-         *
-         * @since 2.4
-         *
-         * @param string $slug_suffix
-         *
-         * @return void
-         */
-        public function load_payment_content($slug_suffix)
-        {
-        }
-        /**
-         * Save settings via ajax
-         *
-         * @since 2.4
-         *
-         * @return void
-         */
-        public function ajax_settings()
-        {
-        }
-        /**
-         * Validate profile settings
-         *
-         * @return bool|WP_Error
-         */
-        private function profile_validate()
-        {
-        }
-        /**
-         * Validate store settings
-         *
-         * @return bool|WP_Error
-         */
-        private function store_validate()
-        {
-        }
-        /**
-         * Validate payment settings
-         *
-         * @since 2.4
-         *
-         * @return bool|WP_Error
-         */
-        private function payment_validate()
-        {
-        }
-        /**
-         * Save store settings
-         *
-         * @return void
-         */
-        public function insert_settings_info()
-        {
-        }
-        /**
-         * Dokan Get Category Format
-         *
-         * @since 1.0
-         *
-         * @return array
-         */
-        public function get_dokan_categories()
-        {
-        }
-        /**
-         * Get proper heading for payments of vendor dashboard payment settings
-         *
-         * @since 3.4.3
-         *
-         * @param string $slug
-         * @param string $heading
-         *
-         * @return string
-         */
-        private function get_payment_heading($slug, $heading)
-        {
-        }
-        /**
-         * Check if a seller is connected to a payment method
-         *
-         * @since DOKAN_PRO_SINCE
-         *
-         * @param $payment_method_id
-         * @param $seller_id
-         *
-         * @return bool
-         */
-        public function is_seller_connected($payment_method_id, $seller_id)
-        {
-        }
-        /**
-         * Get payment method details from the method keys
-         *
-         * @since 3.4.3
-         *
-         * @param $method_keys
-         *
-         * @return array
-         */
-        private function get_payment_methods($method_keys)
-        {
-        }
-        /**
-         * Get Method title to show in frontend
-         *
-         * @since 3.6.1
-         *
-         * @return string
-         */
-        public function get_method_frontend_title($title, $method)
-        {
-        }
-    }
-}
-namespace {
-    class Dokan_Template_Settings extends \WeDevs\Dokan\Dashboard\Templates\Settings
-    {
-    }
-}
-namespace WeDevs\Dokan\Vendor {
-    /**
-     * Dokan Vendor
-     *
-     * @since 2.6.10
-     */
-    #[\AllowDynamicProperties]
-    class Vendor
-    {
-        /**
-         * Set class public properties
-         *
-         * @since 3.7.19
-         *
-         * @return void
-         */
-        public function __set($key, $value)
-        {
-        }
-        /**
-         * Get public properties
-         *
-         * @since 3.7.19
-         *
-         * @return mixed|null
-         */
-        public function __get($key)
-        {
-        }
-        /**
-         * The vendor ID
-         *
-         * @var integer
-         */
-        public $id = 0;
-        /**
-         * Holds the user data object
-         *
-         * @var null|WP_User
-         */
-        public $data = null;
-        /**
-         * Holds the store info
-         *
-         * @var array
-         */
-        private $shop_data = array();
-        /**
-         * Holds the chanages data
-         *
-         * @var array
-         */
-        private $changes = array();
-        /**
-         * The constructor
-         *
-         * @param int|WP_User $vendor
-         */
-        public function __construct($vendor = null)
-        {
-        }
-        /**
-         * Magic method to access vendor properties
-         *
-         * When you try to access a property by calling a method
-         * with 'get_' prefixed, this magic method will look into
-         * shop_data for that property.
-         *
-         * @param string $name
-         * @param array  $param
-         *
-         * @return mixed|void
-         */
-        public function __call($name, $param)
-        {
-        }
-        /**
-         * Vendor info to array
-         *
-         * @since 2.8
-         *
-         * @return array
-         */
-        public function to_array()
-        {
-        }
-        /**
-         * Check if key is exist
-         *
-         * @param $key
-         *
-         * @return string
-         */
-        public function get_value($key)
-        {
-        }
-        /**
-         * Check if the user is vendor
-         *
-         * @return boolean
-         */
-        public function is_vendor()
-        {
-        }
-        /**
-         * If the selling capacity is enabled
-         *
-         * @return boolean
-         */
-        public function is_enabled()
-        {
-        }
-        /**
-         * If the vendor is marked as trusted
-         *
-         * @return boolean
-         */
-        public function is_trusted()
-        {
-        }
-        /**
-         * If the vendor is marked as featured
-         *
-         * @return boolean
-         */
-        public function is_featured()
-        {
-        }
-        /**
-         * Populate store info
-         *
-         * @return void
-         */
-        public function popluate_store_data()
-        {
-        }
-        /*
-        |--------------------------------------------------------------------------
-        | Getters
-        |--------------------------------------------------------------------------
-        */
-        /**
-         * Get the store info by lazyloading
-         *
-         * @return array
-         */
-        public function get_shop_info()
-        {
-        }
-        /**
-         * Get store info by key
-         *
-         * @param  string $item
-         *
-         * @return mixed
-         */
-        public function get_info_part($item)
-        {
-        }
-        /**
-         * Get store ID
-         *
-         * @since 3.0.0
-         *
-         * @return int
-         */
-        public function get_id()
-        {
-        }
-        /**
-         * Get the vendor name
-         *
-         * @return string
-         */
-        public function get_name()
-        {
-        }
-        /**
-         * Get the shop name
-         *
-         * @return string
-         */
-        public function get_shop_name()
-        {
-        }
-        /**
-         * Get the shop URL
-         *
-         * @return string
-         */
-        public function get_shop_url()
-        {
-        }
-        /**
-         * Get email address
-         *
-         * @return string
-         */
-        public function get_email()
-        {
-        }
-        /**
-         * Get first name
-         *
-         * @since 2.8
-         *
-         * @return string
-         */
-        public function get_first_name()
-        {
-        }
-        /**
-         * Get last name
-         *
-         * @since 2.8
-         *
-         * @return string
-         */
-        public function get_last_name()
-        {
-        }
-        /**
-         * Get last name
-         *
-         * @since 2.8
-         *
-         * @return string
-         */
-        public function get_register_date()
-        {
-        }
-        /**
-         * Get the shop name
-         *
-         * @return array
-         */
-        public function get_social_profiles()
-        {
-        }
-        /**
-         * Get the shop payment profiles
-         *
-         * @return array
-         */
-        public function get_payment_profiles()
-        {
-        }
-        /**
-         * Get the phone name
-         *
-         * @return string
-         */
-        public function get_phone()
-        {
-        }
-        /**
-         * Get the shop address
-         *
-         * @return array
-         */
-        public function get_address()
-        {
-        }
-        /**
-         * Get the shop location
-         *
-         * @return array
-         */
-        public function get_location()
-        {
-        }
-        /**
-         * Get the shop banner
-         *
-         * @return string
-         */
-        public function get_banner()
-        {
-        }
-        /**
-         * Get the shop banner id
-         *
-         * @since 2.9.13
-         *
-         * @return int
-         */
-        public function get_banner_id()
-        {
-        }
-        /**
-         * Get the shop profile icon
-         *
-         * @since 2.8
-         *
-         * @return string
-         */
-        public function get_avatar()
-        {
-        }
-        /**
-         * Get shop gravatar id
-         *
-         * @since 2.9.13
-         *
-         * @return int
-         */
-        public function get_avatar_id()
-        {
-        }
-        /**
-         * If should show the email
-         *
-         * @return boolean
-         */
-        public function show_email()
-        {
-        }
-        /**
-         * Check if terms and conditions enabled
-         *
-         * @since 2.8
-         *
-         * @return boolean
-         */
-        public function toc_enabled()
-        {
-        }
-        /**
-         * Get terms and conditions
-         *
-         * @since 2.8
-         *
-         * @return string
-         */
-        public function get_toc()
-        {
-        }
-        /**
-         * Get a vendor products
-         *
-         * @return object
-         */
-        public function get_products()
-        {
-        }
-        /**
-         * Get a vendor all published products
-         *
-         * @since 3.2.11
-         *
-         * @return array
-         */
-        public function get_published_products()
-        {
-        }
-        /**
-         * Get a vendor all published products
-         *
-         * @since 3.2.11
-         *
-         * @return array
-         */
-        public function get_best_selling_products()
-        {
-        }
-        /**
-         * Get a vendor store published products categories
-         *
-         * @param bool $best_selling
-         *
-         * @since 3.2.11
-         *
-         * @return array
-         */
-        public function get_store_categories($best_selling = false)
-        {
-        }
-        /**
-         * Get vendor used terms list.
-         *
-         * @since 3.5.0
-         *
-         * @param $vendor_id
-         * @param $taxonomy
-         *
-         * @return array|mixed
-         */
-        public function get_vendor_used_terms_list($vendor_id, $taxonomy)
-        {
-        }
-        /**
-         * Get vendor orders
-         *
-         * @since 3.0.0
-         *
-         * @return WP_Error|WC_Order[] objects
-         */
-        public function get_orders($args = [])
-        {
-        }
-        /**
-         * Get the total sales amount of this vendor
-         *
-         * @return float
-         */
-        public function get_total_sales()
-        {
-        }
-        /**
-         * Get total pageview for all the products
-         *
-         * @return integer
-         */
-        public function get_product_views()
-        {
-        }
-        /**
-         * Get vendor total earnings
-         *
-         * @return float|string float if formatted is false, string otherwise
-         */
-        public function get_earnings($formatted = true, $on_date = '')
-        {
-        }
-        /**
-         * Get balance
-         *
-         * @since 3.0.0
-         *
-         * @param bool $formatted
-         * @param string $on_date
-         *
-         * @return float|string float if formatted is false, string otherwise
-         */
-        public function get_balance($formatted = true, $on_date = '')
-        {
-        }
-        /**
-         * Get vendor rating
-         *
-         * @since 3.0.0
-         *
-         * @return array
-         */
-        public function get_rating()
-        {
-        }
-        /**
-         * Get vendor readable rating
-         *
-         * @since 3.0.0
-         *
-         * @return void|string
-         */
-        public function get_readable_rating($display = true)
-        {
-        }
-        /**
-         * Get vendor percentage
-         *
-         * @param  integer $product_id
-         *
-         * @return integer
-         */
-        public function get_percentage($product_id = 0)
-        {
-        }
-        /**
-         * Make vendor active
-         *
-         * @since 2.8.0
-         *
-         * @return array
-         */
-        public function make_active()
-        {
-        }
-        /**
-         * Make vendor active
-         *
-         * @since 2.8.0
-         *
-         * @return array
-         */
-        public function make_inactive()
-        {
-        }
-        /**
-         * Change product status when toggling seller active status
-         *
-         * @since 2.6.9
-         * @since 3.7.18 introduced new bg process to change product status
-         *
-         * @param string $task_type
-         *
-         * @return void
-         */
-        public function change_product_status($task_type)
-        {
-        }
-        /**
-         * Get store opening closing time
-         *
-         * @return array
-         */
-        public function get_store_time()
-        {
-        }
-        /**
-         * Get store opening closing time
-         *
-         * @return boolean|null on failure
-         */
-        public function is_store_time_enabled()
-        {
-        }
-        /**
-         * Get store open notice
-         *
-         * @param string $default_notice
-         *
-         * @return string
-         */
-        public function get_store_open_notice($default_notice = '')
-        {
-        }
-        /**
-         * Get store close notice
-         *
-         * @param string $default_notice
-         *
-         * @return string
-         */
-        public function get_store_close_notice($default_notice = '')
-        {
-        }
-        /*
-        |--------------------------------------------------------------------------
-        | Setters
-        |--------------------------------------------------------------------------
-        */
-        /**
-         * Set enable tnc
-         *
-         * @param int value
-         */
-        public function set_enable_tnc($value)
-        {
-        }
-        /**
-         * Set store tnc
-         *
-         * @since 3.0.0
-         *
-         * @param string
-         *
-         * @return void
-         */
-        public function set_store_tnc($value)
-        {
-        }
-        /**
-         * Set gravatar
-         *
-         * @param int value
-         */
-        public function set_gravatar_id($value)
-        {
-        }
-        /**
-         * Set banner
-         *
-         * @param int value
-         */
-        public function set_banner_id($value)
-        {
-        }
-        /**
-         * Set banner
-         *
-         * @param int value
-         */
-        public function set_icon($value)
-        {
-        }
-        /**
-         * Set store name
-         *
-         * @param string
-         */
-        public function set_store_name($value)
-        {
-        }
-        /**
-         * Set phone
-         *
-         * @param string
-         */
-        public function set_phone($value)
-        {
-        }
-        /**
-         * Set show email
-         *
-         * @param string
-         */
-        public function set_show_email($value)
-        {
-        }
-        /**
-         * Set show email
-         *
-         * @param string
-         */
-        public function set_fb($value)
-        {
-        }
-        /**
-         * Set show email
-         *
-         * @param string
-         */
-        public function set_gplus($value)
-        {
-        }
-        /**
-         * Set show email
-         *
-         * @param string
-         */
-        public function set_twitter($value)
-        {
-        }
-        /**
-         * Set show email
-         *
-         * @param string
-         */
-        public function set_pinterest($value)
-        {
-        }
-        /**
-         * Set show email
-         *
-         * @param string
-         */
-        public function set_linkedin($value)
-        {
-        }
-        /**
-         * Set show email
-         *
-         * @param string
-         */
-        public function set_youtube($value)
-        {
-        }
-        /**
-         * Set show email
-         *
-         * @param string
-         */
-        public function set_instagram($value)
-        {
-        }
-        /**
-         * Set flickr
-         *
-         * @param string
-         */
-        public function set_flickr($value)
-        {
-        }
-        /**
-         * Set paypal email
-         *
-         * @param string $value
-         */
-        public function set_paypal_email($value)
-        {
-        }
-        /**
-         * Set bank ac name
-         *
-         * @param string $value
-         */
-        public function set_bank_ac_name($value)
-        {
-        }
-        /**
-         * Set bank ac type
-         *
-         * @param string $value
-         */
-        public function set_bank_ac_type($value)
-        {
-        }
-        /**
-         * Set bank ac number
-         *
-         * @param string $value
-         */
-        public function set_bank_ac_number($value)
-        {
-        }
-        /**
-         * Set bank name
-         *
-         * @param string $value
-         */
-        public function set_bank_bank_name($value)
-        {
-        }
-        /**
-         * Set bank address
-         *
-         * @param string value
-         */
-        public function set_bank_bank_addr($value)
-        {
-        }
-        /**
-         * Set bank routing number
-         *
-         * @param string value
-         */
-        public function set_bank_routing_number($value)
-        {
-        }
-        /**
-         * Set bank iban
-         *
-         * @param string $value
-         */
-        public function set_bank_iban($value)
-        {
-        }
-        /**
-         * Set bank swtif number
-         *
-         * @param string $value
-         */
-        public function set_bank_swift($value)
-        {
-        }
-        /**
-         * Set street 1
-         *
-         * @param string $value
-         */
-        public function set_street_1($value)
-        {
-        }
-        /**
-         * Set street 2
-         *
-         * @param string $value
-         */
-        public function set_street_2($value)
-        {
-        }
-        /**
-         * Set city
-         *
-         * @param string $value
-         */
-        public function set_city($value)
-        {
-        }
-        /**
-         * Set zip
-         *
-         * @param string $value
-         */
-        public function set_zip($value)
-        {
-        }
-        /**
-         * Set state
-         *
-         * @param string $value
-         */
-        public function set_state($value)
-        {
-        }
-        /**
-         * Set country
-         *
-         * @param string $value
-         */
-        public function set_country($value)
-        {
-        }
-        /**
-         * Sets a prop for a setter method.
-         *
-         * This stores changes in a special array so we can track what needs saving
-         * the the DB later.
-         *
-         * @since 2.9.11
-         *
-         * @param string $prop Name of prop to set.
-         * @param mixed  $value Value of the prop.
-         */
-        protected function set_prop($prop, $value)
-        {
-        }
-        /**
-         * Get vendor meta data
-         *
-         * @since 2.9.23
-         *
-         * @param string $key
-         * @param bool $single  Whether to return a single value
-         *
-         * @return Mix
-         */
-        public function get_meta($key, $single = false)
-        {
-        }
-        /**
-         * Update vendor meta data
-         *
-         * @since 2.9.11
-         *
-         * @param string $key
-         * @param mixed $value
-         *
-         * @return void
-         */
-        public function update_meta($key, $value)
-        {
-        }
-        /**
-         * Update meta data
-         *
-         * @since  2.9.23
-         *
-         * @return void
-         */
-        public function update_meta_data()
-        {
-        }
-        /**
-         * Sets a prop for a setter method.
-         *
-         * @since 2.9.11
-         *
-         * @param string $prop    Name of prop to set.
-         * @param string $social Name of social settings to set, fb, twitter
-         * @param string $value
-         */
-        protected function set_social_prop($prop, $social = 'social', $value = '')
-        {
-        }
-        /**
-         * Set address props
-         *
-         * @param string $prop
-         * @param string $address
-         * @param string value
-         */
-        protected function set_address_prop($prop, $address = 'address', $value = '')
-        {
-        }
-        /**
-         * Set payment props
-         *
-         * @param string $prop
-         * @param string $paypal
-         * @param mix value
-         */
-        protected function set_payment_prop($prop, $paypal = 'paypal', $value = '')
-        {
-        }
-        /**
-         * Set store open close props
-         *
-         * @param string $prop
-         * @param array $value
-         *
-         * @since 2.9.13
-         *
-         * @return void
-         */
-        protected function set_store_open_close_prop($prop, $value)
-        {
-        }
-        /**
-         * Set store times
-         *
-         * @param array $data
-         *
-         * @since 2.9.13
-         *
-         * @return void
-         */
-        public function set_store_times(array $data)
-        {
-        }
-        /**
-         * Set store times enable
-         *
-         * @param boolean $value
-         *
-         * @since 2.9.13
-         *
-         * @return void
-         */
-        public function set_store_times_enable($value)
-        {
-        }
-        /**
-         * Set store times open notice
-         *
-         * @param string $value
-         *
-         * @since 2.9.13
-         *
-         * @return void
-         */
-        public function set_store_times_open_notice($value)
-        {
-        }
-        /**
-         * Set store times close notice
-         *
-         * @param string $value
-         *
-         * @since 2.9.13
-         *
-         * @return void
-         */
-        public function set_store_times_close_notice($value)
-        {
-        }
-        /**
-         * Merge changes with data and clear.
-         *
-         * @since 2.9.11
-         */
-        public function apply_changes()
-        {
-        }
-        /**
-         * Save the object
-         *
-         * @since 2.9.11
-         */
-        public function save()
-        {
-        }
-        /**
-         * Get vendor profile url for admin
-         *
-         * @since 3.10.2
-         *
-         * @return string
-         */
-        public function get_profile_url(): string
-        {
-        }
-    }
-}
-namespace {
-    class Dokan_Vendor extends \WeDevs\Dokan\Vendor\Vendor
-    {
-    }
-}
-namespace WeDevs\Dokan\Withdraw {
-    /**
-     * Withdraw base class
-     *
-     * @since   2.4
-     *
-     * @author  wedDevs <info@wedevs.com>
-     *
-     * @package dokan
-     */
-    class Manager
-    {
-        /**
-         * Validate approval request
-         *
-         * @since 3.0.0
-         *
-         * @param array $args
-         *
-         * @return bool|\WP_Error
-         */
-        public function is_valid_approval_request($args)
-        {
-        }
-        /**
-         * Validate cancellation request
-         *
-         * @since 3.0.0
-         *
-         * @param array $args
-         *
-         * @return bool|\WP_Error
-         */
-        public function is_valid_cancellation_request($args)
-        {
-        }
-        /**
-         * Update withdraw status
-         *
-         * @since 2.4
-         *
-         * @param int    $id
-         * @param int    $user_id
-         * @param string $status
-         *
-         * @return void
-         */
-        public function update_status($id, $user_id, $status)
-        {
-        }
-        /**
-         * Insert an withdraw approval request
-         *
-         * @param array $data
-         *
-         * @return bool|\WP_Error
-         */
-        public function insert_withdraw($args = [])
-        {
-        }
-        /**
-         * Check if a user has already pending withdraw request
-         *
-         * @param integer $user_id
-         *
-         * @return boolean
-         */
-        public function has_pending_request($user_id)
-        {
-        }
-        /**
-         * Get withdraw request of a user
-         *
-         * @param integer $user_id
-         * @param integer $status
-         * @param integer $limit
-         * @param integer $offset
-         *
-         * @return Withdraw[]
-         */
-        public function get_withdraw_requests($user_id = '', $status = 0, $limit = 10, $offset = 0): array
-        {
-        }
-        /**
-         * Get status code by status type
-         *
-         * @param string
-         *
-         * @return integer
-         */
-        public function get_status_code($status)
-        {
-        }
-        /**
-         * Get withdraw details by method and user
-         *
-         * @param string $method
-         * @param int    $user_id
-         *
-         * @return array
-         */
-        public function get_formatted_details($method, $user_id)
-        {
-        }
-        /**
-         * Get withdraw status from code
-         *
-         * @since 3.0.0
-         *
-         * @param int $code
-         *
-         * @return string
-         */
-        public function get_status_name($code)
-        {
-        }
-        /**
-         * Get list of withdraws
-         *
-         * @since 3.0.0
-         *
-         * @param  array $args
-         *
-         * @return array|object
-         */
-        public function all($args = [])
-        {
-        }
-        /**
-         * @since DOKAN_LITE_SINCE
-         *
-         * @return int|null
-         */
-        public function get_total_withdraw_count()
-        {
-        }
-        /**
-         * Get a single withdraw
-         *
-         * @since 3.0.0
-         *
-         * @param 3.0.0 $id
-         *
-         * @return \WeDevs\Dokan\Withdraw\Withdraw|null
-         */
-        public function get($id)
-        {
-        }
-        /**
-         * Create a withdraw request
-         *
-         * @since 3.0.0
-         *
-         * @param array $args
-         *
-         * @return \WeDevs\Dokan\Withdraw\Withdraw|\WP_Error
-         */
-        public function create($args)
-        {
-        }
-        /**
-         * Check if a user has sufficient withdraw balance
-         *
-         * @param integer $user_id
-         *
-         * @return boolean
-         */
-        public function has_withdraw_balance($user_id)
-        {
-        }
-        /**
-         * Get the system withdraw limit
-         *
-         * @return integer
-         */
-        public function get_withdraw_limit()
-        {
-        }
-        /**
-         * Get a sellers balance
-         *
-         * @param integer $user_id
-         *
-         * @return integer
-         */
-        public function get_user_balance($user_id)
-        {
-        }
-        /**
-         * Export withdraw data
-         *
-         * @since 3.0.0
-         *
-         * @param array $args
-         *
-         * @return \WeDevs\Dokan\Withdraw\Export\Manager
-         */
-        public function export($args)
-        {
-        }
-        /**
-         * Returns users withdraws summary.
-         *
-         * @since 3.7.10
-         *
-         * @param int $user_id
-         *
-         * @return array
-         */
-        public function get_user_withdraw_summary($user_id = '')
-        {
-        }
-    }
-}
-namespace {
-    class Dokan_Withdraw extends \WeDevs\Dokan\Withdraw\Manager
-    {
-    }
-    /**
-     * Lists all depricated classes
-     */
-    class Dokan_Deprecated_Classes
-    {
-        /**
-         * Initialize
-         */
-        public function __construct()
-        {
-        }
-    }
     /**
      * WeDevs_Dokan class
      *
      * @class WeDevs_Dokan The class that holds the entire WeDevs_Dokan plugin
      *
      * @property WeDevs\Dokan\Commission    $commission Instance of Commission class
+     * @property WeDevs\Dokan\Fees $fees Instance of Fees class
      * @property WeDevs\Dokan\Order\Manager $order Instance of Order Manager class
      * @property WeDevs\Dokan\Product\Manager $product Instance of Order Manager class
      * @property WeDevs\Dokan\Vendor\Manager $vendor Instance of Vendor Manager Class
      * @property WeDevs\Dokan\BackgroundProcess\Manager $bg_process Instance of WeDevs\Dokan\BackgroundProcess\Manager class
      * @property WeDevs\Dokan\Withdraw\Manager $withdraw Instance of WeDevs\Dokan\Withdraw\Manager class
      * @property WeDevs\Dokan\Frontend\Frontend $frontend_manager Instance of \WeDevs\Dokan\Frontend\Frontend class
+     * @property WeDevs\Dokan\Dashboard\Manager $dashboard Instance of \WeDevs\Dokan\Dashboard\Manager class
      * @property WeDevs\Dokan\Registration $registration Instance of WeDevs\Dokan\Registration class
+     * @property WeDevs\Dokan\ProductEditor\FormSchema $product_editor Instance of WeDevs\Dokan\ProductEditor\FormSchema class
      */
     final class WeDevs_Dokan
     {
@@ -3264,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '3.11.5';
+        public $version = '5.0.4';
         /**
          * Instance of self
          *
@@ -3284,7 +50,7 @@ namespace {
          *
          * @var array
          */
-        private $container = [];
+        private $legacy_container = [];
         /**
          * Databse version key
          *
@@ -3385,19 +151,6 @@ namespace {
          * @return void
          */
         public function define_constants()
-        {
-        }
-        /**
-         * Define constant if not already defined
-         *
-         * @since 2.9.16
-         *
-         * @param string      $name
-         * @param string|bool $value
-         *
-         * @return void
-         */
-        private function define($name, $value)
         {
         }
         /**
@@ -3542,6 +295,117 @@ namespace {
          * @return string
          */
         public function get_db_version_key()
+        {
+        }
+        /**
+         * Retrieve the container instance.
+         *
+         * @since 3.13.0
+         *
+         * @return Container
+         */
+        public function get_container(): \WeDevs\Dokan\DependencyManagement\Container
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Abstracts {
+    /**
+     * Abstract Dokan_Background_Processes class
+     */
+    abstract class DokanBackgroundProcesses extends \WP_Background_Process
+    {
+        /**
+         * Action
+         *
+         * Override this action in your processor class
+         *
+         * @since 2.8.7
+         *
+         * @var string
+         */
+        protected $action = null;
+        /**
+         * Class constructor
+         *
+         * @since 3.0.0
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Execute after complete a task
+         *
+         * @since 2.8.7
+         *
+         * @return void
+         */
+        public function complete()
+        {
+        }
+        /**
+         * Schedule cron healthcheck
+         *
+         * This override method supports cron_interval
+         * property in extended child class.
+         *
+         * @see https://github.com/woocommerce/woocommerce/pull/21353
+         *
+         * @since 2.8.7
+         *
+         * @param mixed $schedules Schedules.
+         *
+         * @return mixed
+         */
+        public function schedule_cron_healthcheck($schedules)
+        {
+        }
+        /**
+         * Cancel background process
+         *
+         * Override method to clear dokan_background_processes option
+         *
+         * @since 2.8.7
+         *
+         * @return void
+         */
+        public function cancel_process()
+        {
+        }
+        /**
+         * Set process action
+         *
+         * @since 3.0.0
+         *
+         * @return void
+         */
+        protected function set_action()
+        {
+        }
+        /**
+         * Dispatch process
+         *
+         * Calls save and dispatch and update dokan_background_processes option
+         *
+         * @since 2.8.7
+         *
+         * @param string $processor_file
+         *
+         * @return $this
+         */
+        public function dispatch_process($processor_file = null)
+        {
+        }
+        /**
+         * Clean up dokan_background_processes option
+         *
+         * @since 2.8.7
+         *
+         * @return $this
+         */
+        public function clear_process()
         {
         }
     }
@@ -3983,6 +847,274 @@ namespace WeDevs\Dokan\Abstracts {
         {
         }
     }
+}
+namespace WeDevs\Dokan\REST {
+    /**
+     * Base REST Controller for Dokan
+     *
+     * @since 3.14.11
+     *
+     * @package dokan
+     */
+    abstract class DokanBaseController extends \WP_REST_Controller
+    {
+        /**
+         * Endpoint namespace
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan/v1';
+        /**
+         * Format item's collection for response
+         *
+         * @since 3.14.11
+         *
+         * @param object $response
+         * @param object $request
+         * @param array  $items
+         * @param int    $total_items
+         *
+         * @return object
+         */
+        public function format_collection_response($response, $request, $total_items)
+        {
+        }
+    }
+    /**
+    * Admin REST Controller for Dokan
+    *
+    * @since 3.14.11
+    * @package dokan
+    */
+    abstract class DokanBaseAdminController extends \WeDevs\Dokan\REST\DokanBaseController
+    {
+        /**
+         * Endpoint namespace.
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan/v1/admin';
+        /**
+         * Check if user has admin permission.
+         *
+         * @since 2.8.0
+         *
+         * @return bool
+         */
+        public function check_permission()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Abstracts {
+    /**
+    * Admin Dashboard
+    *
+    * @since 2.8.0
+    * @deprecated 3.14.11 Use \WeDevs\Dokan\REST\DokanBaseAdminController instead.
+    *
+    * @package dokan
+    */
+    abstract class DokanRESTAdminController extends \WeDevs\Dokan\REST\DokanBaseAdminController
+    {
+    }
+    /**
+    * Base REST Controller for dokan
+    *
+    * @since 2.8.0
+    *
+    * @package dokan
+    */
+    abstract class DokanRESTController extends \WP_REST_Controller
+    {
+        /**
+         * Get object.
+         *
+         * @param  int $id Object ID.
+         * @return object WC_Data object or WP_Error object.
+         */
+        protected function get_object($id)
+        {
+        }
+        /**
+         * Get a collection of posts.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_Error|WP_REST_Response
+         */
+        public function get_items($request)
+        {
+        }
+        /**
+         * Get Item for an object
+         *
+         * @since 2.8.0
+         *
+         * @return object
+         */
+        public function get_item($request)
+        {
+        }
+        /**
+         * Create Item
+         *
+         * @since 2.8.0
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function create_item($request)
+        {
+        }
+        /**
+         * Update an Item
+         *
+         * @since 2.8.0
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function update_item($request)
+        {
+        }
+        /**
+         * Delete an item
+         *
+         * @since 2.8.0
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function delete_item($request)
+        {
+        }
+        /**
+         * Prepare_object_for_database
+         *
+         * @since 2.8.0
+         *
+         * @return void
+         */
+        protected function prepare_object_for_database($request)
+        {
+        }
+        /**
+         * Prepares a response for insertion into a collection.
+         *
+         * @since 4.7.0
+         *
+         * @param WP_REST_Response $response Response object.
+         * @return array|mixed Response data, ready for insertion into collection data.
+         */
+        public function prepare_response_for_collection($response)
+        {
+        }
+        /**
+         * Validate before create an Item
+         *
+         * @since 2.8.0
+         *
+         * @return bool|WP_Error
+         */
+        protected function validation_before_create_item($request)
+        {
+        }
+        /**
+         * Validate before update an Item
+         *
+         * @since 2.8.0
+         *
+         * @return bool|WP_Error
+         */
+        protected function validation_before_update_item($request)
+        {
+        }
+        /**
+         * Validate before delete an Item
+         *
+         * @since 2.8.0
+         *
+         * @return bool|WP_Error
+         */
+        protected function validation_before_delete_item($request)
+        {
+        }
+        /**
+         * Prepares the object for the REST response.
+         *
+         * @since  2.8.0
+         * @param  Dokan_Data         $object  Object data.
+         * @param  WP_REST_Request $request Request object.
+         * @return WP_Error|WP_REST_Response Response object on success, or WP_Error object on failure.
+         */
+        protected function prepare_data_for_response($object, $request)
+        {
+        }
+        /**
+         * Prepare objects query.
+         *
+         * @since  2.8.0
+         * @param  WP_REST_Request $request Full details about the request.
+         * @return array
+         */
+        protected function prepare_objects_query($request)
+        {
+        }
+        /**
+         * Determine the allowed query_vars for a get_items() response and
+         * prepare for WP_Query.
+         *
+         * @param array           $prepared_args
+         * @param WP_REST_Request $request
+         * @return array          $query_args
+         */
+        protected function prepare_items_query($prepared_args = array(), $request = null)
+        {
+        }
+        /**
+         * Get all the WP Query vars that are allowed for the API request.
+         *
+         * @return array
+         */
+        protected function get_allowed_query_vars()
+        {
+        }
+        /**
+         * Format item's collection for response
+         *
+         * @param  WP_REST_Response $response
+         * @param  WP_REST_Request $request
+         * @param  int $total_items
+         *
+         * @return WP_REST_Response
+         */
+        public function format_collection_response($response, $request, $total_items)
+        {
+        }
+        /**
+         * Update post author if requested.
+         *
+         * @since 3.10.3
+         *
+         * @param WP_REST_Request $request Request object.
+         * @param int $object_id Object ID.
+         *
+         * @return void
+         */
+        public function update_post_author_if_needed(\WP_REST_Request $request, int $object_id)
+        {
+        }
+        /**
+         * Add meta query.
+         *
+         * @since 3.0.2
+         *
+         * @param array $args       Query args.
+         * @param array $meta_query Meta query.
+         *
+         * @return array
+         */
+        protected function add_meta_query($args, $meta_query)
+        {
+        }
+    }
     abstract class DokanShortcode
     {
         protected $shortcode = '';
@@ -4269,6 +1401,649 @@ namespace WeDevs\Dokan\Abstracts {
         {
         }
     }
+    /**
+     * Settings Element Class.
+     */
+    abstract class SettingsElement
+    {
+        /**
+         * ID of the settings element.
+         *
+         * @var string $id ID.
+         */
+        protected $id = '';
+        /**
+         * Title of the  settings element.
+         *
+         * @var string $title Title.
+         */
+        protected $title = '';
+        /**
+         * Description of the settings element.
+         *
+         * @var string $description Description.
+         */
+        protected $description = '';
+        /**
+         * The Icon class for the settings element.
+         *
+         * @var string $icon Icon.
+         */
+        protected $icon = '';
+        /**
+         * Settings Element Value.
+         *
+         * @var mixed $value Value.
+         */
+        protected $value;
+        /**
+         * Is the element support children?
+         *
+         * @var bool $support_children Has children.
+         */
+        protected $support_children = true;
+        /**
+         * Children Settings elements.
+         *
+         * @var SettingsElement[] $children Children Elements.
+         */
+        protected $children = array();
+        /**
+         * The settings dependencies.
+         *
+         * @var array $dependencies Dependencies.
+         */
+        protected $dependencies = array();
+        /**
+         * Settings Type.
+         *
+         * @var string $type Settings Type.
+         */
+        protected $type = '';
+        /**
+         * The key for generating dynamic hook.
+         *
+         * @var string $hook_key Hook Key.
+         */
+        public $hook_key = '';
+        /**
+         * The key for generating dynamic Dependency.
+         *
+         * @var string $dependency_key Dependency Key.
+         */
+        public $dependency_key = '';
+        /**
+         * The constructor.
+         *
+         * @param string $id ID of the settings.
+         */
+        public function __construct(string $id)
+        {
+        }
+        /**
+         * Get the ID of the Settings element.
+         *
+         * @return string
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * Set the ID of the Settings element.
+         *
+         * @param string $id ID.
+         *
+         * @return SettingsElement
+         */
+        public function set_id(string $id): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Get the Type of the Settings element.
+         *
+         * @return string
+         */
+        public function get_type(): string
+        {
+        }
+        /**
+         * Get the Title of the Settings element.
+         *
+         * @return string
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * Set the Title of the Settings element.
+         *
+         * @param string $title Title.
+         *
+         * @return SettingsElement
+         */
+        public function set_title(string $title): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Get the Description of the Settings element.
+         *
+         * @return string
+         */
+        public function get_description(): string
+        {
+        }
+        /**
+         * Set the Description of the Settings element.
+         *
+         * @param string $description The description.
+         *
+         * @return SettingsElement
+         */
+        public function set_description(string $description): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Get the icon of the Settings element.
+         *
+         * @return string
+         */
+        public function get_icon(): string
+        {
+        }
+        /**
+         * Set the icon of the Settings element.
+         *
+         * @param string $icon Icon class.
+         *
+         * @return SettingsElement
+         */
+        public function set_icon(string $icon): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Get Hook Key.
+         *
+         * @return string
+         */
+        public function get_hook_key(): string
+        {
+        }
+        /**
+         * Set Hook key.
+         *
+         * @param string $hook_key Key.
+         *
+         * @return SettingsElement
+         */
+        public function set_hook_key(string $hook_key): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Get Dependencies key.
+         *
+         * @return string
+         */
+        public function get_dependency_key(): string
+        {
+        }
+        /**
+         * Set Dependencies key.
+         *
+         * @param string $dependency_key The dependency_key.
+         *
+         * @return SettingsElement
+         */
+        public function set_dependency_key(string $dependency_key): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Get the Value for the element.
+         *
+         * @return mixed
+         */
+        public function get_value()
+        {
+        }
+        /**
+         * Set The element value.
+         *
+         * @param mixed $value The element value.
+         *
+         * @return SettingsElement
+         */
+        public function set_value($value): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Check is the settings element support children.
+         *
+         * @return bool
+         */
+        public function is_support_children(): bool
+        {
+        }
+        /**
+         * Get the children of the settings elements.
+         *
+         * @return SettingsElement[]
+         */
+        public function get_children(): array
+        {
+        }
+        /**
+         * Set Children.
+         *
+         * @param array $children Children.
+         *
+         * @return SettingsElement
+         * @throws Exception If children are not attachable.
+         */
+        public function set_children(array $children): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Get element dependency array.
+         *
+         * @return array
+         */
+        public function get_dependencies(): array
+        {
+        }
+        /**
+         * Set Dependencies.
+         *
+         * @param array $dependencies Dependencies.
+         *
+         * @return SettingsElement
+         */
+        public function set_dependencies(array $dependencies): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Add Dependencies to the SettingsElement.
+         *
+         * @param string $key       Dot (.) seperated key string.
+         * @param mixed  $value     Value for comparison.
+         * @param bool   $to_self   Value for comparison.
+         * @param string $attribute Attributes for operation (Optional).
+         * @param string $effect    The effect of dependency (Optional).
+         * @param string $comparison Value comparison operator (Optional).
+         *
+         * @return SettingsElement
+         */
+        public function add_dependency(string $key, $value, bool $to_self = true, string $attribute = 'display', string $effect = 'hide', string $comparison = '='): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Add child element.
+         *
+         * @param SettingsElement $element Settings element.
+         *
+         * @return $this
+         * @throws Exception If child element is not attachable.
+         */
+        public function add(\WeDevs\Dokan\Abstracts\SettingsElement $element): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Detach any child element.
+         *
+         * @param SettingsElement $element Child Element.
+         *
+         * @return SettingsElement
+         * @throws Exception If Element is not removable.
+         */
+        public function remove(\WeDevs\Dokan\Abstracts\SettingsElement $element): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Validate the Data.
+         *
+         * @param mixed $data Data to store.
+         *
+         * @return bool
+         */
+        public function validate($data): bool
+        {
+        }
+        /**
+         * Populate The settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+        /**
+         * Sanitize the settings element.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return array|string
+         */
+        public function sanitize($data)
+        {
+        }
+        /**
+         * Data Validation condition.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        abstract public function data_validation($data): bool;
+        /**
+         * Sanitize data for storage.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return mixed
+         */
+        abstract public function sanitize_element($data);
+        /**
+         * Escape Output for usage.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return mixed
+         */
+        abstract public function escape_element($data);
+    }
+    /**
+     * Settings Class.
+     */
+    abstract class Settings extends \WeDevs\Dokan\Abstracts\SettingsElement
+    {
+        const STORAGE_TYPE_OPTIONS = 'options';
+        const STORAGE_TYPE_USER_META = 'user_meta';
+        /**
+         * Current Setting value storage type.
+         *
+         * @var string $storage_type Storage Type.
+         */
+        protected $storage_type = self::STORAGE_TYPE_OPTIONS;
+        /**
+         * Storage Kay.
+         *
+         * @var string $storage_key Storage Key.
+         */
+        protected $storage_key = 'dokan_settings_';
+        /**
+         * Settings constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Populate settings.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+        /**
+         * Get the stored data for these settings.
+         *
+         * @return Settings
+         */
+        public function hydrate_data(): \WeDevs\Dokan\Abstracts\Settings
+        {
+        }
+        /**
+         * Get data from preferred storage.
+         *
+         * @return mixed
+         */
+        protected function get_data()
+        {
+        }
+        /**
+         * Get option.
+         *
+         * @param string $key settings key (.) dot separated.
+         * @param mixed  $default_value Default value.
+         *
+         * @return mixed
+         */
+        public static function get_option(string $key, $default_value = null)
+        {
+        }
+        /**
+         * Save data for these settings.
+         *
+         * @param mixed $data Data to be stored.
+         *
+         * @return bool
+         * @throws Exception If data could not be stored.
+         */
+        public function save($data): bool
+        {
+        }
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Sanitize data for storage.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return array|string
+         */
+        public function sanitize_element($data)
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param array $data Data for display.
+         *
+         * @return array
+         */
+        public function escape_element($data): array
+        {
+        }
+        /**
+         * Describe the settings options.
+         *
+         * It is used to describe the settings options for the settings page in `init` hook.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function get_described_settings()
+        {
+        }
+        /**
+         * Describe the settings options
+         *
+         * @return void
+         */
+        abstract public function describe_settings(): void;
+    }
+    abstract class StatusElement
+    {
+        protected bool $support_children = false;
+        protected string $id = '';
+        protected string $title = '';
+        protected string $description = '';
+        protected string $icon = '';
+        protected string $type = '';
+        protected string $data = '';
+        protected string $hook_key = '';
+        protected array $children = [];
+        /**
+         * StatusElement constructor.
+         *
+         * @param  string  $id
+         */
+        public function __construct(string $id)
+        {
+        }
+        /**
+         * @return bool
+         */
+        public function is_support_children(): bool
+        {
+        }
+        /**
+         * @param  bool  $support_children
+         *
+         * @return StatusElement
+         */
+        public function set_support_children(bool $support_children): \WeDevs\Dokan\Abstracts\StatusElement
+        {
+        }
+        /**
+         * @return string
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @param  string  $id
+         *
+         * @return StatusElement
+         */
+        public function set_id(string $id): \WeDevs\Dokan\Abstracts\StatusElement
+        {
+        }
+        /**
+         * @return string
+         */
+        public function get_hook_key(): string
+        {
+        }
+        /**
+         * @param  string  $hook_key
+         *
+         * @return StatusElement
+         */
+        public function set_hook_key(string $hook_key): \WeDevs\Dokan\Abstracts\StatusElement
+        {
+        }
+        /**
+         * @return string
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @param  string  $title
+         *
+         * @return StatusElement
+         */
+        public function set_title(string $title): \WeDevs\Dokan\Abstracts\StatusElement
+        {
+        }
+        /**
+         * @return string
+         */
+        public function get_description(): string
+        {
+        }
+        /**
+         * @param  string  $description
+         *
+         * @return StatusElement
+         */
+        public function set_description(string $description): \WeDevs\Dokan\Abstracts\StatusElement
+        {
+        }
+        /**
+         * @return string
+         */
+        public function get_icon(): string
+        {
+        }
+        /**
+         * @param  string  $icon
+         *
+         * @return StatusElement
+         */
+        public function set_icon(string $icon): \WeDevs\Dokan\Abstracts\StatusElement
+        {
+        }
+        /**
+         * @return array<self>
+         */
+        public function get_children(): array
+        {
+        }
+        /**
+         * Set children.
+         *
+         * @since 4.0.0
+         *
+         * @param  array  $children
+         *
+         * @return StatusElement
+         * @throws Exception
+         */
+        public function set_children(array $children): \WeDevs\Dokan\Abstracts\StatusElement
+        {
+        }
+        /**
+         * @return string
+         */
+        public function get_type(): string
+        {
+        }
+        /**
+         * @param  string  $type
+         *
+         * @return StatusElement
+         */
+        public function set_type(string $type): \WeDevs\Dokan\Abstracts\StatusElement
+        {
+        }
+        /**
+         * @return string
+         */
+        public function get_data(): string
+        {
+        }
+        /**
+         * @param  string  $data
+         *
+         * @return StatusElement
+         */
+        public function set_data(string $data): \WeDevs\Dokan\Abstracts\StatusElement
+        {
+        }
+        /**
+         * @throws Exception
+         */
+        public function add(\WeDevs\Dokan\Abstracts\StatusElement $child): \WeDevs\Dokan\Abstracts\StatusElement
+        {
+        }
+        /**
+         * @throws Exception
+         */
+        public function remove(\WeDevs\Dokan\Abstracts\StatusElement $element): \WeDevs\Dokan\Abstracts\StatusElement
+        {
+        }
+        /**
+         * @return array
+         */
+        public function render(): array
+        {
+        }
+        /**
+         * @param  string  $data
+         *
+         * @return string
+         */
+        abstract public function escape_data(string $data): string;
+    }
 }
 namespace WeDevs\Dokan\Admin {
     /**
@@ -4318,6 +2093,887 @@ namespace WeDevs\Dokan\Admin {
         {
         }
     }
+}
+namespace WeDevs\Dokan\Contracts {
+    /**
+     * Interface HooksRegisterInterface
+     * This interface should be implemented by all classes that use WordPress hooks with the Dependency Management Container.
+     * Implementing this interface ensures that the hooks are registered automatically.
+     * If this interface is not implemented, the hooks must be registered manually by resolving the container.
+     */
+    interface Hookable
+    {
+        /**
+         * Register hooks for WordPress.
+         * This method will be called automatically to register the hooks.
+         *
+         * @return void
+         */
+        public function register_hooks(): void;
+    }
+}
+namespace WeDevs\Dokan\Admin\Dashboard {
+    /**
+     * Admin dashboard class.
+     *
+     * @since 4.0.0
+     */
+    class Dashboard implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * @var array< Pageable >
+         */
+        protected array $pages = [];
+        /**
+         * @var string
+         */
+        protected string $script_key = 'dokan-admin-dashboard';
+        /**
+         * @var string
+         */
+        protected string $setup_guide_key = 'dokan-setup-guide-banner';
+        /**
+         * Admin switching script key.
+         *
+         * @SINCE 4.1.3
+         *
+         * @var string
+         */
+        protected string $switching_script_key = 'dokan-admin-switching';
+        /**
+         * Admin panel header script key.
+         *
+         * @since 4.1.3
+         *
+         * @var string
+         */
+        protected string $header_script_key = 'dokan-admin-panel-header';
+        /**
+         * Register hooks.
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Get all pages.
+         *
+         * @since 4.0.0
+         *
+         * @return array< Pageable >
+         *
+         * @throws \InvalidArgumentException If the page is not an instance of Pageable.
+         */
+        public function get_pages(): array
+        {
+        }
+        /**
+         * Register the submenu menu.
+         *
+         * @since 4.0.0
+         *
+         * @param string $capability Menu capability.
+         * @param string $position Menu position.
+         *
+         * @return void
+         */
+        public function register_menu(string $capability, string $position)
+        {
+        }
+        /**
+         * Render the dashboard page.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function render_dashboard_page(): void
+        {
+        }
+        /**
+         * Get all settings.
+         *
+         * @since 4.0.0
+         *
+         * @return array<string, mixed>
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * Get all scripts ids.
+         *
+         * @since 4.0.0
+         *
+         * @return array<string>
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * Get all styles ids.
+         *
+         * @since 4.0.0
+         *
+         * @return array<string>
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * Register dashboard scripts.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register_scripts()
+        {
+        }
+        /**
+         * Register the admin dashboard scripts.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        protected function register_admin_dashboard_scripts()
+        {
+        }
+        /**
+         * Register the admin panel header scripts.
+         *
+         * @since 4.1.3
+         *
+         * @return void
+         */
+        protected function register_admin_panel_header_scripts()
+        {
+        }
+        /**
+         * Register the setup guide banner scripts.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        protected function register_setup_guide_scripts()
+        {
+        }
+        /**
+         * Register the admin switching scripts.
+         *
+         * @since 4.1.3
+         *
+         * @return void
+         */
+        protected function register_admin_switching_scripts()
+        {
+        }
+        /**
+         * Enqueue dashboard scripts.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function enqueue_scripts()
+        {
+        }
+        /**
+         * Runs before admin notices action and hides them.
+         *
+         * @since 4.1.0
+         *
+         * @return void
+         */
+        public function inject_before_notices(): void
+        {
+        }
+        /**
+         * Runs after admin notices and closes div.
+         *
+         * @since 4.1.0
+         *
+         * @return void
+         */
+        public function inject_after_notices(): void
+        {
+        }
+        /**
+         * Add container for admin switching functionality.
+         *
+         * @since 4.1.3
+         *
+         * @param string $text Footer text
+         *
+         * @return string Modified footer text with admin switching container
+         */
+        public function add_switching_container($text)
+        {
+        }
+        /**
+         * Add empty update footer for Dokan screens.
+         *
+         * @since 4.1.3
+         *
+         * @param string $content Footer content
+         *
+         * @return string Empty string for Dokan screens, original content otherwise
+         */
+        public function add_update_footer($content)
+        {
+        }
+    }
+    /**
+     * LegacySwitcher Class
+     *
+     * Handles legacy URL switching and menu title clearing for admin dashboard and settings.
+     *
+     * @since 4.1.3
+     */
+    class LegacySwitcher implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Value of `dokan_action` that triggers the product editor switch.
+         *
+         * @since 5.0.0
+         */
+        public const PRODUCT_EDITOR_SWITCH_ACTION = 'switch_product_editor';
+        /**
+         * Default transient expiration time in seconds (15 days)
+         *
+         * @since 4.1.3
+         *
+         * @var int
+         */
+        protected int $transient_expiration = 15 * DAY_IN_SECONDS;
+        /**
+         * Register hooks for the LegacySwitcher
+         *
+         * @since 4.1.3
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Clear admin submenu title based on legacy dashboard preference.
+         *
+         * @since 4.1.3
+         *
+         * @return void
+         */
+        public function handle_dokan_admin_submenu(): void
+        {
+        }
+        /**
+         * Handle dashboard redirect based on legacy dashboard preference.
+         *
+         * @since 4.1.3
+         *
+         * @return void
+         */
+        public function handle_dashboard_redirect(): void
+        {
+        }
+        /**
+         * Get admin menu transient key.
+         *
+         * @since 4.1.3
+         *
+         * @param string $key
+         *
+         * @return string
+         */
+        public function get_custom_transient_key($key)
+        {
+        }
+        /**
+         * Whether the given user prefers the legacy product editor.
+         *
+         * Defaults to `false` — the new (React) product editor.
+         *
+         * @since 5.0.0
+         *
+         * @param int $user_id Optional. Defaults to current user.
+         *
+         * @return bool
+         */
+        public function is_product_editor_legacy_preferred(int $user_id = 0): bool
+        {
+        }
+        /**
+         * Build the new (React) product editor URL.
+         *
+         * @since 5.0.0
+         *
+         * @param int $product_id
+         *
+         * @return string
+         */
+        public function get_new_product_editor_url(int $product_id): string
+        {
+        }
+        /**
+         * Build the legacy product editor URL, falling back to the
+         * create-new-product URL when no product id is supplied.
+         *
+         * @since 5.0.0
+         *
+         * @param int $product_id
+         *
+         * @return string
+         */
+        protected function get_legacy_product_editor_url(int $product_id): string
+        {
+        }
+    }
+    /**
+     * Interface Pageable.
+     *
+     * @package WeDevs\Dokan\Admin\Dashboard
+     *
+     * @since 4.0.0
+     */
+    interface Pageable
+    {
+        /**
+         * Get the ID of the page.
+         *
+         * @since 4.0.0
+         *
+         * @return string
+         */
+        public function get_id(): string;
+        /**
+         * Get the menu arguments.
+         *
+         * @since 4.0.0
+         *
+         * @param  string  $capability Menu capability.
+         * @param  string  $position Menu position.
+         *
+         * @return array<string, string|int> An array of associative arrays with keys 'route', 'page_title', 'menu_title', 'capability', 'position'.
+         */
+        public function menu(string $capability, string $position): array;
+        /**
+         * Get the settings values.
+         *
+         * @since 4.0.0
+         *
+         * @return array<string,mixed> An array of settings values.
+         */
+        public function settings(): array;
+        /**
+         * Get the scripts.
+         *
+         * @since 4.0.0
+         *
+         * @return array<string> An array of script handles.
+         */
+        public function scripts(): array;
+        /**
+         * Get the styles.
+         *
+         * @since 4.0.0
+         *
+         * @return array<string> An array of style handles.
+         */
+        public function styles(): array;
+        /**
+         * Register the page scripts and styles.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register(): void;
+    }
+}
+namespace WeDevs\Dokan\Admin\Dashboard\Pages {
+    abstract class AbstractPage implements \WeDevs\Dokan\Admin\Dashboard\Pageable, \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Register the hooks.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        public function enlist($pages)
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        abstract public function get_id(): string;
+        /**
+         * @inheritDoc
+         */
+        abstract public function menu(string $capability, string $position): array;
+        /**
+         * @inheritDoc
+         */
+        abstract public function settings(): array;
+        /**
+         * @inheritDoc
+         */
+        abstract public function scripts(): array;
+        /**
+         * @inheritDoc
+         */
+        abstract public function styles(): array;
+        /**
+         * @inheritDoc
+         */
+        abstract public function register(): void;
+    }
+    class Extensions extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
+    {
+        /**
+         * Get the ID of the page.
+         *
+         * @since 5.0.0
+         *
+         * @return string
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * Get the title of the page.
+         *
+         * @since 5.0.0
+         *
+         * @param string $title Default title.
+         * @param string $page_title Page title.
+         *
+         * @return array
+         */
+        public function menu(string $capability, string $position): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * Get extension data for the frontend.
+         *
+         * @since 5.0.0
+         *
+         * @return array
+         */
+        protected function get_extensions_data(): array
+        {
+        }
+        /**
+         * Get weLabs data for services.
+         *
+         * @since 5.0.0
+         *
+         * @param string $thumbnail_dir Base URL for thumbnails.
+         *
+         * @return array
+         */
+        protected function get_welabs_data(string $thumbnail_dir): array
+        {
+        }
+        /**
+         * Get recommended addons list.
+         *
+         * @since 5.0.0
+         *
+         * @param string $thumbnail_dir Base URL for thumbnails.
+         *
+         * @return array
+         */
+        protected function get_recommended_addons(string $thumbnail_dir): array
+        {
+        }
+        /**
+         * Check if a premium addon module is available.
+         *
+         * A premium addon is considered "installed" when:
+         * - The standalone plugin for that addon is installed, OR
+         * - Dokan Pro is installed and the module is available in the current plan.
+         *
+         * @since 5.0.0
+         *
+         * @param string $module_key        The module key (e.g. 'booking', 'simple-auction').
+         * @param array  $installed_plugins List of installed plugins.
+         *
+         * @return bool
+         */
+        protected function is_premium_addon_installed(string $module_key, array $installed_plugins): bool
+        {
+        }
+        /**
+         * Get mobile apps data.
+         *
+         * @since 5.0.0
+         *
+         * @param string $thumbnail_dir Base URL for thumbnails.
+         *
+         * @return array
+         */
+        protected function get_mobile_apps(string $thumbnail_dir): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function register(): void
+        {
+        }
+    }
+    class Modules extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
+    {
+        /**
+         * Get the ID of the page.
+         *
+         * @since 4.0.0
+         *
+         * @return string
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function menu(string $capability, string $position): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * Get the styles.
+         *
+         * @since 4.0.0
+         *
+         * @return array<string> An array of style handles.
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * Register the page scripts and styles.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register(): void
+        {
+        }
+    }
+    class ProFeatures extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
+    {
+        /**
+         * Get the ID of the page.
+         *
+         * @since 4.1.0
+         *
+         * @return string
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function menu(string $capability, string $position): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * Get the styles.
+         *
+         * @since 4.1.0
+         *
+         * @return array<string> An array of style handles.
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * Register the page scripts and styles.
+         *
+         * @since 4.1.0
+         *
+         * @return void
+         */
+        public function register(): void
+        {
+        }
+    }
+    class ReverseWithdrawal extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
+    {
+        /**
+         * Get the ID of the page.
+         *
+         * @since 4.2.0
+         *
+         * @return string
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function menu(string $capability, string $position): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * Get the styles.
+         *
+         * @since 4.2.0
+         *
+         * @return array<string> An array of style handles.
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * Register the page scripts and styles.
+         *
+         * @since 4.2.0
+         *
+         * @return void
+         */
+        public function register(): void
+        {
+        }
+    }
+    class SetupGuide extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
+    {
+        /**
+         * @var AdminSetupGuide $admin_setup_guide Admin setup guide instance.
+         */
+        protected \WeDevs\Dokan\Admin\OnboardingSetup\AdminSetupGuide $admin_setup_guide;
+        /**
+         * SetupGuide constructor.
+         *
+         * @param AdminSetupGuide $admin_setup_guide Admin setup guide instance.
+         */
+        public function __construct(\WeDevs\Dokan\Admin\OnboardingSetup\AdminSetupGuide $admin_setup_guide)
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function menu(string $capability, string $position): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function register(): void
+        {
+        }
+    }
+    class Status extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
+    {
+        /**
+         * Get the ID of the page.
+         *
+         * @since 4.0.0
+         *
+         * @return string
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function menu(string $capability, string $position): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * Get the styles.
+         *
+         * @since 4.0.0
+         *
+         * @return array<string> An array of style handles.
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * Register the page scripts and styles.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register(): void
+        {
+        }
+    }
+    class Vendors extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
+    {
+        public function get_id(): string
+        {
+        }
+        public function menu(string $capability, string $position): array
+        {
+        }
+        public function settings(): array
+        {
+        }
+        public function scripts(): array
+        {
+        }
+        public function styles(): array
+        {
+        }
+        public function register(): void
+        {
+        }
+    }
+    class Withdraw extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
+    {
+        /**
+         * Get the ID of the page.
+         *
+         * @since 4.0.0
+         *
+         * @return string
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function menu(string $capability, string $position): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * Get the styles.
+         *
+         * @since 4.0.0
+         *
+         * @return array<string> An array of style handles.
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * Register the page scripts and styles.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register(): void
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin {
     /**
      * Admin Hooks
      *
@@ -4407,6 +3063,28 @@ namespace WeDevs\Dokan\Admin {
         public function update_pages($value, $name)
         {
         }
+        /**
+         * Add commission settings in bulk product edit.
+         *
+         * @since 3.14.2
+         *
+         * @return void
+         */
+        public function add_product_commission_bulk_edit_field()
+        {
+        }
+        /**
+         * Save commission settings from bulk product edit
+         *
+         * @since 3.14.2
+         *
+         * @param \WC_Product $product
+         *
+         * @return void
+         */
+        public function save_custom_bulk_edit_field($product)
+        {
+        }
     }
     class Menu
     {
@@ -4429,6 +3107,25 @@ namespace WeDevs\Dokan\Admin {
          * @return void
          */
         public function add_admin_menu()
+        {
+        }
+        /**
+         * Append a dashboard Page service's submenu entry under the Dokan top-level menu.
+         *
+         * Used for pages that opt out of {@see \WeDevs\Dokan\Admin\Dashboard\Dashboard::register_menu()}
+         * via 'hidden' => true so their position relative to the static Help/Settings entries
+         * can be controlled here.
+         *
+         * @since 5.0.0
+         *
+         * @param string $page_class    Fully-qualified Pageable service class name.
+         * @param string $parent_slug   Parent menu slug (the Dokan top-level menu).
+         * @param string $capability    Capability required to view the menu.
+         * @param string $menu_position Dokan top-level menu position.
+         *
+         * @return void
+         */
+        protected function append_dashboard_page_submenu(string $page_class, string $parent_slug, string $capability, string $menu_position): void
         {
         }
         /**
@@ -4675,25 +3372,71 @@ namespace WeDevs\Dokan\Admin\Notices {
         {
         }
         /**
-         * Display single page product page create notice.
+         * Display dokan admin logo update notice.
          *
-         * @since 3.8.2
+         * @since 3.14.0
          *
          * @param array $notices
          *
          * @return array
          */
-        public function show_one_step_product_add_notice($notices)
+        public function show_admin_logo_update_notice(array $notices): array
         {
         }
         /**
-         * Dismisses one-step product create notice.
+         * Dismisses dokan admin logo update notice.
          *
-         * @since 3.8.2
+         * @since 3.14.0
          *
          * @return void
          */
-        public function dismiss_dokan_one_step_product_notice()
+        public function dismiss_dokan_admin_logo_update_notice()
+        {
+        }
+        /**
+         * Dismisses dokan notice.
+         *
+         * @since 3.14.0
+         *
+         * @param string $option_name The name of the option to update.
+         *
+         * @return void
+         */
+        private function dismiss_notice(string $option_name)
+        {
+        }
+        /**
+         * Show admin notice if dokan lite is updated to v3.14.0 and dokan pro is not updated to minimum v3.14.0.
+         *
+         * @since 3.14.0
+         *
+         * @param $notices
+         *
+         * @return mixed
+         */
+        public function show_admin_plugin_update_notice($notices)
+        {
+        }
+        /**
+         * Show admin notice if vendor onboarding page is not configured.
+         *
+         * @since 5.0.0
+         *
+         * @param array $notices
+         *
+         * @return array
+         */
+        public function show_vendor_onboarding_page_notice($notices)
+        {
+        }
+        /**
+         * Check if vendor onboarding page is configured.
+         *
+         * @since 5.0.0
+         *
+         * @return bool
+         */
+        private function is_vendor_onboarding_page_configured()
         {
         }
     }
@@ -4740,40 +3483,30 @@ namespace WeDevs\Dokan\Admin\Notices {
         }
     }
     /**
-     * Setup wizard notice handler class
+     * V4 upgrader notice handler class
      *
-     * @since 3.3.3
+     * @since 4.0.0
      */
-    class SetupWizard
+    class UpgradeToV4
     {
         /**
          * Class constructor
          *
-         * @since 3.3.3
+         * @since 4.0.0
          */
         public function __construct()
         {
         }
         /**
-         * Render run admin setup wizard notice
+         * Render upgrade notice.
          *
-         * @since 2.9.27
+         * @since 4.0.0
          *
-         * @param array $notices
+         * @param array $notices Existing notices.
          *
          * @return array
          */
-        public function render_run_admin_setup_wizard_notice($notices)
-        {
-        }
-        /**
-         * Dismisses admin setup wizard notice
-         *
-         * @since 3.3.3
-         *
-         * @return void
-         */
-        public function dismiss_admin_setup_wizard_notice()
+        public function render_notice($notices)
         {
         }
     }
@@ -4812,6 +3545,1957 @@ namespace WeDevs\Dokan\Admin\Notices {
          * @return void
          */
         public function dismiss_new_notice()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin\OnboardingSetup {
+    class AdminSetupGuide
+    {
+        /**
+         * Steps.
+         *
+         * @since 4.0.0
+         *
+         * @var array< AbstractStep >
+         */
+        protected array $steps = [];
+        /**
+         * The setup completed option.
+         *
+         * @var string
+         */
+        protected string $setup_completed_option = 'dokan_admin_setup_guide_steps_completed';
+        /**
+         * Get all steps.
+         *
+         * @since 4.0.0
+         *
+         * @return array< AbstractStep >
+         *
+         * @throws \InvalidArgumentException If the step is not an instance of AbstractStep.
+         */
+        public function get_steps(): array
+        {
+        }
+        /**
+         * Get the steps mapper.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function get_steps_mapper(): array
+        {
+        }
+        /**
+         * Check if the setup is complete.
+         *
+         * @since 4.0.0
+         *
+         * @return bool
+         */
+        public function is_setup_complete(): bool
+        {
+        }
+        /**
+         * Set the setup complete.
+         *
+         * @since 4.0.0
+         *
+         * @param bool $value The value to set.
+         *
+         * @return bool
+         */
+        public function set_setup_complete(bool $value = true): bool
+        {
+        }
+        /**
+         * Get the setup complete from option.
+         *
+         * @since 4.0.0
+         *
+         * @return bool
+         */
+        public function get_setup_complete(): bool
+        {
+        }
+        /**
+         * Get the styles.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * Get the scripts.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * Register the steps scripts and styles.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register(): void
+        {
+        }
+        /**
+         * Describe the settings options for frontend.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function settings(): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin\OnboardingSetup\Components {
+    class ComponentFactory
+    {
+        /**
+         * Get a new Page object.
+         *
+         * @param string $id ID.
+         *
+         * @return Page
+         */
+        public static function page(string $id): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Page
+        {
+        }
+        /**
+         * Get a new tab object.
+         *
+         * @param string $id ID.
+         *
+         * @return Tab
+         */
+        public static function tab(string $id): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Tab
+        {
+        }
+        /**
+         * Get a new Section object.
+         *
+         * @param string $id ID.
+         *
+         * @return Section
+         */
+        public static function section(string $id): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Section
+        {
+        }
+        /**
+         * Get a new SubSection object.
+         *
+         * @param string $id ID.
+         *
+         * @return SubSection
+         */
+        public static function sub_section(string $id): \WeDevs\Dokan\Admin\OnboardingSetup\Components\SubSection
+        {
+        }
+        /**
+         * Get a new Field object.
+         *
+         * @param string $id ID.
+         * @param string $type Field Type.
+         *
+         * @return Text|Number|Checkbox|Radio|Select|Tel|Password|RadioBox|Switcher|MultiCheck|Currency
+         */
+        public static function field(string $id, string $type = 'text'): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+    }
+    /**
+     * Settings element Field.
+     */
+    class Field extends \WeDevs\Dokan\Abstracts\SettingsElement
+    {
+        /**
+         * Is children Supported.
+         *
+         * @var bool $support_children Children support.
+         */
+        protected $support_children = false;
+        /**
+         * The Input Element Type.
+         *
+         * @var string $input_type The Input Element Type.
+         */
+        protected $input_type = 'text';
+        /**
+         * The Settings Element Type.
+         *
+         * @var string $type Type Field.
+         */
+        protected $type = 'field';
+        /**
+         * Map for the Input type.
+         *
+         * @var string[] $field_map Map for the Input type.
+         */
+        protected $field_map = array('text' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text::class, 'number' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Number::class, 'checkbox' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Checkbox::class, 'select' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Select::class, 'radio' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Radio::class, 'tel' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Tel::class, 'password' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Password::class, 'radio_box' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\RadioBox::class, 'switch' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Switcher::class, 'multicheck' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\MultiCheck::class, 'currency' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Currency::class, 'combine_input' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission\CombineInput::class, 'category_based_commission' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission\CategoryBasedCommission::class);
+        /**
+         * Constructor.
+         *
+         * @param string $id ID of the input field.
+         * @param string $type Type of the input field.
+         */
+        public function __construct(string $id, string $type = 'text')
+        {
+        }
+        /**
+         * Get input field.
+         *
+         * @return SettingsElement
+         */
+        public function get_input(): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Populate The Page Object.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Map input type to respective input class.
+         *
+         * @param string $id ID.
+         * @param string $input_type Input Type.
+         *
+         * @return SettingsElement
+         */
+        private function input_map(string $id, string $input_type): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Sanitize data for storage.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return array|float|string
+         */
+        public function sanitize_element($data)
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param mixed $data Data for display.
+         *
+         * @return mixed
+         */
+        public function escape_element($data)
+        {
+        }
+    }
+    /**
+     * Field Group Class.
+     */
+    class FieldGroup extends \WeDevs\Dokan\Abstracts\SettingsElement
+    {
+        /**
+         * Settings Element type.
+         *
+         * @var string $type Settings Element type.
+         */
+        protected $type = 'fieldgroup';
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Sanitize data for storage.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return array|string
+         */
+        public function sanitize_element($data)
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param array $data Data for display.
+         *
+         * @return array
+         */
+        public function escape_element($data): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields {
+    /**
+     * Test Field.
+     */
+    class Text extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Field
+    {
+        /**
+         * Default Value.
+         *
+         * @var string $default Default.
+         */
+        protected $default = '';
+        /**
+         * Placeholder.
+         *
+         * @var string $placeholder Placeholder.
+         */
+        protected $placeholder = '';
+        /**
+         * Input field is read-only.
+         *
+         * @var bool $is_readonly Whether to read only.
+         */
+        protected $is_readonly = false;
+        /**
+         * Whether the field is disabled.
+         *
+         * @var bool $disabled Whether the field is disabled.
+         */
+        protected $disabled = false;
+        /**
+         * The size of the field.
+         *
+         * @var int $size The size of the field.
+         */
+        protected $size = 20;
+        /**
+         * Constructor.
+         *
+         * @param string $id Input ID.
+         */
+        public function __construct(string $id)
+        {
+        }
+        /**
+         * Get Default.
+         *
+         * @return string
+         */
+        public function get_default(): string
+        {
+        }
+        /**
+         * Set Default.
+         *
+         * @param string $default_value Default value.
+         *
+         * @return SettingsElement
+         */
+        public function set_default(string $default_value): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Get Placeholder.
+         *
+         * @return string
+         */
+        public function get_placeholder(): string
+        {
+        }
+        /**
+         * Set placeholder.
+         *
+         * @param string $placeholder Placeholder.
+         *
+         * @return SettingsElement
+         */
+        public function set_placeholder(string $placeholder): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Is field read only or not.
+         *
+         * @return bool
+         */
+        public function is_readonly(): bool
+        {
+        }
+        /**
+         * Set readonly flag.
+         *
+         * @param bool $is_readonly Readonly flag.
+         *
+         * @return Text
+         */
+        public function set_readonly(bool $is_readonly): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
+        {
+        }
+        /**
+         * Check if the field is disabled.
+         *
+         * @return bool
+         */
+        public function is_disabled(): bool
+        {
+        }
+        /**
+         * Set the field as disabled state.
+         *
+         * @param bool $disabled Whether the field is disabled.
+         *
+         * @return Text
+         */
+        public function set_disabled(bool $disabled): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
+        {
+        }
+        /**
+         * Get the field size.
+         *
+         * @return int
+         */
+        public function get_size(): int
+        {
+        }
+        /**
+         * Set the field size.
+         *
+         * @param int $size The size of the field.
+         *
+         * @return Text
+         */
+        public function set_size(int $size): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
+        {
+        }
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+        /**
+         * Sanitize data for storage.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return float|string
+         */
+        public function sanitize_element($data)
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param string $data Data for display.
+         *
+         * @return string
+         */
+        public function escape_element($data)
+        {
+        }
+    }
+    /**
+     * Checkbox Field.
+     */
+    class Checkbox extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
+    {
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'checkbox';
+        /**
+         * Options.
+         *
+         * @var array $options Options.
+         */
+        protected $options = array();
+        /**
+         * Get options.
+         *
+         * @return array
+         */
+        public function get_options(): array
+        {
+        }
+        /**
+         * Set options.
+         *
+         * @param array $options Options.
+         *
+         * @return SettingsElement
+         */
+        public function set_options(array $options)
+        {
+        }
+        /**
+         * Add an option.
+         *
+         * @param string      $option option to Display.
+         * @param string|null $value value for the checkbox option. Default is null.
+         *
+         * @return Checkbox|Select|Radio
+         */
+        public function add_option(string $option, string $value)
+        {
+        }
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param string $data Data for display.
+         *
+         * @return string
+         */
+        public function escape_element($data): string
+        {
+        }
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission {
+    /**
+     * CategoryBasedCommission Field.
+     */
+    class CategoryBasedCommission extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Field
+    {
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'category_based_commission';
+        /**
+         * Reset subcategory flag.
+         *
+         * @var string $reset_subcategory Whether to apply parent category commission to subcategories.
+         */
+        protected $reset_subcategory;
+        /**
+         * Constructor.
+         *
+         * @param string $id Input ID.
+         */
+        public function __construct(string $id)
+        {
+        }
+        /**
+         * Get Reset Subcategory Flag.
+         *
+         * @return string
+         */
+        public function get_reset_subcategory(): string
+        {
+        }
+        /**
+         * Set Reset Subcategory Flag.
+         *
+         * @param string $reset_subcategory Reset subcategory flag.
+         *
+         * @return CategoryBasedCommission
+         */
+        public function set_reset_subcategory(string $reset_subcategory): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission\CategoryBasedCommission
+        {
+        }
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param mixed $data Data for display.
+         *
+         * @return string
+         */
+        public function escape_element($data)
+        {
+        }
+    }
+    /**
+     * CombineInput Field.
+     */
+    class CombineInput extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Field
+    {
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'combine_input';
+        /**
+         * Additional fee.
+         *
+         * @var string $additional_fee Fixed value.
+         */
+        protected $additional_fee = '';
+        /**
+         * Percentage value.
+         *
+         * @var string $admin_percentage Percentage value.
+         */
+        protected $admin_percentage = '';
+        /**
+         * Constructor.
+         *
+         * @param string $id Input ID.
+         */
+        public function __construct(string $id)
+        {
+        }
+        /**
+         * Get fixed value.
+         *
+         * @return string
+         */
+        public function get_additional_fee(): string
+        {
+        }
+        /**
+         * Set fixed value.
+         *
+         * @param string $additional_fee Fixed value.
+         *
+         * @return CombineInput
+         */
+        public function set_additional_fee(string $additional_fee): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission\CombineInput
+        {
+        }
+        /**
+         * Get percentage value.
+         *
+         * @return string
+         */
+        public function get_admin_percentage(): string
+        {
+        }
+        /**
+         * Set percentage value.
+         *
+         * @param string $percentage Percentage value.
+         *
+         * @return CombineInput
+         */
+        public function set_admin_percentage(string $percentage): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission\CombineInput
+        {
+        }
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param mixed $data Data for display.
+         *
+         * @return string
+         */
+        public function escape_element($data): string
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields {
+    class Currency extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
+    {
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'currency';
+        /**
+         * Currency symbol.
+         *
+         * @var string $currency_symbol Currency symbol.
+         */
+        protected string $currency_symbol;
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+        /**
+         * Get currency symbol.
+         *
+         * @return string
+         */
+        public function get_currency_symbol(): ?string
+        {
+        }
+        /**
+         * Set currency symbol.
+         *
+         * @param string $currency_symbol Currency symbol.
+         *
+         * @return Currency
+         */
+        public function set_currency_symbol(string $currency_symbol): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Currency
+        {
+        }
+    }
+    /**
+     * CheckboxGroup Field.
+     */
+    class MultiCheck extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Field
+    {
+        /**
+         * Default Value.
+         *
+         * @var array $default Default.
+         */
+        protected $default = [];
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'multicheck';
+        /**
+         * Options.
+         *
+         * @var array $options Options.
+         */
+        protected $options = array();
+        /**
+         * Constructor.
+         *
+         * @param string $id Input ID.
+         */
+        public function __construct(string $id)
+        {
+        }
+        /**
+         * Get options.
+         *
+         * @return array
+         */
+        public function get_options(): array
+        {
+        }
+        /**
+         * Set options.
+         *
+         * @param array $options Options.
+         *
+         * @return SettingsElement
+         */
+        public function set_options(array $options)
+        {
+        }
+        /**
+         * Add an option.
+         *
+         * @param string      $option option to Display.
+         * @param string|null $value value for the checkbox option. Default is null.
+         *
+         * @return MultiCheck
+         */
+        public function add_option(string $option, string $value)
+        {
+        }
+        /**
+         * Get Default.
+         *
+         * @return array
+         */
+        public function get_default(): array
+        {
+        }
+        /**
+         * Set Default.
+         *
+         * @param array $default_value Default value.
+         *
+         * @return SettingsElement
+         */
+        public function set_default($default_value): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+    }
+    /**
+     * Test Field.
+     */
+    class Number extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
+    {
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'number';
+        /**
+         * Minimum.
+         *
+         * @var float $minimum Minimum.
+         */
+        protected $minimum;
+        /**
+         * Maximum.
+         *
+         * @var float Maximum.
+         */
+        protected $maximum;
+        /**
+         * Increment number.
+         *
+         * @var float $step Increment number.
+         */
+        protected $step = 0.1;
+        /**
+         * Get minimum value.
+         *
+         * @return float
+         */
+        public function get_minimum(): ?float
+        {
+        }
+        /**
+         * Set minimum value.
+         *
+         * @param float $minimum The minimum value.
+         *
+         * @return Number
+         */
+        public function set_minimum(float $minimum): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Number
+        {
+        }
+        /**
+         * Get minimum value.
+         *
+         * @return float
+         */
+        public function get_maximum(): ?float
+        {
+        }
+        /**
+         * Set maximum value.
+         *
+         * @param float $maximum Value.
+         *
+         * @return Number
+         */
+        public function set_maximum(float $maximum): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Number
+        {
+        }
+        /**
+         * Get step value.
+         *
+         * @return float
+         */
+        public function get_step(): ?float
+        {
+        }
+        /**
+         * Set step value.
+         *
+         * @param float $step Value.
+         *
+         * @return Number
+         */
+        public function set_step(float $step): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Number
+        {
+        }
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Sanitize data for storage.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return mixed
+         */
+        public function sanitize_element($data)
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param string $data Data for display.
+         *
+         * @return float
+         */
+        public function escape_element($data): float
+        {
+        }
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+    }
+    /**
+     * Test Field.
+     */
+    class Password extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
+    {
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'password';
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+    }
+    /**
+     * Checkbox Field.
+     */
+    class Radio extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Checkbox
+    {
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'radio';
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param string $data Data for display.
+         *
+         * @return string
+         */
+        public function escape_element($data): string
+        {
+        }
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+    }
+    /**
+     * RadioButton Field.
+     *
+     * Custom field that provides radio options as button.
+     */
+    class RadioBox extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Radio
+    {
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'radio_box';
+    }
+    /**
+     * Select Field.
+     */
+    class Select extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Checkbox
+    {
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'select';
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param string $data Data for display.
+         *
+         * @return string
+         */
+        public function escape_element($data): string
+        {
+        }
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+    }
+    /**
+     * Switcher Field.
+     *
+     * Custom field that provides a toggle switch for boolean values.
+     */
+    class Switcher extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Radio
+    {
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'switch';
+        /**
+         * Options.
+         *
+         * @var array $options Options.
+         */
+        protected $states = array();
+        /**
+         * Get options.
+         *
+         * @return array
+         */
+        public function get_states(): array
+        {
+        }
+        /**
+         * Set active value.
+         *
+         * @param string $label Enable state label.
+         * @param string $value Enable state value.
+         *
+         * @return Switcher
+         */
+        public function set_enable_state(string $label, string $value): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Switcher
+        {
+        }
+        /**
+         * Get active value.
+         *
+         * @return array
+         */
+        public function get_enable_state(): array
+        {
+        }
+        public function set_disable_state(string $label, string $value): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Switcher
+        {
+        }
+        /**
+         * Get active value.
+         *
+         * @return array
+         */
+        public function get_disable_state(): array
+        {
+        }
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+    }
+    /**
+     * Test Field.
+     */
+    class Tel extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
+    {
+        /**
+         * Input Type.
+         *
+         * @var string $input_type Input Type.
+         */
+        protected $input_type = 'tel';
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Populate settings array.
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin\OnboardingSetup\Components {
+    /**
+     * Page Class.
+     */
+    class Page extends \WeDevs\Dokan\Abstracts\SettingsElement
+    {
+        /**
+         * Settings Element type.
+         *
+         * @var string $type Settings Element type.
+         */
+        protected $type = 'page';
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Sanitize data for storage.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return array|string
+         */
+        public function sanitize_element($data)
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param array $data Data for display.
+         *
+         * @return array
+         */
+        public function escape_element($data): array
+        {
+        }
+    }
+    /**
+     * Section Class.
+     */
+    class Section extends \WeDevs\Dokan\Abstracts\SettingsElement
+    {
+        /**
+         * Settings Element type.
+         *
+         * @var string $type Settings Element type.
+         */
+        protected $type = 'section';
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Sanitize data for storage.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return array|string
+         */
+        public function sanitize_element($data)
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param array $data Data for display.
+         *
+         * @return array
+         */
+        public function escape_element($data): array
+        {
+        }
+    }
+    /**
+     * Subsection Class.
+     */
+    class SubSection extends \WeDevs\Dokan\Abstracts\SettingsElement
+    {
+        /**
+         * Settings Element type.
+         *
+         * @var string $type Settings Element type.
+         */
+        protected $type = 'subsection';
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Sanitize data for storage.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return mixed
+         */
+        public function sanitize_element($data)
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param array $data Data for display.
+         *
+         * @return array
+         */
+        public function escape_element($data): array
+        {
+        }
+    }
+    /**
+     * Tab Class.
+     */
+    class Tab extends \WeDevs\Dokan\Abstracts\SettingsElement
+    {
+        /**
+         * Settings Element type.
+         *
+         * @var string $type Settings Element type.
+         */
+        protected $type = 'tab';
+        /**
+         * Data validation.
+         *
+         * @param mixed $data Data for validation.
+         *
+         * @return bool
+         */
+        public function data_validation($data): bool
+        {
+        }
+        /**
+         * Sanitize data for storage.
+         *
+         * @param mixed $data Data for sanitization.
+         *
+         * @return mixed
+         */
+        public function sanitize_element($data)
+        {
+        }
+        /**
+         * Escape data for display.
+         *
+         * @param array $data Data for display.
+         *
+         * @return array
+         */
+        public function escape_element($data): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin\OnboardingSetup\Steps {
+    /**
+     * The step interface.
+     *
+     * @since 4.0.0
+     */
+    interface StepInterface
+    {
+        /**
+         * Get the step ID.
+         *
+         * @since 4.0.0
+         *
+         * @return string The step ID.
+         */
+        public function get_id(): string;
+        /**
+         * Get settings options to check for.
+         *
+         * @since 4.0.0
+         *
+         * @return string[] The settings options.
+         */
+        public function get_settings_options(): array;
+        /**
+         * Get the step priority.
+         *
+         * @since 4.0.0
+         *
+         * @return int The step priority.
+         */
+        public function get_priority(): int;
+        /**
+         * Get the step skippable or not.
+         *
+         * @since 4.0.0
+         *
+         * @return bool
+         */
+        public function get_skippable(): bool;
+        /**
+         * Register the step scripts and styles.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register();
+        /**
+         * Get the step scripts.
+         *
+         * @since 4.0.0
+         *
+         * @return array The step scripts.
+         */
+        public function scripts(): array;
+        /**
+         * Get the step styles.
+         *
+         * @since 4.0.0
+         *
+         * @return array The step styles.
+         */
+        public function styles(): array;
+        /**
+         * Pass the settings options to frontend.
+         *
+         * @since 4.0.0
+         *
+         * @return array The settings options.
+         */
+        public function settings(): array;
+        /**
+         * Describe the settings options.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function option_dispatcher($data): void;
+    }
+    /**
+     * The abstract step class.
+     *
+     * @since 4.0.0
+     */
+    abstract class AbstractStep extends \WeDevs\Dokan\Abstracts\Settings implements \WeDevs\Dokan\Admin\OnboardingSetup\Steps\StepInterface, \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * The step ID.
+         *
+         * @var string
+         */
+        protected $id = '';
+        /**
+         * The step priority.
+         *
+         * @var int
+         */
+        protected int $priority = 100;
+        /**
+         * The step skippable or not.
+         * The default is true.
+         *
+         * @var bool $skippable The step skippable or not.
+         */
+        protected bool $skippable = true;
+        /**
+         * The storage key.
+         *
+         * @var string
+         */
+        protected $storage_key = 'dokan_admin_onboarding_setup_step';
+        /**
+         * The settings options.
+         *
+         * @var array
+         */
+        protected $settings_options = [];
+        /**
+         * Get the step ID.
+         *
+         * @since 4.0.0
+         *
+         * @return string
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * Register the hooks.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Enlist the steps.
+         *
+         * @since 4.0.0
+         *
+         * @param AbstractStep[] $steps The steps to enlist.
+         *
+         * @return AbstractStep[] The enlisted steps.
+         */
+        public function enlist(array $steps): array
+        {
+        }
+        /**
+         * Get the step priority.
+         *
+         * @since 4.0.0
+         *
+         * @return int
+         */
+        public function get_priority(): int
+        {
+        }
+        /**
+         * Get the step skippable or not.
+         *
+         * @since 4.0.0
+         *
+         * @return bool
+         */
+        public function get_skippable(): bool
+        {
+        }
+        /**
+         * Register the scripts and styles.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        abstract public function register(): void;
+        /**
+         * Get the scripts.
+         *
+         * @since 4.0.0
+         *
+         * @return array<string>
+         */
+        abstract public function scripts(): array;
+        /**
+         * Get the styles.
+         *
+         * @since 4.0.0
+         *
+         * @return array<string>
+         */
+        abstract public function styles(): array;
+        /**
+         * Describe the settings options.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        abstract public function describe_settings(): void;
+        /**
+         * Get the settings options for frontend.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        abstract public function settings(): array;
+        /**
+         * Dispatch the options to settings options.
+         *
+         * @since 4.0.0
+         *
+         * @param mixed $data The data to dispatch.
+         *
+         * @return void
+         */
+        abstract public function option_dispatcher($data): void;
+        /**
+         * Get the settings options.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function get_settings_options(): array
+        {
+        }
+        /**
+         * Get the settings options.
+         *
+         * @since 4.0.0
+         *
+         * @return bool
+         */
+        public function is_completed(): bool
+        {
+        }
+        /**
+         * Dispatch the options to settings options.
+         *
+         * @since 4.0.0
+         *
+         * @param mixed $data The data to dispatch.
+         *
+         * @return void
+         */
+        public function dispatch($data): void
+        {
+        }
+        /**
+         * Listen for settings save.
+         *
+         * @since 4.0.0
+         *
+         * @param string $option The option to listen for.
+         *
+         * @return void
+         */
+        public function listen_for_settings_save($option)
+        {
+        }
+        /**
+         * Mark the step as complete.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function mark_as_complete()
+        {
+        }
+    }
+    class AppearanceStep extends \WeDevs\Dokan\Admin\OnboardingSetup\Steps\AbstractStep
+    {
+        /**
+         * The step ID.
+         *
+         * @var string The step ID.
+         */
+        protected $id = 'appearance';
+        /**
+         * The step priority.
+         *
+         * @var int The step priority.
+         */
+        protected int $priority = 40;
+        /**
+         * The settings options.
+         *
+         * @var array The settings options.
+         */
+        protected $settings_options = ['dokan_appearance'];
+        /**
+         * The storage key.
+         *
+         * @var string The storage key.
+         */
+        protected $storage_key = 'dokan_admin_onboarding_setup_step_appearance';
+        /**
+         * Get default appearance settings
+         *
+         * @since 4.0.0
+         *
+         * @return array Default appearance settings
+         */
+        protected function get_default_settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function register(): void
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function describe_settings(): void
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function option_dispatcher($data): void
+        {
+        }
+    }
+    class BasicStep extends \WeDevs\Dokan\Admin\OnboardingSetup\Steps\AbstractStep
+    {
+        /**
+         * The step ID.
+         *
+         * @var string The step ID.
+         */
+        protected $id = 'basic';
+        /**
+         * The step priority.
+         *
+         * @var int The step priority.
+         */
+        protected int $priority = 10;
+        /**
+         * The step skippable or not.
+         * The default is true.
+         *
+         * @var bool $skippable The step skippable or not.
+         */
+        protected bool $skippable = false;
+        /**
+         * The settings options.
+         *
+         * @var array The settings options.
+         */
+        protected $settings_options = ['dokan_selling'];
+        /**
+         * The storage key.
+         *
+         * @var string The storage key.
+         */
+        protected $storage_key = 'dokan_admin_onboarding_setup_step_basic';
+        /**
+         * Get default basic settings
+         *
+         * @since 4.0.0
+         *
+         * @return array Default basic settings
+         */
+        protected function get_default_settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function register(): void
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function describe_settings(): void
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function option_dispatcher($data): void
+        {
+        }
+    }
+    class CommissionStep extends \WeDevs\Dokan\Admin\OnboardingSetup\Steps\AbstractStep
+    {
+        /**
+         * The step ID.
+         *
+         * @var string The step ID.
+         */
+        protected $id = 'commission';
+        /**
+         * The step priority.
+         *
+         * @var int The step priority.
+         */
+        protected int $priority = 20;
+        /**
+         * The settings options.
+         *
+         * @var array The settings options.
+         */
+        protected $settings_options = ['dokan_selling'];
+        /**
+         * The storage key.
+         *
+         * @var string The storage key.
+         */
+        protected $storage_key = 'dokan_admin_onboarding_setup_step_commission';
+        /**
+         * Get default commission settings
+         *
+         * @since 4.0.0
+         *
+         * @return array Default commission settings
+         */
+        protected function get_default_settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function register(): void
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function describe_settings(): void
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function option_dispatcher($data): void
+        {
+        }
+    }
+    class WithdrawStep extends \WeDevs\Dokan\Admin\OnboardingSetup\Steps\AbstractStep
+    {
+        /**
+         * The step ID.
+         *
+         * @var string The step ID.
+         */
+        protected $id = 'withdraw';
+        /**
+         * The step priority.
+         *
+         * @var int The step priority.
+         */
+        protected int $priority = 30;
+        /**
+         * The storage key.
+         *
+         * @var string The storage key.
+         */
+        protected $storage_key = 'dokan_admin_onboarding_setup_step_withdraw';
+        /**
+         * The settings options.
+         *
+         * @var array The settings options.
+         */
+        protected $settings_options = ['dokan_withdraw'];
+        /**
+         * Get default withdraw settings
+         *
+         * @since 4.0.0
+         *
+         * @return array Default withdraw settings
+         */
+        protected function get_default_settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function register(): void
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        public function styles(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function describe_settings(): void
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function option_dispatcher($data): void
         {
         }
     }
@@ -4912,6 +5596,60 @@ namespace WeDevs\Dokan\Admin {
         {
         }
     }
+    /**
+     * Recommended Plugins Class.
+     *
+     * @since 4.0.0
+     */
+    class RecommendedPlugins
+    {
+        /**
+         * Array of Recommended Plugins.
+         *
+         * @var array
+         */
+        protected array $plugins;
+        /**
+         * Class Constructor.
+         *
+         * @since 4.0.0
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Get All Enlisted Plugins.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        protected function get_enlisted_plugins(): array
+        {
+        }
+        /**
+         * Is Plugin Active.
+         *
+         * @since 4.0.0
+         *
+         * @param string $basename
+         *
+         * @return bool
+         */
+        protected function is_active(string $basename): bool
+        {
+        }
+        /**
+         * Get List of Recommended Inactive Plugins.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function get(): array
+        {
+        }
+    }
 }
 namespace WeDevs\Dokan\Traits {
     trait AjaxResponseError
@@ -4964,16 +5702,29 @@ namespace WeDevs\Dokan\Admin {
         {
         }
         /**
-         * Format price values for price settings
+         * Set commission type as fixed if no commission is set.
          *
-         * @since 1.0.0
+         * @since 3.14.0
          *
-         * @param $option_name
-         * @param $option_values
+         * @param mixed $option_name
+         * @param mixed $option_value
          *
-         * @return void
+         * @return void|mixed $option_value
          */
-        public function format_price_values($option_values, $option_name)
+        public function set_commission_type_if_not_set($option_value, $option_name)
+        {
+        }
+        /**
+         * Validate price values for saving fixed price settings.
+         *
+         * @since 3.14.0
+         *
+         * @param string  $option_name
+         * @param array $option_values
+         *
+         * @return array
+         */
+        public function validate_fixed_price_values($option_values, $option_name)
         {
         }
         /**
@@ -5080,7 +5831,7 @@ namespace WeDevs\Dokan\Admin {
         /**
          * Add settings nonce to localized vars
          *
-         * @since DOKNA_LITE_SINCE
+         * @since 3.0.6
          *
          * @param array $vars
          *
@@ -5092,7 +5843,7 @@ namespace WeDevs\Dokan\Admin {
         /**
          * Get refreshed options for a admin setting
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.6
          *
          * @return void
          */
@@ -5120,6 +5871,337 @@ namespace WeDevs\Dokan\Admin {
          * @return array $settings_fields
          */
         public function add_dokan_data_clear_setting($settings_fields)
+        {
+        }
+        /**
+         * Sanitize custom store URL to prevent reserved WordPress keywords
+         *
+         * @since 4.1.5
+         *
+         * @param string $value The custom store URL value
+         *
+         * @return string
+         * @throws DokanException
+         */
+        public function sanitize_custom_store_url($value)
+        {
+        }
+        /**
+         * Set the default settings for vendor layout.
+         *
+         * @since 4.2.0
+         *
+         * @param mixed $option_name
+         * @param mixed $option_value
+         *
+         * @return void|mixed $option_value
+         */
+        public function set_vendor_latest_layout($option_value, $option_name)
+        {
+        }
+    }
+    /**
+     * Setup wizard class
+     *
+     * Walkthrough to the basic setup upon installation
+     */
+    class SetupWizard
+    {
+        /** @var string Current Step */
+        protected string $current_step = '';
+        /** @var string custom logo url of the theme */
+        protected $custom_logo = '';
+        /** @var array Steps for the setup wizard */
+        protected $steps = [];
+        /**
+         * Actions to be executed after the HTTP response has completed
+         *
+         * @var array
+         */
+        private $deferred_actions = [];
+        /**
+         * Instance of RecommendedPlugins class for managing plugin recommendations.
+         *
+         * @since 4.0.0
+         *
+         * @var RecommendedPlugins Handles the retrieval and management of recommended plugins
+         */
+        private \WeDevs\Dokan\Admin\RecommendedPlugins $recommended_plugins;
+        /**
+         * Hook in tabs.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Give manage_woocommerce cap to admin if not there.
+         *
+         * @param array $caps
+         *
+         * @return array
+         */
+        public function set_user_cap($caps)
+        {
+        }
+        /**
+         * Enqueue scripts & styles
+         *
+         * @return void
+         */
+        public function enqueue_scripts()
+        {
+        }
+        /**
+         * Enqueue scripts for admin onboarding setup.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register_admin_scripts()
+        {
+        }
+        /**
+         * Enqueue scripts for admin onboarding setup.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function enqueue_admin_scripts()
+        {
+        }
+        /**
+         * Helper method to get postcode configurations from `WC()->countries->get_country_locale()`.
+         * We don't use `wp_list_pluck` because it will throw notices when postcode configuration is not defined for a country.
+         *
+         * @return array
+         */
+        protected static function get_postcodes()
+        {
+        }
+        /**
+         * Add admin menus/screens.
+         */
+        public function admin_menus()
+        {
+        }
+        /**
+         * Set wizard steps
+         *
+         * @since 2.9.27
+         *
+         * @return void
+         */
+        protected function set_steps()
+        {
+        }
+        /**
+         * Get wizard steps
+         *
+         * @since 2.9.27
+         *
+         * @return array
+         */
+        public function get_steps()
+        {
+        }
+        /**
+         * Wizard templates
+         *
+         * @since 2.9.27
+         *
+         * @return void
+         */
+        protected function set_setup_wizard_template()
+        {
+        }
+        /**
+         * Show the setup wizard.
+         */
+        public function setup_wizard()
+        {
+        }
+        public function get_next_step_link()
+        {
+        }
+        /**
+         * Setup Wizard Header.
+         */
+        public function setup_wizard_header()
+        {
+        }
+        /**
+         * Setup Wizard Footer.
+         */
+        public function setup_wizard_footer()
+        {
+        }
+        /**
+         * Output the steps.
+         */
+        public function setup_wizard_steps()
+        {
+        }
+        /**
+         * Output the content for the current step.
+         */
+        public function setup_wizard_content()
+        {
+        }
+        /**
+         * Introduction step.
+         */
+        public function dokan_setup_introduction()
+        {
+        }
+        /**
+         * Store step.
+         */
+        public function dokan_setup_store()
+        {
+        }
+        /**
+         * Save store options.
+         */
+        public function dokan_setup_store_save()
+        {
+        }
+        /**
+         * Selling step.
+         */
+        public function dokan_setup_selling()
+        {
+        }
+        /**
+         * Commission step.
+         *
+         * @since 3.14.5
+         *
+         * @return void
+         */
+        public function dokan_setup_commission()
+        {
+        }
+        /**
+         * Save selling options.
+         */
+        public function dokan_setup_selling_save()
+        {
+        }
+        /**
+         * Save commission options.
+         *
+         * @since 3.14.5
+         *
+         * @return void
+         */
+        public function dokan_setup_commission_save()
+        {
+        }
+        /**
+         * Withdraw Step.
+         */
+        public function dokan_setup_withdraw()
+        {
+        }
+        /**
+         * Recommended Step
+         *
+         * @since 2.8.7
+         *
+         * @return void
+         */
+        public function dokan_setup_recommended()
+        {
+        }
+        /**
+         * Save data from recommended step
+         *
+         * @since 2.8.7
+         *
+         * @return void
+         */
+        public function dokan_setup_recommended_save()
+        {
+        }
+        /**
+         * Determines if a plugin should be installed based on POST data.
+         *
+         * @since 4.0.0
+         *
+         * @param array $plugin Plugin configuration array
+         *
+         * @return bool
+         */
+        private function should_install_plugin(array $plugin): bool
+        {
+        }
+        /**
+         * Save withdraw options.
+         */
+        public function dokan_setup_withdraw_save()
+        {
+        }
+        /**
+         * Final step.
+         */
+        public function dokan_setup_ready()
+        {
+        }
+        /**
+         * Should we display the 'Recommended' step?
+         *
+         * True if at least one of the recommendations will be displayed.
+         *
+         * @return boolean
+         */
+        protected function should_show_recommended_step()
+        {
+        }
+        /**
+         * Should we show the WooCommerce Conversion Tracking install option?
+         *
+         * True only if the user can install plugins.
+         *
+         * @return boolean
+         */
+        protected function user_can_install_plugin()
+        {
+        }
+        protected function display_recommended_item($item_info)
+        {
+        }
+        /**
+         * Plugin install info message markup with heading.
+         */
+        public function plugin_install_info()
+        {
+        }
+        /**
+         * Helper method to queue the background install of a plugin.
+         *
+         * @param string $plugin_id   Plugin id used for background install.
+         * @param array  $plugin_info Plugin info array containing name and repo-slug, and optionally file if different from [repo-slug].php.
+         */
+        public function install_plugin($plugin_id, $plugin_info)
+        {
+        }
+        /**
+         * Function called after the HTTP request is finished, so it's executed without the client having to wait for it.
+         *
+         * @see WC_Admin_Setup_Wizard::install_plugin
+         * @see WC_Admin_Setup_Wizard::install_theme
+         */
+        public function run_deferred_actions()
+        {
+        }
+        /**
+         * Finishes replying to the client, but keeps the process running for further (async) code execution.
+         *
+         * @see https://core.trac.wordpress.org/ticket/41358 .
+         */
+        protected function close_http_connection()
         {
         }
     }
@@ -5381,6 +6463,445 @@ namespace WeDevs\Dokan\Admin {
          * @return void
          */
         public function get_next_step_link($step = '')
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin\Status {
+    class Button extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        const REQUEST_GET = 'GET';
+        const REQUEST_POST = 'POST';
+        /**
+         * @var string
+         */
+        protected string $type = 'button';
+        /**
+         * @var string
+         */
+        protected string $request = self::REQUEST_GET;
+        /**
+         * @var string
+         */
+        protected string $endpoint = '';
+        protected array $payload = [];
+        /**
+         * @return string
+         */
+        public function get_request(): string
+        {
+        }
+        /**
+         * @param  string  $request
+         *
+         * @return Button
+         */
+        public function set_request(string $request): \WeDevs\Dokan\Admin\Status\Button
+        {
+        }
+        /**
+         * @return string
+         */
+        public function get_endpoint(): string
+        {
+        }
+        /**
+         * @param  string  $endpoint
+         *
+         * @return Button
+         */
+        public function set_endpoint(string $endpoint): \WeDevs\Dokan\Admin\Status\Button
+        {
+        }
+        /**
+         * @return array
+         */
+        public function get_payload(): array
+        {
+        }
+        /**
+         * @param  array  $payload
+         *
+         * @return Button
+         */
+        public function set_payload(array $payload): \WeDevs\Dokan\Admin\Status\Button
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function render(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+    }
+    class Heading extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        /**
+         * @var string
+         */
+        protected string $type = 'heading';
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+    }
+    class Link extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        /**
+         * @var string
+         */
+        protected string $type = 'link';
+        protected string $url = '';
+        protected string $title_text = '';
+        /**
+         * @return string
+         */
+        public function get_url(): string
+        {
+        }
+        /**
+         * @param  string  $url
+         *
+         * @return Link
+         */
+        public function set_url(string $url): \WeDevs\Dokan\Admin\Status\Link
+        {
+        }
+        /**
+         * @return string
+         */
+        public function get_title_text(): string
+        {
+        }
+        /**
+         * @param  string  $title_text
+         *
+         * @return Link
+         */
+        public function set_title_text(string $title_text): \WeDevs\Dokan\Admin\Status\Link
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function render(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+    }
+    class Page extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        /**
+         * @var string
+         */
+        protected string $type = 'page';
+        protected bool $support_children = true;
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+    }
+    class Paragraph extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        /**
+         * @var string
+         */
+        protected string $type = 'paragraph';
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+    }
+    class Section extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        /**
+         * @var string
+         */
+        protected string $type = 'section';
+        protected bool $support_children = true;
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+    }
+    class Status extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        protected bool $support_children = true;
+        protected string $hook_key = 'dokan_status';
+        public function __construct()
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+        public function render(): array
+        {
+        }
+        /**
+         * Describe the settings options.
+         *
+         * @return void
+         * @throws Exception
+         */
+        public function describe()
+        {
+        }
+    }
+    class StatusElementFactory
+    {
+        /**
+         * Get a new Page object.
+         *
+         * @param string $id ID.
+         *
+         * @return Page
+         */
+        public static function page(string $id): \WeDevs\Dokan\Admin\Status\Page
+        {
+        }
+        /**
+         * Get a new tab object.
+         *
+         * @param string $id ID.
+         *
+         * @return Tab
+         */
+        public static function tab(string $id): \WeDevs\Dokan\Admin\Status\Tab
+        {
+        }
+        /**
+         * Get a new Section object.
+         *
+         * @param string $id ID.
+         *
+         * @return Section
+         */
+        public static function section(string $id): \WeDevs\Dokan\Admin\Status\Section
+        {
+        }
+        /**
+         * Get a new SubSection object.
+         *
+         * @param string $id ID.
+         *
+         * @return SubSection
+         */
+        public static function sub_section(string $id): \WeDevs\Dokan\Admin\Status\SubSection
+        {
+        }
+        /**
+         * Get a new Table object.
+         *
+         * @param string $id ID.
+         *
+         * @return Table
+         */
+        public static function table(string $id): \WeDevs\Dokan\Admin\Status\Table
+        {
+        }
+        public static function table_row(string $id): \WeDevs\Dokan\Admin\Status\TableRow
+        {
+        }
+        public static function table_column(string $id): \WeDevs\Dokan\Admin\Status\TableColumn
+        {
+        }
+        public static function paragraph(string $id): \WeDevs\Dokan\Admin\Status\Paragraph
+        {
+        }
+        public static function heading(string $id): \WeDevs\Dokan\Admin\Status\Heading
+        {
+        }
+        public static function link(string $id): \WeDevs\Dokan\Admin\Status\Link
+        {
+        }
+        public static function button(string $id): \WeDevs\Dokan\Admin\Status\Button
+        {
+        }
+    }
+    class SubSection extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        /**
+         * @var string
+         */
+        protected string $type = 'sub-section';
+        protected bool $support_children = true;
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+    }
+    class Tab extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        /**
+         * @var string
+         */
+        protected string $type = 'tab';
+        protected bool $support_children = true;
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+    }
+    class Table extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        /**
+         * @var string
+         */
+        protected string $type = 'table';
+        protected bool $support_children = true;
+        protected array $headers = [];
+        /**
+         * @return array
+         */
+        public function get_headers(): array
+        {
+        }
+        /**
+         * @param  array  $headers
+         *
+         * @return Table
+         */
+        public function set_headers(array $headers): \WeDevs\Dokan\Admin\Status\Table
+        {
+        }
+        public function render(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+    }
+    class TableColumn extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        /**
+         * @var string
+         */
+        protected string $type = 'table-column';
+        protected bool $support_children = true;
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+    }
+    class TableRow extends \WeDevs\Dokan\Abstracts\StatusElement
+    {
+        /**
+         * @var string
+         */
+        protected string $type = 'table-row';
+        protected bool $support_children = true;
+        /**
+         * @inheritDoc
+         */
+        public function escape_data(string $data): string
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin {
+    /**
+     * User List related tasks for wp-admin.
+     * Adds Pending Vendor tab and Approve Vendors bulk action.
+     *
+     * @since 4.2.4
+     *
+     * @package Dokan
+     */
+    class UserList
+    {
+        /**
+         * Class Constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Add Pending Vendor view to user's list.
+         *
+         * @since 4.2.4
+         *
+         * @param array $views Existing views
+         *
+         * @return array Modified views
+         */
+        public function add_pending_vendor_view($views)
+        {
+        }
+        /**
+         * Filter users to show only pending vendors.
+         *
+         * @param \WP_User_Query $query User query object
+         *
+         * @return \WP_User_Query
+         */
+        public function filter_pending_vendors($query)
+        {
+        }
+        /**
+         * Add bulk actions to the user's list.
+         *
+         * @since 4.2.4
+         *
+         * @param array $actions Existing bulk actions
+         *
+         * @return array Modified bulk actions
+         */
+        public function add_bulk_actions($actions)
+        {
+        }
+        /**
+         * Handle bulk actions.
+         *
+         * @since 4.2.4
+         *
+         * @param string $sendback Redirect URL
+         * @param string $doaction Action being performed
+         * @param array  $user_ids User IDs to process
+         *
+         * @return string Modified redirect URL
+         */
+        public function handle_bulk_actions($sendback, $doaction, $user_ids)
+        {
+        }
+        /**
+         * Show admin notices for bulk actions.
+         *
+         * @since 4.2.4
+         *
+         * @return void
+         */
+        public function show_bulk_action_notices()
         {
         }
     }
@@ -5699,6 +7220,30 @@ namespace WeDevs\Dokan {
         {
         }
         /**
+         * Get Child based on parent id
+         *
+         * @param $parent_id int
+         * @param $brands array
+         * @param $level int
+         *
+         * @return void
+         *
+         * @since 4.0.0
+         */
+        public function get_child_terms_recursive(int $parent_id, array &$brands, int $level)
+        {
+        }
+        /**
+         * Search product brand
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function dokan_json_search_products_brands()
+        {
+        }
+        /**
          * Search customer
          *
          * @since 2.8.3
@@ -5787,12 +7332,1312 @@ namespace WeDevs\Dokan {
         {
         }
     }
+}
+namespace WeDevs\Dokan\Analytics {
+    class Assets implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Localize the data following the similar data structure of the WC admin settings.
+         *
+         * @param array $settings
+         * @return array
+         */
+        protected function localize_wc_admin_settings($settings = [])
+        {
+        }
+        /**
+         * Register all Dokan scripts and styles.
+         *
+         * @return void
+         */
+        public function register_all_scripts()
+        {
+        }
+        /**
+         * Disable "doing it wrong" error
+         *
+         * @return bool
+         */
+        public function disable_doing_it_wrong_error()
+        {
+        }
+        /*
+         * Get the chunks for analytics scripts, it generates the chunks based on the scripts that are used in the analytics section.
+         * This is used to register the scripts for translations support
+         *
+         * @since 4.0.6
+         *
+         * @return array
+         */
+        public function get_analytics_chunks()
+        {
+        }
+        /**
+         * Register scripts.
+         *
+         * @param array $scripts
+         *
+         * @return void
+         */
+        public function register_scripts()
+        {
+        }
+        /**
+         * Enqueue front-end scripts.
+         *
+         * @return void
+         */
+        public function enqueue_front_scripts()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for Dokan orders.
+     *
+     * @since 3.13.0
+     */
+    abstract class BaseQueryFilter implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        protected $wc_table = 'wc_order_stats';
+        protected $context = '';
+        /**
+         * Add join clause for Dokan order state table in WooCommerce analytics queries.
+         *
+         * @param array $clauses The existing join clauses.
+         *
+         * @return array The modified join clauses.
+         */
+        public function add_join_subquery(array $clauses): array
+        {
+        }
+        /**
+         * Add where clause for Dokan order state in WooCommerce analytics queries.
+         *
+         * @param array $clauses The existing where clauses.
+         *
+         * @return array The modified where clauses.
+         */
+        public function add_where_subquery(array $clauses): array
+        {
+        }
+        /**
+         * Add where clause for refunds in WooCommerce analytics queries.
+         *
+         * @param array $clauses The existing where clauses.
+         *
+         * @return array The modified where clauses.
+         */
+        protected function add_where_subquery_for_refund(array $clauses): array
+        {
+        }
+        /**
+         * Determine if the query should be filtered by seller ID.
+         *
+         * @return bool True if the query should be filtered by seller ID, false otherwise.
+         */
+        public function should_filter_by_vendor_id(): bool
+        {
+        }
+        /**
+         * Get the order types to include in WooCommerce analytics queries.
+         *
+         * @return string The order types to include.
+         */
+        protected function get_order_and_refund_types_to_include(): string
+        {
+        }
+        /**
+         * Get the refund types to include in WooCommerce analytics queries.
+         *
+         * @return string The refund types to include.
+         */
+        protected function get_refund_types_to_include(): string
+        {
+        }
+        protected function get_dokan_table(): string
+        {
+        }
+        /**
+         * Get the non refund order types to include in WooCommerce analytics queries.
+         *
+         * @return string The refund types to include.
+         */
+        protected function get_order_types_for_sql_excluding_refunds(): string
+        {
+        }
+        /**
+         * Add where clause for seller query filter in WooCommerce analytics queries.
+         *
+         * @param array $clauses The existing where clauses.
+         *
+         * @return array The modified where clauses.
+         */
+        protected function add_where_subquery_for_vendor_filter(array $clauses): array
+        {
+        }
+        /**
+         * Get seller id from Query param for Admin and currently logged in user as Vendor
+         *
+         * @return int
+         */
+        public function get_vendor_id()
+        {
+        }
+    }
+    /**
+     * Seller analytics data filter.
+     *
+     * @since 3.14.7
+     */
+    class CacheKeyModifier implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Setup analytics entities
+         *
+         * @since 3.14.7
+         *
+         * WC apply filters from @see https://github.com/woocommerce/woocommerce/blob/be602de39d39878085e752f30ec1dabf16b0d642/plugins/woocommerce/src/Admin/API/Reports/GenericQuery.php#L77
+         * WC reports generation pattern @see https://github.com/woocommerce/woocommerce/blob/be602de39d39878085e752f30ec1dabf16b0d642/plugins/woocommerce/src/Admin/API/Reports/Products/Controller.php#L53
+         *
+         * @return array
+         */
+        protected function get_entities(): array
+        {
+        }
+        /**
+         * Register necessary hooks.
+         *
+         * @since 3.14.7
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Apply seller filter to query arguments.
+         *
+         * Customize the WooCommerce analytics stats datastore to override the $total_query and $interval_query properties.
+         * This modification replaces the Automattic\WooCommerce\Admin\API\Reports\SqlQuery class with WeDevs\Dokan\Analytics\Reports\WcSqlQuery
+         * to apply specific filters to queries.
+         *
+         * @see https://github.com/woocommerce/woocommerce/tree/trunk/plugins/woocommerce/src/Admin/API/Reports
+         *
+         * @param array $args An array of query arguments.
+         *
+         * @return array Modified array of query arguments.
+         */
+        public function apply_seller_filter(array $args): array
+        {
+        }
+        /**
+         * Check if report can be filtered.
+         *
+         * @param int $seller_id Seller ID.
+         *
+         * @since 3.14.7
+         *
+         * @return bool
+         */
+        protected function is_valid_seller_id(int $seller_id): bool
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Categories {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for Categories.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\BaseQueryFilter
+    {
+        protected $wc_table = 'wc_order_product_lookup';
+        /**
+         * @var string The context of the query filter.
+         */
+        protected $context = 'categories';
+        /**
+         * Register hooks for filtering WooCommerce analytics queries.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Coupons {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for Dokan orders.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\BaseQueryFilter
+    {
+        /**
+         * @var string The context of the query filter.
+         */
+        protected $context = 'coupons';
+        /**
+         * Register hooks for filtering WooCommerce analytics queries.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         *
+         * Todo: We may remove this method after completing coupon amount sub-order distributions.
+         *
+         * Modify WooCommerce admin report columns for orders.
+         *
+         * @param array $column The existing columns.
+         * @param string $context The context of the report.
+         * @param string $wc_table_name The WooCommerce table name.
+         *
+         * @return array The modified columns.
+         */
+        public function modify_admin_report_columns(array $column, string $context, string $wc_table_name): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Coupons\Stats {
+    /**
+     * Class QueryFilter
+     *
+     * Extends the OrdersQueryFilter class to customize WooCommerce Analytics reports
+     * for Dokan orders stats by adding additional subqueries and modifying report columns.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\Coupons\QueryFilter
+    {
+        /**
+         * The context for this query filter, used to differentiate between different report types.
+         *
+         * @var string
+         */
+        protected $context = 'coupons_stats';
+        /**
+         * Registers the necessary WordPress hooks to modify WooCommerce Analytics reports.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+    }
+    /**
+     * WC DataStore class to override the default handling of SQL clauses.
+     *
+     * @since 3.13.0
+     */
+    class WcDataStore extends \Automattic\WooCommerce\Admin\API\Reports\Coupons\Stats\DataStore
+    {
+        /**
+         * Override the $total_query and $interval_query properties to customize query behavior.
+         * This modification replaces the Automattic\WooCommerce\Admin\API\Reports\SqlQuery class with
+         * WeDevs\Dokan\Analytics\Reports\WcSqlQuery to apply specific filters to the queries.
+         * The change is necessary because the "get_sql_clause" method's second parameter defaults to "unfiltered,"
+         * which prevents the filters required to add JOIN and WHERE clauses for the dokan_order_stats table.
+         *
+         * @return void
+         */
+        protected function initialize_queries()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Customers {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for Dokan orders.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\BaseQueryFilter
+    {
+        /**
+         * @var string The context of the query filter.
+         */
+        protected $context = 'customers';
+        /**
+         * Register hooks for filtering WooCommerce analytics queries.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         *
+         * Modify WooCommerce admin report columns for orders.
+         *
+         * @param array $column The existing columns.
+         * @param string $context The context of the report.
+         * @param string $wc_table_name The WooCommerce table name.
+         *
+         * @return array The modified columns.
+         */
+        public function modify_admin_report_columns(array $column, string $context, string $wc_table_name): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Customers\Stats {
+    /**
+     * Class QueryFilter
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\Customers\QueryFilter
+    {
+        protected $context = 'customers_stats';
+        /**
+         * Register hooks for filtering WooCommerce analytics queries.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         *
+         * Modify WooCommerce admin report columns for orders.
+         *
+         * @param array $column The existing columns.
+         * @param string $context The context of the report.
+         * @param string $wc_table_name The WooCommerce table name.
+         *
+         * @return array The modified columns.
+         */
+        public function add_select_subquery(array $wc_clauses): array
+        {
+        }
+        protected function modify_select_field(string $field): string
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports {
+    /**
+     * DataStoreCacheModifier class
+     *
+     * @since 4.0.0
+     */
+    class DataStoreCacheModifier implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Setup analytics entities
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        protected function get_entities(): array
+        {
+        }
+        /**
+         * Register hooks for modify vendor specific analytics data.
+         * This method will be called automatically to register the hooks.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Add seller_id query param to the analytics query.
+         *
+         * @param array $params
+         *
+         * @return array
+         */
+        public function add_query_param(array $params): array
+        {
+        }
+        /**
+         * Check if report can be filtered.
+         *
+         * @param int $seller_id Seller ID.
+         *
+         * @since 4.0.0
+         *
+         * @return bool
+         */
+        protected function is_valid_seller_id(int $seller_id): bool
+        {
+        }
+    }
+    /**
+     * WC default data store modifier.
+     *
+     * @since 3.13.0
+     */
+    class DataStoreModifier implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Register hooks for the data store modifier.
+         * @inheritDoc
+         * @since 3.13.0
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Add Dokan column types to the WooCommerce reports.
+         *
+         * @since 4.2.8
+         *
+         * @param array $column_types
+         * @return array
+         */
+        public function add_dokan_column_types($column_types)
+        {
+        }
+        /**
+         * Customize the WooCommerce products stats datastore to override the $total_query and $interval_query properties.
+         * This modification replaces the Automattic\WooCommerce\Admin\API\Reports\SqlQuery class with WeDevs\Dokan\Analytics\Reports\WcSqlQuery
+         * to apply specific filters to queries.
+         * The reason for this change is that the "get_sql_clause" method's second parameter defaults to "unfiltered," which blocks the filters we need
+         * to add JOIN and WHERE clauses for the dokan_order_stats table.
+         *
+         * @see https://github.com/woocommerce/woocommerce/blob/9297409c5a705d1cd0ae65ec9b058271bd90851e/plugins/woocommerce/src/Admin/API/Reports/Products/Stats/DataStore.php#L170
+         *
+         * @param array $wc_stores An array of WooCommerce datastores.
+         * @return array Modified array of WooCommerce datastores.
+         */
+        public function modify_wc_products_stats_datastore($wc_stores)
+        {
+        }
+    }
+    /**
+     * Class OrderType
+     *
+     * Defines constants and methods to handle different types of Dokan orders and refunds.
+     *
+     * @since 3.13.0
+     */
+    class OrderType
+    {
+        // Order type constants
+        public const DOKAN_PARENT_ORDER = 0;
+        public const DOKAN_SINGLE_ORDER = 1;
+        public const DOKAN_SUBORDER = 2;
+        public const DOKAN_PARENT_ORDER_REFUND = 3;
+        public const DOKAN_SUBORDER_REFUND = 4;
+        public const DOKAN_SINGLE_ORDER_REFUND = 5;
+        public const DOKAN_ADVERTISEMENT_PRODUCT_ORDER = 6;
+        public const DOKAN_ADVERTISEMENT_REFUND_ORDER = 7;
+        public const DOKAN_SUBSCRIPTION_ORDER = 8;
+        public const DOKAN_SUBSCRIPTION_REFUND_ORDER = 9;
+        /**
+         * Checks if the given order is related to a Dokan suborder.
+         *
+         * @param \WC_Abstract_Order $order The order object to check.
+         *
+         * @return bool True if the order is a Dokan suborder or related to one, false otherwise.
+         */
+        public function is_dokan_suborder_related(\WC_Abstract_Order $order): bool
+        {
+        }
+        /**
+         * Determines the type of the given order based on its relation to Dokan suborders and refunds.
+         *
+         * @since 5.0.0
+         *
+         * @param \WC_Abstract_Order $order The order object to classify.
+         *
+         * @return int The order type constant.
+         */
+        public function get_type(\WC_Abstract_Order $order): int
+        {
+        }
+        /**
+         * Gets the special order type (advertisement or subscription) if applicable.
+         *
+         * This method applies a filter hook that allows external modules (like advertisement
+         * or subscription modules) to determine the order type from their own context.
+         *
+         * @since 5.0.0
+         *
+         * @param \WC_Abstract_Order $order The order object to check.
+         *
+         * @return int|null The special order type constant, or null if not a special order.
+         */
+        protected function get_special_order_type(\WC_Abstract_Order $order): ?int
+        {
+        }
+        /**
+         * Gets the list of order types relevant to admin users.
+         *
+         * @return array List of admin order type constants.
+         */
+        public function get_admin_order_types(): array
+        {
+        }
+        /**
+         * Gets the list of order types relevant to sellers.
+         *
+         * @return array List of seller order type constants.
+         */
+        public function get_vendor_order_types(): array
+        {
+        }
+        /**
+         * Gets the list of order types (excluding refunds) relevant to admin users.
+         *
+         * @return array List of admin order type constants (non-refund).
+         */
+        public function get_admin_order_types_excluding_refunds(): array
+        {
+        }
+        /**
+         * Gets the list of order types (excluding refunds) relevant to sellers.
+         *
+         * @return array List of seller order type constants (non-refund).
+         */
+        public function get_vendor_order_types_excluding_refunds(): array
+        {
+        }
+        /**
+         * Gets the list of refund types relevant to all users.
+         *
+         * @return array List of refund type constants.
+         */
+        public function get_refund_types(): array
+        {
+        }
+        /**
+         * Gets the list of refund types relevant to sellers.
+         *
+         * @return array List of seller refund type constants.
+         */
+        public function get_vendor_refund_types(): array
+        {
+        }
+        /**
+         * Gets the list of refund types relevant to admin users.
+         *
+         * @return array List of admin refund type constants.
+         */
+        public function get_admin_refund_types(): array
+        {
+        }
+        /**
+         * Gets the list of all order types.
+         *
+         * @return array List of all order type constants.
+         */
+        public function get_all_order_types(): array
+        {
+        }
+        /**
+         * Gets the list of order types relevant to admin earnings.
+         *
+         * @since 5.0.0
+         *
+         * @return array
+         */
+        public function get_admin_earning_order_types(): array
+        {
+        }
+        /**
+         * Determines if the given order is of a type relevant to admin users.
+         *
+         * @since 5.0.0
+         *
+         * @param \WC_Abstract_Order $order The order object to check.
+         *
+         * @return bool True if the order type is relevant to admin users, false otherwise.
+         */
+        public function is_admin_order_type(\WC_Abstract_Order $order): bool
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Orders {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for Dokan orders.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\BaseQueryFilter
+    {
+        /**
+         * @var string The context of the query filter.
+         */
+        protected $context = 'orders';
+        /**
+         * Register hooks for filtering WooCommerce analytics queries.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Modify WooCommerce admin report columns for orders.
+         *
+         * @param array $column The existing columns.
+         * @param string $context The context of the report.
+         * @param string $wc_table_name The WooCommerce table name.
+         *
+         * @return array The modified columns.
+         */
+        public function modify_admin_report_columns(array $column, string $context, string $wc_table_name): array
+        {
+        }
+        /**
+         * Exclude order IDs from WooCommerce analytics queries based on seller or admin context.
+         *
+         * @param array $ids The existing excluded order IDs.
+         * @param array $query_args The query arguments.
+         * @param string $field The field being queried.
+         * @param string $context The context of the query.
+         *
+         * @return array The modified excluded order IDs.
+         */
+        public function exclude_order_ids(array $ids, array $query_args, string $field, $context): array
+        {
+        }
+        /**
+         * Add custom columns to the select clause of WooCommerce analytics queries.
+         *
+         * @param array $clauses The existing select clauses.
+         *
+         * @return array The modified select clauses.
+         */
+        public function add_select_subquery(array $clauses): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Orders\Stats {
+    /**
+     * Dokan Orders stats data synchronizer.
+     *
+     * @since 3.13.0
+     */
+    class DataStore extends \Automattic\WooCommerce\Admin\API\Reports\DataStore implements \Automattic\WooCommerce\Admin\API\Reports\DataStoreInterface
+    {
+        /**
+         * Max allowed Attemption to create table.
+         */
+        const MAX_ATTEMPT = 2;
+        /**
+         * Attemption count to create order table if DB throws error.
+         *
+         * @var integer
+         */
+        protected static $attempt_count = 0;
+        /**
+         * Table used to get the data.
+         *
+         * @var string
+         */
+        protected static $table_name = 'dokan_order_stats';
+        /**
+         * Cron event name.
+         */
+        const CRON_EVENT = 'wc_order_stats_update';
+        /**
+         * Cache identifier.
+         *
+         * @var string
+         */
+        protected $cache_key = 'dokan_orders_stats';
+        /**
+         * Data store context used to pass to filters.
+         *
+         * @var string
+         */
+        protected $context = 'dokan_orders_stats';
+        /**
+         * Dynamically sets the date column name based on configuration
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Get the data based on args.
+         *
+         * @param array $args Query parameters.
+         * @return stdClass|WP_Error
+         */
+        public function get_data($args)
+        {
+        }
+        /**
+         * Add order information to the lookup table when orders are created or modified.
+         *
+         * @param int $post_id Post ID.
+         * @return int|bool Returns -1 if order won't be processed, or a boolean indicating processing success.
+         */
+        public static function sync_order($post_id)
+        {
+        }
+        /**
+         * Update the database with stats data.
+         *
+         * @param \WC_Order|\WC_Order_Refund $order Order or refund to update row for.
+         * @return int|bool Returns -1 if order won't be processed, or a boolean indicating processing success.
+         */
+        public static function update($order)
+        {
+        }
+        /**
+         * Deletes the order stats when an order is deleted.
+         *
+         * @param int $post_id Post ID.
+         */
+        public static function delete_order($post_id)
+        {
+        }
+        /**
+         * Gets the vendor ID associated with an order.
+         *
+         * @param \WC_Order $order Order object.
+         *
+         * @return int Vendor ID.
+         */
+        protected static function get_vendor_id_from_order($order)
+        {
+        }
+    }
+    /**
+     * Class QueryFilter
+     *
+     * Extends the OrdersQueryFilter class to customize WooCommerce Analytics reports
+     * for Dokan orders stats by adding additional subqueries and modifying report columns.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\Orders\QueryFilter
+    {
+        /**
+         * The context for this query filter, used to differentiate between different report types.
+         *
+         * @var string
+         */
+        protected $context = 'orders_stats';
+        /**
+         * Registers the necessary WordPress hooks to modify WooCommerce Analytics reports.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Modifies the admin report columns to include Dokan-specific data.
+         *
+         * @since 4.0.0
+         *
+         * @param array  $column        The existing report columns.
+         * @param string $context       The context of the report.
+         * @param string $wc_table_name The WooCommerce table name being queried.
+         *
+         * @return array Modified report columns.
+         */
+        public function modify_admin_report_columns(array $column, string $context, string $wc_table_name): array
+        {
+        }
+        /**
+         * Adds custom select subqueries for calculating Dokan-specific totals in the analytics reports.
+         *
+         * @since 4.0.0
+         *
+         * @param array $clauses The existing SQL select clauses.
+         *
+         * @return array Modified SQL select clauses.
+         */
+        public function add_select_subquery_for_total($clauses)
+        {
+        }
+    }
+    /**
+     * Class ScheduleListener
+     *
+     * Listens to WooCommerce schedule events and triggers Dokan order synchronization and deletion.
+     *
+     * @since 3.13.0
+     */
+    class ScheduleListener implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * ScheduleListener constructor.
+         * Registers the hooks on instantiation.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Register hooks for WooCommerce analytics order events.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Sync Dokan order data when WooCommerce analytics updates order stats.
+         *
+         * @param int $order_id The ID of the order being updated.
+         *
+         * @return void
+         */
+        public function sync_dokan_order($order_id)
+        {
+        }
+        /**
+         * Delete Dokan order data when WooCommerce deletes an order.
+         *
+         * @param int $order_id The ID of the order being deleted.
+         *
+         * @return void
+         */
+        public function delete_order($order_id)
+        {
+        }
+    }
+    /**
+     * DataStore class to override the default handling of WC SQL clauses.
+     *
+     * @since 3.13.0
+     */
+    class WcDataStore extends \Automattic\WooCommerce\Admin\API\Reports\Orders\Stats\DataStore
+    {
+        /**
+         * Override the $total_query and $interval_query properties to customize query behavior.
+         * This modification replaces the Automattic\WooCommerce\Admin\API\Reports\SqlQuery class with
+         * WeDevs\Dokan\Analytics\Reports\WcSqlQuery to apply specific filters to the queries.
+         * The change is necessary because the "get_sql_clause" method's second parameter defaults to "unfiltered,"
+         * which prevents the filters required to add JOIN and WHERE clauses for the dokan_order_stats table.
+         *
+         * @return void
+         */
+        protected function initialize_queries()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Products {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for Dokan Products.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\BaseQueryFilter
+    {
+        protected $wc_table = 'wc_order_product_lookup';
+        /**
+         * @var string The context of the query filter.
+         */
+        protected $context = 'products';
+        /**
+         * Register hooks for filtering WooCommerce analytics queries.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Products\Stats {
+    /**
+     * Filters and modifies WooCommerce analytics queries for Dokan Products Stats.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\Products\QueryFilter
+    {
+        protected $context = 'products_stats';
+        /**
+         * Register hooks for filtering WooCommerce analytics queries.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+    }
+    /**
+     * DataStore class to override the default handling of WC SQL clauses.
+     *
+     * @since 3.13.0
+     */
+    class WcDataStore extends \Automattic\WooCommerce\Admin\API\Reports\Products\Stats\DataStore
+    {
+        /**
+         * Override the $total_query and $interval_query properties to customize query behavior.
+         * This modification replaces the Automattic\WooCommerce\Admin\API\Reports\SqlQuery class with
+         * WeDevs\Dokan\Analytics\Reports\WcSqlQuery to apply specific filters to the queries.
+         * The change is necessary because the "get_sql_clause" method's second parameter defaults to "unfiltered,"
+         * which prevents the filters required to add JOIN and WHERE clauses for the dokan_order_stats table.
+         *
+         * @return void
+         */
+        protected function initialize_queries()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Stock {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for Product Stock.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\BaseQueryFilter
+    {
+        protected $should_removed_where_filter = true;
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Undocumented function
+         *
+         * @param [type] $result
+         * @param [type] $server
+         * @param WP_REST_Request $request
+         * @return mixed
+         */
+        public function check_wc_analytics_reports_stock_path($result, $server, $request)
+        {
+        }
+        /**
+         * Apply seller ID query param to where SQL Clause.
+         *
+         * @param WP_Query $wp_query
+         * @return array
+         */
+        public function add_author_clause($args, $wp_query)
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Stock\Stats {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for Stock Stats.
+     *
+     * @since 3.13.0
+     */
+    class WcDataStore extends \Automattic\WooCommerce\Admin\API\Reports\Stock\Stats\DataStore
+    {
+        /**
+         * Get stock counts for the whole store.
+         *
+         * @param array $query Not used for the stock stats data store, but needed for the interface.
+         * @return array Array of counts.
+         */
+        public function get_data($query)
+        {
+        }
+        /**
+         * Get low stock count (products with stock < low stock amount, but greater than no stock amount).
+         *
+         * @phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+         *
+         *
+         * @return int Low stock count.
+         */
+        protected function get_low_stock_count()
+        {
+        }
+        /**
+         * Get count for the passed in stock status.
+         *
+         * @param  string $status Status slug.
+         * @return int Count.
+         */
+        protected function get_count($status)
+        {
+        }
+        /**
+         * Get product count for the store.
+         *
+         * @return int Product count.
+         */
+        protected function get_product_count()
+        {
+        }
+        protected function get_vendor_id(): int
+        {
+        }
+        protected function get_vendor_where_query()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Taxes {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for Taxes.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\BaseQueryFilter
+    {
+        protected $wc_table = 'wc_order_tax_lookup';
+        /**
+         * @var string The context of the query filter.
+         */
+        protected $context = 'taxes';
+        /**
+         * Register hooks for filtering WooCommerce analytics queries.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Taxes\Stats {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for Tax Stats.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\Taxes\QueryFilter
+    {
+        protected $context = 'taxes_stats';
+        /**
+         * Register hooks for filtering WooCommerce analytics queries.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Modifies the admin report columns to include Dokan-specific data.
+         *
+         * @param array  $column        The existing report columns.
+         * @param string $context       The context of the report.
+         * @param string $wc_table_name The WooCommerce table name being queried.
+         *
+         * @return array Modified report columns.
+         */
+        public function modify_admin_report_columns(array $column, string $context, string $wc_table_name): array
+        {
+        }
+    }
+    /**
+     * WC DataStore class to override the default handling of SQL clauses.
+     *
+     * @since 3.13.0
+     */
+    class WcDataStore extends \Automattic\WooCommerce\Admin\API\Reports\Taxes\Stats\DataStore
+    {
+        /**
+         * Override the $total_query and $interval_query properties to customize query behavior.
+         * This modification replaces the Automattic\WooCommerce\Admin\API\Reports\SqlQuery class with
+         * WeDevs\Dokan\Analytics\Reports\WcSqlQuery to apply specific filters to the queries.
+         * The change is necessary because the "get_sql_clause" method's second parameter defaults to "unfiltered,"
+         * which prevents the filters required to add JOIN and WHERE clauses for the dokan_order_stats table.
+         *
+         * @return void
+         */
+        protected function initialize_queries()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Variations {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for variations.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\BaseQueryFilter
+    {
+        protected $wc_table = 'wc_order_product_lookup';
+        /**
+         * @var string The context of the query filter.
+         */
+        protected $context = 'variations';
+        /**
+         * Register hooks for filtering WooCommerce analytics queries.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports\Variations\Stats {
+    /**
+     * Class QueryFilter
+     *
+     * Filters and modifies WooCommerce analytics queries for variations.
+     *
+     * @since 3.13.0
+     */
+    class QueryFilter extends \WeDevs\Dokan\Analytics\Reports\Variations\QueryFilter
+    {
+        protected $context = 'variations_stats';
+        /**
+         * Register hooks for filtering WooCommerce analytics queries.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics\Reports {
+    /**
+     * WC SqlQuery class to override the default handling of SQL clauses.
+     *
+     * @since 3.13.0
+     */
+    class WcSqlQuery extends \Automattic\WooCommerce\Admin\API\Reports\SqlQuery
+    {
+        /**
+         * Update the default value of $handling from "unfiltered" to an empty string,
+         * allowing filters to be applied to the SQL clauses.
+         *
+         * @param string $type Type of SQL clause (e.g., SELECT, WHERE).
+         * @param string $handling Optional. The handling mode for the clause. Defaults to an empty string.
+         * @return string The SQL clause.
+         */
+        protected function get_sql_clause($type, $handling = 'filtered')
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Analytics {
+    /**
+     * Load the settings for the vendor analytics reports.
+     */
+    class Settings implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * @inheritDoc
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Get the analytics settings for the vendor dashboard.
+         *
+         * @param array $settings
+         * @return array
+         */
+        public function get_settings(array $settings): array
+        {
+        }
+        /**
+         * Get the analytics data endpoints.
+         *
+         * @return array
+         */
+        protected function load_data_endpoints(): array
+        {
+        }
+    }
+    class VendorDashboardManager implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Add a dummy content to the dashboard.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function add_dashboard_content()
+        {
+        }
+        public function woocommerce_rest_check_permissions($permission, $context, $int_val, $obj)
+        {
+        }
+        public function add_option_check_permissions(array $permission, \WP_REST_Request $request)
+        {
+        }
+        /**
+         * Filter product query by the Vendor.
+         *
+         * @param array $args
+         * @return array
+         */
+        public function product_query_args(array $args, \WP_REST_Request $request)
+        {
+        }
+        public function add_additional_fields_schema1($reports)
+        {
+        }
+        public function revenue_stats_schema($reports)
+        {
+        }
+        public function sort_performance_indicators($reports)
+        {
+        }
+        /**
+         * Load analytics revenue schema vendor dashboard.
+         *
+         * @since 4.2.8
+         *
+         * @see https://github.com/woocommerce/woocommerce/blob/8e3b0c45ad771d7fe53ee610f237f4803f1a63bb/plugins/woocommerce/src/Internal/Admin/Analytics.php#L113
+         *
+         * @param array $endpoints Array of preloaded endpoints.
+         *
+         * @return array
+         */
+        public function add_preload_endpoints(array $endpoints): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan {
     class Assets
     {
         /**
          * The constructor
          */
         public function __construct()
+        {
+        }
+        public static function get_wc_handler($handler): string
         {
         }
         /**
@@ -5819,6 +8664,17 @@ namespace WeDevs\Dokan {
          * @return array
          */
         public function admin_product_localize_scripts()
+        {
+        }
+        /**
+         * Add product listing data to the dokanFrontend localized object.
+         *
+         * @since 5.0.0
+         *
+         * @param array $args Existing localized args.
+         * @return array
+         */
+        public function add_product_listing_localized_args(array $args): array
         {
         }
         public function get_localized_price()
@@ -5858,6 +8714,26 @@ namespace WeDevs\Dokan {
         {
         }
         /**
+         * Registers WooCommerce Admin scripts for the React-based Dokan Vendor dashboard.
+         *
+         * This function ensures that the necessary WooCommerce Admin assets are registered
+         * for use in the Dokan Vendor dashboard. It temporarily suppresses "doing it wrong"
+         * warnings during the registration process.
+         *
+         * @return void
+         */
+        public function register_wc_admin_scripts()
+        {
+        }
+        /**
+         * Disable "doing it wrong" error
+         *
+         * @return bool
+         */
+        public function desable_doing_it_wrong_error()
+        {
+        }
+        /**
          * Enqueue front-end scripts
          */
         public function enqueue_front_scripts()
@@ -5884,7 +8760,7 @@ namespace WeDevs\Dokan {
          *
          * @since 2.5.3
          *
-         * @global type $wp
+         * @global $wp
          */
         public function dokan_dashboard_scripts()
         {
@@ -5967,13 +8843,36 @@ namespace WeDevs\Dokan {
         public function get_admin_localized_scripts()
         {
         }
+        /**
+         * Admin vue localized scripts
+         *
+         * @since 3.14.0
+         *
+         * @return array
+         */
+        private function get_vue_admin_localized_scripts()
+        {
+        }
+        /**
+         * Get order listing statuses for the frontend.
+         *
+         * Reuses the same filter logic as dokan_order_listing_status_filter() so that
+         * the React-based order list respects excluded and custom statuses.
+         *
+         * @since 5.0.0
+         *
+         * @return array<int, array{value: string, label: string}>
+         */
+        private function get_order_listing_statuses(): array
+        {
+        }
     }
 }
 namespace WeDevs\Dokan\BackgroundProcess {
     /**
      * Background Process Manager Class.
      *
-     * @since DOKAN_LITE_SINCE
+     * @since 3.7.10
      *
      * @property ChangeVendorProductStatus $change_vendor_product_status Instance of WeDevs\Dokan\Vendor\ChangeProductStatus class
      */
@@ -5989,7 +8888,7 @@ namespace WeDevs\Dokan\BackgroundProcess {
         /**
          * Initialize classes to chainable container.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.7.10
          *
          * @return void
          */
@@ -5999,7 +8898,7 @@ namespace WeDevs\Dokan\BackgroundProcess {
         /**
          * Initialize hooks.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.7.10
          *
          * @return void
          */
@@ -6009,7 +8908,7 @@ namespace WeDevs\Dokan\BackgroundProcess {
         /**
          * Show variable products author updated notice.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.7.10
          *
          * @param array $notices
          *
@@ -6022,7 +8921,7 @@ namespace WeDevs\Dokan\BackgroundProcess {
     /**
      * RewriteVariableProductsAuthor Class.
      *
-     * @since DOKAN_LITE_SINCE
+     * @since 3.7.10
      */
     class RewriteVariableProductsAuthor extends \WC_Background_Process
     {
@@ -6037,7 +8936,7 @@ namespace WeDevs\Dokan\BackgroundProcess {
          *
          * Updater will still run via cron job if this fails for any reason.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.7.10
          *
          * @return void
          */
@@ -6047,7 +8946,7 @@ namespace WeDevs\Dokan\BackgroundProcess {
         /**
          * Perform updates.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.7.10
          *
          * @param array $args
          *
@@ -6059,7 +8958,7 @@ namespace WeDevs\Dokan\BackgroundProcess {
         /**
          * Rewrite variable product variations author IDs.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.7.10
          *
          * @param int $page
          *
@@ -6071,7 +8970,7 @@ namespace WeDevs\Dokan\BackgroundProcess {
         /**
          * Complete the process.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.7.10
          *
          * @return void
          */
@@ -6215,6 +9114,364 @@ namespace WeDevs\Dokan {
          * @return void
          */
         public function comment_status_change($comment_id, $comment_status)
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Captcha {
+    /**
+     * Captcha provider contract.
+     */
+    interface ProviderInterface
+    {
+        /** Unique slug for this provider, e.g. 'google_recaptcha_v3' */
+        public function get_slug(): string;
+        /** Human readable provider name */
+        public function get_label(): string;
+        /** Whether this provider is ready to be used (enabled + has credentials) */
+        public function is_ready(): bool;
+        /**
+         * Register any needed assets (scripts/styles) and do any localization.
+         * It should be safe to call multiple times.
+         */
+        public function register_assets(): void;
+        /**
+         * Render the captcha field/widget markup for a given context.
+         * Should return HTML string to be printed into forms.
+         *
+         * @param string $context  Action/context key for the form, e.g. 'dokan_contact_seller_recaptcha'
+         * @param array  $args     Extra arguments if needed.
+         */
+        public function render_field_html(string $context, array $args = []): string;
+        /**
+         * Validate user response/token.
+         *
+         * @param string $context Action/context key used when rendering/executing the captcha
+         * @param string $token   Token or response from front-end
+         *
+         * @return bool True if valid, false otherwise
+         */
+        public function validate(string $context, string $token): bool;
+        /**
+         * Provider-specific admin settings fields to be merged into the Appearance section.
+         * Return an associative array of fields similar to Admin\Settings get_settings_fields structure.
+         *
+         * @return array Associative array keyed by setting field keys.
+         */
+        public function get_admin_settings_fields(): array;
+    }
+    /**
+     * Base captcha provider.
+     *
+     * Provides shared helpers such as option access and readiness caching for
+     * concrete captcha providers.
+     *
+     * @since 4.3.0
+     */
+    abstract class AbstractProvider implements \WeDevs\Dokan\Captcha\ProviderInterface, \WeDevs\Dokan\Contracts\Hookable
+    {
+        /** Cached readiness */
+        protected ?bool $ready = null;
+        /** Convenience: get option from dokan appearance */
+        protected function get_option(string $key, $default = '')
+        {
+        }
+        /**
+         * Whether this provider is ready to be used.
+         *
+         * Implements lazy cached readiness and delegates the actual check to
+         * compute_readiness().
+         *
+         * @return bool True if ready, false otherwise.
+         */
+        public function is_ready(): bool
+        {
+        }
+        /**
+         * Compute provider readiness.
+         *
+         * Concrete providers must implement their own rules to decide whether they
+         * are ready to operate (e.g., enabled plus required credentials provided).
+         *
+         * @return bool
+         */
+        abstract protected function compute_readiness(): bool;
+        /**
+         * Register hooks for the provider.
+         *
+         * This method is responsible for registering the necessary hooks and actions
+         * required for the provider's functionality. Default implementation is empty.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Add the current provider to the list of providers.
+         *
+         * This method appends the current provider instance to the provided list of providers.
+         *
+         * @param  array  $providers  The existing list of providers.
+         *
+         * @return array The updated list of providers with the current provider added.
+         */
+        public function enlist(array $providers): array
+        {
+        }
+        /**
+         * Convert a truthy-ish value to boolean.
+         *
+         * @param mixed $value Value to evaluate.
+         *
+         * @return bool
+         */
+        protected function to_bool($value): bool
+        {
+        }
+    }
+    /**
+     * Captcha service manager.
+     *
+     * Central registry and facade for captcha providers. Handles provider selection,
+     * asset registration, field rendering and server-side validation. Resolved via
+     * Dokan DI container.
+     *
+     * @since 4.3.0
+     */
+    class Manager implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /** @var ProviderInterface[] */
+        protected array $providers = [];
+        /**
+         * Register WordPress hooks used by the captcha system.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Resolve providers via filter and register them.
+         *
+         * @return void
+         */
+        public function register_providers_from_filter(): void
+        {
+        }
+        /**
+         * Register a captcha provider instance.
+         *
+         * @param ProviderInterface $provider Provider instance implementing the contract.
+         *
+         * @return void
+         */
+        public function register_provider(\WeDevs\Dokan\Captcha\ProviderInterface $provider): void
+        {
+        }
+        /** Get active provider slug selected from settings */
+        public function get_active_provider_slug(): string
+        {
+        }
+        /** Is captcha globally enabled? Falls back to provider-specific flag if global flag missing. */
+        public function is_enabled(): bool
+        {
+        }
+        /** Return active provider instance, or null if not ready */
+        public function get_active_provider(): ?\WeDevs\Dokan\Captcha\ProviderInterface
+        {
+        }
+        /** Enqueue/register assets for the active provider */
+        public function register_assets(): void
+        {
+        }
+        /** Validate token for a context. */
+        public function validate(string $context, string $token): bool
+        {
+        }
+        /** Render hidden/widget field for forms if needed */
+        public function render_field_html(string $context, array $args = []): string
+        {
+        }
+        /** Echoes provider fields into contact form, keeping backward compatibility */
+        public function maybe_render_contact_form_field($seller_id): void
+        {
+        }
+        /**
+         * Filter admin settings fields to append provider-specific settings under dokan_appearance.
+         *
+         * @param array $settings_fields Fields to be rendered in admin settings.
+         * @param Settings $settings_instance Settings instance.
+         *
+         * @return array
+         */
+        public function filter_settings_fields(array $settings_fields, $settings_instance): array
+        {
+        }
+        /** Utility */
+        protected function to_bool($value): bool
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Captcha\Providers {
+    /**
+     * Cloudflare Turnstile provider implementation.
+     *
+     * Handles readiness, asset injection, field rendering, and server-side
+     * verification against Cloudflare's Turnstile API.
+     *
+     * @since 4.3.0
+     */
+    class CloudflareTurnstileProvider extends \WeDevs\Dokan\Captcha\AbstractProvider
+    {
+        /**
+         * Get the unique provider slug.
+         *
+         * @return string
+         */
+        public function get_slug(): string
+        {
+        }
+        /**
+         * Get the human-readable provider name.
+         *
+         * @return string
+         */
+        public function get_label(): string
+        {
+        }
+        /**
+         * Compute readiness based on enable flag and presence of credentials.
+         *
+         * @return bool
+         */
+        protected function compute_readiness(): bool
+        {
+        }
+        /**
+         * Register and enqueue Turnstile API and helper script.
+         *
+         * @return void
+         */
+        public function register_assets(): void
+        {
+        }
+        /**
+         * Render the Turnstile widget markup for a given context.
+         *
+         * @param string $context Action/context key.
+         * @param array  $args    Optional arguments.
+         *
+         * @return string HTML markup to output in the form.
+         */
+        public function render_field_html(string $context, array $args = []): string
+        {
+        }
+        /**
+         * Validate a Turnstile response token via Cloudflare verification API.
+         *
+         * @param string $context Context key (not used by Turnstile but kept for interface parity).
+         * @param string $token   Token returned by Turnstile widget.
+         *
+         * @return bool True if verification is successful, false otherwise.
+         */
+        public function validate(string $context, string $token): bool
+        {
+        }
+        /**
+         * Provide Turnstile-related admin settings fields for Dokan Appearance.
+         *
+         * @return array
+         */
+        public function get_admin_settings_fields(): array
+        {
+        }
+    }
+    /**
+     * Google reCAPTCHA v3 provider implementation.
+     *
+     * Handles readiness, asset registration, field rendering, and server-side
+     * verification against Google's reCAPTCHA v3 API.
+     *
+     * @since 4.3.0
+     */
+    class GoogleRecaptchaV3Provider extends \WeDevs\Dokan\Captcha\AbstractProvider
+    {
+        /**
+         * Get the unique provider slug.
+         *
+         * @return string
+         */
+        public function get_slug(): string
+        {
+        }
+        /**
+         * Get the human-readable provider name.
+         *
+         * @return string
+         */
+        public function get_label(): string
+        {
+        }
+        /**
+         * Compute readiness based on enable flag and presence of credentials.
+         *
+         * @return bool
+         */
+        protected function compute_readiness(): bool
+        {
+        }
+        /**
+         * Register and enqueue front-end assets needed for reCAPTCHA execution.
+         *
+         * @return void
+         */
+        public function register_assets(): void
+        {
+        }
+        /**
+         * Render field HTML for a given context.
+         *
+         * For reCAPTCHA v3, no visible widget is required, so this returns an
+         * empty string. The token is injected into an existing hidden field.
+         *
+         * @param string $context Action/context key.
+         * @param array  $args    Optional arguments.
+         *
+         * @return string HTML markup.
+         */
+        public function render_field_html(string $context, array $args = []): string
+        {
+        }
+        /**
+         * Validate a front-end token against Google's siteverify API.
+         *
+         * @param string $context Expected action name used during execute().
+         * @param string $token   Token returned by reCAPTCHA.
+         *
+         * @return bool True on valid verification; false otherwise.
+         */
+        public function validate(string $context, string $token): bool
+        {
+        }
+        /**
+         * Convert a truthy-ish value to boolean.
+         *
+         * @param mixed $value Value to evaluate.
+         *
+         * @return bool
+         */
+        protected function to_bool($value): bool
+        {
+        }
+        /**
+         * Provider-specific admin settings fields to be merged into the Appearance section.
+         * Return an associative array of fields similar to Admin\Settings get_settings_fields structure.
+         *
+         * @return array Associative array keyed by setting field keys.
+         */
+        public function get_admin_settings_fields(): array
         {
         }
     }
@@ -6640,17 +9897,9 @@ namespace WeDevs\Dokan {
          */
         public $quantity = 0;
         /**
-         * Class constructor
-         *
-         * @since  2.9.21
-         *
-         * @return void
-         */
-        public function __construct()
-        {
-        }
-        /**
          * Calculate gateway fee
+         *
+         * @deprecated 3.14.0 Use dokan()->fees->calculate_gateway_fee insted.
          *
          * @since 2.9.21
          *
@@ -6662,19 +9911,9 @@ namespace WeDevs\Dokan {
         {
         }
         /**
-         * Hide extra meta data
-         *
-         * @since  2.9.21
-         *
-         * @param array
-         *
-         * @return array
-         */
-        public function hide_extra_data($formatted_meta)
-        {
-        }
-        /**
          * Set order id
+         *
+         * @deprecated 3.14.0
          *
          * @since  2.9.21
          *
@@ -6688,6 +9927,8 @@ namespace WeDevs\Dokan {
         /**
          * Set order line item id
          *
+         * @deprecated 3.14.0
+         *
          * @since 3.8.0
          *
          * @param int $item_id
@@ -6700,6 +9941,8 @@ namespace WeDevs\Dokan {
         /**
          * Get order id
          *
+         * @deprecated 3.14.0
+         *
          * @since  2.9.21
          *
          * @return int
@@ -6710,6 +9953,8 @@ namespace WeDevs\Dokan {
         /**
          * Get order line item id
          *
+         * @deprecated 3.14.0
+         *
          * @since 3.8.0
          *
          * @return int
@@ -6719,6 +9964,8 @@ namespace WeDevs\Dokan {
         }
         /**
          * Set order quantity
+         *
+         * @deprecated 3.14.0
          *
          * @since  2.9.21
          *
@@ -6731,6 +9978,8 @@ namespace WeDevs\Dokan {
         }
         /**
          * Get order quantity
+         *
+         * @deprecated 3.14.0
          *
          * @since  2.9.21
          *
@@ -6760,115 +10009,23 @@ namespace WeDevs\Dokan {
          * @since  3.7.19 Shipping tax recipient support added.
          *
          * @param int|WC_Order $order Order.
-         * @param string       $context
+         * @param string       $context Accepted values are `admin`, `seller`
          *
          * @return float|void|WP_Error|null on failure
          */
         public function get_earning_by_order($order, $context = 'seller')
         {
         }
-        /**
-         * Get global rate
+        /*
+         * Get vendor earning sub-total
          *
-         * @since  2.9.21
+         * @param int|WC_Order $order Order.
          *
-         * @return float
+         * @since 4.1.3
+         *
+         * @return float|int
          */
-        public function get_global_rate()
-        {
-        }
-        /**
-         * Get vendor wise commission rate
-         *
-         * @since  2.9.21
-         *
-         * @param int $vendor_id
-         *
-         * @return float
-         */
-        public function get_vendor_wise_rate($vendor_id)
-        {
-        }
-        /**
-         * Get product wise commission rate
-         *
-         * @since  2.9.21
-         *
-         * @param int $product_id
-         *
-         * @return float
-         */
-        public function get_product_wise_rate($product_id)
-        {
-        }
-        /**
-         * Validate product id (if it's a variable product, return it's parent id)
-         *
-         * @since  2.9.21
-         *
-         * @param int $product_id
-         *
-         * @return int
-         */
-        public function validate_product_id($product_id)
-        {
-        }
-        /**
-         * Get category wise commission rate
-         *
-         * @since  2.9.21
-         *
-         * @param int $product_id
-         *
-         * @return float
-         */
-        public function get_category_wise_rate($product_id)
-        {
-        }
-        /**
-         * Get global commission type
-         *
-         * @since  2.9.21
-         *
-         * @return string
-         */
-        public function get_global_type()
-        {
-        }
-        /**
-         * Get vendor wise commission type
-         *
-         * @since  2.9.21
-         *
-         * @param int $vendor_id
-         *
-         * @return string
-         */
-        public function get_vendor_wise_type($vendor_id)
-        {
-        }
-        /**
-         * Get category wise commission type
-         *
-         * @since  2.9.21
-         *
-         * @param int $product_id
-         *
-         * @return string
-         */
-        public function get_category_wise_type($product_id)
-        {
-        }
-        /**
-         * Get product wise commission type
-         *
-         * @since  2.9.21
-         *
-         * @param int $product_id
-         *
-         * @return string
-         */
-        public function get_product_wise_type($product_id)
+        public function get_vendor_earning_subtotal_by_order($order)
         {
         }
         /**
@@ -6884,96 +10041,23 @@ namespace WeDevs\Dokan {
         {
         }
         /**
-         * Get global earning
+         * Get vendor wise additional rate
+         *
+         * @deprecated 3.14.0 Use dokan()->vendor->get( $vendor_id )->get_commission_settings()->get_percentage() insted
          *
          * @since  2.9.21
          *
-         * @param float $product_price
+         * @param int $vendor_id
          *
          * @return float|null on failure
          */
-        public function get_global_earning($product_price)
-        {
-        }
-        /**
-         * Get vendor wise earning
-         *
-         * @since  2.9.21
-         *
-         * @param int   $vendor_id
-         * @param float $product_price
-         *
-         * @return float|null on failure
-         */
-        public function get_vendor_wise_earning($vendor_id, $product_price)
-        {
-        }
-        /**
-         * Get category wise earning
-         *
-         * @since  2.9.21
-         *
-         * @param int   $product_id
-         * @param float $product_price
-         *
-         * @return float|null on failure
-         */
-        public function get_category_wise_earning($product_id, $product_price)
-        {
-        }
-        /**
-         * Get product wise earning
-         *
-         * @since  2.9.21
-         *
-         * @param int $product_id
-         * @param int $product_price
-         *
-         * @return float|null on failure
-         */
-        public function get_product_wise_earning($product_id, $product_price)
-        {
-        }
-        /**
-         * Prepare for calculation
-         *
-         * @since  2.9.21
-         *
-         * @param callable $callable
-         * @param int      $product_id
-         * @param float    $product_price
-         *
-         * @return float | null on failure
-         */
-        public function prepare_for_calculation($callable, $product_id = 0, $product_price = 0)
-        {
-        }
-        /**
-         * Get product wise additional fee
-         *
-         * @since  2.9.21
-         *
-         * @param int $product_id
-         *
-         * @return float|null on failure
-         */
-        public function get_product_wise_additional_fee($product_id)
-        {
-        }
-        /**
-         * Get global wise additional fee
-         *
-         * @since  2.9.21
-         *
-         * @param int $product_id
-         *
-         * @return float|null on failure
-         */
-        public function get_global_additional_fee()
+        public function get_vendor_wise_rate($vendor_id)
         {
         }
         /**
          * Get vendor wise additional fee
+         *
+         * @deprecated 3.14.0 Use dokan()->vendor->get( $vendor_id )->get_commission_settings()->get_flat() instead
          *
          * @since  2.9.21
          *
@@ -6985,15 +10069,17 @@ namespace WeDevs\Dokan {
         {
         }
         /**
-         * Get category wise additional fee
+         * Get vendor wise additional type
+         *
+         * @deprecated 3.14.0 Use dokan()->vendor->get( $vendor_id )->get_commission_settings()->get_type() instead
          *
          * @since  2.9.21
          *
-         * @param int $product_id
+         * @param int $vendor_id
          *
          * @return float|null on failure
          */
-        public function get_category_wise_additional_fee($product_id)
+        public function get_vendor_wise_type($vendor_id)
         {
         }
         /**
@@ -7003,14 +10089,17 @@ namespace WeDevs\Dokan {
          *
          * @param int    $order_id
          * @param string $context
+         * @param bool   $raw
          *
-         * @return float|null on failure
+         * @return float|array|null on failure
          */
-        public function get_earning_from_order_table($order_id, $context = 'seller')
+        public function get_earning_from_order_table($order_id, $context = 'seller', $raw = false)
         {
         }
         /**
          * Get shipping fee recipient
+         *
+         * @deprecated 3.14.0 Use dokan()->fees->get_shipping_fee_recipient() instead
          *
          * @since  2.9.21
          * @since  3.4.1 introduced the shipping fee recipient hook
@@ -7025,6 +10114,8 @@ namespace WeDevs\Dokan {
         /**
          * Get tax fee recipient
          *
+         * @deprecated 3.14.0 Use dokan()->fees->get_tax_fee_recipient() instead
+         *
          * @since  2.9.21
          * @since  3.4.1 introduced the tax fee recipient hook
          *
@@ -7038,6 +10129,8 @@ namespace WeDevs\Dokan {
         /**
          * Get shipping tax fee recipient.
          *
+         * @deprecated 3.14.0 Use dokan()->fees->get_shipping_tax_fee_recipient() instead
+         *
          * @since 3.7.19
          *
          * @param WC_Order $order Order.
@@ -7049,6 +10142,8 @@ namespace WeDevs\Dokan {
         }
         /**
          * Get total shipping tax refunded for the order.
+         *
+         * @deprecated 3.14.0 Use dokan()->fees->get_total_shipping_tax_refunded() instead
          *
          * @since 3.7.19
          *
@@ -7062,7 +10157,9 @@ namespace WeDevs\Dokan {
         /**
          * Get processing fee
          *
-         * @since DOKAN_LITE_SINCE
+         * @deprecated 3.14.0 Use dokan()->fees->get_processing_fee instead.
+         *
+         * @since 3.0.4
          *
          * @param WC_Order $order
          *
@@ -7074,7 +10171,7 @@ namespace WeDevs\Dokan {
         /**
          * Get all the orders to be processed
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.4
          *
          * @param WC_Order $order
          *
@@ -7085,6 +10182,9 @@ namespace WeDevs\Dokan {
         }
         /**
          * Calculate commission (commission priority [1.product, 2.category, 3.vendor, 4.global] wise)
+         * I this function the calculation was written for vendor perspective it is deprecated now it is recomanded to use `get_commission` method it works fo admin perspective.
+         *
+         * @deprecated 3.14.0 Use get_commission() instead.
          *
          * @since  2.9.21
          *
@@ -7097,7 +10197,3217 @@ namespace WeDevs\Dokan {
         public function calculate_commission($product_id, $product_price, $vendor_id = null)
         {
         }
+        /**
+         * Returns all the commission types that ware in dokan. These types were existed before dokan lite version 3.14.0
+         *
+         * @since 3.14.0
+         *
+         * @return array
+         */
+        public function get_legacy_commission_types()
+        {
+        }
+        /**
+         * Returns commission (commission priority [1.Order item if exists. 2.product, 3.vendor, 4.global] wise)
+         *
+         * @since 3.14.0
+         *
+         * @param array $args {
+         *     Accepted arguments are below.
+         *
+         *     @type int       $order_item_id  Order item id. Default ''. Accepted values numbers.
+         *     @type float|int $total_amount   The amount on which the commission will be calculated. Default 0. Accepted values numbers.
+         *                                     Ff you want to calculate for order line item the $total_amount should be total line item amount and
+         *                                     $total_quantity should be total line item quantity. EX: for product item apple with cost $100 then $total_amount = 500, $total_quantity = 5
+         *                                     or if you want to calculate for product price the $total_amount should be the product price and $total_quantity should be 1
+         *                                     EX: for product apple with cost $100 then $total_amount = 100, $total_quantity = 1
+         *     @type int       $total_quantity This is the total quantity that represents the $total_amounts item units. Default 1. Accepted values numbers.
+         *                                     Please read $total_amount doc above to understand clearly.
+         *     @type int       $product_id     Product id. Default 0. Accepted values numbers.
+         *     @type int       $vendor_id      Vendor id. Default ''. Accepted values numbers.
+         *     @type int       $category_id    Product category id. Default 0'. Accepted values numbers.
+         * }
+         * @param boolean $auto_save                              If true, it will save the calculated commission automatically to the given `$order_item_id`. Default 'false`. Accepted values boolean.
+         * @param boolean $override_total_amount_by_product_price If true, it will override the `$total_amount` by the product price if the `$total_amount` is empty and `$order_item_id` is empty. Default 'true`. Accepted values boolean.
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Commission
+         */
+        public function get_commission($args = [], $auto_save = false, $override_total_amount_by_product_price = true)
+        {
+        }
     }
+}
+namespace WeDevs\Dokan\Commission\Contracts {
+    /**
+     * Interface CommissionInterface
+     *
+     * Handles the calculation of commissions, earnings, discounts, shipping, and gateway fees
+     * for both admin and vendor in a marketplace environment.
+     */
+    interface CommissionInterface
+    {
+        /**
+         * Get the discount amount provided by the admin.
+         *
+         * @return float
+         */
+        public function get_admin_discount(): float;
+        /**
+         * Get the discount amount provided by the vendor.
+         *
+         * @return float
+         */
+        public function get_vendor_discount(): float;
+        /**
+         * Calculate the admin's net commission.
+         * Formula: (product price - vendor discount %) * admin commission % - admin discount
+         *
+         * @return float
+         */
+        public function get_admin_net_commission(): float;
+        /**
+         * Calculate the vendor's net earning.
+         * Formula: order_item_total - admin_net_commission
+         *
+         * @return float
+         */
+        public function get_vendor_net_earning(): float;
+        /**
+         * Get the admin's net earning from admin-type orders.
+         *
+         * @since 5.0.0
+         *
+         * @return float
+         */
+        public function get_admin_net_earning(): float;
+        /**
+         * Get the admin commission.
+         * Returns the admin net commission when positive, otherwise zero.
+         *
+         * @return float
+         */
+        public function get_admin_commission(): float;
+        /**
+         * Calculate the vendor's total earning.
+         * Formula: vendor_net_earning + vendor_shipping_fee - vendor_gateway_fee
+         *
+         * @return float
+         */
+        public function get_vendor_earning(): float;
+        /**
+         * Calculate the admin subsidy.
+         * Returns the absolute value of admin net commission when negative, otherwise zero.
+         *
+         * @return float
+         */
+        public function get_admin_subsidy(): float;
+    }
+}
+namespace WeDevs\Dokan\Commission\Model {
+    class Commission implements \WeDevs\Dokan\Commission\Contracts\CommissionInterface
+    {
+        /**
+         * Admin's net commission amount.
+         *
+         * @var float
+         */
+        protected float $admin_net_commission;
+        /**
+         * Admin's net earning from admin-type orders (subscriptions, advertisements, etc.).
+         *
+         * @var float
+         */
+        protected float $admin_net_earning;
+        /**
+         * Vendor Earning without subsidy.
+         *
+         * @var float
+         */
+        protected float $vendor_net_earning;
+        protected float $admin_discount;
+        protected float $vendor_discount;
+        protected \WeDevs\Dokan\Commission\Model\Setting $settings;
+        /**
+         * Constructor to initialize the Commission object.
+         *
+         * @param Setting $settings The commission settings.
+         */
+        public function set_settings(\WeDevs\Dokan\Commission\Model\Setting $settings): self
+        {
+        }
+        public function get_settings(): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Set the admin's net commission.
+         *
+         * @param float $admin_net_commission The net commission amount for the admin.
+         * @return self
+         */
+        public function set_admin_net_commission(float $admin_net_commission): self
+        {
+        }
+        /**
+         * Get the admin's net commission.
+         *
+         * @return float The net commission amount for the admin.
+         */
+        public function get_admin_net_commission(): float
+        {
+        }
+        /**
+         * Set the admin's net earning.
+         *
+         * @since 5.0.0
+         *
+         * @param float $admin_net_earning The net earning amount for the admin.
+         *
+         * @return Commission
+         */
+        public function set_admin_net_earning(float $admin_net_earning): self
+        {
+        }
+        /**
+         * Get the admin's net earning.
+         *
+         * @since 5.0.0
+         *
+         * @return float The net earning amount for the admin.
+         */
+        public function get_admin_net_earning(): float
+        {
+        }
+        /**
+         * Set the vendor's net earning.
+         *
+         * @param float $vendor_earning The earning amount for the vendor.
+         *
+         * @return self
+         */
+        public function set_vendor_net_earning(float $vendor_earning): self
+        {
+        }
+        /**
+         * Get the vendor's net earning.
+         *
+         * @return float The net earning amount for the vendor.
+         */
+        public function get_vendor_net_earning(): float
+        {
+        }
+        /**
+         * Set the admin's discount.
+         *
+         * @param float $admin_discount The discount amount for the admin.
+         * @return self
+         */
+        public function set_admin_discount(float $admin_discount): self
+        {
+        }
+        /**
+         * Get the admin's discount.
+         *
+         * @return float The discount amount for the admin.
+         */
+        public function get_admin_discount(): float
+        {
+        }
+        /**
+         * Set the vendor's discount.
+         *
+         * @param float $vendor_discount The discount amount for the vendor.
+         * @return self
+         */
+        public function set_vendor_discount(float $vendor_discount): self
+        {
+        }
+        /**
+         * Get the vendor's discount.
+         *
+         * @return float The discount amount for the vendor.
+         */
+        public function get_vendor_discount(): float
+        {
+        }
+        public function get_vendor_earning(): float
+        {
+        }
+        public function get_admin_commission(): float
+        {
+        }
+        public function get_admin_subsidy(): float
+        {
+        }
+        /**
+         * Get the commission type.
+         *
+         * @since 4.0.2
+         *
+         * @return string The commission type.
+         */
+        public function get_type(): string
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Commission {
+    abstract class AbstractCommissionCalculator extends \WeDevs\Dokan\Commission\Model\Commission
+    {
+        protected \WeDevs\Dokan\Commission\Model\Setting $settings;
+        /**
+         * @var bool $should_adjust_refund
+         */
+        protected bool $should_adjust_refund = true;
+        /**
+         * Returns the applied strategy.
+         *
+         * @since 4.0.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Commission
+         */
+        abstract public function calculate(): \WeDevs\Dokan\Commission\Model\Commission;
+        /**
+         * Retrieve commission data from order item meta.
+         *
+         * @since 4.0.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Commission
+         */
+        abstract public function get(): \WeDevs\Dokan\Commission\Model\Commission;
+        public function set_should_adjust_refund(bool $should_adjust_refund): self
+        {
+        }
+        public function get_should_adjust_refund(): bool
+        {
+        }
+    }
+    class Calculator extends \WeDevs\Dokan\Commission\AbstractCommissionCalculator
+    {
+        protected float $subtotal = 0.0;
+        protected float $total = 0.0;
+        protected int $quantity = 0;
+        protected \WeDevs\Dokan\Commission\Model\Setting $settings;
+        protected ?\WeDevs\Dokan\Commission\CouponInfo $discount;
+        /**
+         * @return float
+         */
+        public function get_subtotal(): float
+        {
+        }
+        /**
+         * @param float $subtotal
+         *
+         * @return Calculator
+         */
+        public function set_subtotal(float $subtotal): \WeDevs\Dokan\Commission\Calculator
+        {
+        }
+        /**
+         * @return float
+         */
+        public function get_total(): float
+        {
+        }
+        /**
+         * @param float $total
+         *
+         * @return Calculator
+         */
+        public function set_total(float $total): \WeDevs\Dokan\Commission\Calculator
+        {
+        }
+        /**
+         * @return int
+         */
+        public function get_quantity(): int
+        {
+        }
+        /**
+         * @param int $quantity
+         *
+         * @return Calculator
+         */
+        public function set_quantity(int $quantity): \WeDevs\Dokan\Commission\Calculator
+        {
+        }
+        /**
+         * @return Setting
+         */
+        public function get_settings(): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * @param Setting $settings
+         *
+         * @return Calculator
+         */
+        public function set_settings(\WeDevs\Dokan\Commission\Model\Setting $settings): \WeDevs\Dokan\Commission\Calculator
+        {
+        }
+        /**
+         * @return mixed
+         */
+        public function get_discount(): \WeDevs\Dokan\Commission\CouponInfo
+        {
+        }
+        /**
+         * @param CouponInfo $discount
+         *
+         * @return Calculator
+         */
+        public function set_discount(\WeDevs\Dokan\Commission\CouponInfo $discount): \WeDevs\Dokan\Commission\Calculator
+        {
+        }
+        /**
+         * Calculates the commission based on discounts and settings.
+         *
+         * @return Commission
+         */
+        public function calculate(): \WeDevs\Dokan\Commission\Model\Commission
+        {
+        }
+        /**
+         * Calculates the raw admin commission before capping.
+         *
+         * @param float $net_amount_with_admin_discount Amount after vendor discount.
+         * @param float $vendor_discount Discount given by vendor.
+         * @param float $admin_discount Discount given by admin.
+         * @return float
+         */
+        private function calculate_raw_admin_commission(): float
+        {
+        }
+        /**
+         * Creates the commission object with all related values.
+         *
+         * @param float $admin_commission Final admin commission.
+         * @param float $vendor_discount Vendor's discount.
+         * @param float $vendor_earning Vendor's earning.
+         * @param float $admin_discount Admin's discount.
+         * @return Commission
+         */
+        private function create_commission(float $admin_commission, float $vendor_earning): \WeDevs\Dokan\Commission\Model\Commission
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get(): \WeDevs\Dokan\Commission\Model\Commission
+        {
+        }
+        /**
+         * Calculate vendor and admin earnings after a refund.
+         *
+         * @param float $vendor_earning    Original vendor earning.
+         * @param float $admin_commission  Original admin commission.
+         * @param float $item_total        Original item total (excluding tax/shipping).
+         * @param float $refund_amount     Refunded amount for the item.
+         *
+         * @return Commission
+         */
+        public function calculate_for_refund(float $vendor_earning, float $admin_commission, float $item_total, float $refund_amount): \WeDevs\Dokan\Commission\Model\Commission
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Commission\Contracts {
+    /**
+     * Interface CommissionInterface
+     *
+     * Handles the calculation of commissions, earnings, discounts, shipping, and gateway fees
+     * for both admin and vendor in a marketplace environment.
+     */
+    interface OrderCommissionInterface extends \WeDevs\Dokan\Commission\Contracts\CommissionInterface
+    {
+        /**
+         * Get the shipping fee amount that belongs to the admin.
+         *
+         * @return float
+         */
+        public function get_admin_shipping_fee(): float;
+        /**
+         * Get the shipping fee amount that belongs to the vendor.
+         *
+         * @return float
+         */
+        public function get_vendor_shipping_fee(): float;
+        /**
+         * Get the gateway fee paid by the admin.
+         *
+         * @return float
+         */
+        public function get_admin_gateway_fee(): float;
+        /**
+         * Get the gateway fee paid by the vendor.
+         *
+         * @return float
+         */
+        public function get_vendor_gateway_fee(): float;
+    }
+}
+namespace WeDevs\Dokan\Commission {
+    class CouponInfo
+    {
+        protected array $info = [];
+        protected ?float $vendor_discount;
+        protected ?float $admin_discount;
+        public function __construct(array $info)
+        {
+        }
+        /**
+         * @param array $info
+         *
+         * @return CouponInfo
+         */
+        public function set_info(array $info): \WeDevs\Dokan\Commission\CouponInfo
+        {
+        }
+        protected function populate()
+        {
+        }
+        /**
+         * @return float|null
+         */
+        public function get_vendor_discount(): ?float
+        {
+        }
+        /**
+         * @return float|null
+         */
+        public function get_total_discount(): ?float
+        {
+        }
+        /**
+         * @return float|null
+         */
+        public function get_admin_discount(): ?float
+        {
+        }
+        /**
+         * Get the admin and vendor discount amount from a single coupon.
+         *
+         * @param array $coupon_info
+         * @return array
+         */
+        protected function get_coupon_amount(array $coupon_info): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Commission\Formula {
+    /**
+     * Interface class for commission calculator.
+     * Extend this class to make a commission calculator.
+     *
+     * @since 3.14.0
+     */
+    abstract class AbstractFormula
+    {
+        /**
+         * Commission setting.
+         *
+         * @since 3.14.0
+         *
+         * @var \WeDevs\Dokan\Commission\Model\Setting $settings
+         */
+        protected \WeDevs\Dokan\Commission\Model\Setting $settings;
+        protected float $percent;
+        protected float $fixed = 0;
+        protected float $combinedFixed = 0;
+        abstract public function __construct(\WeDevs\Dokan\Commission\Model\Setting $settings);
+    }
+    /**
+     * Category based commission calculator class.
+     *
+     * @since 3.14.0
+     */
+    class CategoryBased extends \WeDevs\Dokan\Commission\Formula\AbstractFormula
+    {
+        /**
+         * Commission type source.
+         *
+         * @since 3.14.0
+         */
+        const SOURCE = 'category_based';
+        /**
+         * Admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float $admin_commission
+         */
+        protected $admin_commission = 0;
+        /**
+         * Per item admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float $per_item_admin_commission
+         */
+        protected $per_item_admin_commission = 0;
+        /**
+         * Total vendor earning amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float $vendor_earning
+         */
+        protected $vendor_earning = 0;
+        /**
+         * Total items quantity, on it the commission will be calculated.
+         *
+         * @since 3.14.0
+         *
+         * @var int $items_total_quantity
+         */
+        protected $items_total_quantity = 1;
+        /**
+         * Commission meta data.
+         *
+         * @since 3.14.0
+         *
+         * @var array $meta_data
+         */
+        protected $meta_data = [];
+        /**
+         * Fixed commission calculator classs instance.
+         *
+         * @since 3.14.0
+         *
+         * @var \WeDevs\Dokan\Commission\Formula\Fixed $fixed_formula
+         */
+        protected \WeDevs\Dokan\Commission\Formula\Fixed $fixed_formula;
+        /**
+         * @since 3.14.0
+         *
+         * @var \WeDevs\Dokan\Commission\Model\Setting
+         */
+        protected \WeDevs\Dokan\Commission\Model\Setting $fixed_commission_setting;
+        /**
+         * Commission type.
+         *
+         * @since 3.14.0
+         *
+         * @var mixed
+         */
+        protected $type;
+        /**
+         * Class constructor.
+         *
+         * @since 3.14.0
+         *
+         * @param \WeDevs\Dokan\Commission\Model\Setting $settings
+         */
+        public function __construct(\WeDevs\Dokan\Commission\Model\Setting $settings)
+        {
+        }
+        /**
+         * Calculating the category commission.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function calculate()
+        {
+        }
+        /**
+         * Returns calculated commissions meta data.
+         *
+         * @since 3.14.0
+         *
+         * @return array
+         */
+        public function get_meta_data(): array
+        {
+        }
+        /**
+         * Sets category commission meta data.
+         *
+         * @since 3.14.0
+         *
+         * @param array $meta_data
+         *
+         * @return \WeDevs\Dokan\Commission\Formula\CategoryBased
+         */
+        public function set_meta_data(array $meta_data): \WeDevs\Dokan\Commission\Formula\CategoryBased
+        {
+        }
+        /**
+         * Returns type.
+         *
+         * @since 3.14.0
+         *
+         * @return mixed
+         */
+        public function get_type()
+        {
+        }
+        /**
+         * Get commission date parameters.
+         *
+         * @since 3.14.0
+         *
+         * @return array
+         */
+        public function get_parameters(): array
+        {
+        }
+        /**
+         * Returns commission source.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_source(): string
+        {
+        }
+        /**
+         * Returns if a category commission is applicable or not.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        public function is_applicable(): bool
+        {
+        }
+        /**
+         * Returns true if commission type is valid.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        protected function is_valid_commission_type(): bool
+        {
+        }
+        /**
+         * Returns if saved commission data is valid to be applied.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        protected function is_valid_commission_data(): bool
+        {
+        }
+        /**
+         * Validates and returns commission.
+         *
+         * @since 3.14.0
+         *
+         * @param Setting $setting
+         *
+         * @return Setting
+         */
+        protected function get_valid_commission_settings(\WeDevs\Dokan\Commission\Model\Setting $setting): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Returns admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_admin_commission(): float
+        {
+        }
+        /**
+         * Returns vendor earning amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_vendor_earning(): float
+        {
+        }
+        /**
+         * Returns per item admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_per_item_admin_commission(): float
+        {
+        }
+        /**
+         * Returns the quantity on which the commission has been calculated.
+         *
+         * @since 3.14.0
+         *
+         * @return int
+         */
+        public function get_items_total_quantity(): int
+        {
+        }
+    }
+    class Combine extends \WeDevs\Dokan\Commission\Formula\AbstractFormula
+    {
+        /**
+         * Per item admin commission value.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float
+         */
+        protected $per_item_admin_commission = 0;
+        /**
+         * Admin commission value.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float
+         */
+        protected $admin_commission = 0;
+        /**
+         * Vendor earning amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float
+         */
+        protected $vendor_earning = 0;
+        /**
+         * The quantity on which the commission will be calculated.
+         *
+         * @since 3.14.0
+         *
+         * @var int
+         */
+        protected $items_total_quantity = 1;
+        /**
+         * Combine commission source text.
+         *
+         * @since 3.14.0
+         */
+        const SOURCE = 'combine';
+        /**
+         * Class constructor.
+         *
+         * @since 3.14.0
+         *
+         * @param \WeDevs\Dokan\Commission\Model\Setting $settings
+         */
+        public function __construct(\WeDevs\Dokan\Commission\Model\Setting $settings)
+        {
+        }
+        /**
+         * Calculation is doing here.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function calculate()
+        {
+        }
+        /**
+         * Commission calculation parameters.
+         *
+         * @since 3.14.0
+         *
+         * @return array
+         */
+        public function get_parameters(): array
+        {
+        }
+        /**
+         * Returns the combine commission surce text.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_source(): string
+        {
+        }
+        /**
+         * Returns if the combine commission is applicable or not based on data.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        public function is_applicable(): bool
+        {
+        }
+        /**
+         * Returns if the commission type data is valid.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        protected function is_valid_commission_type(): bool
+        {
+        }
+        /**
+         * Returns if commission is valid.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        protected function is_valid_commission_data(): bool
+        {
+        }
+        /**
+         * Returns the admin commission
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_admin_commission(): float
+        {
+        }
+        /**
+         * Returns the vendors earning.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_vendor_earning(): float
+        {
+        }
+        /**
+         * Returns per item admin commission.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_per_item_admin_commission(): float
+        {
+        }
+        /**
+         * Returns the quantity on which the commission is calculated.
+         *
+         * @since 3.14.0
+         *
+         * @return int
+         */
+        public function get_items_total_quantity(): int
+        {
+        }
+    }
+    class Fixed extends \WeDevs\Dokan\Commission\Formula\AbstractFormula
+    {
+        /**
+         * Commission type source.
+         *
+         * @since 3.14.0
+         */
+        const SOURCE = 'fixed';
+        /**
+         * Admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float $admin_commission
+         */
+        protected $admin_commission = 0;
+        /**
+         * Per item admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float $per_item_admin_commission
+         */
+        protected $per_item_admin_commission = 0;
+        /**
+         * Total vendor earning amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float $vendor_earning
+         */
+        protected $vendor_earning = 0;
+        /**
+         * Total items quantity, on it the commission will be calculated.
+         *
+         * @since 3.14.0
+         *
+         * @var int $items_total_quantity
+         */
+        protected $items_total_quantity = 1;
+        /**
+         * @since 3.14.0
+         *
+         * @var \WeDevs\Dokan\Commission\Formula\Flat
+         */
+        protected \WeDevs\Dokan\Commission\Formula\Flat $flat_calculator;
+        /**
+         * @since 3.14.0
+         *
+         * @var \WeDevs\Dokan\Commission\Formula\Percentage
+         */
+        protected \WeDevs\Dokan\Commission\Formula\Percentage $percentage_calculator;
+        /**
+         * Class constructor.
+         *
+         * @since 3.14.0
+         *
+         * @param \WeDevs\Dokan\Commission\Model\Setting $settings
+         */
+        public function __construct(\WeDevs\Dokan\Commission\Model\Setting $settings)
+        {
+        }
+        /**
+         * Calculating the fixed commission.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function calculate()
+        {
+        }
+        /**
+         * Get commission date parameters.
+         *
+         * @since 3.14.0
+         *
+         * @return array
+         */
+        public function get_parameters(): array
+        {
+        }
+        /**
+         * Returns commission source.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_source(): string
+        {
+        }
+        /**
+         * Returns if a fixed commission is applicable or not.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        public function is_applicable(): bool
+        {
+        }
+        /**
+         * Returns true if commission type is valid.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        protected function is_valid_commission_type(): bool
+        {
+        }
+        /**
+         * Returns if saved commission data is valid to be applied.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        protected function is_valid_commission_data(): bool
+        {
+        }
+        /**
+         * Returns admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_admin_commission(): float
+        {
+        }
+        /**
+         * Returns vendor earning amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_vendor_earning(): float
+        {
+        }
+        /**
+         * Returns per item admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_per_item_admin_commission(): float
+        {
+        }
+        /**
+         * Returns the quantity on which the commission has been calculated.
+         *
+         * @since 3.14.0
+         *
+         * @return int
+         */
+        public function get_items_total_quantity(): int
+        {
+        }
+    }
+    class Flat extends \WeDevs\Dokan\Commission\Formula\AbstractFormula
+    {
+        /**
+         * Commission type source.
+         *
+         * @since 3.14.0
+         */
+        const SOURCE = 'flat';
+        /**
+         * Amount of flat commission.
+         *
+         * @var int|float $flat_commission
+         *
+         * @since 3.14.0
+         */
+        protected $flat_commission = 0;
+        /**
+         * Per item admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float $per_item_admin_commission
+         */
+        protected $per_item_admin_commission = 0;
+        /**
+         * Admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float $admin_commission
+         */
+        protected $admin_commission = 0;
+        /**
+         * Total vendor earning amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float $vendor_earning
+         */
+        protected $vendor_earning = 0;
+        /**
+         * Total items quantity, on it the commission will be calculated.
+         *
+         * @since 3.14.0
+         *
+         * @var int $items_total_quantity
+         */
+        protected $items_total_quantity = 1;
+        /**
+         * Class constructor.
+         *
+         * @since 3.14.0
+         *
+         * @param \WeDevs\Dokan\Commission\Model\Setting $settings
+         */
+        public function __construct(\WeDevs\Dokan\Commission\Model\Setting $settings)
+        {
+        }
+        /**
+         * Calculating the flat commission.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function calculate()
+        {
+        }
+        /**
+         * Get commission date parameters.
+         *
+         * @since 3.14.0
+         *
+         * @return array
+         */
+        public function get_parameters(): array
+        {
+        }
+        /**
+         * Returns commission source.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_source(): string
+        {
+        }
+        /**
+         * Returns if a flat commission is applicable or not.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        public function is_applicable(): bool
+        {
+        }
+        /**
+         * Returns admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_admin_commission(): float
+        {
+        }
+        /**
+         * Returns vendor earning amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_vendor_earning(): float
+        {
+        }
+        /**
+         * Returns per item admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_per_item_admin_commission(): float
+        {
+        }
+        /**
+         * Returns the quantity on which the commission has been calculated.
+         *
+         * @since 3.14.0
+         *
+         * @return int
+         */
+        public function get_items_total_quantity(): int
+        {
+        }
+    }
+    class Percentage extends \WeDevs\Dokan\Commission\Formula\AbstractFormula
+    {
+        /**
+         * Commission type source.
+         *
+         * @since 3.14.0
+         */
+        const SOURCE = 'percentage';
+        /**
+         * Amount of admin commission.
+         *
+         * @var int|float $flat_commission
+         *
+         * @since 3.14.0
+         */
+        protected $admin_commission = 0;
+        /**
+         * Per item admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float $per_item_admin_commission
+         */
+        protected $per_item_admin_commission = 0;
+        /**
+         * Total vendor earning amount.
+         *
+         * @since 3.14.0
+         *
+         * @var int|float $vendor_earning
+         */
+        protected $vendor_earning = 0;
+        /**
+         * Total items quantity, on it the commission will be calculated.
+         *
+         * @since 3.14.0
+         *
+         * @var int $items_total_quantity
+         */
+        protected $items_total_quantity = 1;
+        public function __construct(\WeDevs\Dokan\Commission\Model\Setting $settings)
+        {
+        }
+        /**
+         * Class constructor.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function calculate()
+        {
+        }
+        /**
+         * Get commission date parameters.
+         *
+         * @since 3.14.0
+         *
+         * @return array
+         */
+        public function get_parameters(): array
+        {
+        }
+        /**
+         * Returns commission source.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_source(): string
+        {
+        }
+        /**
+         * Returns if a percentage commission is applicable or not.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        public function is_applicable(): bool
+        {
+        }
+        /**
+         * Returns admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_admin_commission(): float
+        {
+        }
+        /**
+         * Returns vendor earning amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_vendor_earning(): float
+        {
+        }
+        /**
+         * Returns per item admin commission amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_per_item_admin_commission(): float
+        {
+        }
+        /**
+         * Returns the quantity on which the commission has been calculated.
+         *
+         * @since 3.14.0
+         *
+         * @return int
+         */
+        public function get_items_total_quantity(): int
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Commission\Model {
+    class Setting
+    {
+        /**
+         * Commission type.
+         *
+         * @since 3.14.0
+         *
+         * @var null|string
+         */
+        protected $type = \WeDevs\Dokan\Commission\Settings\DefaultSetting::TYPE;
+        /**
+         * Flat commission amount
+         *
+         * @since 3.14.0
+         *
+         * @var string|float|int
+         */
+        protected $flat = '';
+        /**
+         * Commissin percentage amount.
+         *
+         * @since 3.14.0
+         *
+         * @var string|int|float
+         */
+        protected $percentage = '';
+        /**
+         * The category id for which the commission will be applied.
+         *
+         * @since 3.14.0
+         * @var string|int
+         */
+        protected $category_id = '';
+        /**
+         * The category commission data.
+         *
+         * @since 3.14.0
+         *
+         * @var array
+         */
+        protected $category_commissions = [];
+        /**
+         * Applied commission meta data.
+         *
+         * @since 3.14.0
+         *
+         * @var array
+         */
+        protected $meta_data = [];
+        protected string $source;
+        /**
+         * Returns the commission meta data.
+         *
+         * @since 3.14.0
+         *
+         * @return array
+         */
+        public function get_meta_data(): array
+        {
+        }
+        /**
+         * Sets the commission meta data.
+         *
+         * @since 3.14.0
+         *
+         * @param array $meta_data
+         *
+         * @return $this
+         */
+        public function set_meta_data(array $meta_data): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Sets the commission type.
+         *
+         * @since 3.14.0
+         *
+         * @param mixed|string $type
+         *
+         * @return $this
+         */
+        public function set_type($type): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Sets the commission type.
+         *
+         * @since 3.14.0
+         *
+         * @param mixed|string $type
+         *
+         * @return $this
+         */
+        public function set_source(string $source): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Sets the flat commissin amount.
+         *
+         * @since 3.14.0
+         *
+         * @param mixed|string $flat
+         *
+         * @return $this
+         */
+        public function set_flat($flat): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Sets the flat commissin amount.
+         *
+         * @since 3.14.0
+         *
+         * @param mixed|string $flat
+         *
+         * @return $this
+         */
+        public function set_combined_flat($flat): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Sets the percentage amount.
+         *
+         * @since 3.14.0
+         *
+         * @param mixed|string $percentage
+         *
+         * @return $this
+         */
+        public function set_percentage($percentage): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Sets the category commission data.
+         *
+         * @since 3.14.0
+         *
+         * @param array $category_commissions
+         *
+         * @return $this
+         */
+        public function set_category_commissions(array $category_commissions): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Sets the commission type.
+         *
+         * @since 3.14.0
+         *
+         * @return mixed|string|null
+         */
+        public function get_type()
+        {
+        }
+        /**
+         * Sets the commission source.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_source(): string
+        {
+        }
+        /**
+         * Returns the value of the flat settings.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_flat(): string
+        {
+        }
+        /**
+         * Returns the flat amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_flat_value(): float
+        {
+        }
+        /**
+         * Returns the flat amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_combine_flat(): float
+        {
+        }
+        /**
+         * Returns true if the commission is combined. 
+         * N.B. This is a legacy type. It does not exist in the new commission system.
+         *
+         * @return bool
+         */
+        protected function is_combined(): bool
+        {
+        }
+        /**
+         * Returns the value of the percentage settings.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_percentage(): string
+        {
+        }
+        /**
+         * Returns the percentage amount.
+         *
+         * @since 3.14.0
+         *
+         * @return float
+         */
+        public function get_percentage_value(): float
+        {
+        }
+        /**
+         * Returns the category commission data.
+         *
+         * @since 3.14.0
+         *
+         * @return array|mixed|null
+         */
+        public function get_category_commissions()
+        {
+        }
+        /**
+         * Returns the category id
+         *
+         * @since 3.14.0
+         *
+         * @return array|mixed|null
+         */
+        public function get_category_id()
+        {
+        }
+        public function is_applicable(): bool
+        {
+        }
+        /**
+         * Returns the commission settings as an array.
+         *
+         * @since 3.14.0
+         *
+         * @return array
+         */
+        public function to_array(): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Commission {
+    /**
+     * Class OrderCommission - Calculate order commission
+     *
+     * @since   4.0.0
+     *
+     * @package WeDevs\Dokan\Commission
+     */
+    class OrderCommission extends \WeDevs\Dokan\Commission\AbstractCommissionCalculator implements \WeDevs\Dokan\Commission\Contracts\OrderCommissionInterface
+    {
+        private ?\WC_Order $order;
+        const SELLER = 'seller';
+        const ADMIN = 'admin';
+        protected $is_calculated = false;
+        /**
+         * @var Commission[] $admin_net_commission
+         */
+        protected $commission_by_line_item = [];
+        /**
+         * Get order.
+         *
+         * @since 4.0.0
+         *
+         * @return \WC_Order|null
+         */
+        public function get_order(): ?\WC_Order
+        {
+        }
+        /**
+         * Set order.
+         *
+         * @since 4.0.0
+         *
+         * @param  \WC_Order  $order
+         *
+         * @return void
+         */
+        public function set_order(\WC_Order $order): self
+        {
+        }
+        /**
+         * Calculate order commission.
+         *
+         * @since 4.0.0
+         *
+         * @return Model\Commission|\Exception
+         */
+        public function calculate(): self
+        {
+        }
+        /**
+         * Calculate commission for refund.
+         *
+         * @since 4.0.0
+         *
+         * @param  \WC_Order_Refund  $refund
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Commission
+         */
+        public function calculate_for_refund(\WC_Order_Refund $refund): \WeDevs\Dokan\Commission\Model\Commission
+        {
+        }
+        /**
+         * Retrieve order commission.
+         *
+         * @since 4.0.0
+         * @return OrderCommission
+         * @throws \Exception If the order is not set.
+         */
+        public function get(): \WeDevs\Dokan\Commission\OrderCommission
+        {
+        }
+        /**
+         * Get admin commission.
+         *
+         * @since 4.0.0
+         *
+         * @return float
+         */
+        public function get_admin_shipping_fee(): float
+        {
+        }
+        /**
+         * Get admin subsidy.
+         *
+         * @since 4.0.0
+         *
+         * @return float|int
+         */
+        public function get_admin_tax_fee()
+        {
+        }
+        /**
+         * Get admin shipping tax fee.
+         *
+         * @since 4.0.0
+         *
+         * @return float|int
+         */
+        public function get_admin_shipping_tax_fee()
+        {
+        }
+        /**
+         * Get admin gateway fee.
+         *
+         * @since 4.0.0
+         *
+         * @return float|int
+         */
+        public function get_admin_gateway_fee(): float
+        {
+        }
+        /**
+         * Get vendor shipping fee.
+         *
+         * @since 4.0.0
+         *
+         * @return float|int
+         */
+        public function get_vendor_shipping_fee(): float
+        {
+        }
+        /**
+         * Get vendor shipping tax fee.
+         *
+         * @since 4.0.0
+         *
+         * @return float|int
+         */
+        public function get_vendor_shipping_tax_fee(): float
+        {
+        }
+        /**
+         * Get vendor tax fee.
+         *
+         * @since 4.0.0
+         *
+         * @return float|int
+         */
+        public function get_vendor_tax_fee(): float
+        {
+        }
+        /**
+         * Get vendor gateway fee.
+         *
+         * @since 4.0.0
+         *
+         * @return float|int
+         */
+        public function get_vendor_earning(): float
+        {
+        }
+        /**
+         * Vendor payout subtotal based on customer's actual payment.
+         *
+         * Returns the vendor’s payable subtotal (excludes admin subsidy) and caps it
+         * to the amount actually paid by the customer (net of refunds) to avoid overpay during payment.
+         *
+         * Formula:
+         * - admin < 0 → vendor_adj = vendor - abs(admin)
+         * - admin ≥ 0 → vendor_adj = vendor
+         *
+         * @since 4.1.3
+         *
+         * @return float|int
+         */
+        public function get_vendor_earning_subtotal(): float
+        {
+        }
+        /**
+         * Get dokan gateway fee.
+         *
+         * @since 4.0.0
+         *
+         * @return float|int
+         */
+        public function get_total_admin_fees(): float
+        {
+        }
+        /**
+         * Get total vendor fees.
+         *
+         * @since 4.0.0
+         *
+         * @return float|int
+         */
+        public function get_total_vendor_fees(): float
+        {
+        }
+        /**
+         * Get dokan gateway fee.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        private function get_dokan_gateway_fee()
+        {
+        }
+        /**
+         * Get vendor gateway fee.
+         *
+         * @since 4.0.0
+         *
+         * @return float|int
+         */
+        public function get_vendor_gateway_fee(): float
+        {
+        }
+        /**
+         * Get data.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function get_data()
+        {
+        }
+        /**
+         * Additional adjustments.
+         *
+         * @since 4.0.0
+         *
+         * @param  \WeDevs\Dokan\Commission\Model\Commission  $commission_data
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Commission
+         */
+        public function additional_adjustments(\WeDevs\Dokan\Commission\Model\Commission $commission_data): \WeDevs\Dokan\Commission\Model\Commission
+        {
+        }
+        /**
+         * Reset the commission related data.
+         *
+         * @return void
+         */
+        protected function reset_order_commission_data()
+        {
+        }
+        /**
+         * Retrieve the commission object for a specific line item.
+         *
+         * @param  int  $item_id  Line item ID.
+         *
+         * @return OrderLineItemCommission|null The commission object or null if not found.
+         */
+        public function get_commission_for_line_item(int $item_id): ?\WeDevs\Dokan\Commission\OrderLineItemCommission
+        {
+        }
+        /**
+         * Retrieve all calculated commissions by line item.
+         *
+         * Ensures commission calculations are performed before returning.
+         *
+         * @return Commission[] Associative array of item ID => Commission.
+         */
+        public function get_all_line_item_commissions(): array
+        {
+        }
+        /**
+         * Ensure commission calculations have been performed.
+         *
+         * Triggers calculation if not already done.
+         */
+        protected function ensure_commissions_are_calculated(): void
+        {
+        }
+        /**
+         * Get the total admin commission.
+         *
+         * This includes the net commission plus any additional admin fees.
+         *
+         * @since 4.0.0
+         * @deprecated 5.0.0 Use Commission's get_admin_net_earning() instead.
+         *
+         * @return float
+         */
+        public function get_admin_commission(): float
+        {
+        }
+        /**
+         * Get the total earning for the admin.
+         *
+         * @since 4.0.0
+         *
+         * @return float
+         */
+        public function get_admin_total_earning(): float
+        {
+        }
+        /**
+         * Get the total earning for the vendor.
+         *
+         * @since 4.0.0
+         * @return float
+         * @deprecated 4.0.0 Use get_vendor_earning() instead.
+         */
+        public function get_vendor_total_earning(): float
+        {
+        }
+        /**
+         * Get the total shipping refunded.
+         *
+         * @return float
+         */
+        protected function get_shipping_refunded(): float
+        {
+        }
+        /**
+         * Get the tax refunded.
+         *
+         * @return float
+         */
+        protected function get_tax_refunded(): float
+        {
+        }
+        /**
+         * Get the total shipping tax refunded.
+         *
+         * @return float
+         */
+        protected function get_total_shipping_tax_refunded(): float
+        {
+        }
+        /**
+         * Get the order fee for admin.
+         *
+         * @since 4.1.0
+         *
+         * @return float
+         */
+        protected function get_admin_order_fees(): float
+        {
+        }
+        /**
+         * Get the order fee for vendor.
+         *
+         * @since 4.1.0
+         *
+         * @return float
+         */
+        protected function get_vendor_order_fees(): float
+        {
+        }
+        /**
+         * Get order fee recipient.
+         *
+         * @since 4.1.0
+         *
+         * @return string
+         */
+        protected function get_order_fee_recipient(): string
+        {
+        }
+        /**
+         * Get the refunded order fee.
+         *
+         * @return float
+         */
+        protected function get_order_fee_refunded(): float
+        {
+        }
+    }
+    /**
+     * Class OrderLineItemCommission - Calculate order line item commission
+     *
+     * @since 4.0.0
+     */
+    class OrderLineItemCommission extends \WeDevs\Dokan\Commission\AbstractCommissionCalculator
+    {
+        /**
+         * Order line item.
+         *
+         * @since 4.0.0
+         *
+         * @var \WC_Order_Item_Product $item
+         */
+        protected $item;
+        /**
+         * Order line item commission meta key.
+         *
+         * @since 4.0.0
+         *
+         * @var string
+         */
+        const VENDOR_ID_META_KEY = '_dokan_vendor_id';
+        /**
+         * @var \WC_Order $order
+         */
+        protected \WC_Order $order;
+        /**
+         * @var int $vendor_id
+         */
+        protected int $vendor_id;
+        /**
+         * @var array $coupon_infos
+         */
+        protected array $coupon_infos = [];
+        /**
+         * Get the line item.
+         *
+         * @param \WC_Order_Item_Product $item
+         * @param \WC_Order              $order
+         */
+        public function get_item(): \WC_Order_Item
+        {
+        }
+        /**
+         * Set order item to calculate commission.
+         *
+         *
+         * @param WC_Order_Item $item
+         * @return void
+         */
+        public function set_item(\WC_Order_Item $item): void
+        {
+        }
+        /**
+         * Get the order of the associated line item to calculate the commission.
+         *
+         * @return \WC_Order
+         */
+        public function get_order(): \WC_Order
+        {
+        }
+        /**
+         * @return array
+         */
+        protected function get_coupon_infos(): array
+        {
+        }
+        /**
+         * Set order to calculate commission.
+         *
+         * @param WC_Order $order
+         * @return void
+         */
+        public function set_order(\WC_Order $order): void
+        {
+        }
+        /**
+         * Calculate order line item commission.
+         *
+         * @since 4.0.0
+         *
+         * @return OrderLineItemCommission |null
+         */
+        public function calculate(): \WeDevs\Dokan\Commission\OrderLineItemCommission
+        {
+        }
+        /**
+         * Set the commission data to this class.
+         *
+         * @param Commission $commission
+         * @return self
+         */
+        protected function set_commission_data(\WeDevs\Dokan\Commission\Model\Commission $commission): self
+        {
+        }
+        /**
+         * Calculate and get the vendor earning & admin commission in refunded item.
+         *
+         * @param WC_Order_Item $refund_item
+         * @return Commission
+         */
+        public function calculate_for_refund_item(\WC_Order_Item $refund_item): \WeDevs\Dokan\Commission\Model\Commission
+        {
+        }
+        /**
+         * Check if the refund should be adjusted.
+         *
+         * @since 4.0.0
+         *
+         * @return Commission
+         */
+        public function adjust_refunds(\WeDevs\Dokan\Commission\Model\Commission $commission): \WeDevs\Dokan\Commission\Model\Commission
+        {
+        }
+        /**
+         * Retrieve commission data from order item meta.
+         *
+         * @since 4.0.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Commission
+         *
+         * @throw \Exception
+         */
+        public function get(): \WeDevs\Dokan\Commission\Model\Commission
+        {
+        }
+    }
+    /**
+     * Class OrderLineItemCommission - Calculate order line item commission
+     *
+     * @since 4.0.0
+     */
+    class ProductCommission extends \WeDevs\Dokan\Commission\AbstractCommissionCalculator
+    {
+        protected ?int $product_id;
+        protected ?int $category_id;
+        protected ?int $vendor_id;
+        protected $total_amount;
+        public function get_product_id(): ?int
+        {
+        }
+        public function set_product_id(?int $product_id): void
+        {
+        }
+        public function set_category_id(?int $category_id): void
+        {
+        }
+        public function set_vendor_id(?int $vendor_id): void
+        {
+        }
+        /**
+         * @param mixed $total_amount
+         */
+        public function set_total_amount($total_amount): void
+        {
+        }
+        /**
+         * Calculate order line item commission.
+         *
+         * @since 4.0.0
+         *
+         * @param $auto_save
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Commission|DokanException
+         */
+        public function calculate(): \WeDevs\Dokan\Commission\Model\Commission
+        {
+        }
+        /**
+         * Retrieve commission data from order item meta.
+         *
+         * @since 4.0.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Commission
+         */
+        public function get(): \WeDevs\Dokan\Commission\Model\Commission
+        {
+        }
+    }
+    class RecalculateCommissions
+    {
+        const RECALCULATE_ORDER_ID_OPTION_PREFIX = 'dokan_commission_recalculate_order_id:';
+        public function __construct()
+        {
+        }
+        public function recalculate_commission_when_any_new_line_item_added($item_id, $item, $order_id)
+        {
+        }
+        public function recalculate_commission_when_any_line_item_edited($order_id, $items)
+        {
+        }
+        /**
+         * @param                               $item_id
+         * @param                               $item
+         * @param                               $changed_stock
+         * @param bool|WC_Order|WC_Order_Refund $order
+         *
+         * @return void
+         */
+        public function recalculate_commission_when_any_line_item_removed($item_id, $item, $changed_stock, $order)
+        {
+        }
+        public function overwrite_woocommerce_remove_order_tax_method()
+        {
+        }
+        public function remove_order_tax()
+        {
+        }
+        /**
+         * Overwrite WooCommerce's remove_order_coupon method.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function overwrite_woocommerce_remove_order_coupon_method()
+        {
+        }
+        /**
+         * Overwrite WooCommerce's add_coupon_discount_method method.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function overwrite_woocommerce_add_coupon_discount_method()
+        {
+        }
+        /**
+         * Remove a coupon from an order on ajax request.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function remove_order_coupon()
+        {
+        }
+        /**
+         * Adjust admin commission and vendor earning after coupon removed.
+         *
+         * @since 4.0.0
+         *
+         * @param int $order_id
+         *
+         * @return void
+         */
+        public function adjust_admin_commission_and_vendor_earning_after_coupon_removed($order_id)
+        {
+        }
+        /**
+         * Adjust admin commission and vendor earning.
+         *
+         * @param WC_Order $order
+         *
+         * @return void
+         */
+        protected function adjust_admin_commission_and_vendor_earning($order)
+        {
+        }
+        /**
+         * Add order discount via Ajax.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function add_coupon_discount()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Commission\Settings {
+    /**
+     * Setting interface class.
+     *
+     * @since 3.14.0
+     */
+    interface InterfaceSetting
+    {
+        /**
+         * Get commission setting.
+         *
+         * @since 3.14.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function get(): \WeDevs\Dokan\Commission\Model\Setting;
+    }
+    /**
+     * Default setting class
+     *
+     * @since 3.14.0
+     */
+    class DefaultSetting implements \WeDevs\Dokan\Commission\Settings\InterfaceSetting
+    {
+        const TYPE = \WeDevs\Dokan\Commission\Formula\Fixed::SOURCE;
+        /**
+         * Returns default setting.
+         *
+         * @since 3.14.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function get(): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+    }
+    class GlobalSetting implements \WeDevs\Dokan\Commission\Settings\InterfaceSetting
+    {
+        /**
+         * Product id to get a commission.
+         *
+         * @since 3.14.0
+         *
+         * @var int
+         */
+        protected int $category_id;
+        /**
+         * Class constructor.
+         *
+         * @since 3.14.0
+         *
+         * @param int $category_id
+         */
+        public function __construct(int $category_id)
+        {
+        }
+        /**
+         * Returns product commission settings data.
+         *
+         * @since 3.14.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function get(): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Saves and returns product commission settings data.
+         *
+         * @since 3.14.0
+         *
+         * @param array $setting {
+         *
+         *     @type string $percentage
+         *     @type string $type
+         *     @type string $flat
+         *     @type array  $category_commissions
+         * }
+         *
+         * @return void
+         */
+        public function save(array $setting): void
+        {
+        }
+    }
+    class OrderItem implements \WeDevs\Dokan\Commission\Settings\InterfaceSetting
+    {
+        protected \WC_Order_Item $order_item;
+        protected $product_price_to_calculate_commission;
+        /**
+         * Class constructor.
+         *
+         * @since 3.14.0
+         *
+         * @param array $data
+         */
+        public function __construct(\WC_Order_Item $order_item)
+        {
+        }
+        /**
+         * Rrturns order item commission settings.
+         *
+         * @since 3.14.0
+         *
+         * @throws \Exception
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function get(): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Saves order item commission settings.
+         *
+         * @since 3.14.0
+         *
+         * @param array $setting
+         *
+         * @throws \Exception
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function save(array $setting): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+    }
+    class Product implements \WeDevs\Dokan\Commission\Settings\InterfaceSetting
+    {
+        /**
+         * Product id to get a commission.
+         *
+         * @since 3.14.0
+         *
+         * @var WC_Product
+         */
+        protected $product;
+        public function __construct($product_id)
+        {
+        }
+        /**
+         * Returns product commission settings data.
+         *
+         * @since 3.14.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function get(): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Saves and returns product commission settings data.
+         *
+         * @since 3.14.0
+         *
+         * @param array $setting {
+         *
+         *     @type string $percentage
+         *     @type string $type
+         *     @type string $flat
+         * }
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function save(array $setting): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+    }
+    class Vendor implements \WeDevs\Dokan\Commission\Settings\InterfaceSetting
+    {
+        protected int $category_id;
+        /**
+         * Product id to get a commission.
+         *
+         * @since 3.14.0
+         *
+         * @var \WeDevs\Dokan\Vendor\Vendor
+         */
+        protected $vendor;
+        public function __construct($vendor_id, int $category_id = 0)
+        {
+        }
+        /**
+         * Returns product commission settings data.
+         *
+         * @since 3.14.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function get(): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Saves and returns product commission settings data.
+         *
+         * @since 3.14.0
+         *
+         * @param array $setting {
+         *
+         *     @type string $percentage
+         *     @type string $type
+         *     @type string $flat
+         *     @type array  $category_commissions
+         * }
+         *
+         * @return Setting
+         */
+        public function save(array $setting): \WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        public function delete()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Commission\Strategies {
+    abstract class AbstractStrategy
+    {
+        protected ?\WeDevs\Dokan\Commission\Strategies\AbstractStrategy $next = null;
+        protected ?\WeDevs\Dokan\Commission\Model\Setting $settings;
+        public function __construct()
+        {
+        }
+        /**
+         * Returns commission strategy source.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        abstract public function get_source(): string;
+        /**
+         * Returns commission settings.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        abstract public function set_settings();
+        /**
+         * Returns the commission settings from the first applicable strategy in the chain.
+         *
+         * @since 4.0.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting|null
+         */
+        public function get_settings(): ?\WeDevs\Dokan\Commission\Model\Setting
+        {
+        }
+        /**
+         * Returns the first strategy in the chain that has applicable commission settings.
+         *
+         * @since 4.0.0
+         *
+         * @return \WeDevs\Dokan\Commission\Strategies\AbstractStrategy|null
+         */
+        public function get_eligible_strategy(): ?\WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+        {
+        }
+        /**
+         * Gets the next fallback strategy in the chain.
+         *
+         * @since 4.0.0
+         *
+         * @return \WeDevs\Dokan\Commission\Strategies\AbstractStrategy|null
+         */
+        public function get_next(): ?\WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+        {
+        }
+        /**
+         * Sets the next fallback strategy in the chain.
+         *
+         * @since 4.0.0
+         *
+         * @return \WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+         */
+        abstract public function set_next(): \WeDevs\Dokan\Commission\Strategies\AbstractStrategy;
+        /**
+         * Saves the applicable commission settings to the order item.
+         *
+         * Only applies if this is an instance of OrderItemStrategy and a valid setting is found.
+         *
+         * @since 4.0.0
+         *
+         * @param \WC_Order_Item $order_item WooCommerce order item instance.
+         *
+         * @return void
+         */
+        public function save_settings_to_order_item(\WC_Order_Item $order_item): void
+        {
+        }
+        /**
+         * Returns an instance of OrderItemSetting to save commission settings to the order item.
+         * Useful for mocking during unit tests.
+         *
+         * @since 4.0.0
+         *
+         * @param \WC_Order_Item $order_item WooCommerce order item.
+         *
+         * @return \WeDevs\Dokan\Commission\Settings\OrderItem
+         */
+        protected function get_order_item_setting_saver(\WC_Order_Item $order_item): \WeDevs\Dokan\Commission\Settings\OrderItem
+        {
+        }
+    }
+    class DefaultStrategy extends \WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+    {
+        /**
+         * Global commission strategy source.
+         *
+         * @since 3.14.0
+         */
+        const SOURCE = 'default';
+        /**
+         * Returns global strategy source.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_source(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function set_next(): \WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+        {
+        }
+        /**
+         * Returns global commission settings.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function set_settings()
+        {
+        }
+    }
+    class GlobalStrategy extends \WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+    {
+        /**
+         * Global commission strategy source.
+         *
+         * @since 3.14.0
+         */
+        const SOURCE = 'global';
+        /**
+         * Catgory id for category commission.
+         *
+         * @since 3.14.0
+         *
+         * @var mixed
+         */
+        protected $category_id;
+        /**
+         * Class constructor.
+         *
+         * @since 3.14.0
+         *
+         * @param $category_id
+         */
+        public function __construct($category_id)
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function set_next(): \WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+        {
+        }
+        /**
+         * Returns category id.
+         *
+         * @since 3.14.0
+         *
+         * @return mixed
+         */
+        public function get_category_id()
+        {
+        }
+        /**
+         * Returns global strategy source.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_source(): string
+        {
+        }
+        /**
+         * Returns global commission settings.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function set_settings()
+        {
+        }
+    }
+    /**
+     * If an order has been purchased previously, calculate the earning with the previously stated commission rate.
+     * It's important cause commission rate may get changed by admin during the order table `re-generation`.
+     */
+    class OrderItem extends \WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+    {
+        /**
+         * Order item commission strategy source.
+         *
+         * @since 3.14.0
+         */
+        const SOURCE = 'order_item';
+        /**
+         * Order item id.
+         *
+         * @since 3.14.0
+         *
+         * @var \WC_Order_Item_Product $order_item
+         */
+        protected $order_item;
+        /**
+         * The vendor id of the order item.
+         *
+         * @var integer
+         */
+        protected $vendor_id = 0;
+        /**
+         * Class constructor.
+         *
+         * @since 3.14.0
+         *
+         * @param \WC_Order_Item_Product $order_item
+         * @param int|float  $total_amount
+         * @param int        $total_quantity
+         *
+         * @return void
+         */
+        public function __construct($order_item = '', $vendor_id = 0)
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function set_next(): \WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+        {
+        }
+        /**
+         * Returns order item strategy source.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_source(): string
+        {
+        }
+        /**
+         * Returns order item commission settings.
+         *
+         * @since 3.14.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function set_settings()
+        {
+        }
+        /**
+         * Returns order item id.
+         *
+         * @since 4.0.0
+         *
+         * @return int|mixed|string
+         */
+        public function get_order_item_id()
+        {
+        }
+    }
+    class Product extends \WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+    {
+        /**
+         * Product id
+         *
+         * @since 3.14.0
+         *
+         * @var int
+         */
+        protected $product_id;
+        protected $vendor_id;
+        protected ?int $category_id;
+        /**
+         * Product strategy source
+         *
+         * @since 3.14.0
+         */
+        const SOURCE = 'product';
+        /**
+         * Class constructor.
+         *
+         * @since 3.14.0
+         *
+         * @param $product_id
+         */
+        public function __construct($product_id, $vendor_id = 0, $category_id = null)
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function set_next(): \WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+        {
+        }
+        /**
+         * Get category for the given product.
+         *
+         * @param int $product_id
+         * @return void|int
+         */
+        protected function get_category_from_product($product_id)
+        {
+        }
+        /**
+         * Returns product strategy source.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_source(): string
+        {
+        }
+        /**
+         * Returns product commission settings.
+         *
+         * @since 3.14.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function set_settings()
+        {
+        }
+    }
+    class Vendor extends \WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+    {
+        /**
+         * Vendor data.
+         *
+         * @since 3.14.0
+         *
+         * @var int
+         */
+        protected $vendor_id;
+        /**
+         * Vendor strategy source.
+         *
+         * @since 3.14.0
+         */
+        const SOURCE = 'vendor';
+        /**
+         * Category id.
+         *
+         * @since 3.14.0
+         *
+         * @var mixed
+         */
+        protected $category_id;
+        /**
+         * Class constructor.
+         *
+         * @since 3.14.0
+         *
+         * @param int $vendor_id
+         * @param int $category_id
+         *
+         * @return void
+         */
+        public function __construct($vendor_id, $category_id)
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function set_next(): \WeDevs\Dokan\Commission\Strategies\AbstractStrategy
+        {
+        }
+        /**
+         * Returns category id.
+         *
+         * @since 3.14.0
+         *
+         * @return int
+         */
+        public function get_category_id()
+        {
+        }
+        /**
+         * Returns vendor commission source.
+         *
+         * @since 3.14.0
+         *
+         * @return string
+         */
+        public function get_source(): string
+        {
+        }
+        /**
+         * Returns vendor commission settings.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function set_settings()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Commission\Upugrader {
+    class Update_Category_Commission
+    {
+        /**
+         * The batch size for processing categories
+         *
+         * @since 3.14.0
+         */
+        const BATCH_SIZE = 20;
+        /**
+         * The hook name for processing batches
+         *
+         * @since 3.14.0
+         */
+        const PROCESS_BATCH_HOOK = 'process_category_batch';
+        const PROCESS_BATCH_HOOK_CREATOR = 'process_category_batch_creator';
+        /**
+         *
+         * @since 3.14.0
+         */
+        const PROCESS_ITEM_HOOK = 'process_category_item';
+        /**
+         * Initialize the processor
+         */
+        public function init_hooks()
+        {
+        }
+        /**
+         * Start the batch processing
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function start_processing()
+        {
+        }
+        /**
+         * Batch queue creator.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function process_batch_creator()
+        {
+        }
+        /**
+         * Process a batch of categories
+         *
+         * @since 3.14.0
+         *
+         * @param int $page_number Current page number
+         *
+         * @return void
+         */
+        public function process_batch($offset)
+        {
+        }
+        /**
+         * Schedule the next batch of categories
+         *
+         * @since 3.14.0
+         *
+         * @param int $page_number Next page number to process
+         *
+         * @return void
+         */
+        protected function schedule_next_batch($offset)
+        {
+        }
+        /**
+         * Schedule a category item for processing.
+         *
+         * @since 3.14.0
+         *
+         * @param $term
+         *
+         * @return void
+         */
+        private function schedule_cat_item($term)
+        {
+        }
+        /**
+         * Get a batch of categories.
+         *
+         * @since 3.14.0
+         *
+         * @param int $page_number Page number to fetch
+         *
+         * @return array Array of term objects
+         */
+        protected function get_categories_batch($offset)
+        {
+        }
+        /**
+         * Get the total number of categories
+         *
+         * @since 3.14.0
+         *
+         * @return int[]|string|string[]|\WP_Error|\WP_Term[]
+         */
+        protected function category_count()
+        {
+        }
+        /**
+         * Process a single category.
+         *
+         * @since 3.14.0
+         *
+         * @param int $term Category term object
+         *
+         * @return void
+         */
+        public function process_single_category($term_id)
+        {
+        }
+        /**
+         * Check if processing is currently running.
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        public function is_processing()
+        {
+        }
+    }
+    class Update_Product_Commission
+    {
+        /**
+         * The batch size for processing products
+         *
+         * @since 3.14.0
+         */
+        const BATCH_SIZE = 10;
+        /**
+         * The hook name for processing batches
+         *
+         * @since 3.14.0
+         */
+        const PROCESS_BATCH_HOOK = 'process_product_batch';
+        const PROCESS_BATCH_HOOK_CREATOR = 'process_product_batch_creator';
+        /**
+         *
+         * @since 3.14.0
+         */
+        const PROCESS_ITEM_HOOK = 'process_product_item';
+        public function init_hooks()
+        {
+        }
+        /**
+         * Start the batch processing
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function start_processing()
+        {
+        }
+        /**
+         * Batch queue creator.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function process_batch_creator()
+        {
+        }
+        /**
+         * Process a batch of products
+         *
+         * @since 3.14.0
+         *
+         * @param int $offset Current offset
+         * @param int $total_products Total number of products
+         *
+         * @return void
+         */
+        public function process_batch($offset, $total_products)
+        {
+        }
+        /**
+         * Schedule the next batch of products
+         *
+         * @since 3.14.0
+         *
+         * @param int $offset Current offset
+         * @param int $total_products Total number of products
+         *
+         * @return void
+         */
+        protected function schedule_next_batch($offset, $total_products)
+        {
+        }
+        /**
+         * Schedule a single product for processing.
+         *
+         * @since 3.14.0
+         *
+         * @param $item
+         *
+         * @return void
+         */
+        private function schedule_item($item)
+        {
+        }
+        /**
+         * Get a batch of products
+         *
+         * @since 3.14.0
+         *
+         * @param int $offset Current offset
+         *
+         * @return WC_Product[] Array of product objects
+         */
+        protected function get_products_batch($offset)
+        {
+        }
+        /**
+         * Get total number of products
+         *
+         * @since 3.14.0
+         *
+         * @return int
+         */
+        protected function get_total_products()
+        {
+        }
+        /**
+         * Process a single product
+         * Customize this method based on what you need to do with each product
+         *
+         * @since 3.14.0
+         *
+         * @param int $product
+         *
+         * @return void
+         */
+        public function process_single_product($product_id)
+        {
+        }
+        /**
+         * Check if processing is currently running
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        public function is_processing()
+        {
+        }
+    }
+    class Update_Vendor_Commission
+    {
+        /**
+         * Hook names for processing
+         */
+        const PROCESS_BATCH_HOOK_CREATOR = 'process_vendor_batch_creator';
+        const PROCESS_BATCH_HOOK = 'process_vendor_batch';
+        const PROCESS_ITEM_HOOK = 'process_vendor_item';
+        /**
+         * Batch size
+         */
+        const BATCH_SIZE = 10;
+        /**
+         * Initialize the processor
+         *
+         * @since 3.14.0
+         */
+        public function init_hooks()
+        {
+        }
+        /**
+         * Start the batch processing
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function start_processing()
+        {
+        }
+        /**
+         * Batch queue creator.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function process_batch_creator()
+        {
+        }
+        /**
+         * Process a batch of vendors
+         *
+         * @since 3.14.0
+         *
+         * @param int $page_number Current page number
+         * @param int $max_pages   Total number of pages
+         *
+         * @return void
+         */
+        public function process_batch($page_number, $max_pages)
+        {
+        }
+        /**
+         * Get a batch of vendors
+         *
+         * @since 3.14.0
+         *
+         * @param int $page_number Page number to fetch
+         *
+         * @return \WeDevs\Dokan\Vendor\Vendor[] Array of vendor objects
+         */
+        protected function get_vendors_batch($page_number)
+        {
+        }
+        /**
+         * Schedule an individual vendor for processing
+         *
+         * @since 3.14.0
+         *
+         * @param int $vendor_id
+         *
+         * @return void
+         */
+        private function schedule_item($vendor_id)
+        {
+        }
+        /**
+         * Process a single vendor
+         *
+         * @since 3.14.0
+         *
+         * @param int $vendor_id Vendor ID
+         *
+         * @return void
+         */
+        public function process_single_vendor($vendor_id)
+        {
+        }
+        /**
+         * Log vendor update status
+         *
+         * @since 3.14.0
+         *
+         * @param int    $vendor_id
+         * @param bool   $success
+         * @param string $error_message
+         *
+         * @return void
+         */
+        private function log_vendor_update($vendor_id, $success, $error_message = '')
+        {
+        }
+        /**
+         * Check if processing is currently running
+         *
+         * @since 3.14.0
+         *
+         * @return bool
+         */
+        public function is_processing()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan {
     /**
      * Core Class for Dokan Main functionality
      *
@@ -7364,6 +13674,141 @@ namespace WeDevs\Dokan\Dashboard {
     }
 }
 namespace WeDevs\Dokan\Dashboard\Templates {
+    /**
+     * Dokan Template Dashboard Class
+     *
+     * @author weDves
+     */
+    class Dashboard
+    {
+        /**
+         * @var int $user_id current user id
+         */
+        protected $user_id;
+        /**
+         * @var array $order_count
+         */
+        protected $orders_count;
+        /**
+         * Load autometically when class inistantiate
+         * hooked up all actions and filters
+         *
+         * @since 2.4
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Get Seller Dashboard Notice
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function show_seller_dashboard_notice()
+        {
+        }
+        /**
+         * Get big counter widget in dashboard
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function get_big_counter_widgets()
+        {
+        }
+        /**
+         * Get order widget in Dashboard
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function get_orders_widgets()
+        {
+        }
+        /**
+         * Get product widgets in dashboard
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function get_products_widgets()
+        {
+        }
+        /**
+         * Get sales report chart widget in dashboard
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function get_sales_report_chart_widget()
+        {
+        }
+        /**
+         * Get orders Count
+         *
+         * @since 2.4
+         *
+         * @return array
+         */
+        public function get_orders_count()
+        {
+        }
+        /**
+         * Get Post Count
+         *
+         * @since 2.4
+         *
+         * @return array
+         */
+        public function get_post_counts()
+        {
+        }
+        /**
+         * Get Comments Count
+         *
+         * @since 2.4
+         *
+         * @return array
+         */
+        public function get_comment_counts()
+        {
+        }
+        /**
+         * Get Pageview Count
+         *
+         * @since 2.4
+         *
+         * @return integer
+         */
+        public function get_pageviews()
+        {
+        }
+        /**
+         * Get Author Sales Count
+         *
+         * @since 2.4
+         *
+         * @return integer
+         */
+        public function get_earning()
+        {
+        }
+        /**
+         * Get Seller Balance
+         *
+         * @since 2.4
+         *
+         * @return integer
+         */
+        public function get_seller_balance()
+        {
+        }
+    }
     class Main
     {
         public function __construct()
@@ -7430,6 +13875,51 @@ namespace WeDevs\Dokan\Dashboard\Templates {
          * @return void
          */
         public function load_add_category_modal()
+        {
+        }
+    }
+    class NewDashboard
+    {
+        /**
+         * Class constructor
+         *
+         * @since 4.0.0
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Add query var for new dashboard.
+         *
+         * @since 4.0.0
+         *
+         * @param array $query_vars
+         *
+         * @return array
+         */
+        public function add_query_var($query_vars)
+        {
+        }
+        /**
+         * Load new dashboard content.
+         *
+         * @since 4.0.0
+         *
+         * @param array $query_vars
+         *
+         * @return void
+         */
+        public function new_dashboard_content($query_vars)
+        {
+        }
+        /**
+         * Enqueue scripts for new dashboard.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function enqueue_scripts()
         {
         }
     }
@@ -7539,6 +14029,187 @@ namespace WeDevs\Dokan\Dashboard\Templates {
          * @return array
          */
         public function add_pending_order_count($menu)
+        {
+        }
+    }
+    /**
+     *  Product Functionality for Product Handler
+     *
+     * @since   2.4
+     *
+     * @package dokan
+     */
+    class Products
+    {
+        public static $errors;
+        public static $product_cat;
+        public static $post_content;
+        /**
+         *  Load autometially when class initiate
+         *
+         * @since 2.4
+         *
+         * @uses  actions
+         * @uses  filters
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set errors
+         *
+         * @since 3.0.0
+         *
+         * @param void $errors
+         *
+         * @return void
+         */
+        public function set_errors($errors)
+        {
+        }
+        /**
+         * Verify if the instance contains errors
+         *
+         * @since 3.0.0
+         *
+         * @return bool
+         */
+        public function has_errors()
+        {
+        }
+        /**
+         * Retrieve all errors
+         *
+         * @since 3.0.0
+         *
+         * @return array
+         */
+        public function get_errors()
+        {
+        }
+        /**
+         * Load product
+         *
+         * @since 1.0.0
+         *
+         * @return void
+         */
+        public static function load_download_virtual_template($post, $post_id)
+        {
+        }
+        /**
+         * Load invendor template
+         *
+         * @since 2.9.2
+         *
+         * @uses apply_filters() Calls 'dokan_hide_inventory_template' to allow plugins
+         *                       to conditionally hide the inventory template section.
+         *                       Return true to hide, false to display.
+         * /
+         * @return void
+         */
+        public static function load_inventory_template($post, $post_id)
+        {
+        }
+        /**
+         * Load downloadable template
+         *
+         * @since 2.9.2
+         *
+         * @return void
+         */
+        public static function load_downloadable_template($post, $post_id)
+        {
+        }
+        /**
+         * Load others item template
+         *
+         * @since 2.9.2
+         *
+         * @return void
+         */
+        public static function load_others_template($post, $post_id)
+        {
+        }
+        /**
+         * Render New Product Template for only free version
+         *
+         * @since 2.4
+         *
+         * @param array $query_vars
+         *
+         * @return void
+         */
+        public function render_new_product_template($query_vars)
+        {
+        }
+        /**
+         * Load Product Edit Template
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function load_product_edit_template()
+        {
+        }
+        /**
+         * Render Product Edit Page for Email.
+         *
+         * @since 3.9.1
+         *
+         * @return void
+         */
+        public function render_product_edit_page_for_email()
+        {
+        }
+        /**
+         * Render Product Listing Template
+         *
+         * @since 2.4
+         *
+         * @param string $action
+         *
+         * @return void
+         */
+        public function render_product_listing_template($action)
+        {
+        }
+        /**
+         * Handle product add
+         *
+         * @return void
+         */
+        public function handle_product_add()
+        {
+        }
+        /**
+         * Handle product update
+         *
+         * @return void
+         */
+        public function handle_product_update()
+        {
+        }
+        public function load_add_new_product_popup()
+        {
+        }
+        /**
+         * Add new product open modal html
+         *
+         * @since 3.7.0
+         *
+         * @return void
+         */
+        public function load_add_new_product_modal()
+        {
+        }
+        /**
+         * Handle delete product link
+         *
+         * @return void
+         */
+        public function handle_delete_product()
         {
         }
     }
@@ -7673,6 +14344,224 @@ namespace WeDevs\Dokan\Dashboard\Templates {
          * @return string[]
          */
         protected function get_transaction_date()
+        {
+        }
+    }
+    /**
+     * Dokan settings Class
+     *
+     * @author weDves
+     */
+    class Settings
+    {
+        public $currentuser;
+        public $profile_info;
+        /**
+         * Loading autometically when class initiate
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Show Seller Enable Error Message
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function show_enable_seller_message()
+        {
+        }
+        /**
+         * Render Settings Header
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function render_settings_header()
+        {
+        }
+        /**
+         * Render Settings help
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function render_settings_help()
+        {
+        }
+        /**
+         * Render Settings Progressbar
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function render_settings_load_progressbar()
+        {
+        }
+        /**
+         * Render Settings Content
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function render_settings_content()
+        {
+        }
+        /**
+         * Load Store Content
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function load_store_content()
+        {
+        }
+        /**
+         * Get sellers connected and not connected payment methods.
+         *
+         * @param $seller_id
+         *
+         * @param $active_payment_methods
+         *
+         * @return array
+         */
+        public function get_seller_payment_methods($seller_id = '', $active_payment_methods = []): array
+        {
+        }
+        /**
+         * Validate payment access and check active methods
+         *
+         * @since 4.2.9
+         *
+         * @param array $active_methods
+         *
+         * @return bool Returns true if validation passes, false otherwise
+         */
+        protected function validate_payment_access($active_methods)
+        {
+        }
+        /**
+         * Load Payment Content
+         *
+         * @since 2.4
+         *
+         * @param string $slug_suffix
+         *
+         * @return void
+         */
+        public function load_payment_content($slug_suffix)
+        {
+        }
+        /**
+         * Save settings via ajax
+         *
+         * @since 2.4
+         *
+         * @return void
+         */
+        public function ajax_settings()
+        {
+        }
+        /**
+         * Validate profile settings
+         *
+         * @return bool|WP_Error
+         */
+        private function profile_validate()
+        {
+        }
+        /**
+         * Validate store settings
+         *
+         * @return bool|WP_Error
+         */
+        private function store_validate()
+        {
+        }
+        /**
+         * Validate payment settings
+         *
+         * @since 2.4
+         *
+         * @return bool|WP_Error
+         */
+        private function payment_validate()
+        {
+        }
+        /**
+         * Save store settings
+         *
+         * @return void
+         */
+        public function insert_settings_info()
+        {
+        }
+        /**
+         * Dokan Get Category Format
+         *
+         * @since 1.0
+         *
+         * @return array
+         */
+        public function get_dokan_categories()
+        {
+        }
+        /**
+         * Get proper heading for payments of vendor dashboard payment settings
+         *
+         * @since 3.4.3
+         *
+         * @param string $slug
+         * @param string $heading
+         *
+         * @return string
+         */
+        private function get_payment_heading($slug, $heading)
+        {
+        }
+        /**
+         * Check if a seller is connected to a payment method
+         *
+         * @since 3.5.1
+         *
+         * @param $payment_method_id
+         * @param $seller_id
+         *
+         * @return bool
+         */
+        public function is_seller_connected($payment_method_id, $seller_id)
+        {
+        }
+        /**
+         * Get payment method details from the method keys
+         *
+         * @since 3.4.3
+         *
+         * @param $method_keys
+         *
+         * @return array
+         */
+        private function get_payment_methods($method_keys)
+        {
+        }
+        /**
+         * Get Method title to show in frontend
+         *
+         * @since 3.6.1
+         *
+         * @return string
+         */
+        public function get_method_frontend_title($title, $method)
         {
         }
     }
@@ -7931,6 +14820,770 @@ namespace WeDevs\Dokan\Dashboard\Templates {
         }
     }
 }
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container {
+    interface ContainerAwareInterface
+    {
+        public function getContainer(): \WeDevs\Dokan\ThirdParty\Packages\League\Container\DefinitionContainerInterface;
+        public function setContainer(\WeDevs\Dokan\ThirdParty\Packages\League\Container\DefinitionContainerInterface $container): \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareInterface;
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider {
+    interface ServiceProviderInterface extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareInterface
+    {
+        public function getIdentifier(): string;
+        public function provides(string $id): bool;
+        public function register(): void;
+        public function setIdentifier(string $id): \WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderInterface;
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container {
+    trait ContainerAwareTrait
+    {
+        /**
+         * @var ?DefinitionContainerInterface
+         */
+        protected $container;
+        public function setContainer(\WeDevs\Dokan\ThirdParty\Packages\League\Container\DefinitionContainerInterface $container): \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareInterface
+        {
+        }
+        public function getContainer(): \WeDevs\Dokan\ThirdParty\Packages\League\Container\DefinitionContainerInterface
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider {
+    abstract class AbstractServiceProvider implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderInterface
+    {
+        use \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareTrait;
+        /**
+         * @var string
+         */
+        protected $identifier;
+        public function getIdentifier(): string
+        {
+        }
+        public function setIdentifier(string $id): \WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderInterface
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\DependencyManagement {
+    /**
+     * Base class for the service providers used to register classes in the container.
+     *
+     * See the documentation of the original class this one is based on (https://container.thephpleague.com/4.x/service-providers)
+     * for basic usage details. What this class adds is:
+     * Note that `AbstractInterfaceServiceProvider` likely serves as a better base class for service providers
+     * tasked with registering classes that implement interfaces.
+     *
+     * @since 3.13.0
+     */
+    abstract class BaseServiceProvider extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\AbstractServiceProvider
+    {
+        protected $services = [];
+        protected $tags = [];
+        /**
+         * {@inheritDoc}
+         *
+         * Check if the service provider can provide the given service alias.
+         *
+         * @param string $alias The service alias to check.
+         * @return bool True if the service provider can provide the service, false otherwise.
+         */
+        public function provides(string $alias): bool
+        {
+        }
+        /**
+         * Register a class in the container and add tags for all the interfaces it implements.
+         *
+         * This also updates the `$this->provides` property with the interfaces provided by the class, and ensures
+         * that the property doesn't contain duplicates.
+         *
+         * @param string     $id       Entry ID (typically a class or interface name).
+         * @param mixed|null $concrete Concrete entity to register under that ID, null for automatic creation.
+         * @param bool       $shared   Whether to register the class as shared (`get` always returns the same instance)
+         *                             or not.
+         *
+         * @return DefinitionInterface
+         */
+        protected function add_with_implements_tags(string $id, $concrete = null, bool $shared = false): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        /**
+         * Register a shared class in the container and add tags for all the interfaces it implements.
+         *
+         * @param string     $id       Entry ID (typically a class or interface name).
+         * @param mixed|null $concrete Concrete entity to register under that ID, null for automatic creation.
+         *
+         * @return DefinitionInterface
+         */
+        protected function share_with_implements_tags(string $id, $concrete = null): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        /**
+         * Adds tags to the given definition.
+         *
+         * @param DefinitionInterface $definition The definition to which tags will be added.
+         * @param array $tags An array of tags to add to the definition.
+         *
+         * @return void
+         */
+        protected function add_tags(\WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface $definition, $tags)
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider {
+    interface BootableServiceProviderInterface extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderInterface
+    {
+        /**
+         * Method will be invoked on registration of a service provider implementing
+         * this interface. Provides ability for eager loading of Service Providers.
+         *
+         * @return void
+         */
+        public function boot(): void;
+    }
+}
+namespace WeDevs\Dokan\DependencyManagement {
+    /**
+     * Base class for the service providers used to register classes in the container or/and to register the other service providers.
+     *
+     * See the documentation of the original class this one is based on (https://container.thephpleague.com/4.x/service-providers)
+     * for basic usage details. What this class adds is:
+     * Note that `AbstractInterfaceServiceProvider` likely serves as a better base class for service providers
+     * tasked with registering classes that implement interfaces.
+     *
+     * @since 3.13.0
+     */
+    abstract class BootableServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\BootableServiceProviderInterface
+    {
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\Psr\Container {
+    /**
+     * Describes the interface of a container that exposes methods to read its entries.
+     */
+    interface ContainerInterface
+    {
+        /**
+         * Finds an entry of the container by its identifier and returns it.
+         *
+         * @param string $id Identifier of the entry to look for.
+         *
+         * @throws NotFoundExceptionInterface  No entry was found for **this** identifier.
+         * @throws ContainerExceptionInterface Error while retrieving the entry.
+         *
+         * @return mixed Entry.
+         */
+        public function get(string $id);
+        /**
+         * Returns true if the container can return an entry for the given identifier.
+         * Returns false otherwise.
+         *
+         * `has($id)` returning true does not mean that `get($id)` will not throw an exception.
+         * It does however mean that `get($id)` will not throw a `NotFoundExceptionInterface`.
+         *
+         * @param string $id Identifier of the entry to look for.
+         *
+         * @return bool
+         */
+        public function has(string $id): bool;
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container {
+    interface DefinitionContainerInterface extends \WeDevs\Dokan\ThirdParty\Packages\Psr\Container\ContainerInterface
+    {
+        public function add(string $id, $concrete = null): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function addServiceProvider(\WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderInterface $provider): self;
+        public function addShared(string $id, $concrete = null): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function extend(string $id): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function getNew($id);
+        public function inflector(string $type, ?callable $callback = null): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorInterface;
+    }
+    class Container implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\DefinitionContainerInterface
+    {
+        /**
+         * @var boolean
+         */
+        protected $defaultToShared = false;
+        /**
+         * @var DefinitionAggregateInterface
+         */
+        protected $definitions;
+        /**
+         * @var ServiceProviderAggregateInterface
+         */
+        protected $providers;
+        /**
+         * @var InflectorAggregateInterface
+         */
+        protected $inflectors;
+        /**
+         * @var ContainerInterface[]
+         */
+        protected $delegates = [];
+        public function __construct(?\WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionAggregateInterface $definitions = null, ?\WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderAggregateInterface $providers = null, ?\WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorAggregateInterface $inflectors = null)
+        {
+        }
+        public function add(string $id, $concrete = null): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function addShared(string $id, $concrete = null): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function defaultToShared(bool $shared = true): \WeDevs\Dokan\ThirdParty\Packages\Psr\Container\ContainerInterface
+        {
+        }
+        public function extend(string $id): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function addServiceProvider(\WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderInterface $provider): \WeDevs\Dokan\ThirdParty\Packages\League\Container\DefinitionContainerInterface
+        {
+        }
+        /**
+         * @template RequestedType
+         *
+         * @param class-string<RequestedType>|string $id
+         *
+         * @return RequestedType|mixed
+         */
+        public function get($id)
+        {
+        }
+        /**
+         * @template RequestedType
+         *
+         * @param class-string<RequestedType>|string $id
+         *
+         * @return RequestedType|mixed
+         */
+        public function getNew($id)
+        {
+        }
+        public function has($id): bool
+        {
+        }
+        public function inflector(string $type, ?callable $callback = null): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorInterface
+        {
+        }
+        public function delegate(\WeDevs\Dokan\ThirdParty\Packages\Psr\Container\ContainerInterface $container): self
+        {
+        }
+        protected function resolve($id, bool $new = false)
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\DependencyManagement {
+    /**
+     * This class extends the original League's Container object by adding some functionality
+     * that we need for Dokan.
+     *
+     * @since 3.13.0
+     */
+    class Container extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Container
+    {
+    }
+    /**
+     * Class ContainerException.
+     * Used to signal error conditions related to the dependency injection container.
+     *
+     * @since 3.13.0
+     */
+    class ContainerException extends \Exception
+    {
+        /**
+         * Create a new instance of the class.
+         *
+         * @param null            $message The exception message to throw.
+         * @param int             $code The error code.
+         * @param \Exception|null $previous The previous throwable used for exception chaining.
+         */
+        public function __construct($message = null, $code = 0, \Exception $previous = null)
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument {
+    interface ArgumentResolverInterface extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareInterface
+    {
+        public function resolveArguments(array $arguments): array;
+        public function reflectArguments(\ReflectionFunctionAbstract $method, array $args = []): array;
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition {
+    interface DefinitionInterface extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareInterface
+    {
+        public function addArgument($arg): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function addArguments(array $args): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function addMethodCall(string $method, array $args = []): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function addMethodCalls(array $methods = []): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function addTag(string $tag): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function getAlias(): string;
+        public function getConcrete();
+        public function hasTag(string $tag): bool;
+        public function isShared(): bool;
+        public function resolve();
+        public function resolveNew();
+        public function setAlias(string $id): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function setConcrete($concrete): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function setShared(bool $shared): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument {
+    trait ArgumentResolverTrait
+    {
+        public function resolveArguments(array $arguments): array
+        {
+        }
+        public function reflectArguments(\ReflectionFunctionAbstract $method, array $args = []): array
+        {
+        }
+        abstract public function getContainer(): \WeDevs\Dokan\ThirdParty\Packages\League\Container\DefinitionContainerInterface;
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition {
+    class Definition implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\ArgumentResolverInterface, \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+    {
+        use \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\ArgumentResolverTrait;
+        use \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareTrait;
+        /**
+         * @var string
+         */
+        protected $alias;
+        /**
+         * @var mixed
+         */
+        protected $concrete;
+        /**
+         * @var boolean
+         */
+        protected $shared = false;
+        /**
+         * @var array
+         */
+        protected $tags = [];
+        /**
+         * @var array
+         */
+        protected $arguments = [];
+        /**
+         * @var array
+         */
+        protected $methods = [];
+        /**
+         * @var mixed
+         */
+        protected $resolved;
+        /**
+         * @param string     $id
+         * @param mixed|null $concrete
+         */
+        public function __construct(string $id, $concrete = null)
+        {
+        }
+        public function addTag(string $tag): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function hasTag(string $tag): bool
+        {
+        }
+        public function setAlias(string $id): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function getAlias(): string
+        {
+        }
+        public function setShared(bool $shared = true): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function isShared(): bool
+        {
+        }
+        public function getConcrete()
+        {
+        }
+        public function setConcrete($concrete): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function addArgument($arg): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function addArguments(array $args): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function addMethodCall(string $method, array $args = []): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function addMethodCalls(array $methods = []): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function resolve()
+        {
+        }
+        public function resolveNew()
+        {
+        }
+        /**
+         * @param callable $concrete
+         * @return mixed
+         */
+        protected function resolveCallable(callable $concrete)
+        {
+        }
+        protected function resolveClass(string $concrete): object
+        {
+        }
+        protected function invokeMethods(object $instance): object
+        {
+        }
+        public static function normaliseAlias(string $alias): string
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\DependencyManagement {
+    /**
+     * An extension of the definition class that replaces constructor injection with method injection.
+     */
+    class Definition extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\Definition
+    {
+        /**
+         * The standard method that we use for dependency injection.
+         */
+        public const INJECTION_METHOD = 'init';
+        /**
+         * Resolve a class using method injection instead of constructor injection.
+         *
+         * @param string $concrete The concrete to instantiate.
+         *
+         * @return object
+         */
+        protected function resolveClass(string $concrete): object
+        {
+        }
+        /**
+         * Invoke methods on resolved instance, including 'init'.
+         *
+         * @param object $instance The concrete to invoke methods on.
+         *
+         * @return object
+         */
+        protected function invokeMethods($instance): object
+        {
+        }
+        /**
+         * Invoke the 'init' method on a resolved object.
+         *
+         * Constructor injection causes backwards compatibility problems
+         * so we will rely on method injection via an internal method.
+         *
+         * @param object $instance The resolved object.
+         * @return void
+         */
+        private function invokeInit($instance)
+        {
+        }
+        /**
+         * Forget the cached resolved object, so the next time it's requested
+         * it will be resolved again.
+         */
+        public function forgetResolved()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\DependencyManagement\Providers {
+    /**
+     * Admin Dashboard API Service Provider
+     *
+     * @since 4.1.0
+     */
+    class AdminDashboardServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tag for services added to the container.
+         *
+         * @var array
+         */
+        protected $tags = ['admin-dashboard-service'];
+        /**
+         * Services to register
+         *
+         * @var array
+         */
+        protected $services = [
+            \WeDevs\Dokan\Admin\Dashboard\Dashboard::class,
+            \WeDevs\Dokan\Admin\Dashboard\LegacySwitcher::class,
+            \WeDevs\Dokan\Admin\Dashboard\Pages\Modules::class,
+            \WeDevs\Dokan\Admin\Dashboard\Pages\Status::class,
+            \WeDevs\Dokan\Admin\Dashboard\Pages\ProFeatures::class,
+            \WeDevs\Dokan\Admin\Dashboard\Pages\Withdraw::class,
+            \WeDevs\Dokan\Admin\Dashboard\Pages\Vendors::class,
+            \WeDevs\Dokan\Admin\Dashboard\Pages\ReverseWithdrawal::class,
+            // Added ReverseWithdrawal page service
+            \WeDevs\Dokan\Admin\Dashboard\Pages\Extensions::class,
+        ];
+        /**
+         * Register the services.
+         *
+         * @return void
+         */
+        public function register(): void
+        {
+        }
+    }
+    class AdminServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tag for services added to the container.
+         */
+        public const TAG = 'admin-service';
+        protected $services = [self::TAG, \WeDevs\Dokan\Admin\Status\Status::class];
+        /**
+         * {@inheritDoc}
+         *
+         * Check if the service provider can provide the given service alias.
+         *
+         * @param string $alias The service alias to check.
+         * @return bool True if the service provider can provide the service, false otherwise.
+         */
+        public function provides(string $alias): bool
+        {
+        }
+        /**
+         * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+    class AdminSetupGuideServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tag for services added to the container.
+         */
+        protected $tags = ['admin-setup-guide-service'];
+        /**
+         * Services to register.
+         */
+        protected $services = [\WeDevs\Dokan\Admin\OnboardingSetup\AdminSetupGuide::class, \WeDevs\Dokan\Admin\OnboardingSetup\Steps\BasicStep::class, \WeDevs\Dokan\Admin\OnboardingSetup\Steps\CommissionStep::class, \WeDevs\Dokan\Admin\OnboardingSetup\Steps\WithdrawStep::class, \WeDevs\Dokan\Admin\OnboardingSetup\Steps\AppearanceStep::class];
+        /**
+         * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+    /**
+     * Class AjaxServiceProvider
+     *
+     * Registers the Ajax service with the dependency container and adds
+     * appropriate tags to the service definition.
+     */
+    class AjaxServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tags used to identify the service in the container.
+         *
+         * @var array
+         */
+        protected $tags = ['ajax-service'];
+        /**
+         * List of services provided by this provider.
+         *
+         * @var array
+         */
+        protected $services = [\WeDevs\Dokan\Ajax::class];
+        /**
+         * Register the Ajax class in the container and add the corresponding tags.
+         *
+         * @return void
+         */
+        public function register(): void
+        {
+        }
+    }
+    class AnalyticsServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tags for services added to the container.
+         */
+        protected $tags = ['analytics-service'];
+        protected $services = [\WeDevs\Dokan\Analytics\Reports\Orders\Stats\ScheduleListener::class, \WeDevs\Dokan\Analytics\Reports\Orders\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Orders\Stats\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Products\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Products\Stats\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Variations\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Variations\Stats\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Categories\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\DataStoreModifier::class, \WeDevs\Dokan\Analytics\Reports\CacheKeyModifier::class, \WeDevs\Dokan\Analytics\Reports\Taxes\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Taxes\Stats\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Coupons\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Coupons\Stats\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Customers\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Customers\Stats\QueryFilter::class, \WeDevs\Dokan\Analytics\Reports\Stock\QueryFilter::class, \WeDevs\Dokan\Analytics\Assets::class, \WeDevs\Dokan\Analytics\VendorDashboardManager::class, \WeDevs\Dokan\Analytics\Reports\DataStoreCacheModifier::class, \WeDevs\Dokan\Analytics\Settings::class];
+        /**
+         * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+    /**
+     * Captcha Service Provider
+     *
+     * Registers the Captcha Manager into Dokan's DI container.
+     */
+    class CaptchaServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        protected $tags = ['captcha-services'];
+        protected $services = [\WeDevs\Dokan\Captcha\Manager::class, \WeDevs\Dokan\Captcha\Providers\GoogleRecaptchaV3Provider::class, \WeDevs\Dokan\Captcha\Providers\CloudflareTurnstileProvider::class];
+        /**
+         * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+    class CommissionServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tag for services added to the container.
+         */
+        protected $tags = ['commission-service'];
+        protected $services = [\WeDevs\Dokan\Commission\OrderCommission::class, \WeDevs\Dokan\Commission\OrderLineItemCommission::class, \WeDevs\Dokan\Commission\ProductCommission::class, \WeDevs\Dokan\Commission\Calculator::class, \WeDevs\Dokan\Order\VendorBalanceUpdateHandler::class];
+        /**
+         * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+    class CommonServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tag for services added to the container.
+         */
+        protected $tags = ['common-service'];
+        protected $services = [\WeDevs\Dokan\Withdraw\Hooks::class, \WeDevs\Dokan\Product\Hooks::class, \WeDevs\Dokan\ProductCategory\Hooks::class, \WeDevs\Dokan\Upgrade\Hooks::class, \WeDevs\Dokan\Vendor\Hooks::class, \WeDevs\Dokan\Vendor\UserSwitch::class, \WeDevs\Dokan\CacheInvalidate::class, \WeDevs\Dokan\Shipping\Hooks::class, \WeDevs\Dokan\Privacy::class, \WeDevs\Dokan\VendorNavMenuChecker::class, \WeDevs\Dokan\Commission\RecalculateCommissions::class, \WeDevs\Dokan\Order\RefundHandler::class, \WeDevs\Dokan\Exceptions\Handler::class, \WeDevs\Dokan\Shortcodes\FullWidthVendorLayout::class, \WeDevs\Dokan\Vendor\ApiMeta::class];
+        /**
+         * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+    /**
+     * Class FrontendServiceProvider
+     *
+     * Registers and provides frontend-related services to the dependency container.
+     *
+     * @package WeDevs\Dokan\DependencyManagement\Providers
+     */
+    class FrontendServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        protected $tags = ['frontend-service'];
+        /**
+         * List of service identifiers provided by this provider.
+         *
+         * @var array
+         */
+        protected $services = [\WeDevs\Dokan\Vendor\StoreListsFilter::class, \WeDevs\Dokan\ThemeSupport\Manager::class];
+        /**
+         * Register the frontend services with the dependency container.
+         *
+         * @return void
+         */
+        public function register(): void
+        {
+        }
+    }
+    class IntelligenceServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tags for services added to the container.
+         */
+        protected $tags = ['intelligence-service'];
+        protected $services = [\WeDevs\Dokan\Intelligence\Assets::class, \WeDevs\Dokan\Intelligence\Manager::class, \WeDevs\Dokan\Intelligence\Admin\Settings::class, \WeDevs\Dokan\Intelligence\Services\Providers\OpenAI::class, \WeDevs\Dokan\Intelligence\Services\Providers\Gemini::class, \WeDevs\Dokan\Intelligence\Services\Models\GeminiTwoDotFiveFlash::class, \WeDevs\Dokan\Intelligence\Services\Models\GeminiTwoDotFivePro::class, \WeDevs\Dokan\Intelligence\Services\Models\GeminiTwoDotFiveFlashLite::class, \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTFiveDotFourMini::class, \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTFiveMini::class, \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTFiveDotFourNano::class, \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTFourDotOneMini::class, \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTFiveNano::class, \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTThreeDotFiveTurbo::class, \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTFourOMini::class, \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTFourO::class, \WeDevs\Dokan\Intelligence\Services\Models\OpenAIChatGPTFourO::class];
+        /**
+         * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+    class ModelServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tag for services added to the container.
+         */
+        public const TAG = 'ajax-service';
+        protected $services = [\WeDevs\Dokan\Models\VendorBalance::class, \WeDevs\Dokan\Models\VendorOrderStats::class, \WeDevs\Dokan\Models\AdminDashboardStats::class, \WeDevs\Dokan\Models\DataStore\VendorBalanceStore::class, \WeDevs\Dokan\Models\DataStore\VendorOrderStatsStore::class, \WeDevs\Dokan\Models\DataStore\AdminDashboardStatsStore::class];
+        /**
+         * {@inheritDoc}
+         *
+         * Check if the service provider can provide the given service alias.
+         *
+         * @param string $alias The service alias to check.
+         * @return bool True if the service provider can provide the service, false otherwise.
+         */
+        public function provides(string $alias): bool
+        {
+        }
+        /**
+         * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+    /**
+     * ServiceProvider Class
+     *
+     * Manages the registration and booting of Dokan's core services within the container.
+     * This service provider handles the core services with the Dokan's
+     * dependency injection container.
+     *
+     * @since 3.13.0
+     */
+    class ServiceProvider extends \WeDevs\Dokan\DependencyManagement\BootableServiceProvider
+    {
+        /**
+         * Tag for services added to the container.
+         */
+        public const TAG = 'container-service';
+        protected $services = ['product_block' => \WeDevs\Dokan\Blocks\ProductBlock::class, 'pageview' => \WeDevs\Dokan\PageViews::class, 'seller_wizard' => \WeDevs\Dokan\Vendor\SetupWizard::class, 'core' => \WeDevs\Dokan\Core::class, 'scripts' => \WeDevs\Dokan\Assets::class, 'email' => \WeDevs\Dokan\Emails\Manager::class, 'vendor' => \WeDevs\Dokan\Vendor\Manager::class, 'product' => \WeDevs\Dokan\Product\Manager::class, 'shortcodes' => \WeDevs\Dokan\Shortcodes\Shortcodes::class, 'registration' => \WeDevs\Dokan\Registration::class, 'order' => \WeDevs\Dokan\Order\Manager::class, 'order_controller' => \WeDevs\Dokan\Order\Controller::class, 'api' => \WeDevs\Dokan\REST\Manager::class, 'withdraw' => \WeDevs\Dokan\Withdraw\Manager::class, 'dashboard' => \WeDevs\Dokan\Dashboard\Manager::class, 'commission' => \WeDevs\Dokan\Commission::class, 'fees' => \WeDevs\Dokan\Fees::class, 'customizer' => \WeDevs\Dokan\Customizer::class, 'upgrades' => \WeDevs\Dokan\Upgrade\Manager::class, 'product_sections' => \WeDevs\Dokan\ProductSections\Manager::class, 'reverse_withdrawal' => \WeDevs\Dokan\ReverseWithdrawal\ReverseWithdrawal::class, 'dummy_data_importer' => \WeDevs\Dokan\DummyData\Importer::class, 'catalog_mode' => \WeDevs\Dokan\CatalogMode\Controller::class, 'bg_process' => \WeDevs\Dokan\BackgroundProcess\Manager::class, 'frontend_manager' => \WeDevs\Dokan\Frontend\Frontend::class, 'rewrite' => \WeDevs\Dokan\Rewrites::class, 'widgets' => \WeDevs\Dokan\Widgets\Manager::class, 'admin_notices' => \WeDevs\Dokan\Admin\Notices\Manager::class, 'tracker' => \WeDevs\Dokan\Tracker::class, 'product_editor' => \WeDevs\Dokan\ProductEditor\FormSchema::class];
+        /**
+         * @inheritDoc
+         *
+         * @return void
+         */
+        public function boot(): void
+        {
+        }
+        /**
+         * {@inheritDoc}
+         *
+         * Check if the service provider can provide the given service alias.
+         *
+         * @param string $alias The service alias to check.
+         * @return bool True if the service provider can provide the service, false otherwise.
+         */
+        public function provides(string $alias): bool
+        {
+        }
+        /**
+         * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+    class UtilsServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tag for services added to the container.
+         */
+        protected $tags = ['utils'];
+        protected $services = [\WeDevs\Dokan\Utilities\AdminSettings::class];
+        /**
+         * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+}
 namespace WeDevs\Dokan\DummyData {
     /**
      * Dokan dummy data importer class.
@@ -8061,7 +15714,7 @@ namespace WeDevs\Dokan\Emails {
         /**
          * Reply email
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.2.15
          *
          * @var string
          */
@@ -8759,7 +16412,7 @@ namespace WeDevs\Dokan\Emails {
      * An email sent to the admin when a order is completed for.
      *
      * @class       VendorCompletedOrder
-     * @version     DOKAN_LITE_SINCE
+     * @version     3.2.2
      * @package     Dokan/Classes/Emails
      * @author      weDevs
      * @extends     WC_Email
@@ -8776,7 +16429,7 @@ namespace WeDevs\Dokan\Emails {
         /**
          * Get email subject.
          *
-         * @since  DOKAN_LITE_SINCE
+         * @since  3.2.2
          * @return string
          */
         public function get_default_subject()
@@ -8785,7 +16438,7 @@ namespace WeDevs\Dokan\Emails {
         /**
          * Get email heading.
          *
-         * @since  DOKAN_LITE_SINCE
+         * @since  3.2.2
          * @return string
          */
         public function get_default_heading()
@@ -9058,11 +16711,12 @@ namespace WeDevs\Dokan\Emails {
         /**
          * Trigger the sending of this email.
          *
-         * @param int $user_id User ID.
-         * @param mixed $amount Withdrawal amount.
-         * @param string $method Withdrawal method.
+         * @param int    $user_id User ID.
+         * @param mixed  $amount  Withdrawal amount.
+         * @param string $method  Withdrawal method.
+         * @param int    $id      Withdrawal id,
          */
-        public function trigger($user_id, $amount, $method)
+        public function trigger($withdraw)
         {
         }
         /**
@@ -9286,6 +16940,61 @@ namespace WeDevs\Dokan\Exceptions {
         {
         }
     }
+    /**
+     * Handles application-level exceptions and errors in a unified way.
+     *
+     * This class registers shutdown and error handlers to catch critical or fatal errors.
+     * It also displays admin notices in case a module is forcefully deactivated.
+     */
+    class Handler implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Registers hooks for error handling and admin notices.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Conditionally deactivates the Follow Store  module based on error content.
+         *
+         * @see https://github.com/getdokan/dokan-pro/issues/4401
+         *
+         * @param array $error {
+         *     Error details.
+         *
+         *     @type string $message Error message text.
+         *     @type int    $type    Error type code.
+         *     @type string $file    File where the error occurred.
+         *     @type int    $line    Line number of the error.
+         * }
+         *
+         * @return void
+         */
+        private function maybe_deactivate_store_follow_module(array $error): void
+        {
+        }
+        /**
+         * Adds an admin notice when the Follow Store  module is forcefully deactivated.
+         *
+         * @param array $notices Existing Dokan admin notices.
+         *
+         * @return array Updated list of notices including the deactivation message.
+         */
+        public function dokan_store_follow_module_deactivation_notice(array $notices): array
+        {
+        }
+        /**
+         * Deal with WooCommerce Shutdown.
+         *
+         * @param array $error
+         * @return void
+         */
+        public function on_woocommerce_shutdown($error)
+        {
+        }
+    }
 }
 namespace WeDevs\Dokan {
     /**
@@ -9296,6 +17005,111 @@ namespace WeDevs\Dokan {
     class FakeMailer
     {
         public function Send()
+        {
+        }
+    }
+    class Fees
+    {
+        /**
+         * Class constructor
+         * Moved from dokan()->commission in version in 3.14.0
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Hide extra meta data
+         *
+         * @since  2.9.21
+         *
+         * @param array
+         *
+         * @return array
+         */
+        public function hide_extra_data($formatted_meta)
+        {
+        }
+        /**
+         * Calculate gateway fee
+         * Moved from dokan()->commission in version in 3.14.0
+         *
+         * @since 2.9.21
+         *
+         * @param int $order_id
+         *
+         * @return void
+         */
+        public function calculate_gateway_fee($order_id)
+        {
+        }
+        /**
+         * Get processing fee
+         *
+         * @since 3.0.4
+         *
+         * @param WC_Order $order
+         *
+         * @return float
+         */
+        public function get_processing_fee($order)
+        {
+        }
+        /**
+         * Get shipping fee recipient
+         * Move from commission.php in version 3.14.0
+         *
+         * @since  2.9.21
+         * @since  3.4.1 introduced the shipping fee recipient hook
+         *
+         * @param WC_Order|int $order
+         *
+         * @return string
+         */
+        public function get_shipping_fee_recipient($order)
+        {
+        }
+        /**
+         * Get tax fee recipient
+         *  Move from commission.php in version 3.14.0
+         *
+         * @since  2.9.21
+         * @since  3.4.1 introduced the tax fee recipient hook
+         *
+         * @param WC_Order|int $order
+         *
+         * @return string|WP_Error
+         */
+        public function get_tax_fee_recipient($order)
+        {
+        }
+        /**
+         * Get shipping tax fee recipient.
+         * Move from commission.php in version 3.14.0
+         *
+         * @since 3.7.19
+         *
+         * @param WC_Order $order Order.
+         *
+         * @return string
+         */
+        public function get_shipping_tax_fee_recipient($order): string
+        {
+        }
+        /**
+         * Get total shipping tax refunded for the order.
+         * Move from commission.php in version 3.14.0
+         *
+         * @since 3.7.19
+         *
+         * @param WC_Order $order Order.
+         *
+         * @return float
+         */
+        public function get_total_shipping_tax_refunded(\WC_Order $order): float
         {
         }
     }
@@ -9584,6 +17398,2599 @@ namespace WeDevs\Dokan\Install {
         private static function parse_update_notice($content, $new_version)
         {
         }
+        public function create_dokan_order_stats_table()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Intelligence\Admin {
+    class Settings implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Render AI section in Dokan settings
+         *
+         * @param array $sections
+         * @return array
+         */
+        public function render_appearance_section(array $sections): array
+        {
+        }
+        /**
+         * Render AI settings fields
+         *
+         * @param array $settings_fields
+         * @return array
+         */
+        public function render_ai_settings(array $settings_fields): array
+        {
+        }
+        /**
+         * Map REST API classes
+         *
+         * @param array $class_map
+         * @return array
+         */
+        public function rest_api_class_map(array $class_map): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Intelligence {
+    class Assets implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Register all scripts
+         *
+         * @return void
+         */
+        public function register_all_scripts()
+        {
+        }
+        /**
+         * Enqueue AI assets
+         *
+         * @return void
+         */
+        public function enqueue_ai_assets()
+        {
+        }
+    }
+    class Manager
+    {
+        public function active_engine(string $type = \WeDevs\Dokan\Intelligence\Services\Model::SUPPORTS_TEXT): string
+        {
+        }
+        /**
+         * Get available AI engines.
+         *
+         * @since 4.1.0
+         *
+         * @param string $type The type of generation to filter engines by (default is Model::SUPPORTS_TEXT).
+         *
+         * @return array
+         */
+        public function get_engines(string $type = \WeDevs\Dokan\Intelligence\Services\Model::SUPPORTS_TEXT): array
+        {
+        }
+        /**
+         * Get activated AI engine
+         *
+         * @since 4.1.0
+         *
+         * @param string $type The type of generation to filter engines by (default is Model::SUPPORTS_TEXT).
+         *
+         * @return bool
+         */
+        public function is_configured(string $type = \WeDevs\Dokan\Intelligence\Services\Model::SUPPORTS_TEXT): bool
+        {
+        }
+        /**
+         * Get available AI providers
+         *
+         * @since 4.1.0
+         *
+         * @return array< string, AIProviderInterface >
+         */
+        public function get_providers(): array
+        {
+        }
+        /**
+         * Get provider by ID
+         *
+         * @since 4.1.0
+         *
+         * @param string $provider_id
+         *
+         * @return AIProviderInterface|null
+         */
+        public function get_provider(string $provider_id): ?\WeDevs\Dokan\Intelligence\Services\AIProviderInterface
+        {
+        }
+        /**
+         * Get all supported providers for text generation
+         *
+         * @return array< string, AIProviderInterface >
+         */
+        public function get_text_supported_providers(): array
+        {
+        }
+        /**
+         * Get all supported providers for image generation
+         *
+         * @return array< string, AIProviderInterface >
+         */
+        public function get_image_supported_providers(): array
+        {
+        }
+        /**
+         * Get all supported providers for selected type
+         *
+         * @param string $type The type of generation to filter providers by (e.g., 'text', 'image').
+         *
+         * @return array< string, AIProviderInterface >
+         */
+        protected function get_providers_by_type(string $type): array
+        {
+        }
+        /**
+         * Get the type prefix for the given generation type.
+         *
+         * @param string $type The type of generation (e.g., 'text', 'image', 'video').
+         *
+         * @return string The prefix for the type.
+         */
+        public function get_type_prefix(string $type): string
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Traits {
+    trait VendorAuthorizable
+    {
+        /**
+         * Check if user has vendor permission.
+         *
+         * @since 3.14.11
+         *
+         * @return bool
+         */
+        public function check_permission()
+        {
+        }
+        /**
+         * Check whether the current user is authorized to access a vendor store.
+         *
+         * This method determines authorization based on user role:
+         * - Admins: Can access any vendor (including invalid vendor IDs for proper error handling)
+         * - Vendors: Can access only their own store
+         * - Vendor staff: Can access only their assigned vendor store
+         * - Others: Cannot access any vendor store
+         *
+         *  @since 4.2.5
+         *
+         * @param int $vendor_id Vendor user ID.
+         * @param int $user_id Optional. User ID. Defaults to current user.
+         *
+         * @return bool True if authorized, false otherwise.
+         */
+        public function can_access_vendor_store(int $vendor_id, int $user_id = 0): bool
+        {
+        }
+        /**
+         * Get the vendor/store ID associated with a user.
+         *
+         * This method delegates to VendorUtil::get_vendor_id_for_user().
+         * It determines the vendor ID based on the user's role:
+         * - Vendors: Returns their own user ID as the vendor ID
+         * - Vendor staff: Returns their parent vendor's ID (stored in user meta)
+         * - Other users: Returns 0 if not associated with any vendor
+         *
+         *  @since 4.2.5
+         *
+         * @param int $user_id Optional. The user ID to get the vendor ID for. Defaults to 0 (current user).
+         *
+         * @return int The vendor/store ID. Returns 0 if the user is not a vendor or vendor staff,
+         *             or if vendor ID cannot be determined.
+         */
+        public function get_vendor_id_for_user(int $user_id = 0): int
+        {
+        }
+        /**
+         * Validate if a user ID represents a valid vendor or vendor staff member.
+         *
+         * This method checks if the given ID belongs to:
+         * - A valid vendor user, or
+         * - A vendor staff member with a valid associated vendor.
+         *
+         * Used for REST API validation callbacks. The validation ensures that:
+         * - The provided value is greater than 0
+         * - The vendor ID resolved from the value is greater than 0
+         *
+         *  @since 4.2.5
+         *
+         * @param mixed          $value   The value to validate (typically a user ID).
+         * @param \WP_REST_Request $request The REST API request object.
+         * @param string         $key     The parameter key being validated.
+         *
+         * @return bool|\WP_Error True if valid, WP_Error with status 400 if invalid.
+         */
+        public function validate_store_id($value, $request, $key)
+        {
+        }
+        /**
+         * Check if a user is vendor staff (not a vendor owner).
+         *
+         * @since 4.2.5
+         *
+         * @param int $user_id User ID to check.
+         * @return bool True if user is vendor staff but not a vendor owner.
+         */
+        public function is_staff_only(int $user_id): bool
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\REST {
+    /**
+     * Vendor REST Controller for Dokan
+     *
+     * @since 3.14.11
+     *
+     * @package dokan
+     */
+    abstract class DokanBaseVendorController extends \WeDevs\Dokan\REST\DokanBaseController
+    {
+        use \WeDevs\Dokan\Traits\VendorAuthorizable;
+        /**
+         * Endpoint base.
+         *
+         * @var string
+         */
+        protected $rest_base = 'vendor';
+    }
+}
+namespace WeDevs\Dokan\Intelligence\REST {
+    class AIRequestController extends \WeDevs\Dokan\REST\DokanBaseVendorController
+    {
+        /**
+         * Version
+         *
+         * @var string
+         */
+        protected string $version = 'v1';
+        /**
+         * Endpoint namespace.
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan';
+        /**
+         * Route name
+         *
+         * @var string
+         */
+        protected $rest_base = 'ai/generate';
+        public function register_routes(): void
+        {
+        }
+        public function get_request_args(): array
+        {
+        }
+        public function handle_request($request)
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Intelligence\Services {
+    interface AIImageGenerationInterface
+    {
+        /**
+         * Process the image prompt and return the generated image.
+         *
+         * @param string $prompt The input prompt for the AI model.
+         * @param array $args Optional additional data.
+         * @return mixed The generated image from the AI model.
+         */
+        public function process_image(string $prompt, array $args = []);
+    }
+    /**
+     * Interface for AI Model
+     *
+     * This interface defines the methods that any AI model must implement.
+     * It includes methods to retrieve model details and check capabilities for text and image generation.
+     *
+     * @package WeDevs\Dokan\Intelligence\Services
+     * @since 4.1.0
+     */
+    interface AIModelInterface
+    {
+        /**
+         * Get the model ID.
+         *
+         * @return string
+         */
+        public function get_id(): string;
+        /**
+         * Get the model title.
+         *
+         * @return string
+         */
+        public function get_title(): string;
+        /**
+         * Get the model description.
+         *
+         * @return string
+         */
+        public function get_description(): string;
+        /**
+         * Get the model provider ID.
+         *
+         * @return string
+         */
+        public function get_provider_id(): string;
+        /**
+         * Check if the model can generate text.
+         *
+         * @return bool
+         */
+        public function supports(string $type): bool;
+    }
+    /**
+     * Interface for AI Provider
+     *
+     * This interface defines the methods that any AI provider must implement.
+     * It includes methods to retrieve provider details, models, and check model types.
+     *
+     * @package WeDevs\Dokan\Intelligence\Services
+     * @since 4.1.0
+     */
+    interface AIProviderInterface
+    {
+        /**
+         * Get the provider ID.
+         *
+         * @return string The unique identifier for the AI provider.
+         */
+        public function get_id(): string;
+        /**
+         * Get the provider title.
+         *
+         * @return string The human-readable name of the AI provider.
+         */
+        public function get_title(): string;
+        /**
+         * Get the provider description.
+         *
+         * @return string A brief description of the AI provider.
+         */
+        public function get_description(): string;
+        /**
+         * Get api key URL for the provider.
+         *
+         * @return string
+         */
+        public function get_api_key_url(): string;
+        /**
+         * Get the list of models supported by the provider.
+         *
+         * @return array An array of models provided by the AI provider.
+         */
+        public function get_models(): array;
+        /**
+         * Get a specific model by its ID.
+         *
+         * @param string $model_id The ID of the model to retrieve.
+         * @return AIModelInterface|null The model instance or null if not found.
+         */
+        public function get_model(string $model_id): ?\WeDevs\Dokan\Intelligence\Services\AIModelInterface;
+        /**
+         * Get the default model for the provider.
+         *
+         * @return AIModelInterface|null The default model instance or null if not set.
+         */
+        public function get_default_model(): ?\WeDevs\Dokan\Intelligence\Services\AIModelInterface;
+        /**
+         * Check if the provider supports type-based models.
+         *
+         * @param string $type The type of model to check (e.g., 'text', 'image').
+         *
+         * @return bool True if text models are supported, false otherwise.
+         */
+        public function has_model(string $type): bool;
+    }
+    interface AITextGenerationInterface
+    {
+        /**
+         * Process the text prompt and return the generated response.
+         *
+         * @param string $prompt The input prompt for the AI model.
+         * @param array $args Optional additional data.
+         * @return mixed The response from the AI model.
+         */
+        public function process_text(string $prompt, array $args = []);
+    }
+    abstract class Model implements \WeDevs\Dokan\Contracts\Hookable, \WeDevs\Dokan\Intelligence\Services\AIModelInterface
+    {
+        const SUPPORTS_TEXT = 'text';
+        const SUPPORTS_IMAGE = 'image';
+        const SUPPORTS_AUDIO = 'audio';
+        const SUPPORTS_VIDEO = 'video';
+        /**
+         * List of supported generation types.
+         *
+         * @var string[]
+         */
+        protected array $supports = [self::SUPPORTS_TEXT => \WeDevs\Dokan\Intelligence\Services\AITextGenerationInterface::class, self::SUPPORTS_IMAGE => \WeDevs\Dokan\Intelligence\Services\AIImageGenerationInterface::class];
+        /**
+         * The type of generation this model currently performing.
+         *
+         * @var string
+         */
+        protected string $generation_type = self::SUPPORTS_TEXT;
+        /**
+         * @inheritDoc
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Enlist the model in the provided models array.
+         *
+         * @param  AIModelInterface[]  $models The array of models to enlist into.
+         *
+         * @return array The updated array of models including this model.
+         */
+        public function enlist(array $models): array
+        {
+        }
+        /**
+         * Get the model ID.
+         *
+         * @return string
+         */
+        abstract public function get_id(): string;
+        /**
+         * Get the model title.
+         *
+         * @return string
+         */
+        abstract public function get_title(): string;
+        /**
+         * Get the model description.
+         *
+         * @return string
+         */
+        abstract public function get_description(): string;
+        /**
+         * Get the model provider ID.
+         *
+         * @return string
+         */
+        abstract public function get_provider_id(): string;
+        /**
+         * Check if the model can generate text.
+         *
+         * @param  string  $type The type of generation to check (e.g., 'text', 'image').
+         *
+         * @return bool
+         */
+        public function supports(string $type): bool
+        {
+        }
+        /**
+         * Get the list of supported generation types.
+         *
+         * @return array<string, string>
+         */
+        protected function get_supports(): array
+        {
+        }
+        /**
+         * Retrieves the API url required.
+         *
+         * @return string The API key.
+         */
+        abstract protected function get_url(): string;
+        /**
+         * Retrieves the headers required for the API request.
+         *
+         * @return array
+         */
+        abstract protected function get_headers(): array;
+        /**
+         * Retrieves the payload required for the API request.
+         *
+         * @param string $prompt
+         * @param array $args
+         *
+         * @return array
+         */
+        abstract protected function get_payload(string $prompt, array $args = []): array;
+        /**
+         * Retrieves the API key.
+         *
+         * @return string
+         */
+        protected function get_api_key(): string
+        {
+        }
+        /**
+         * Retrieves the type prefix for generation.
+         *
+         * This is used to differentiate between different types of generation (e.g., text, image).
+         *
+         * @return string The type prefix for generation.
+         */
+        protected function get_type_prefix_for_generation(): string
+        {
+        }
+        /**
+         * Check if the API key is valid.
+         *
+         *
+         * @return bool
+         */
+        protected function is_valid_api_key(): bool
+        {
+        }
+        /**
+         * Make API request
+         *
+         * @param string $prompt Prompt for the AI model.
+         * @param array $args Additional arguments for the request.
+         *
+         * @return array
+         * @throws Exception
+         */
+        protected function request(string $prompt, array $args = []): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Intelligence\Services\Models {
+    class GeminiTwoDotFiveFlashLite extends \WeDevs\Dokan\Intelligence\Services\Model implements \WeDevs\Dokan\Intelligence\Services\AITextGenerationInterface
+    {
+        protected const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/';
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_provider_id(): string
+        {
+        }
+        /**
+         * Retrieves the API url required.
+         *
+         * @return string The API key.
+         */
+        protected function get_url(): string
+        {
+        }
+        /**
+         * Retrieves the headers required for the API request.
+         *
+         * @return array
+         */
+        protected function get_headers(): array
+        {
+        }
+        /**
+         * Retrieves the payload required for the API request.
+         *
+         * @param  string  $prompt
+         * @param  array  $args
+         *
+         * @return array
+         */
+        protected function get_payload(string $prompt, array $args = []): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function process_text(string $prompt, array $args = [])
+        {
+        }
+    }
+    class GeminiTwoDotFiveFlash extends \WeDevs\Dokan\Intelligence\Services\Models\GeminiTwoDotFiveFlashLite implements \WeDevs\Dokan\Intelligence\Services\AITextGenerationInterface
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+    }
+    class GeminiTwoDotFivePro extends \WeDevs\Dokan\Intelligence\Services\Models\GeminiTwoDotFiveFlashLite implements \WeDevs\Dokan\Intelligence\Services\AITextGenerationInterface
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+    }
+    class OpenAIGPTThreeDotFiveTurbo extends \WeDevs\Dokan\Intelligence\Services\Model implements \WeDevs\Dokan\Intelligence\Services\AITextGenerationInterface
+    {
+        protected const BASE_URL = 'https://api.openai.com/v1/';
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_provider_id(): string
+        {
+        }
+        /**
+         * Retrieves the API url required.
+         *
+         * @return string The API key.
+         */
+        protected function get_url(): string
+        {
+        }
+        /**
+         * Retrieves the headers required for the API request.
+         *
+         * @return array
+         */
+        protected function get_headers(): array
+        {
+        }
+        /**
+         * Process the text prompt and return the generated response.
+         *
+         * @param  string  $prompt  The input prompt for the AI model.
+         * @param  array  $args  Optional additional data.
+         *
+         * @return mixed The response from the AI model.
+         */
+        public function process_text(string $prompt, array $args = [])
+        {
+        }
+        /**
+         * Retrieves the payload required for the API request.
+         *
+         * @param  string  $prompt
+         * @param  array  $args
+         *
+         * @return array
+         */
+        protected function get_payload(string $prompt, array $args = []): array
+        {
+        }
+    }
+    class OpenAIChatGPTFourO extends \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTThreeDotFiveTurbo
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+    }
+    class OpenAIGPTFiveDotFourMini extends \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTThreeDotFiveTurbo
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+    }
+    class OpenAIGPTFiveDotFourNano extends \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTThreeDotFiveTurbo
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+    }
+    class OpenAIGPTFiveNano extends \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTThreeDotFiveTurbo
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+        /**
+         * GPT-5 family models only accept the default temperature (1),
+         * so drop the parent's explicit `temperature` value.
+         *
+         * @see https://github.com/valentinfrlch/ha-llmvision/issues/437
+         *
+         * @since 5.0.0
+         *
+         * @param string $prompt 1st prompt.
+         * @param array  $args   Arguments of the prompt.
+         *
+         * @return array
+         */
+        protected function get_payload(string $prompt, array $args = []): array
+        {
+        }
+    }
+    class OpenAIGPTFiveMini extends \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTFiveNano
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+    }
+    class OpenAIGPTFourDotOneMini extends \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTThreeDotFiveTurbo
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+    }
+    class OpenAIGPTFourO extends \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTThreeDotFiveTurbo
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+    }
+    class OpenAIGPTFourOMini extends \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTThreeDotFiveTurbo
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+    }
+    class OpenAIGPTFourTurbo extends \WeDevs\Dokan\Intelligence\Services\Models\OpenAIGPTThreeDotFiveTurbo
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Intelligence\Services {
+    /**
+     * Abstract class for AI Provider
+     *
+     * This class serves as a base for all AI providers in the Dokan Intelligence system.
+     * It implements the AIProviderInterface and provides common functionality
+     *
+     * @package WeDevs\Dokan\Intelligence\Services
+     */
+    abstract class Provider implements \WeDevs\Dokan\Intelligence\Services\AIProviderInterface, \WeDevs\Dokan\Contracts\Hookable
+    {
+        const GENERATION_TYPE_TEXT = 'text';
+        const GENERATION_TYPE_IMAGE = 'image';
+        const GENERATION_TYPE_AUDIO = 'audio';
+        const GENERATION_TYPE_VIDEO = 'video';
+        /**
+         * @inheritDoc
+         */
+        abstract public function get_id(): string;
+        /**
+         * @inheritDoc
+         */
+        abstract public function get_title(): string;
+        /**
+         * @inheritDoc
+         */
+        abstract public function get_description(): string;
+        abstract public function get_api_key_url(): string;
+        /**
+         * @return AIModelInterface[]
+         */
+        public function get_models(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_model(string $model_id): ?\WeDevs\Dokan\Intelligence\Services\AIModelInterface
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_default_model(): ?\WeDevs\Dokan\Intelligence\Services\AIModelInterface
+        {
+        }
+        abstract public function get_default_model_id(): string;
+        /**
+         * @inheritDoc
+         */
+        public function has_model(string $type): bool
+        {
+        }
+        /**
+         * Get models by type.
+         *
+         * This method retrieves models that support a specific generation type.
+         *
+         * @param string $type The type of generation (e.g., 'text', 'image').
+         * @return AIModelInterface[] An array of models that support the specified type.
+         */
+        public function get_models_by_type(string $type)
+        {
+        }
+        /**
+         * Register hooks for the provider.
+         *
+         * This method is used to register the necessary hooks for the AI provider.
+         * It should be called during the plugin initialization phase.
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Enlist the provider in the Dokan Intelligence system.
+         *
+         * This method adds the current provider instance to the list of AI providers.
+         *
+         * @param array $providers The existing list of AI providers.
+         * @return array The updated list of AI providers including the current provider.
+         */
+        public function enlist(array $providers): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Intelligence\Services\Providers {
+    class Gemini extends \WeDevs\Dokan\Intelligence\Services\Provider
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+        public function get_default_model_id(): string
+        {
+        }
+        public function get_api_key_url(): string
+        {
+        }
+    }
+    class OpenAI extends \WeDevs\Dokan\Intelligence\Services\Provider
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_description(): string
+        {
+        }
+        public function get_default_model_id(): string
+        {
+        }
+        public function get_api_key_url(): string
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Intelligence\Utils {
+    class AISupportedFields
+    {
+        public static function get_supported_fields(): array
+        {
+        }
+    }
+    class PromptUtils
+    {
+        /**
+         * Find personalized prompt by key.
+         *
+         * @param string $id The id to search for.
+         * @return string|null The personalized prompt or null if not found.
+         */
+        public static function get_personalized_prompt(string $id): ?string
+        {
+        }
+        /**
+         * Prepares a personalized prompt based on the given ID and original prompt.
+         *
+         * @param string $id The ID for finding the personalized prompt.
+         * @param string $prompt The original prompt.
+         * @return string The prepared prompt.
+         */
+        public static function prepare_prompt(string $id, string $prompt): string
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Models {
+    abstract class BaseModel extends \WC_Data
+    {
+        /**
+         * Save should create or update based on object existence.
+         *
+         * @return int
+         */
+        public function save()
+        {
+        }
+        /**
+         * Delete an object, set the ID to 0, and return result.
+         *
+         * @param  bool $force_delete Should the date be deleted permanently.
+         * @return bool result
+         */
+        public function delete($force_delete = false)
+        {
+        }
+        /**
+         * Delete raws from the database.
+         *
+         * @param array $data Array of args to delete an object, e.g. `array( 'id' => 1, status => ['draft', 'cancelled'] )` or `array( 'id' => 1, 'status' => 'publish' )`.
+         * @return bool result
+         */
+        public static function delete_by(array $data)
+        {
+        }
+        /**
+         * Prefix for action and filter hooks on data.
+         *
+         * @return string
+         */
+        protected function get_hook_prefix()
+        {
+        }
+        /**
+         * Get All Meta Data.
+         *
+         * @since 2.6.0
+         * @return array of objects.
+         */
+        public function get_meta_data()
+        {
+        }
+        /**
+         * Clear the cache group for this model.
+         *
+         * @return void
+         */
+        public function clear_cache_group()
+        {
+        }
+    }
+    /**
+     * Admin Dashboard Stats Model Class
+     *
+     * @since 4.1.0
+     */
+    class AdminDashboardStats extends \WeDevs\Dokan\Models\BaseModel
+    {
+        /**
+         * This is the name of this object type.
+         *
+         * @since 4.1.0
+         *
+         * @var string
+         */
+        protected $object_type = 'admin_dashboard_stats';
+        /**
+         * Constructor.
+         *
+         * @since 4.1.0
+         *
+         * @param int $id ID to load from the DB (optional) or an AdminDashboardStats object.
+         */
+        public function __construct(int $id = 0)
+        {
+        }
+        /**
+         * Get new customers' data.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array New customers data.
+         */
+        public static function get_new_customers_data(array $date_range): array
+        {
+        }
+        /**
+         * Get order cancellation rate data.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array Order cancellation rate data.
+         */
+        public static function get_order_cancellation_rate_data(array $date_range): array
+        {
+        }
+        /**
+         * Get new products data.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array New products data.
+         */
+        public static function get_new_products_data(array $date_range): array
+        {
+        }
+        /**
+         * Get active vendors data.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array Active vendors data.
+         */
+        public static function get_active_vendors_data(array $date_range): array
+        {
+        }
+        /**
+         * Get monthly overview data.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array Monthly overview data.
+         */
+        public static function get_monthly_overview(array $date_range): array
+        {
+        }
+        /**
+         * Get top-performing vendors.
+         *
+         * @since 4.1.0
+         *
+         * @param string $start_date Start date in Y-m-d format. Optional.
+         * @param string $end_date   End date in Y-m-d format. Optional.
+         * @param int    $limit Number of vendors to retrieve. Default 5.
+         *
+         * @return array Array of vendor data with sales metrics.
+         */
+        public static function get_top_performing_vendors(string $start_date, string $end_date, int $limit = 5): array
+        {
+        }
+        /**
+         * Get vendor metrics data.
+         *
+         * @since 4.1.0
+         *
+         * @param string $start_date Start date in Y-m-d format.
+         * @param string $end_date   End date in Y-m-d format.
+         *
+         * @return array Vendor metrics data.
+         */
+        public static function get_vendor_metrics(string $start_date, string $end_date): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Models\DataStore {
+    /**
+     * Data Store interface.
+     *
+     * @since 4.0.4
+     */
+    interface DataStoreInterface
+    {
+        /**
+         * Create a new data.
+         *
+         * @since 4.0.4
+         *
+         * @param BaseModel $model
+         *
+         * @return void
+         */
+        public function create(\WeDevs\Dokan\Models\BaseModel &$model);
+        /**
+         * Method to read a download permission from the database.
+         *
+         * @param BaseModel $model BaseModel object.
+         *
+         * @phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+         *
+         * @throws Exception Throw exception if invalid entity is passed.
+         */
+        public function read(\WeDevs\Dokan\Models\BaseModel &$model);
+        /**
+         * Update a data.
+         *
+         * @since 4.0.4
+         *
+         * @param BaseModel $model The model to update.
+         *
+         * @return void
+         * @throw \Exception
+         */
+        public function update(\WeDevs\Dokan\Models\BaseModel &$model);
+        /**
+         * Delete a data.
+         *
+         * @since 4.0.4
+         *
+         * @param BaseModel $model The model to delete.
+         *
+         * @return void
+         * @throw \Exception
+         */
+        public function delete(\WeDevs\Dokan\Models\BaseModel &$model);
+        /**
+         * Get a data.
+         *
+         * @since 4.0.4
+         *
+         * @param BaseModel $model The model to get.
+         *
+         * @return void
+         * @throw \Exception
+         */
+        // public function get( BaseModel &$model );
+        /**
+         * Query data.
+         *
+         * @since 4.0.4
+         *
+         * @param array $args
+         *
+         * @return array
+         */
+        // public function query( array $args = [] ): array;
+        /**
+         * Count data.
+         *
+         * @since 4.0.4
+         *
+         * @param array $args
+         *
+         * @return int
+         */
+        // public function count( array $args = [] ): int;
+    }
+    /**
+     * Base data store class.
+     *
+     * @since 4.0.4
+     */
+    abstract class BaseDataStore extends \Automattic\WooCommerce\Admin\API\Reports\SqlQuery implements \WeDevs\Dokan\Models\DataStore\DataStoreInterface
+    {
+        protected $selected_columns = ['*'];
+        /**
+         * Get the fields with format as an array where key is the db field name and value is the format.
+         *
+         * @return array
+         */
+        abstract protected function get_fields_with_format(): array;
+        /**
+         * Get the table name with or without prefix
+         *
+         * @return string
+         */
+        abstract public function get_table_name(): string;
+        /**
+         * Create a new record in the database using the provided model data.
+         *
+         * @param BaseModel $model The model object containing the data to be inserted.
+         */
+        public function create(\WeDevs\Dokan\Models\BaseModel &$model)
+        {
+        }
+        /**
+         * Method to read a download permission from the database.
+         *
+         * @param BaseModel $model BaseModel object.
+         *
+         * @phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+         *
+         * @throws Exception Throw exception if invalid entity is passed.
+         */
+        public function read(\WeDevs\Dokan\Models\BaseModel &$model)
+        {
+        }
+        /**
+         * Method to update a download in the database.
+         *
+         * @param BaseModel $model WC_Customer_Download object.
+         */
+        public function update(\WeDevs\Dokan\Models\BaseModel &$model)
+        {
+        }
+        /**
+         * Method to delete a download permission from the database.
+         *
+         * @param BaseModel $model BaseModel object.
+         * @param array                $args Array of args to pass to the delete method.
+         */
+        public function delete(\WeDevs\Dokan\Models\BaseModel &$model, $args = array())
+        {
+        }
+        /**
+         * Method to delete a download permission from the database by ID.
+         *
+         * @param int $id permission_id of the download to be deleted.
+         *
+         * @phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+         *
+         * @return int Number of affected rows.
+         */
+        public function delete_by_id($id): int
+        {
+        }
+        /**
+         * Delete raws from the database.
+         *
+         * @param array $data Array of args to delete an object, e.g. `array( 'id' => 1, status => ['draft', 'cancelled'] )` or `array( 'id' => 1, 'status' => 'publish' )`.
+         *
+         * @phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+         *
+         * @return int Number of affected rows.
+         */
+        public function delete_by(array $data): int
+        {
+        }
+        /**
+         * Updates rows in the database.
+         *
+         * @param array $where Array of args to identify the object to be updated, e.g. `array( 'id' => 1, 'status' => 'draft' )`.
+         * @param array $data_to_update Array of args to update the object, e.g. `array( 'status' => 'publish' )`.
+         *
+         * @return int Number of affected rows.
+         */
+        public function update_by(array $where, array $data_to_update)
+        {
+        }
+        /**
+         * Prepares a SQL WHERE clause from an associative array of data.
+         *
+         * This method takes an array of data where keys are column names and values
+         * are the values to filter by. It generates a secure SQL WHERE clause using
+         * prepared statements to protect against SQL injection.
+         *
+         * If a value in the data array is an array itself, it generates an IN clause
+         * with multiple placeholders. Otherwise, it generates a simple equality check.
+         *
+         * @param array $data Associative array of column names and values to filter by.
+         * @return string The generated WHERE clause.
+         */
+        protected function prepare_where_clause(array $data): string
+        {
+        }
+        /**
+         * Create download permission for a user, from an array of data.
+         * Assumes that all the keys in the passed data are valid.
+         *
+         * @param array $data Data to create the permission for.
+         * @return int The database id of the created permission, or false if the permission creation failed.
+         */
+        protected function insert(array $data)
+        {
+        }
+        /**
+         * Prepare data for saving a BaseModel to the database.
+         *
+         * @param BaseModel $model The model to prepare.
+         * @return array Array of data to save.
+         */
+        protected function map_model_to_db_data(\WeDevs\Dokan\Models\BaseModel &$model): array
+        {
+        }
+        /**
+         * Read meta data for the given model. Generally, We may not need this method.
+         *
+         * @param BaseModel $model The model for which to read meta data.
+         */
+        public function read_meta(\WeDevs\Dokan\Models\BaseModel &$model): void
+        {
+        }
+        /**
+         * Maps database raw data to model data.
+         *
+         * @param object $raw_data The raw data object retrieved from the database.
+         * @return array An array of model data mapped from the database fields.
+         */
+        protected function map_db_raw_to_model_data($raw_data): array
+        {
+        }
+        /**
+         * Get the date format for a specific database field.
+         *
+         * @param string $db_field_name The name of the database field.
+         * @return string The format in which the date is returned.
+         */
+        protected function get_date_format_for_field(string $db_field_name): string
+        {
+        }
+        /**
+         * Returns a list of columns selected by the query_args formatted as a comma separated string.
+         *
+         * @return string
+         */
+        protected function get_selected_columns(): string
+        {
+        }
+        /**
+         * Generates a hook prefix.
+         *
+         * @return string The hook prefix.
+         */
+        protected function get_hook_prefix(): string
+        {
+        }
+        /**
+         * Gets the table name with the WordPress table prefix.
+         *
+         * @return string The table name with the WordPress table prefix.
+         */
+        protected function get_table_name_with_prefix(): string
+        {
+        }
+        /**
+         * Get the name of the id field.
+         *
+         * @return string The name of the id field.
+         */
+        protected function get_id_field_name(): string
+        {
+        }
+        /**
+         * Gets the format of the id field.
+         *
+         * @return string The format of the id field.
+         */
+        protected function get_id_field_format(): string
+        {
+        }
+        /**
+         * Get the fields.
+         *
+         * @return array The filtered array of fields.
+         */
+        protected function get_fields(): array
+        {
+        }
+        /**
+         * Get the fields with format.
+         *
+         * @return array The filtered array of format of the fields.
+         */
+        protected function get_fields_format(): array
+        {
+        }
+    }
+    /**
+     * Admin Dashboard Stats Store Class
+     *
+     * @since 4.1.0
+     */
+    class AdminDashboardStatsStore extends \WeDevs\Dokan\Models\DataStore\BaseDataStore
+    {
+        /**
+         * Vendor Order Stats Store instance.
+         *
+         * @var VendorOrderStatsStore
+         */
+        protected $vendor_order_stats_store;
+        /**
+         * Constructor.
+         *
+         * @since 4.1.0
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Get the fields with format as an array where key is the db field name and value is the format.
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        protected function get_fields_with_format(): array
+        {
+        }
+        /**
+         * Get the table name.
+         *
+         * @since 4.1.0
+         *
+         * @return string
+         */
+        public function get_table_name(): string
+        {
+        }
+        /**
+         * Get the ID field name.
+         *
+         * @since 4.1.0
+         *
+         * @return string
+         */
+        protected function get_id_field_name(): string
+        {
+        }
+        /**
+         * Get recurring customers data for current and previous periods using wc_order_stats.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array Recurring customers data.
+         */
+        public function get_recurring_customers_data(array $date_range): array
+        {
+        }
+        /**
+         * Get new customers data for current and previous periods.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array New customers data.
+         */
+        public function get_new_customers_data(array $date_range): array
+        {
+        }
+        /**
+         * Get order cancellation rate data for current and previous periods.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array Order cancellation rate data.
+         */
+        public function get_order_cancellation_rate_data(array $date_range): array
+        {
+        }
+        /**
+         * Get new products data for current and previous periods.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array New products' data.
+         */
+        public function get_new_products_data(array $date_range): array
+        {
+        }
+        /**
+         * Get active vendors data for current and previous periods using VendorOrderStatsStore.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array Active vendors data.
+         */
+        public function get_active_vendors_data(array $date_range): array
+        {
+        }
+        /**
+         * Get new vendor registration data for current and previous periods.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array New vendor registration data.
+         */
+        public function get_new_vendor_registration_data(array $date_range): array
+        {
+        }
+        /**
+         * Get monthly overview data including new customers and order stats.
+         *
+         * @since 4.1.0
+         *
+         * @param array $date_range Array containing date range information.
+         *
+         * @return array Monthly overview data.
+         */
+        public function get_monthly_overview(array $date_range): array
+        {
+        }
+        /**
+         * Get top performing vendors using VendorOrderStatsStore.
+         *
+         * @since 4.1.0
+         *
+         * @param string $start_date Start date in Y-m-d format. Optional.
+         * @param string $end_date   End date in Y-m-d format. Optional.
+         * @param int $limit Number of vendors to retrieve. Default 5.
+         *
+         * @return array Array of vendor data with sales metrics.
+         */
+        public function get_top_performing_vendors(string $start_date, string $end_date, int $limit = 5): array
+        {
+        }
+        /**
+         * Get vendor metrics data.
+         *
+         * @since 4.1.0
+         *
+         * @param string $start_date Start date in Y-m-d format.
+         * @param string $end_date   End date in Y-m-d format.
+         *
+         * @return array Vendor metrics data.
+         */
+        public function get_vendor_metrics(string $start_date, string $end_date): array
+        {
+        }
+        /**
+         * Get filtered product types.
+         *
+         * @since 4.1.0
+         *
+         * @return array Filtered product types.
+         */
+        public function get_filtered_product_types(): array
+        {
+        }
+    }
+    /**
+     * Class VendorBalanceStore
+     *
+     * @since 4.0.4
+     */
+    class VendorBalanceStore extends \WeDevs\Dokan\Models\DataStore\BaseDataStore
+    {
+        /**
+         * @inheritDoc
+         */
+        protected function get_fields_with_format(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_table_name(): string
+        {
+        }
+        /**
+         * Used to get perticulars through the get_perticulars method by the DataStore.
+         *
+         * @param VendorBalance $model
+         * @param string $context
+         * @return string
+         */
+        protected function get_perticulars(\WeDevs\Dokan\Models\VendorBalance $model, string $context = 'edit'): string
+        {
+        }
+        /**
+         * Retrieve the total balance for a given vendor.
+         *
+         * @param int          $vendor_id
+         * @param DateTimeImmutable $balance_date
+         * @return float
+         */
+        public function get_total_earning_by_vendor($vendor_id, \DateTimeImmutable $balance_date): float
+        {
+        }
+    }
+    /**
+     * Vendor Order Stats Store Class
+     *
+     * @since 4.1.0
+     */
+    class VendorOrderStatsStore extends \WeDevs\Dokan\Models\DataStore\BaseDataStore
+    {
+        /**
+         * Get the fields with format as an array where key is the db field name and value is the format.
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        protected function get_fields_with_format(): array
+        {
+        }
+        /**
+         * Get the table name.
+         *
+         * @since 4.1.0
+         *
+         * @return string
+         */
+        public function get_table_name(): string
+        {
+        }
+        /**
+         * Get the ID field name.
+         *
+         * @since 4.1.0
+         *
+         * @return string
+         */
+        protected function get_id_field_name(): string
+        {
+        }
+        /**
+         * Get count of active vendors within a date range.
+         *
+         * @since 4.1.0
+         *
+         * @param string $start_date Start date in Y-m-d format.
+         * @param string $end_date   End date in Y-m-d format.
+         *
+         * @return int Count of active vendors.
+         */
+        public function get_active_vendors_count(string $start_date, string $end_date): int
+        {
+        }
+        /**
+         * Get top performing vendors.
+         *
+         * @since 4.1.0
+         *
+         * @param string $start_date Start date in Y-m-d format. Optional.
+         * @param string $end_date   End date in Y-m-d format. Optional.
+         * @param int $limit         Number of vendors to retrieve. Default 5.
+         *
+         * @return array Array of vendor data with sales metrics.
+         */
+        public function get_top_performing_vendors(string $start_date, string $end_date, int $limit = 5): array
+        {
+        }
+        /**
+         * Get sales chart data for a date range.
+         *
+         * @since 4.1.0
+         *
+         * @param string $start_date   Start date in Y-m-d format.
+         * @param string $end_date     End date in Y-m-d format.
+         * @param bool   $group_by_day Whether to group data by day. Default false.
+         *
+         * @return array Sales chart data with totals.
+         */
+        public function get_sales_chart_data(string $start_date, string $end_date, bool $group_by_day = false): array
+        {
+        }
+        /**
+         * Fill missing dates in the data array for a given date range.
+         *
+         * @since 4.1.0
+         *
+         * @param array  $data       The data array containing date and sales information.
+         * @param string $start_date Start date in Y-m-d format.
+         * @param string $end_date   End date in Y-m-d format.
+         *
+         * @return array The data array with missing dates filled in.
+         */
+        protected function fill_missing_dates(array $data, string $start_date, string $end_date): array
+        {
+        }
+        /**
+         * Get report logs or earnings data from the dokan_order_stats table.
+         *
+         * @since 5.0.0
+         *
+         * @param array $args Query arguments.
+         *
+         * @return array Raw database results.
+         */
+        public function get_report_data(array $args): array
+        {
+        }
+        /**
+         * Get the total count of report logs or earnings from the dokan_order_stats table.
+         *
+         * @since 5.0.0
+         *
+         * @param array $args Query arguments.
+         *
+         * @return int Total count.
+         */
+        public function get_report_count(array $args): int
+        {
+        }
+        /**
+         * Get the report summary from the dokan_order_stats table.
+         *
+         * @since 5.0.0
+         *
+         * @return array Summary totals.
+         */
+        public function get_report_summary(array $args = []): array
+        {
+        }
+        /**
+         * Apply common filters for report logs or earnings queries.
+         *
+         * @since 5.0.0
+         *
+         * @param array $args Query arguments.
+         *
+         * @return void
+         */
+        protected function apply_report_filters(array $args): void
+        {
+        }
+        /**
+         * Apply order type filter for report logs or earnings queries.
+         *
+         * @since 5.0.0
+         *
+         * @param array $args Query arguments.
+         *
+         * @return void
+         */
+        protected function apply_order_type_filter(array $args): void
+        {
+        }
+        /**
+         * Apply vendor filter for report logs or earnings queries.
+         *
+         * @since 5.0.0
+         *
+         * @param array $args Query arguments.
+         *
+         * @return void
+         */
+        protected function apply_vendor_filter(array $args): void
+        {
+        }
+        /**
+         * Apply order filter for report logs or earnings queries.
+         *
+         * @since 5.0.0
+         *
+         * @param array $args Query arguments.
+         *
+         * @return void
+         */
+        protected function apply_order_filter(array $args): void
+        {
+        }
+        /**
+         * Apply order status filter for report logs or earnings queries.
+         *
+         * @since 5.0.0
+         *
+         * @param array $args Query arguments.
+         *
+         * @return void
+         */
+        protected function apply_status_filter(array $args): void
+        {
+        }
+        /**
+         * Apply date filter for report logs or earnings queries.
+         *
+         * @since 5.0.0
+         *
+         * @param array $args Query arguments.
+         *
+         * @return void
+         */
+        protected function apply_date_filter(array $args): void
+        {
+        }
+        /**
+         * Get refund data for the given order IDs.
+         *
+         * @since 5.0.0
+         *
+         * @param array $order_ids Array of order IDs.
+         *
+         * @return array Refund data indexed by parent ID.
+         */
+        public function get_refund_data(array $order_ids): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Models {
+    class VendorBalance extends \WeDevs\Dokan\Models\BaseModel
+    {
+        const TRN_TYPE_DOKAN_ORDERS = 'dokan_orders';
+        const TRN_TYPE_DOKAN_WITHDRAW = 'dokan_withdraw';
+        const TRN_TYPE_DOKAN_REFUND = 'dokan_refund';
+        /**
+         * This is the name of this object type.
+         *
+         * @var string
+         */
+        protected $object_type = 'dokan_vendor_balance';
+        /**
+         * Cache group.
+         *
+         * @var string
+         */
+        protected $cache_group = 'dokan_vendor_balance';
+        /**
+         * The default data of the object.
+         *
+         * @var array
+         */
+        protected $data = ['vendor_id' => 0, 'trn_id' => 0, 'trn_type' => '', 'perticulars' => '', 'debit' => 0, 'credit' => 0, 'status' => '', 'trn_date' => '', 'balance_date' => ''];
+        /**
+         * Initializes the vendor balance model.
+         *
+         * @param int $id The ID of the vendor balance to initialize. Default is 0.
+         */
+        public function __construct(int $id = 0)
+        {
+        }
+        /**
+         * Updates the vendor balance based on a transaction.
+         *
+         * @param int    $trn_id   The transaction ID.
+         * @param string $trn_type The type of transaction. Valid values are
+         *                         {@see WeDevs\Dokan\Models\VendorBalance::TRN_TYPE_DOKAN_ORDERS},
+         *                         {@see WeDevs\Dokan\Models\VendorBalance::TRN_TYPE_DOKAN_WITHDRAW},
+         *                         and {@see WeDevs\Dokan\Models\VendorBalance::TRN_TYPE_DOKAN_REFUND}.
+         * @param array  $data     The data to update.
+         *
+         * @return int Number of affected rows.
+         */
+        public static function update_by_transaction(int $trn_id, string $trn_type, array $data): int
+        {
+        }
+        /**
+         * Gets the vendor ID of the vendor balance.
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         * @return int The vendor ID.
+         */
+        public function get_vendor_id(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the vendor ID of the vendor balance.
+         *
+         * @param int $id The vendor ID.
+         * @return void
+         */
+        public function set_vendor_id(int $id)
+        {
+        }
+        /**
+         * Gets the transaction ID.
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         * @return int The transaction ID.
+         */
+        public function get_trn_id(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the transaction ID.
+         *
+         * @param int $id The transaction ID.
+         * @return void
+         */
+        public function set_trn_id(int $id)
+        {
+        }
+        /**
+         * Gets the transaction type.
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         * @return string The transaction type. Valid values are:
+         *                'dokan_orders', 'dokan_withdraw', 'dokan_refund'.
+         */
+        public function get_trn_type(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the transaction type for the transaction.
+         *
+         * @param string $type The type of the transaction. Valid values are:
+         *                    'dokan_orders, 'dokan_withdraw', 'dokan_refund'.
+         * @return void
+         */
+        public function set_trn_type(string $type)
+        {
+        }
+        /**
+         * Gets the particulars for the transaction.
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         * @return string The particulars.
+         */
+        public function get_particulars(string $context = 'view'): string
+        {
+        }
+        /**
+         * Set the perticulars (note) for the transaction.
+         *
+         * @param string $note The note to be stored.
+         * @return void
+         */
+        public function set_particulars(string $note)
+        {
+        }
+        /**
+         * Set the perticulars (note) for the transaction.
+         *
+         * @param string $note The note to be stored.
+         * @return void
+         */
+        protected function set_perticulars(string $note)
+        {
+        }
+        /**
+         * Get the debit amount.
+         *
+         * @param string $context The context in which to get the debit amount.
+         * @return float The debit amount.
+         */
+        public function get_debit(string $context = 'view'): float
+        {
+        }
+        /**
+         * Set the debit amount.
+         *
+         * @param float $amount The debit amount.
+         * @return void
+         */
+        public function set_debit(float $amount)
+        {
+        }
+        /**
+         * Get the credit amount.
+         *
+         * @param string $context The context in which to get the credit amount.
+         * @return float The credit amount.
+         */
+        public function get_credit(string $context = 'view')
+        {
+        }
+        /**
+         * Set the credit amount.
+         *
+         * @param float $amount The credit amount.
+         * @return void
+         */
+        public function set_credit(float $amount)
+        {
+        }
+        /**
+         * Get the status of the vendor balance.
+         *
+         * @param string $context The context in which to get the status. Valid values are 'view' and 'edit'.
+         * @return string The status of the vendor balance.
+         */
+        public function get_status(string $context = 'view'): string
+        {
+        }
+        /**
+         * Set the status of the vendor balance.
+         *
+         * @param string $status The status to be set.
+         * @return void
+         */
+        public function set_status(string $status)
+        {
+        }
+        /**
+         * Get the transaction date.
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         * @return \WC_DateTime The transaction date.
+         */
+        public function get_trn_date(string $context = 'view')
+        {
+        }
+        /**
+         * Set the transaction date.
+         *
+         * @param string $date The transaction date. Accepts date in `Y-m-d` or  `Y-m-d H:i:s` format.
+         * @return void
+         */
+        public function set_trn_date(string $date)
+        {
+        }
+        /**
+         * Get the balance date.
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         * @return \WC_DateTime The balance date.
+         */
+        public function get_balance_date(string $context = 'view')
+        {
+        }
+        /**
+         * Set the balance date.
+         *
+         * @param string $date The balance date. Accepts date in `Y-m-d` or  `Y-m-d H:i:s` format.
+         * @return void
+         */
+        public function set_balance_date(string $date)
+        {
+        }
+        /**
+         * Calculates and retrieves the total earnings of a vendor up to a specific date.
+         *
+         * This calculation includes:
+         *    - The sum of completed order amounts
+         *    - Minus the sum of refunded amounts
+         *    - Ignores/Excludes any withdrawals from the total earnings
+         *
+         * @param int    $vendor_id The unique identifier for the vendor.
+         * @param string $on_date   Optional date in 'Y-m-d' format to calculate earnings up to. Defaults to the current date if not provided.
+         *
+         * @return float The vendor's total earnings up to the specified date.
+         */
+        public static function get_total_earning_by_vendor($vendor_id, $on_date = null)
+        {
+        }
+    }
+    /**
+     * Vendor Order Stats Model Class
+     *
+     * @since 4.1.0
+     */
+    class VendorOrderStats extends \WeDevs\Dokan\Models\BaseModel
+    {
+        /**
+         * This is the name of this object type.
+         *
+         * @var string
+         */
+        protected $object_type = 'dokan_vendor_order_stats';
+        /**
+         * The default data of the object.
+         *
+         * @var array
+         */
+        protected $data = ['order_id' => 0, 'vendor_id' => 0, 'order_type' => 0, 'vendor_earning' => 0, 'vendor_gateway_fee' => 0, 'vendor_shipping_fee' => 0, 'vendor_discount' => 0, 'admin_commission' => 0, 'admin_gateway_fee' => 0, 'admin_shipping_fee' => 0, 'admin_discount' => 0, 'admin_subsidy' => 0];
+        /**
+         * Initializes the vendor order stats model.
+         *
+         * @since 4.1.0
+         *
+         * @param int $id The ID of the vendor order stats to initialize. Default is 0.
+         */
+        public function __construct(int $id = 0)
+        {
+        }
+        /**
+         * Gets the order ID.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return int The order ID.
+         */
+        public function get_order_id(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the order ID.
+         *
+         * @since 4.1.0
+         *
+         * @param int $id The order ID.
+         *
+         * @return void
+         */
+        public function set_order_id(int $id)
+        {
+        }
+        /**
+         * Gets the vendor ID.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return int The vendor ID.
+         */
+        public function get_vendor_id(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the vendor ID.
+         *
+         * @since 4.1.0
+         *
+         * @param int $id The vendor ID.
+         *
+         * @return void
+         */
+        public function set_vendor_id(int $id)
+        {
+        }
+        /**
+         * Gets the order type.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return int The order type.
+         */
+        public function get_order_type(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the order type.
+         *
+         * @since 4.1.0
+         *
+         * @param int $type The order type.
+         *
+         * @return void
+         */
+        public function set_order_type(int $type)
+        {
+        }
+        /**
+         * Gets the vendor earning.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return float The vendor earning.
+         */
+        public function get_vendor_earning(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the vendor earning.
+         *
+         * @since 4.1.0
+         *
+         * @param float $amount The vendor earning.
+         *
+         * @return void
+         */
+        public function set_vendor_earning(float $amount)
+        {
+        }
+        /**
+         * Gets the vendor gateway fee.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return float The vendor gateway fee.
+         */
+        public function get_vendor_gateway_fee(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the vendor gateway fee.
+         *
+         * @since 4.1.0
+         *
+         * @param float $amount The vendor gateway fee.
+         *
+         * @return void
+         */
+        public function set_vendor_gateway_fee(float $amount)
+        {
+        }
+        /**
+         * Gets the vendor shipping fee.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return float The vendor shipping fee.
+         */
+        public function get_vendor_shipping_fee(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the vendor shipping fee.
+         *
+         * @since 4.1.0
+         *
+         * @param float $amount The vendor shipping fee.
+         *
+         * @return void
+         */
+        public function set_vendor_shipping_fee(float $amount)
+        {
+        }
+        /**
+         * Gets the vendor discount.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return float The vendor discount.
+         */
+        public function get_vendor_discount(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the vendor discount.
+         *
+         * @since 4.1.0
+         *
+         * @param float $amount The vendor discount.
+         *
+         * @return void
+         */
+        public function set_vendor_discount(float $amount)
+        {
+        }
+        /**
+         * Gets the admin commission.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return float The admin commission.
+         */
+        public function get_admin_commission(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the admin commission.
+         *
+         * @since 4.1.0
+         *
+         * @param float $amount The admin commission.
+         *
+         * @return void
+         */
+        public function set_admin_commission(float $amount)
+        {
+        }
+        /**
+         * Gets the admin gateway fee.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return float The admin gateway fee.
+         */
+        public function get_admin_gateway_fee(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the admin gateway fee.
+         *
+         * @since 4.1.0
+         *
+         * @param float $amount The admin gateway fee.
+         *
+         * @return void
+         */
+        public function set_admin_gateway_fee(float $amount)
+        {
+        }
+        /**
+         * Gets the admin shipping fee.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return float The admin shipping fee.
+         */
+        public function get_admin_shipping_fee(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the admin shipping fee.
+         *
+         * @since 4.1.0
+         *
+         * @param float $amount The admin shipping fee.
+         *
+         * @return void
+         */
+        public function set_admin_shipping_fee(float $amount)
+        {
+        }
+        /**
+         * Gets the admin discount.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return float The admin discount.
+         */
+        public function get_admin_discount(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the admin discount.
+         *
+         * @since 4.1.0
+         *
+         * @param float $amount The admin discount.
+         *
+         * @return void
+         */
+        public function set_admin_discount(float $amount)
+        {
+        }
+        /**
+         * Gets the admin subsidy.
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return float The admin subsidy.
+         */
+        public function get_admin_subsidy(string $context = 'view')
+        {
+        }
+        /**
+         * Sets the admin subsidy.
+         *
+         * @since 4.1.0
+         *
+         * @param float $amount The admin subsidy.
+         *
+         * @return void
+         */
+        public function set_admin_subsidy(float $amount)
+        {
+        }
+        /**
+         * Get total sales (vendor earning + admin commission)
+         *
+         * @since 4.1.0
+         *
+         * @param string $context What the value is for. Valid values are 'view' and 'edit'.
+         *
+         * @return float The total sales amount.
+         */
+        public function get_total_sales(string $context = 'view')
+        {
+        }
+        /**
+         * Get count of active vendors within a date range.
+         *
+         * @since 4.1.0
+         *
+         * @param string $start_date Start date in Y-m-d format.
+         * @param string $end_date   End date in Y-m-d format.
+         *
+         * @return int Count of active vendors.
+         */
+        public static function get_active_vendors_count(string $start_date, string $end_date): int
+        {
+        }
+        /**
+         * Get top performing vendors.
+         *
+         * @since 4.1.0
+         *
+         * @param int $limit Number of vendors to retrieve. Default 5.
+         *
+         * @return array Array of vendor data with sales metrics.
+         */
+        public static function get_top_performing_vendors(int $limit = 5): array
+        {
+        }
+        /**
+         * Get sales chart data for a date range.
+         *
+         * @since 4.1.0
+         *
+         * @param string $start_date Start date in Y-m-d format.
+         * @param string $end_date   End date in Y-m-d format.
+         *
+         * @return array Sales chart data with totals.
+         */
+        public static function get_sales_chart_data(string $start_date, string $end_date, bool $group_by_day = false): array
+        {
+        }
     }
 }
 namespace WeDevs\Dokan\Order\Admin {
@@ -9672,7 +20079,7 @@ namespace WeDevs\Dokan\Order\Admin {
         /**
          * Change order item display meta key.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.8.0
          * @since 3.8.0 Moved this method from Order/Hooks.php file
          *
          * @param string $display_key
@@ -9685,7 +20092,7 @@ namespace WeDevs\Dokan\Order\Admin {
         /**
          * Change order item display meta value.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.8.0
          * @since 3.8.0 Moved this method from Order/Hooks.php file
          *
          * @param string $display_value
@@ -9757,6 +20164,63 @@ namespace WeDevs\Dokan\Order\Admin {
          * @return void
          */
         public function admin_shop_order_toggle_sub_orders($typenow)
+        {
+        }
+        /**
+         * Render the order type filter dropdown.
+         *
+         * @since 4.2.1
+         *
+         * @param string $typenow
+         *
+         * @return void
+         */
+        public function render_order_type_filter_dropdown($typenow)
+        {
+        }
+        /**
+         * Filter orders by order type for both HPOS and legacy.
+         *
+         * @since 4.2.1
+         *
+         * @param array $query_args Query arguments (HPOS) or query vars (legacy)
+         *
+         * @return array
+         */
+        public function filter_orders_by_order_type_query($query_args)
+        {
+        }
+        /**
+         * Add dokan commission meta-box in woocommerce order details page
+         * and add suborders or related sibling orders in meta-box.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public function add_commission_metabox_and_related_orders_in_order_details_page($post_type, $post)
+        {
+        }
+        /**
+         * Dokan order commission meta-box body.
+         *
+         * @since 3.14.0
+         *
+         * @param WP_Post|WC_Order $post_or_order
+         *
+         * @return void
+         */
+        public function commission_meta_box($post_or_order)
+        {
+        }
+        /**
+         * Content of suborder or related order meta-box.
+         *
+         * @param $post_or_order
+         *
+         * @return void
+         */
+        public function sub_or_related_orders_meta_box($post_or_order)
         {
         }
     }
@@ -10038,6 +20502,14 @@ namespace WeDevs\Dokan\Order {
         {
         }
         /**
+         * Retrieve commission meta using old dokan_commission_meta.
+         *
+         * @return mixed
+         */
+        public function get_dokan_commission_meta($value, $line_item)
+        {
+        }
+        /**
          * Update the child order status when a parent order status is changed
          *
          * @param int      $order_id
@@ -10048,6 +20520,51 @@ namespace WeDevs\Dokan\Order {
          * @return void
          */
         public function on_order_status_change($order_id, $old_status, $new_status, $order)
+        {
+        }
+        /**
+         * Check if a status change is allowed for a sub-order.
+         *
+         * This method determines whether a sub-order can transition from its current status
+         * to a new status, based on a configurable whitelist of allowed transitions.
+         *
+         * @since 3.12.2
+         *
+         * @param string $current_status The current status of the sub-order (should include 'wc-' prefix).
+         * @param string $new_status     The new status to check (should include 'wc-' prefix).
+         *
+         * @return bool True if the status change is allowed, false otherwise.
+         */
+        private function is_status_change_allowed(string $current_status, string $new_status): bool
+        {
+        }
+        /**
+         * Ensure a status string has the 'wc-' prefix.
+         *
+         * @since 3.12.2
+         *
+         * @param string $status The status string to check.
+         *
+         * @return string The status string with 'wc-' prefix added if it was missing.
+         */
+        private function maybe_add_wc_prefix(string $status): string
+        {
+        }
+        /**
+         * Log a skipped status update for a sub-order.
+         *
+         * This method logs a message to the error log when a status update for a sub-order
+         * is skipped because the status change is not allowed.
+         *
+         * @since 3.12.2
+         *
+         * @param int    $order_id      The ID of the sub-order.
+         * @param string $current_status The current status of the sub-order.
+         * @param string $new_status     The new status that was not allowed.
+         *
+         * @return void
+         */
+        private function log_skipped_status_update(int $order_id, string $current_status, string $new_status)
         {
         }
         /**
@@ -10101,49 +20618,44 @@ namespace WeDevs\Dokan\Order {
          * sure a product of the admin is in the cart. Otherwise it wouldn't be
          * possible to distribute the coupon in sub orders.
          *
-         * @param boolean       $valid
-         * @param \WC_Coupon    $coupon
-         * @param \WC_Discounts $discount
+         * @since 4.0.0 Refactored to make it more flexible, and added filter
          *
-         * @throws Exception
-         * @return boolean|Exception
+         * @param boolean      $valid      Whether the coupon is currently considered valid.
+         * @param WC_Coupon    $coupon     The coupon object being validated.
+         * @param WC_Discounts $discounts  The discount object containing cart/order items being validated.
+         *
+         * @return boolean True if the coupon is valid, false otherwise
+         * @throws Exception When the coupon is invalid for multiple vendors
          */
-        public function ensure_vendor_coupon($valid, $coupon, $discount)
+        public function ensure_coupon_is_valid(bool $valid, \WC_Coupon $coupon, \WC_Discounts $discounts): bool
         {
         }
         /**
-         * Restore order stock if it's been reduced by twice
+         * Prevent stock reduction for parent orders
          *
-         * @param WC_Order $order
+         * Parent orders should not have their stock reduced. Only sub-orders
+         * should manage stock reductions.
+         *
+         * @param bool     $can_reduce Whether stock can be reduced.
+         * @param WC_Order $order      The order object.
+         *
+         * @return bool False if this is a parent order, true otherwise.
+         */
+        public function prevent_stock_reduction_for_parent_order($can_reduce, $order)
+        {
+        }
+        /**
+         * Sync parent order item stock metadata when sub-order item stock is reduced
+         *
+         * When a sub-order item has its stock reduced, also update the parent order item's
+         * _reduced_stock metadata to keep them in sync.
+         * @param WC_Order_Item_Product $item The sub-order item.
+         * @param array                 $change Change details (product, from, to).
+         * @param WC_Order              $order The sub-order.
          *
          * @return void
          */
-        public function restore_reduced_order_stock($order)
-        {
-        }
-        /**
-         * Handle stock level wrong calculation in order notes for suborder
-         *
-         * @since 3.8.3
-         *
-         * @param WC_Order $order
-         *
-         * @return void
-         */
-        public function handle_order_notes_for_suborder($order)
-        {
-        }
-        /**
-         * PDF Invoices & Packing Slips for WooCommerce plugin integration on suborder section.
-         *
-         * @since 3.8.3
-         *
-         * @param $actions
-         * @param $order
-         *
-         * @return mixed
-         */
-        public function suborder_pdf_invoice_button($actions, $order)
+        public function sync_parent_order_item_stock($item, $change, $order)
         {
         }
     }
@@ -10252,11 +20764,14 @@ namespace WeDevs\Dokan\Order {
         {
         }
         /**
+         * Get all child orders of a parent order
+         *
          * @param int|WC_Order $parent_order
+         * @param array $args
          *
          * @return WC_Order[]
          */
-        public function get_child_orders($parent_order)
+        public function get_child_orders($parent_order, array $args = [])
         {
         }
         /**
@@ -10335,11 +20850,10 @@ namespace WeDevs\Dokan\Order {
          *
          * @param WC_Order $order
          * @param WC_Order $parent_order
-         * @param array    $products
          *
          * @return void
          */
-        private function create_coupons($order, $parent_order, $products)
+        private function create_coupons($order, $parent_order)
         {
         }
         /**
@@ -10389,30 +20903,6 @@ namespace WeDevs\Dokan\Order {
         {
         }
         /**
-         * Delete_child_order_from_wc_order_product
-         *
-         * @since 3.8.0 Moved this method from Order/Hooks.php file
-         *
-         * @param \ActionScheduler_Action $args
-         *
-         * @return void
-         */
-        public function delete_child_order_from_wc_order_product($args)
-        {
-        }
-        /**
-         * Trim child order if parent exist from wc_order_product_lookup for analytics order
-         *
-         * @since 3.8.0 Moved this method from Order/Hooks.php file
-         *
-         * @param WC_Order $orders
-         *
-         * @return WC_Order
-         */
-        public function trim_child_order_for_analytics_order($orders)
-        {
-        }
-        /**
          * Remove customer sensitive information while exporting order
          *
          * @since 3.8.0 Moved this method from Order/Hooks.php file
@@ -10446,19 +20936,6 @@ namespace WeDevs\Dokan\Order {
          * @return object $counts
          */
         public function modify_vendor_order_counts($counts)
-        {
-        }
-        /**
-         * Exclude suborders and include dokan subscription product orders when generate woocommerce analytics data.
-         *
-         * @see https://github.com/getdokan/dokan-pro/issues/2735
-         *
-         * @param array     $data
-         * @param \WC_Order $order
-         *
-         * @return array
-         */
-        public function trim_child_order_for_analytics_order_stats($data, $order)
         {
         }
     }
@@ -10535,6 +21012,252 @@ namespace WeDevs\Dokan\Order {
          * @param int $post_id
          */
         public function clear_product_cache($order_id)
+        {
+        }
+    }
+    class OrderEventListener
+    {
+        public function __construct()
+        {
+        }
+        /**
+         * Perform actions after an order is trashed.
+         *
+         * This method is triggered when an order is moved to the trash. It updates the order status
+         * in the Dokan tables and logs the action.
+         *
+         * @param int $order_id ID of the trashed order.
+         *
+         * @return void
+         */
+        public function after_order_trash(int $order_id)
+        {
+        }
+        /**
+         * Perform actions after an order is untrashed (restored).
+         *
+         * This method is triggered when an order is restored from the trash. It updates the order status
+         * in the Dokan tables and logs the action.
+         *
+         * @param int $order_id ID of the restored order.
+         *
+         * @return void
+         */
+        public function after_order_untrash(int $order_id)
+        {
+        }
+        /**
+         * Update the order status in Dokan tables.
+         *
+         * This method updates the order status in the `dokan_orders` and `dokan_vendor_balance` tables
+         * based on the current status of the WooCommerce order.
+         *
+         * @since 3.13.1
+         *
+         * @param WC_Order $order The WooCommerce order object.
+         * @param \wpdb    $wpdb  The WordPress database object.
+         * @param int      $order_id The ID of the order.
+         *
+         * @return void
+         */
+        protected function process_order_status(\WC_Order $order, \wpdb $wpdb, int $order_id): void
+        {
+        }
+        /**
+         * Log order status change events.
+         *
+         * @param string $action   The action performed (trashed/restored)
+         * @param int    $order_id The order ID
+         *
+         * @return void
+         */
+        private function log_status_change(string $action, int $order_id): void
+        {
+        }
+    }
+    class RefundHandler implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Register necessary WordPress hooks.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Handle refund logic for Dokan orders.
+         *
+         * @since 4.0.0
+         *
+         * @param int $order_id  The ID of the original order.
+         * @param int $refund_id The ID of the refund.
+         *
+         * @return void
+         */
+        public function handle_refund(int $order_id, int $refund_id): void
+        {
+        }
+        /**
+         * Get the vendor earning amount in the refund.
+         *
+         * @param \WC_Order_Refund $refund_order
+         * @param \WC_Order $order
+         *
+         * @return float
+         */
+        public function get_vendor_earning_in_refund($refund_order, $order): float
+        {
+        }
+        /**
+         * Check the COD payment settings.
+         *
+         * @param bool $ret
+         * @param \WC_Order_Refund $refund_order
+         * @param \WC_Order $order
+         * @return bool
+         */
+        public function exclude_cod_payment($ret, $refund_order, $order)
+        {
+        }
+        /**
+         * Get the refunded tax amount for the vendor.
+         *
+         * @since 4.0.0
+         *
+         * @param \WC_Order_Refund $refund_order The refund object.
+         * @param \WC_Order        $order  The original order object.
+         *
+         * @return float
+         */
+        protected function get_tax_refund(\WC_Order_Refund $refund_order, \WC_Order $order): float
+        {
+        }
+        /**
+         * Get the refunded shipping amount for the vendor.
+         *
+         * @since 4.0.0
+         *
+         * @param \WC_Order_Refund $refund_order The refund object.
+         * @param \WC_Order        $order  The original order object.
+         *
+         * @return float
+         */
+        protected function get_shipping_refund(\WC_Order_Refund $refund_order, \WC_Order $order): float
+        {
+        }
+        /**
+         * Insert a refund record into the Dokan vendor balance table.
+         *
+         * @since 4.0.0
+         *
+         * @param float       $vendor_refund The amount to refund the vendor.
+         * @param \WC_Order_Refund   $order         The original order object.
+         * @param \WC_Order   $order         The original order object.
+         *
+         * @return void
+         */
+        public function insert_into_balance_table($vendor_refund_amount, $refund_order, $order)
+        {
+        }
+        /**
+         * Update order table with new refund amount
+         *
+         * @param float $vendor_refund
+         * @param \WC_Order_Refund $refund_order
+         * @param \WC_Order $order
+         */
+        public function update_order_amounts($vendor_refund, $refund_order, $order)
+        {
+        }
+        /**
+         * Clear order related caches
+         *
+         * @param float $vendor_refund
+         * @param \WC_Order_Refund $refund_order
+         * @param \WC_Order $order
+         */
+        public function clear_order_caches($vendor_refund, $refund_order, $order)
+        {
+        }
+    }
+    /**
+     * Class VendorBalanceUpdateHandler.
+     *
+     * Handles the update of vendor balance after an order is edited.
+     */
+    class VendorBalanceUpdateHandler implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Vendor earning without refund meta key.
+         */
+        public const DOKAN_VENDOR_EARNING_WITHOUT_REFUND_META_KEY = 'dokan_vendor_earning_without_refund';
+        /**
+         * Register hooks.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Handle after order object save.
+         *
+         * @param int $order_id Order ID.
+         * @param WC_Order $order Order object.
+         *
+         * @return void
+         */
+        public function handle_order_edit(int $order_id, \WC_Abstract_Order $order)
+        {
+        }
+        /**
+         * Update vendor balance entry for the order.
+         *
+         * @param WC_Abstract_Order $order Order.
+         * @param float $balance New balance.
+         *
+         * @return bool|int
+         */
+        protected function update_balance(\WC_Abstract_Order $order, float $balance)
+        {
+        }
+        /**
+         * Get order amount from vendor balance table.
+         *
+         * @param WC_Order $order Order.
+         *
+         * @return float|null
+         */
+        protected function get_order_amount(\WC_Abstract_Order $order): ?float
+        {
+        }
+        /**
+         * Update dokan_orders table if necessary.
+         *
+         * @since 4.0.0
+         *
+         * @param  int $order_id Order ID.
+         * @param  WC_Abstract_Order|WC_Order $order Order object.
+         *
+         * @return void
+         */
+        public function update_dokan_order_table(int $order_id, $order)
+        {
+        }
+        /**
+         * Remove vendor balance cache when order earning is updated.
+         *
+         * This function is triggered when the 'dokan_cache_deleted' action is called.
+         *
+         * @since 4.0.2
+         *
+         * @param string $key   Cache key.
+         * @param string $group Cache group.
+         *
+         * @return void
+         */
+        public function remove_vendor_balance_cache($key, $group)
         {
         }
     }
@@ -10675,7 +21398,7 @@ namespace WeDevs\Dokan\Product {
         /**
          * Callback for Ajax Action Initialization
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.8.2
          * @return void
          */
         public function store_product_search_action()
@@ -10684,7 +21407,7 @@ namespace WeDevs\Dokan\Product {
         /**
          * Output the store product sorting options
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.8.2
          * @return void
          */
         public function store_products_orderby()
@@ -10810,6 +21533,66 @@ namespace WeDevs\Dokan\Product {
          * @return array
          */
         public function product_review_notification_recipients($emails, $comment_id)
+        {
+        }
+        /**
+         * Add per product commission options
+         * Moved from dokan pro in version 3.14.0
+         *
+         * @since 2.4.12
+         *
+         * @return void
+         */
+        public function add_per_product_commission_options()
+        {
+        }
+        /**
+         * Save per product commission options
+         *  Moved from dokan pro in version 3.14.0
+         *
+         * @since 2.4.12
+         *
+         * @param integer $post_id
+         * @param array   $data
+         *
+         * @return void
+         */
+        public static function save_per_product_commission_options($post_id, $data = [])
+        {
+        }
+        /**
+         * Add product brand taxonomy template
+         *
+         * @since 4.2.6
+         *
+         * @return void
+         */
+        public function add_product_brand_template_in_add_product(): void
+        {
+        }
+        /**
+         * Add product brand taxonomy template
+         *
+         * @since 4.0.4
+         *
+         * @param \WP_Post $post The post object of the product being edited.
+         *
+         * @return void
+         */
+        public function add_product_brand_template_in_edit_product(\WP_Post $post): void
+        {
+        }
+        /**
+         * Update product brands
+         *
+         * @since 4.0.4
+         *
+         * @param int   $product_id   The ID of the product being updated.
+         * @param array $product_data The product data containing brand information.
+         *
+         * @return void
+         */
+        public function update_product_brands_by_id(int $product_id, array $product_data = array()): void
         {
         }
     }
@@ -10977,6 +21760,76 @@ namespace WeDevs\Dokan\Product {
          * @return \WP_Post[]
          */
         public function top_rated($args = [])
+        {
+        }
+        /**
+         * Validate product id (if it's a variable product, return it's parent id)
+         *
+         * Moved from \WeDevs\Dokan\Commission() ( commission.php file ) in version 3.14.0
+         *
+         * @since  2.9.21
+         *
+         * @param int $product_id
+         *
+         * @return int
+         */
+        public function validate_product_id($product_id)
+        {
+        }
+        /**
+         * Returns product commission settings data.
+         *
+         * @since 3.14.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function get_commission_settings($product_id = 0)
+        {
+        }
+        /**
+         * Saves and returns product commission settings data.
+         *
+         * @since 3.14.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function save_commission_settings($product_id, $commission)
+        {
+        }
+        /**
+         * Set product brands.
+         *
+         * @since 4.0.4
+         *
+         * @param int   $product_id Product ID.
+         * @param array $brands     Array of brand IDs.
+         */
+        public function save_brands(int $product_id, array $brands)
+        {
+        }
+        /**
+         * Get product brands.
+         *
+         * @since 4.0.4
+         *
+         * @param int    $product_id Product ID.
+         * @param string $fields     Fields to return. Default is 'all'. Other options are 'ids', 'names', 'slugs', 'count', 'all_with_object_id'.
+         *
+         * @return array
+         */
+        public function get_brands(int $product_id, string $fields = 'all'): array
+        {
+        }
+        /**
+         * Get product brand IDs.
+         *
+         * @since 4.0.4
+         *
+         * @param int $product_id Product ID.
+         *
+         * @return array
+         */
+        public function get_brand_ids(int $product_id): array
         {
         }
     }
@@ -11326,7 +22179,13 @@ namespace WeDevs\Dokan\ProductCategory {
         {
         }
         /**
-         * Returns products category.
+         * Returns products category. If the category selection is single, it will return the first category of the product.
+         * If the category selection is multiple, it will return all the categories of the product.
+         * If the category selection is single and the product has multiple categories, it will return the first category.
+         * If you want to get the chosen category of a product as it is saved in the database and not considering the category selection setting,
+         * then use the function self::get_product_chosen_category
+         *
+         * @see self::get_product_chosen_category
          *
          * @since 3.6.2
          *
@@ -11356,7 +22215,7 @@ namespace WeDevs\Dokan\ProductCategory {
          *
          * @since 3.6.4
          *
-         * @param object $terms
+         * @param array $terms
          *
          * @return array
          */
@@ -11400,14 +22259,23 @@ namespace WeDevs\Dokan\ProductCategory {
         }
         /**
          * Returns the chosen category of a product.
+         * The purpose of this function is to get the chosen category of a product. It will return the category ids as saved
+         * in the database. it will not consider if the setting in dokan setting is single or multiple category selection.
+         * It will return the saved category ids as it is. And if the product is a variation product, it will find the parent
+         * product id and return the chosen category of the parent product.
+         *
+         * It is not recommended to use this function to get the chosen category of a product by the chosen category setting.
+         * Instead, use the function self::get_saved_products_category
+         *
+         * @see self::get_saved_products_category
          *
          * @since 3.7.0
          *
-         * @param int $product_id
+         * @param int $product
          *
          * @return array
          */
-        public static function get_product_chosen_category($product_id)
+        public static function get_product_chosen_category($product)
         {
         }
         /**
@@ -11420,6 +22288,37 @@ namespace WeDevs\Dokan\ProductCategory {
          * @return array $chosen_categories
          */
         public static function generate_and_set_chosen_categories($product_id, $chosen_categories = [])
+        {
+        }
+        /**
+         * @param int|WC_Product $product
+         *
+         * @return array|\WP_Error
+         */
+        public static function get_product_terms($product)
+        {
+        }
+        /**
+         * Get product categories in a fully hierarchical (recursive) format for JS consumption.
+         *
+         * @since 4.0.2
+         *
+         * @return array
+         */
+        public static function get_product_categories_tree($with_term = false): array
+        {
+        }
+        /**
+         * Get all ancestors of chosen categories.
+         *
+         * @since 5.0.0
+         *
+         * @param \WC_Product|int $product
+         * @param array $chosen_categories
+         *
+         * @return array
+         */
+        public static function get_object_terms_from_chosen_categories($product, $chosen_categories = [])
         {
         }
     }
@@ -11496,6 +22395,386 @@ namespace WeDevs\Dokan\ProductCategory {
          * @param int $term_id
          */
         public function clear_product_category_cache($term_id)
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\ProductEditor {
+    /**
+     * Product Form Elements
+     *
+     * @since 5.0.0
+     */
+    class Elements
+    {
+        // Section ids.
+        const SECTION_GENERAL = 'general';
+        const SECTION_INVENTORY = 'inventory';
+        const SECTION_DOWNLOADABLE = 'downloadable_options';
+        const SECTION_OTHERS = 'others';
+        const SECTION_SHIPPING = 'shipping';
+        const SECTION_ATTRIBUTES_AND_VARIATIONS = 'attributes-and-variations';
+        const PRODUCT_TYPE_SIMPLE = 'simple';
+        const PRODUCT_TYPE_VARIABLE = 'variable';
+        const PRODUCT_TYPE_GROUPED = 'grouped';
+        const PRODUCT_TYPE_EXTERNAL = 'external';
+        const PRODUCT_TYPE_VARIATION = 'variation';
+        const SECTION_LINKED = 'linked';
+        // Layout IDs.
+        const ROOT_LAYOUT = 'root_layout';
+        const PRIMARY_COLUMN = 'primary_column';
+        const SIDEBAR_COLUMN = 'sidebar_column';
+        const SECTION_DIGITAL_OPTIONS = 'digital_options';
+        const SECTION_DISCOUNT_SCHEDULE = 'discount_schedule';
+        const SECTION_DESCRIPTION = 'description_section';
+        const SECTION_SHIPPING_DIMENSIONS = 'shipping_dimensions';
+        const SECTION_SHIPPING_OVERWRITE = 'shipping_overwrite';
+        const SECTION_PUBLISHING = 'product_publishing';
+        const SECTION_PURCHASE_NOTE = 'purchase_note_section';
+        const ID = 'id';
+        const TYPE = 'type';
+        const NAME = 'name';
+        const DESCRIPTION = 'description';
+        const ENABLED = 'enabled';
+        const SHORT_DESCRIPTION = 'short_description';
+        const STATUS = 'status';
+        const SLUG = 'slug';
+        const MENU_ORDER = 'menu_order';
+        const REVIEWS_ALLOWED = 'reviews_allowed';
+        const VIRTUAL = 'virtual';
+        const TAX_STATUS = 'tax_status';
+        const TAX_CLASS = 'tax_class';
+        const CATALOG_VISIBILITY = 'catalog_visibility';
+        const PURCHASE_NOTE = 'purchase_note';
+        const FEATURED = 'featured';
+        const SKU = 'sku';
+        const GLOBAL_UNIQUE_ID = 'global_unique_id';
+        const WEIGHT = 'weight';
+        const DIMENSIONS = 'dimensions';
+        const DIMENSIONS_HEIGHT = 'height';
+        const DIMENSIONS_WIDTH = 'width';
+        const DIMENSIONS_LENGTH = 'length';
+        const SHIPPING_CLASS = 'shipping_class';
+        const ATTRIBUTES = 'attributes';
+        const ATTRIBUTES_ID = 'id';
+        const ATTRIBUTES_NAME = 'name';
+        const ATTRIBUTES_OPTIONS = 'options';
+        const ATTRIBUTES_POSITION = 'position';
+        const ATTRIBUTES_VISIBLE = 'visible';
+        const ATTRIBUTES_VARIATION = 'variation';
+        const DEFAULT_ATTRIBUTES = 'default_attributes';
+        const REGULAR_PRICE = 'regular_price';
+        const SALE_PRICE = 'sale_price';
+        const DATE_CREATED = 'date_created';
+        const DATE_CREATED_GMT = 'date_created_gmt';
+        const DATE_ON_SALE_FROM = 'date_on_sale_from';
+        const DATE_ON_SALE_FROM_GMT = 'date_on_sale_from_gmt';
+        const DATE_ON_SALE_TO = 'date_on_sale_to';
+        const DATE_ON_SALE_TO_GMT = 'date_on_sale_to_gmt';
+        const PARENT_ID = 'parent_id';
+        const SOLD_INDIVIDUALLY = 'sold_individually';
+        const LOW_STOCK_AMOUNT = 'low_stock_amount';
+        const STOCK_STATUS = 'stock_status';
+        const MANAGE_STOCK = 'manage_stock';
+        const BACKORDERS = 'backorders';
+        const STOCK_QUANTITY = 'stock_quantity';
+        const INVENTORY_DELTA = 'inventory_delta';
+        const UPSELL_IDS = 'upsell_ids';
+        const CROSS_SELL_IDS = 'cross_sell_ids';
+        const CATEGORIES = 'category_ids';
+        const TAGS = 'product_tag';
+        const BRANDS = 'product_brand';
+        const DOWNLOADABLE = 'downloadable';
+        const DOWNLOADS = 'downloads';
+        const DOWNLOAD_LIMIT = 'download_limit';
+        const DOWNLOAD_EXPIRY = 'download_expiry';
+        const EXTERNAL_URL = 'external_url';
+        const BUTTON_TEXT = 'button_text';
+        const GROUPED_PRODUCTS = 'grouped_products';
+        const FEATURED_IMAGE_ID = 'image_id';
+        const GALLERY_IMAGE_IDS = 'gallery_image_ids';
+        const META_DATA = 'meta_data';
+        const DISABLE_SHIPPING_META = '_disable_shipping';
+        const OVERWRITE_SHIPPING_META = '_overwrite_shipping';
+        const ADDITIONAL_SHIPPING_COST_META = '_additional_price';
+        const ADDITIONAL_SHIPPING_QUANTITY_META = '_additional_qty';
+        const ADDITIONAL_SHIPPING_PROCESSING_TIME_META = '_dps_processing_time';
+        const CREATE_SCHEDULE_FOR_DISCOUNT = 'create_schedule_for_discount';
+    }
+    /**
+     * Product form schema, data resolution, and product form support.
+     *
+     * @since 5.0.0
+     */
+    class FormSchema
+    {
+        /**
+         * Required field attributes
+         *
+         * @since 5.0.0
+         *
+         * @var array $required_fields
+         */
+        private array $required_fields = ['id', 'type', 'variant', 'label'];
+        /**
+         * Supported field types.
+         *
+         * @since 5.0.0
+         *
+         * @var array
+         */
+        private array $supported_types = ['section', 'field'];
+        /**
+         * Supported field variants.
+         *
+         * @since 5.0.0
+         *
+         * @var array
+         */
+        private array $supported_variants = ['text', 'select', 'multiselect', 'async_select', 'checkbox', 'textarea', 'editor', 'radio', 'number', 'file', 'datetime', 'image', 'gallery', 'attribute', 'location_map'];
+        /**
+         * Validate field schema and log developer notices for invalid fields.
+         *
+         * @since 5.0.0
+         *
+         * @param array $fields Form schema fields to validate.
+         *
+         * @return array The same fields array (unmodified).
+         */
+        private function assert_field_schema(array $fields): array
+        {
+        }
+        /**
+         * Get available product types as label/value pairs.
+         *
+         * @since 5.0.0
+         *
+         * @return array
+         */
+        public function get_product_types(): array
+        {
+        }
+        /**
+         * Get the flat layout definition.
+         *
+         * Predefined items are sorted by array position.
+         * Extensions can set an optional `priority` key to control insertion order
+         * when adding items via the `dokan_product_editor_layouts` filter.
+         *
+         * @since 5.0.0
+         *
+         * @return array Flat array of layout items.
+         */
+        public static function get_layouts(): array
+        {
+        }
+        /**
+         * Get flat form schema (sections and fields). Resolves field values when $product_id is provided.
+         *
+         * @since 5.0.0
+         * @param int $product_id Optional. Product ID to resolve values from.
+         * @return array Form schema items (sections and fields).
+         */
+        public function get_schema(int $product_id = 0): array
+        {
+        }
+        /**
+         * Format a resolved field value to the shape expected by the frontend based on variant.
+         *
+         * Resolve_field_value() returns raw values (int, array of ints, etc.).
+         * This method transforms them to the structured shape the React frontend expects.
+         *
+         * @since 5.0.0
+         *
+         * @param mixed  $value   Raw resolved value.
+         * @param string $variant Field variant type.
+         *
+         * @return mixed Formatted value.
+         */
+        private function format_field_value($value, string $variant)
+        {
+        }
+        /**
+         * Resolve a field's value from product. Mirrors Field::get_value() and original value_callback logic.
+         *
+         * @param string     $field_id Field id (Elements constant value, e.g. Elements::REVIEWS_ALLOWED).
+         * @param WC_Product $product  Product instance.
+         * @return mixed
+         */
+        private function resolve_field_value(string $field_id, \WC_Product $product)
+        {
+        }
+        /**
+         * Get product tags for form options.
+         *
+         * @since 5.0.0
+         *
+         * @return array
+         */
+        public static function get_product_tags(): array
+        {
+        }
+        /**
+         * Get product brands recursively for form options.
+         *
+         * @since 5.0.0
+         *
+         * @param int $parent_id Parent term ID (0 for top-level).
+         *
+         * @return array
+         */
+        public static function get_products_brands(int $parent_id = 0): array
+        {
+        }
+    }
+    /**
+     * Resolves product form payload (schema field ids) to WooCommerce REST API shape.
+     * Allows the frontend to send data keyed by form field id; server resolves to API keys.
+     *
+     * @since 5.0.0
+     */
+    class PayloadResolver
+    {
+        /**
+         * Transform request body from schema field ids to WC REST product API shape.
+         * When schema keys are present they are mapped and removed; existing API keys are kept.
+         *
+         * @since 5.0.0
+         *
+         * @param array $data Request body (e.g. from get_json_params()).
+         *
+         * @return array Data suitable for WC REST product create/update.
+         */
+        public static function resolve(array $data): array
+        {
+        }
+        /**
+         * Unwrap single-element arrays to scalar strings for fields the WC REST API
+         * expects as plain strings (e.g. select variant fields like tax_status).
+         *
+         * The DataForm select component sends values as arrays (e.g. ['taxable']).
+         * WooCommerce product setters expect plain strings.
+         *
+         * @since 5.0.0
+         */
+        public function resolve_single_select_fields(array $data): array
+        {
+        }
+        /**
+         * Cast numeric string fields to integers for the WC REST API.
+         *
+         * @since 5.0.0
+         */
+        public function resolve_integer_fields(array $data): array
+        {
+        }
+        /**
+         * Transform taxonomy fields (categories, tags, brands) from flat ID arrays
+         * to the WC REST API format: [ { id: int }, ... ].
+         *
+         * @since 5.0.0
+         */
+        public function resolve_taxonomies(array $data): array
+        {
+        }
+        /**
+         * Map tag IDs and (when vendors can create tags) new-name strings to the WC REST tag shape.
+         *
+         * @since 5.0.4
+         *
+         * @param array $tags Array of tag IDs and/or new tag names.
+         *
+         * @return array of tag objects for WC REST API: [ { id: int } | { name: string }, ... ].
+         */
+        public function map_tags_to_objects(array $tags): array
+        {
+        }
+        /**
+         * Transform featured image and gallery image IDs into the WC REST images array.
+         *
+         * @since 5.0.0
+         */
+        public function resolve_images(array $data): array
+        {
+        }
+        /**
+         * Combine individual dimension fields into a nested dimensions object.
+         *
+         * @since 5.0.0
+         */
+        public function resolve_dimensions(array $data): array
+        {
+        }
+        /**
+         * Normalize linked product fields (upsells, cross-sells, grouped) to integer ID arrays.
+         *
+         * @since 5.0.0
+         */
+        public function resolve_linked_products(array $data): array
+        {
+        }
+        /**
+         * Transform attributes to the WC REST API shape.
+         *
+         * @since 5.0.0
+         */
+        public function resolve_attributes(array $data): array
+        {
+        }
+        /**
+         * Transform attributes array to WC REST product schema (options as string array).
+         *
+         * @since 5.0.0
+         *
+         * @param array $attributes List of attribute objects.
+         *
+         * @return array
+         */
+        public function transform_attributes(array $attributes): array
+        {
+        }
+        /**
+         * Convert an array of IDs to WC REST taxonomy format: [ { id: int }, ... ].
+         *
+         * @since 5.0.0
+         *
+         * @param array $ids Flat array of term IDs.
+         *
+         * @return array Array of objects with 'id' key.
+         */
+        public function map_ids_to_objects(array $ids): array
+        {
+        }
+        /**
+         * Extract an image ID from either a plain integer or an array with 'id' key.
+         *
+         * @since 5.0.0
+         *
+         * @param array|int|string $image Image data.
+         *
+         * @return int
+         */
+        public function extract_image_id($image): int
+        {
+        }
+        /**
+         * Extract a product ID from mixed input formats (plain int, array with value/id key, object).
+         *
+         * @since 5.0.0
+         *
+         * @param array|object|int|string $item Product reference.
+         *
+         * @return int
+         */
+        public function extract_product_id($item): int
+        {
+        }
+        /**
+         * Resolve additional fields like sale schedule into their API representations.
+         *
+         * @since 5.0.0
+         */
+        public function resolve_additional_fields(array $data): array
         {
         }
     }
@@ -11901,14 +23180,64 @@ namespace WeDevs\Dokan\ProductSections {
         }
     }
 }
+namespace WeDevs\Dokan {
+    /**
+     * Class to handle product status rollback operations.
+     *
+     * Dokan pro schedule an action during deactivation to change product status from `reject` to `draft`.
+     */
+    class ProductStatusRollback implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Queue group identifier
+         *
+         * @var string
+         */
+        private const QUEUE_GROUP = 'dokan-product-status-rollback';
+        /**
+         * Batch size for processing
+         *
+         * @var int
+         */
+        private const BATCH_SIZE = 10;
+        /**
+         * Constructor.
+         *
+         * @since 3.14.9
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Set up necessary hooks
+         *
+         * @since 3.14.9
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Process reject to draft batch operation
+         *
+         * @since 3.14.9
+         *
+         * @return void
+         */
+        public function process_reject_operation(): void
+        {
+        }
+    }
+}
 namespace WeDevs\Dokan\REST {
     /**
-    * Admin Dashboard
-    *
-    * @since 2.8.0
-    *
-    * @package dokan
-    */
+     * Admin Dashboard
+     *
+     * @since 2.8.0
+     *
+     * @package dokan
+     */
     class AdminDashboardController extends \WeDevs\Dokan\Abstracts\DokanRESTAdminController
     {
         /**
@@ -11935,10 +23264,13 @@ namespace WeDevs\Dokan\REST {
         public function get_feeds($request)
         {
         }
+        public function get_status($request)
+        {
+        }
         /**
          * Support SimplePie class in WP 5.5+
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.10
          *
          * @param array  $response    HTTP response.
          * @param array  $parsed_args HTTP request arguments.
@@ -11947,6 +23279,356 @@ namespace WeDevs\Dokan\REST {
          * @return array
          */
         public static function dokan_compat_simple_pie_after_five_point_five($response, $parsed_args, $url)
+        {
+        }
+    }
+    /**
+     * Todo Dashboard API Controller
+     *
+     * Handles todo endpoint requests
+     *
+     * @since 4.1.0
+     */
+    class AdminDashboardStatsController extends \WeDevs\Dokan\REST\DokanBaseAdminController
+    {
+        /**
+         * Route base.
+         *
+         * @var string
+         */
+        protected $rest_base = 'dashboard';
+        /**
+         * Register all routes related with todo
+         *
+         * @return void
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Get to_do data
+         *
+         * @since 4.1.0
+         *
+         * @return WP_REST_Response
+         */
+        public function get_to_do()
+        {
+        }
+        /**
+         * Get analytics data.
+         *
+         * @since 4.1.0
+         *
+         * @return WP_REST_Response
+         */
+        public function get_analytics_data()
+        {
+        }
+        /**
+         * Get monthly_overview data
+         *
+         * @since 4.1.0
+         *
+         * @param WP_REST_Request $request
+         *
+         * @return WP_REST_Response
+         */
+        public function get_monthly_overview_data($request)
+        {
+        }
+        /**
+         * Get sales_chart data
+         *
+         * @since 4.1.0
+         *
+         * @param WP_REST_Request $request
+         *
+         * @return WP_REST_Response
+         */
+        public function get_sales_chart_data($request)
+        {
+        }
+        /**
+         * Get all_time_stats data
+         *
+         * @since 4.1.0
+         *
+         * @return WP_REST_Response
+         */
+        public function get_all_time_stats_data()
+        {
+        }
+        /**
+         * Get top_performing_vendors data
+         *
+         * @since 4.1.0
+         *
+         * @param WP_REST_Request $request
+         *
+         * @return WP_REST_Response
+         */
+        public function get_top_performing_vendors_data($request)
+        {
+        }
+        /**
+         * Get most_reviewed_products data
+         *
+         * @since 4.1.0
+         *
+         * @return WP_REST_Response
+         */
+        public function get_most_reviewed_products_data()
+        {
+        }
+        /**
+         * Get vendor_metrics data
+         *
+         * @since 4.1.0
+         *
+         * @param WP_REST_Request $request
+         *
+         * @return WP_REST_Response
+         */
+        public function get_vendor_metrics_data($request)
+        {
+        }
+        /**
+         * Get vendor approvals count
+         *
+         * @since 4.1.0
+         *
+         * @return int
+         */
+        public function get_vendor_approvals_count()
+        {
+        }
+        /**
+         * Get product approvals count
+         *
+         * @since 4.1.0
+         *
+         * @return int
+         */
+        public function get_product_approvals_count()
+        {
+        }
+        /**
+         * Get pending withdrawals count
+         *
+         * @since 4.1.0
+         *
+         * @return int
+         */
+        public function get_pending_withdrawals_count()
+        {
+        }
+        /**
+         * Get top-performing vendors
+         *
+         * @since 4.1.0
+         *
+         * @param string $date The date for which to get the vendor data (optional).
+         *
+         * @return array
+         */
+        public function get_top_performing_vendors($date = '')
+        {
+        }
+        /**
+         * Get most reviewed products
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        public function get_most_reviewed_products()
+        {
+        }
+        /**
+         * Get all time marketplace stats
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        public function get_all_time_stats()
+        {
+        }
+        /**
+         * Get sales chart data for the current month
+         *
+         * @since 4.1.0
+         *
+         * @param string $date The date for which to get the sales data (optional).
+         *
+         * @return array
+         */
+        public function get_sales_chart($date = '')
+        {
+        }
+        /**
+         * Get vendor metrics data
+         *
+         * @since 4.1.0
+         *
+         * @param string $date
+         *
+         * @return array
+         */
+        public function get_vendor_metrics(string $date = ''): array
+        {
+        }
+        /**
+         * Get monthly overview data
+         *
+         * @since 4.1.0
+         *
+         * @param string $date
+         *
+         * @return array
+         */
+        public function get_monthly_overview($date)
+        {
+        }
+        /**
+         * Parse date and return formatted date ranges
+         *
+         * @since 4.1.0
+         *
+         * @param string $date The date string in Y-m format (optional)
+         *
+         * @return array Array containing parsed date information
+         */
+        public function parse_date_range($date = '')
+        {
+        }
+        /**
+         * Get filtered product types
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        public function get_filtered_product_types()
+        {
+        }
+        /**
+         * Get schema for todo endpoint
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        public function get_todo_schema()
+        {
+        }
+        /**
+         * Get schema for analytics endpoint
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        public function get_analytics_schema()
+        {
+        }
+        /**
+         * Get schema for monthly overview endpoint
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        public function get_monthly_overview_schema()
+        {
+        }
+        /**
+         * Get schema for sales chart endpoint
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        public function get_sales_chart_schema()
+        {
+        }
+        /**
+         * Get schema for all-time stats endpoint
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        public function get_all_time_stats_schema()
+        {
+        }
+        /**
+         * Get schema for top performing vendors endpoint
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        public function get_top_performing_vendors_schema()
+        {
+        }
+        /**
+         * Get schema for most reviewed products endpoint
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        public function get_most_reviewed_products_schema()
+        {
+        }
+        /**
+         * Get schema for vendor metrics endpoint
+         *
+         * @since 4.1.0
+         *
+         * @return array
+         */
+        public function get_vendor_metrics_schema()
+        {
+        }
+    }
+    /**
+     * Admin Extensions REST Controller.
+     *
+     * Handles plugin installation from the extensions page.
+     *
+     * @since SUSPENDED
+     */
+    class AdminExtensionsController extends \WeDevs\Dokan\REST\DokanBaseAdminController
+    {
+        /**
+         * Route base.
+         *
+         * @var string
+         */
+        protected $rest_base = 'extensions';
+        /**
+         * Register routes.
+         *
+         * @since SUSPENDED
+         *
+         * @return void
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Install a plugin from WordPress.org.
+         *
+         * @since SUSPENDED
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function install_plugin($request)
         {
         }
     }
@@ -11981,6 +23663,18 @@ namespace WeDevs\Dokan\REST {
         public function get_help()
         {
         }
+        /**
+         * Get dokan option.
+         *
+         * @since 3.14.0
+         *
+         * @param \WP_REST_Request $request
+         *
+         * @return \WP_REST_Response|\WP_Error
+         */
+        public function get_option($request)
+        {
+        }
     }
     /**
     * Admin Notice Controller
@@ -12009,10 +23703,11 @@ namespace WeDevs\Dokan\REST {
         }
         /**
          * Get dokan specific notices
+         * @param WP_REST_Request $request
          *
          * @return WP_REST_Response
          */
-        public function dokan_get_admin_notices()
+        public function dokan_get_admin_notices(\WP_REST_Request $request)
         {
         }
         /**
@@ -12021,6 +23716,100 @@ namespace WeDevs\Dokan\REST {
          * @return WP_REST_Response
          */
         public function get_promo_notices()
+        {
+        }
+    }
+    /**
+     * Admin Onboarding REST Controller
+     *
+     * @since 4.0.0
+     */
+    class AdminOnboardingController extends \WeDevs\Dokan\REST\DokanBaseAdminController
+    {
+        /**
+         * API base
+         *
+         * @var string
+         */
+        protected $rest_base = 'onboarding';
+        /**
+         * Register routes
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Get the schema for the endpoint
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function get_item_schema(): array
+        {
+        }
+        /**
+         * Create onboarding data
+         *
+         * @since 4.0.0
+         *
+         * @param WP_REST_Request $request
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function create_onboarding(\WP_REST_Request $request)
+        {
+        }
+        /**
+         * Get onboarding data
+         *
+         * @since 4.0.0
+         *
+         * @param WP_REST_Request $request
+         *
+         * @return WP_REST_Response
+         */
+        public function get_onboarding(\WP_REST_Request $request): \WP_REST_Response
+        {
+        }
+        /**
+         * Update share essentials option
+         *
+         * @since 4.0.0
+         *
+         * @param bool $share_essentials
+         *
+         * @return void
+         */
+        protected function update_share_essentials(bool $share_essentials): void
+        {
+        }
+        /**
+         * Update marketplace goal settings
+         *
+         * @since 4.0.0
+         *
+         * @param array $data Request data
+         *
+         * @return void
+         */
+        protected function update_marketplace_goal(array $data): void
+        {
+        }
+        /**
+         * Install required plugins
+         *
+         * @since 4.0.0
+         *
+         * @param array $plugins
+         *
+         * @return void
+         */
+        protected function install_required_plugins(array $plugins): void
         {
         }
     }
@@ -12068,6 +23857,83 @@ namespace WeDevs\Dokan\REST {
         {
         }
     }
+    class AdminSetupGuideController extends \WeDevs\Dokan\REST\DokanBaseAdminController
+    {
+        /**
+         * The namespace of this controller's route.
+         *
+         * @var string $rest_base The base URL for the REST API.
+         */
+        protected $rest_base = 'setup-guide';
+        /**
+         * Register all routes releated with stores.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Get all items.
+         *
+         * @since 4.0.0
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return WP_REST_Response
+         */
+        public function get_items($request): \WP_REST_Response
+        {
+        }
+        /**
+         * Get a single item.
+         *
+         * @since 4.0.0
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return \WP_Error| WP_REST_Response
+         */
+        public function get_item($request)
+        {
+        }
+        /**
+         * Update a single item.
+         *
+         * @since 4.0.0
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return \WP_Error| WP_REST_Response
+         */
+        public function update_item($request)
+        {
+        }
+        /**
+         * Set items as completed.
+         *
+         * @since 4.0.0
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return WP_REST_Response
+         */
+        public function set_items_as_completed($request): \WP_REST_Response
+        {
+        }
+        /**
+         * Parse settings for storage.
+         *
+         * @param array $settings_data Settings data for parsing.
+         *
+         * @return array
+         */
+        private function parse_settings_data(array $settings_data): array
+        {
+        }
+    }
     /**
      * Dokan Changelog handler class
      *
@@ -12099,6 +23965,377 @@ namespace WeDevs\Dokan\REST {
          * @return WP_REST_Response|WP_Error
          */
         public function get_change_log()
+        {
+        }
+    }
+    class CommissionControllerV1 extends \WeDevs\Dokan\Abstracts\DokanRESTController
+    {
+        /**
+         * Endpoint namespace
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan/v1';
+        /**
+         * Route name
+         *
+         * @var string
+         */
+        protected $base = 'commission';
+        /**
+         * Registering the commission routes here.
+         *
+         * @since 3.14.0
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Checking if have any permission.
+         *
+         * @since 3.14.0
+         *
+         * @return boolean
+         */
+        public function get_permissions_check()
+        {
+        }
+        /**
+         * Returns commission or earning based on context.
+         *
+         * @param WP_REST_Request $request
+         *
+         * @return WP_Error|WP_HTTP_Response|WP_REST_Response
+         */
+        public function get_commission($request)
+        {
+        }
+    }
+    class CustomersController extends \WC_REST_Customers_Controller
+    {
+        /**
+         * Endpoint namespace.
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan/v1';
+        /**
+         * Register the routes for customers.
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Check if a given request has access to perform an action.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @param string $action The action to check (view, create, edit, delete).
+         *
+         * @return WP_Error|boolean
+         */
+        protected function check_permission($request, $action)
+        {
+        }
+        /**
+         * Verify the requesting vendor may mutate the target user.
+         *
+         * Rejects targets that are missing, hold admin-grade capabilities,
+         * are themselves a vendor, or have never placed an order with the
+         * requesting vendor. CVE-2026-8761.
+         *
+         * @param int $target_id Target user id.
+         *
+         * @return true|WP_Error
+         */
+        protected function is_target_user_allowed(int $target_id)
+        {
+        }
+        /**
+         * Check if the current user has vendor permissions.
+         *
+         * Doubles as a callback on the woocommerce_rest_check_permissions
+         * filter so WooCommerce's internal capability checks for mutating
+         * operations (create/edit/delete/batch) re-validate the target user.
+         * Read context is allowed through for the vendor.
+         *
+         * @param bool|mixed $permission  Original permission decision when used as a filter callback.
+         * @param string     $context     Operation context (read/edit/delete/create/batch).
+         * @param int        $object_id   Target object id.
+         * @param string     $object_type Object type (expected: user).
+         *
+         * @return bool
+         */
+        public function check_vendor_permission($permission = false, $context = '', $object_id = 0, $object_type = ''): bool
+        {
+        }
+        /**
+         * Get all customers.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_Error|WP_REST_Response
+         */
+        public function get_items($request)
+        {
+        }
+        /**
+         * Get a single customer.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_Error|WP_REST_Response
+         */
+        public function get_item($request)
+        {
+        }
+        /**
+         * Create a customer.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_Error|WP_REST_Response
+         */
+        public function create_item($request)
+        {
+        }
+        /**
+         * Update a customer.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_Error|WP_REST_Response
+         */
+        public function update_item($request)
+        {
+        }
+        /**
+         * Delete a customer.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_Error|WP_REST_Response
+         */
+        public function delete_item($request)
+        {
+        }
+        public function batch_items($request)
+        {
+        }
+        /**
+         * Search customers for the current vendor.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|WP_REST_Response
+         * @throws \Exception
+         */
+        public function search_customers($request)
+        {
+        }
+        /**
+         * Prepare a single customer for create or update.
+         *
+         * @param WP_REST_Request $request Request object.
+         * @param bool            $creating If is creating a new object.
+         *
+         * @return WP_Error|WC_Data
+         */
+        protected function prepare_object_for_database($request, $creating = false)
+        {
+        }
+        /**
+         * Perform an action with vendor permission check.
+         *
+         * @param callable $action The action to perform.
+         *
+         * @return mixed The result of the action.
+         */
+        private function perform_vendor_action(callable $action)
+        {
+        }
+        /**
+         * Check if a given request has access to get items.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|boolean
+         */
+        public function get_items_permissions_check($request)
+        {
+        }
+        /**
+         * Check if a given request has access to get a specific item.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|boolean
+         */
+        public function get_item_permissions_check($request)
+        {
+        }
+        /**
+         * Check if a given request has access to create a customer.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|boolean
+         */
+        public function create_item_permissions_check($request)
+        {
+        }
+        /**
+         * Check if a given request has access to update a customer.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|boolean
+         */
+        public function update_item_permissions_check($request)
+        {
+        }
+        /**
+         * Check if a given request has access to delete a customer.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|boolean
+         */
+        public function delete_item_permissions_check($request)
+        {
+        }
+        /**
+         * Check if a given request has access to batch items.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|boolean
+         */
+        public function batch_items_permissions_check($request)
+        {
+        }
+        /**
+         * Check if a given request has access to search customers.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|boolean
+         */
+        public function search_customers_permissions_check($request)
+        {
+        }
+    }
+    /**
+     * Customer REST Controller for Dokan
+     *
+     * @since 3.14.11
+     *
+     * @package dokan
+     */
+    abstract class DokanBaseCustomerController extends \WeDevs\Dokan\REST\DokanBaseController
+    {
+        /**
+         * Endpoint base.
+         *
+         * @var string
+         */
+        protected $rest_base = 'customer';
+        /**
+         * Check if user has customer permission.
+         *
+         * @since 3.14.11
+         *
+         * @return bool
+         */
+        public function check_permission()
+        {
+        }
+    }
+    class DokanDataContinentsController extends \WC_REST_Data_Continents_Controller
+    {
+        /**
+         * Endpoint namespace.
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan/v1';
+        /**
+         * Route base.
+         *
+         * @var string
+         */
+        protected $rest_base = 'data/continents';
+        /**
+         * Check the permission of the request for dokan.
+         *
+         * @since 4.0.0
+         *
+         * @param  WP_REST_Request $request Full details about the request.
+         * @return WP_Error|boolean
+         */
+        public function check_dokan_permission($request)
+        {
+        }
+        /**
+         * Check if a given request has access to read an item.
+         *
+         * @param  WP_REST_Request $request Full details about the request.
+         * @return WP_Error|boolean
+         */
+        public function get_item_permissions_check($request)
+        {
+        }
+        /**
+         * Check if a given request has access to read items.
+         *
+         * @since 4.0.0
+         *
+         * @param  WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|boolean
+         */
+        public function get_items_permissions_check($request)
+        {
+        }
+    }
+    class DokanDataCountriesController extends \WC_REST_Data_Countries_Controller
+    {
+        /**
+         * Endpoint namespace.
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan/v1';
+        /**
+         * Route base.
+         *
+         * @var string
+         */
+        protected $rest_base = 'data/countries';
+        /**
+         * Check the permission of the request for dokan.
+         *
+         * @since 4.0.0
+         *
+         * @param  WP_REST_Request $request Full details about the request.
+         * @return WP_Error|boolean
+         */
+        public function check_dokan_permission($request)
+        {
+        }
+        /**
+         * Check if a given request has access to read an item.
+         *
+         * @param  WP_REST_Request $request Full details about the request.
+         * @return WP_Error|boolean
+         */
+        public function get_item_permissions_check($request)
+        {
+        }
+        /**
+         * Check if a given request has access to read items.
+         *
+         * @since 4.0.0
+         *
+         * @param  WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|boolean
+         */
+        public function get_items_permissions_check($request)
         {
         }
     }
@@ -12183,6 +24420,41 @@ namespace WeDevs\Dokan\REST {
         }
     }
     /**
+     * Dokan Export Controller
+     *
+     * Extends WooCommerce's Export Controller to provide export functionality
+     * for Dokan specific reports like withdraws.
+     *
+     * @since 4.1.3
+     */
+    class ExportController extends \Automattic\WooCommerce\Admin\API\Reports\Export\Controller
+    {
+        protected $namespace = 'dokan/v1';
+        /**
+         * Route base.
+         *
+         * @var string
+         */
+        protected $rest_base = '/reports/(?P<type>[a-z]+)/export';
+        /**
+         * Register routes.
+         *
+         * @since 4.1.3
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Check if a given request has access to read items.
+         *
+         * @param  \WP_REST_Request $request Full details about the request.
+         * @return \WP_Error|boolean
+         */
+        public function get_items_permissions_check($request)
+        {
+        }
+    }
+    /**
      * API_Registrar class
      */
     class Manager
@@ -12214,7 +24486,7 @@ namespace WeDevs\Dokan\REST {
          *
          * @return void
          */
-        public function prepeare_product_response($response, $object, $request)
+        public function prepare_product_response($response)
         {
         }
         /**
@@ -12230,28 +24502,15 @@ namespace WeDevs\Dokan\REST {
         {
         }
         /**
-         * Populate admin commission
-         *
-         * @param  array $data
-         * @param  array $store
-         *
-         * @since  2.9.13
-         *
-         * @return array
-         */
-        public function populate_admin_commission($data, $store)
-        {
-        }
-        /**
          * Send email to admin on adding a new product
          *
-         * @param  \WC_Data $object
+         * @param WC_Data $data
          * @param  \WP_REST_Request $request
-         * @param  Boolean $creating
+         * @param  bool $creating
          *
          * @return void
          */
-        public function on_dokan_rest_insert_product($object, $request, $creating)
+        public function on_dokan_rest_insert_product($data, $request, $creating)
         {
         }
         /**
@@ -12264,6 +24523,31 @@ namespace WeDevs\Dokan\REST {
          * @return array
          */
         public function filter_payment_response($data)
+        {
+        }
+        /**
+         * Register export controllers with WooCommerce export system
+         *
+         * @since 4.1.3
+         *
+         * @param array $controller_map Existing controller map
+         *
+         * @return array Modified controller map
+         */
+        public function register_export_controllers(array $controller_map): array
+        {
+        }
+        /**
+         * Register withdraw data endpoint for export
+         *
+         * @since 4.1.3
+         *
+         * @param  string  $endpoint The report's data endpoint
+         * @param  string  $type The report's type
+         *
+         * @return string The report's endpoint
+         */
+        public function register_data_endpoint(string $endpoint, string $type): string
         {
         }
         /**
@@ -12637,11 +24921,37 @@ namespace WeDevs\Dokan\REST {
          *
          * @since 3.7.10
          *
-         * @param  \WP_REST_Request $requests Request object.
+         * @param  \WP_REST_Request $request Request object.
          *
          * @return WP_Error|\WP_HTTP_Response|\WP_REST_Response
          */
-        public function get_order_downloads($requests)
+        public function get_order_downloads($request)
+        {
+        }
+        /**
+         * Format downloads data.
+         *
+         * @since 4.0.0
+         *
+         * @param \stdClass[]   $downloads
+         * @param \WC_Product[] $products
+         *
+         * @return array
+         */
+        protected function format_downloads_data($downloads, $products)
+        {
+        }
+        /**
+         * Prepare data for response.
+         *
+         * @since 4.0.0
+         *
+         * @param \stdClass        $download
+         * @param \WP_REST_Request $request
+         *
+         * @return \stdClass
+         */
+        public function prepare_data_for_response($download, $request)
         {
         }
         /**
@@ -12654,6 +24964,18 @@ namespace WeDevs\Dokan\REST {
          * @return WP_Error|\WP_HTTP_Response|\WP_REST_Response
          */
         public function grant_order_downloads($requests)
+        {
+        }
+        /**
+         * Update a downloadable product permission for the given order.
+         *
+         * @since 4.3.1
+         *
+         * @param \WP_REST_Request $request Request object.
+         *
+         * @return WP_Error|\WP_HTTP_Response|\WP_REST_Response
+         */
+        public function update_order_download($request)
         {
         }
         /**
@@ -12690,6 +25012,33 @@ namespace WeDevs\Dokan\REST {
          * @return array
          */
         public function sanitize_order_ids($order_ids)
+        {
+        }
+    }
+    /**
+     * Dokan Order ControllerV3 Class
+     *
+     * @since   4.0.0
+     *
+     * @package dokan
+     */
+    class OrderControllerV3 extends \WeDevs\Dokan\REST\OrderControllerV2
+    {
+        /**
+         * Endpoint namespace
+         *
+         * @since 4.0.0
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan/v3';
+        /**
+         * @param               $downloads
+         * @param \WC_Product[] $products
+         *
+         * @return array
+         */
+        protected function format_downloads_data($downloads, $products)
         {
         }
     }
@@ -12893,6 +25242,492 @@ namespace WeDevs\Dokan\REST {
         }
     }
     /**
+     * Store API Controller
+     *
+     * phpcs:disable WordPress.WP.Capabilities.Unknown
+     *
+     * @package dokan
+     *
+     * @author weDevs <info@wedevs.com>
+     */
+    class ProductController extends \WeDevs\Dokan\Abstracts\DokanRESTController
+    {
+        /**
+         * Endpoint namespace
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan/v1';
+        /**
+         * Route name
+         *
+         * @var string
+         */
+        protected $base = 'products';
+        /**
+         * Post type
+         *
+         * @var string
+         */
+        protected $post_type = 'product';
+        /**
+         * Post status
+         */
+        protected $post_status = ['publish', 'pending', 'draft', 'future'];
+        /**
+         * Class constructor.
+         *
+         * @since 4.0.0
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Hooks into WooCommerce's woocommerce_rest_prepare_product_object filter intentionally
+         * so that min_price and max_price are available on both /wc/v3/products and Dokan endpoints.
+         *
+         * @since 4.3.1
+         *
+         * @param WP_REST_Response $response The response object.
+         * @param WC_Product       $product  The product object.
+         *
+         * @return WP_REST_Response
+         */
+        public function add_min_max_price_to_variable_product(\WP_REST_Response $response, $product): \WP_REST_Response
+        {
+        }
+        /**
+         * Add only downloadable meta query.
+         *
+         * @since 4.0.0
+         *
+         * @param array $args
+         *
+         * @param \WP_REST_Request $request
+         */
+        public function add_only_downloadable_query($args, $request)
+        {
+        }
+        /**
+         * Product API query parameters collections.
+         *
+         * @since 4.0.0
+         *
+         * @return array Query parameters.
+         */
+        public function get_product_collection_params()
+        {
+        }
+        /**
+         * Register all routes related with stores
+         *
+         * @return void
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Get product object
+         *
+         * @since 2.8.0
+         *
+         * @return WC_Product|null|false
+         */
+        public function get_object($id)
+        {
+        }
+        /**
+         * Validation_before_create_product
+         *
+         * @param $request
+         *
+         * @since 1.0.0
+         *
+         * @return bool|WP_Error
+         */
+        public function validation_before_create_item($request)
+        {
+        }
+        /**
+         * Validation before update product
+         *
+         * @param $request
+         *
+         * @since 2.8.0
+         *
+         * @return bool|WP_Error
+         */
+        public function validation_before_update_item($request)
+        {
+        }
+        /**
+         * Validation_before_delete_item
+         *
+         * @since 2.8.0
+         *
+         * @return WP_Error|Boolean
+         */
+        public function validation_before_delete_item($request)
+        {
+        }
+        /**
+         * Get product permissions check
+         *
+         * @since 2.8.0
+         *
+         * @return bool
+         */
+        public function get_product_permissions_check()
+        {
+        }
+        /**
+         * Create_product_permissions_check
+         *
+         * @since 2.8.0
+         *
+         * @return bool
+         */
+        public function create_product_permissions_check()
+        {
+        }
+        /**
+         * Get_single_product_permissions_check
+         *
+         * @since 2.8.0
+         *
+         * @return bool
+         */
+        public function get_single_product_permissions_check()
+        {
+        }
+        /**
+         * Update_product_permissions_check
+         *
+         * @since 2.8.0
+         *
+         * @return bool
+         */
+        public function update_product_permissions_check()
+        {
+        }
+        /**
+         * Delete product permission checking
+         *
+         * @since 2.8.0
+         *
+         * @return bool
+         */
+        public function delete_product_permissions_check()
+        {
+        }
+        /**
+         * Get product summary report
+         *
+         * @since 2.8.0
+         *
+         * @return bool
+         */
+        public function get_product_summary_permissions_check()
+        {
+        }
+        /**
+         * Get product summary report in dashboard
+         *
+         * @since 2.8.0
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function get_product_summary($request)
+        {
+        }
+        /**
+         * Get month options for the current vendor.
+         *
+         * @since 5.0.0
+         *
+         * @param int $seller_id
+         *
+         * @return array
+         */
+        public function get_product_months_data($seller_id)
+        {
+        }
+        /**
+         * Get related product
+         *
+         * @since 2.9.1
+         *
+         * @param WP_REST_Request $request
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function get_related_product($request)
+        {
+        }
+        /**
+         * Top rated product
+         *
+         * @since 2.9.1
+         *
+         * @return array|object|WP_Error|WP_REST_Response
+         */
+        public function get_top_rated_product($request)
+        {
+        }
+        /**
+         * Best selling product
+         *
+         * @since 2.9.1
+         *
+         * @return WP_REST_Response|array|WP_Error
+         */
+        public function get_best_selling_product($request)
+        {
+        }
+        /**
+         * Featured product
+         *
+         * @since 2.9.1
+         *
+         * @return WP_REST_Response|array|WP_Error
+         */
+        public function get_featured_product($request)
+        {
+        }
+        /**
+         * Latest product
+         *
+         * @since 2.9.1
+         *
+         * @return WP_REST_Response|array|WP_Error
+         */
+        public function get_latest_product($request)
+        {
+        }
+        /**
+         * Validate post author overrides.
+         *
+         * @since 3.10.3
+         *
+         * @param WP_REST_Request $request Request object.
+         * @param int $store_id fallback Store or author id.
+         *
+         * @return int
+         */
+        public function validate_post_author_override(\WP_REST_Request $request, int $store_id): int
+        {
+        }
+        /**
+         * Prepare objects query
+         *
+         * @param WP_REST_Request|array $request
+         *
+         * @return array
+         */
+        protected function prepare_objects_query($request)
+        {
+        }
+        /**
+         * Get product data.
+         *
+         * @param WC_Product $product Product instance.
+         * @param WP_REST_Request $request Request context.
+         *                            Options: 'view' and 'edit'.
+         *
+         * @return WP_REST_Response|array|WP_Error
+         */
+        protected function prepare_data_for_response($product, $request)
+        {
+        }
+        /**
+         * Prepare object for database mapping
+         *
+         * @param WP_REST_Request $request
+         * @param boolean $creating
+         *
+         * @return object
+         * @throws WC_REST_Exception
+         * @throws \WC_Data_Exception
+         */
+        protected function prepare_object_for_database($request, $creating = false)
+        {
+        }
+        /**
+         * Prepare links for the request.
+         *
+         * @param WC_Data           $data_object Object data.
+         * @param WP_REST_Request   $request Request object.
+         *
+         * @return array Links for the given post.
+         */
+        protected function prepare_links($data_object, $request)
+        {
+        }
+        /**
+         * Get taxonomy terms.
+         *
+         * @param WC_Product $product Product instance.
+         * @param string $taxonomy Taxonomy slug.
+         *
+         * @return array
+         */
+        protected function get_taxonomy_terms($product, $taxonomy = 'cat')
+        {
+        }
+        /**
+         * Get the images for a product or product variation.
+         *
+         * @param WC_Product|WC_Product_Variation $product Product instance.
+         *
+         * @return array
+         */
+        protected function get_images($product)
+        {
+        }
+        /**
+         * Get attribute taxonomy label.
+         *
+         * @param string $name Taxonomy name.
+         *
+         * @return string
+         * @deprecated 2.8.0
+         */
+        protected function get_attribute_taxonomy_label($name)
+        {
+        }
+        /**
+         * Get product attribute taxonomy name.
+         *
+         * @param string $slug Taxonomy name.
+         * @param WC_Product $product Product data.
+         *
+         * @since  2.8.0
+         * @return string
+         */
+        protected function get_attribute_taxonomy_name($slug, $product)
+        {
+        }
+        /**
+         * Get default attributes.
+         *
+         * @param WC_Product $product Product instance.
+         *
+         * @return array
+         */
+        protected function get_default_attributes($product)
+        {
+        }
+        /**
+         * Get attribute options.
+         *
+         * @param int $product_id Product ID.
+         * @param array $attribute Attribute data.
+         *
+         * @return array
+         */
+        protected function get_attribute_options($product_id, $attribute)
+        {
+        }
+        /**
+         * Get the attributes for a product or product variation.
+         *
+         * @param WC_Product|WC_Product_Variation $product Product instance.
+         *
+         * @return array
+         */
+        protected function get_attributes($product)
+        {
+        }
+        /**
+         * Get the downloads for a product or product variation.
+         *
+         * @param WC_Product|WC_Product_Variation $product Product instance.
+         *
+         * @return array
+         */
+        protected function get_downloads($product)
+        {
+        }
+        /**
+         * Set product images.
+         *
+         * @param WC_Product $product Product instance.
+         * @param array $images Images data.
+         *
+         * @return WC_Product
+         * @throws WC_REST_Exception REST API exceptions.
+         */
+        protected function set_product_images($product, $images)
+        {
+        }
+        /**
+         * Save product shipping data.
+         *
+         * @param WC_Product $product Product instance.
+         * @param array $data Shipping data.
+         *
+         * @return WC_Product
+         */
+        protected function save_product_shipping_data($product, $data)
+        {
+        }
+        /**
+         * Save downloadable files.
+         *
+         * @param WC_Product $product Product instance.
+         * @param array $downloads Downloads data.
+         * @param int $deprecated Deprecated since 3.0.
+         *
+         * @return WC_Product
+         */
+        protected function save_downloadable_files($product, $downloads, $deprecated = 0)
+        {
+        }
+        /**
+         * Save taxonomy terms.
+         *
+         * @param WC_Product $product Product instance.
+         * @param array $terms Terms data.
+         * @param string $taxonomy Taxonomy name.
+         *
+         * @return WC_Product
+         */
+        protected function save_taxonomy_terms($product, $terms, $taxonomy = 'cat')
+        {
+        }
+        /**
+         * Save default attributes.
+         *
+         * @param WC_Product $product Product instance.
+         * @param WP_REST_Request $request Request data.
+         *
+         * @since 3.0.0
+         *
+         * @return WC_Product
+         */
+        protected function save_default_attributes($product, $request)
+        {
+        }
+        /**
+         * Returns all categories.
+         *
+         * @since 3.6.2
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function get_multistep_categories()
+        {
+        }
+        /**
+         * Get the Product's schema, conforming to JSON Schema.
+         *
+         * @return array
+         */
+        public function get_item_schema()
+        {
+        }
+    }
+    /**
      * Product Block API.
      *
      * @package dokan
@@ -12949,6 +25784,16 @@ namespace WeDevs\Dokan\REST {
          */
         protected $namespace = 'dokan/v2';
         /**
+         * Class Constructor.
+         *
+         * @since 4.1.3
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+        }
+        /**
          * Register all routes related with stores
          *
          * @since 3.7.10
@@ -12999,7 +25844,7 @@ namespace WeDevs\Dokan\REST {
          *
          * @return array Query parameters.
          */
-        public function get_product_collection_params()
+        public function get_collection_params()
         {
         }
         /**
@@ -13030,6 +25875,166 @@ namespace WeDevs\Dokan\REST {
          * @return array array of the schema.
          */
         public function get_filter_data_schema()
+        {
+        }
+        /**
+         * Reset exclude product type.
+         *
+         * @since 4.1.3
+         *
+         * @param array           $exclude_product_type Exclude product type.
+         * @param WP_REST_Request $request              Request object.
+         *
+         * @return array
+         */
+        public function reset_exclude_product_type($exclude_product_type, $request)
+        {
+        }
+    }
+    class ProductControllerV3 extends \WC_REST_Products_Controller
+    {
+        use \WeDevs\Dokan\Traits\VendorAuthorizable;
+        /**
+         * Endpoint namespace
+         *
+         * @since 5.0.0
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan/v3';
+        /**
+         * Whether the rest_pre_dispatch filter has already been registered.
+         *
+         * @since 5.0.0
+         *
+         * @var bool
+         */
+        private static $filter_registered = false;
+        /**
+         * Check if the current user can create a product.
+         *
+         * @since 5.0.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return true|WP_Error
+         */
+        public function create_item_permissions_check($request)
+        {
+        }
+        /**
+         * Check if the current user can view/update the given product.
+         *
+         * @since 5.0.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return true|WP_Error
+         */
+        public function check_permission($request)
+        {
+        }
+        /**
+         * Check if the current user has permission for batch operations.
+         *
+         * @since 5.0.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return true|WP_Error
+         */
+        public function batch_items_permissions_check($request)
+        {
+        }
+        /**
+         * Bulk create, update and delete items.
+         *
+         * Resolves each item's payload through PayloadResolver before delegating
+         * to the parent WC_REST_Controller::batch_items().
+         *
+         * @since 5.0.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return array|WP_Error
+         */
+        public function batch_items($request)
+        {
+        }
+        /**
+         * Register the routes for products.
+         *
+         * @since 5.0.0
+         *
+         * @return void
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Create a product item.
+         *
+         * @since 5.0.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function create_item($request)
+        {
+        }
+        /**
+         * Update a product item.
+         *
+         * @since 5.0.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function update_item($request)
+        {
+        }
+        /**
+         * Populate $_POST with resolved request params so legacy hooks
+         * (e.g. dokan_new_product_added, dokan_product_updated consumers)
+         * that read from $_POST continue to work.
+         *
+         * @since 5.0.0
+         *
+         * @param array $params Resolved request parameters.
+         *
+         * @return void
+         */
+        private function populate_post_data(array $params): void
+        {
+        }
+        /**
+         * Resolve product request body before schema validation runs (so WC schema sees WC-shaped payload).
+         * Runs on rest_pre_dispatch so that schema_to_wc_api is applied before args validation.
+         *
+         * @param mixed            $result  Response to replace the short-circuit result with.
+         * @param WP_REST_Server  $server  Server instance.
+         * @param WP_REST_Request $request Request used to generate the response.
+         *
+         * @return mixed Unchanged result so dispatch continues; request body is modified in place.
+         */
+        public function resolve_product_payload_before_validation($result, $server, $request)
+        {
+        }
+        public function init_form_fields($request)
+        {
+        }
+        /**
+         * Get item fields for form manager
+         *
+         * @param WP_REST_Request $request Request data.
+         *
+         * @since 5.0.0
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function get_form_fields($request)
         {
         }
     }
@@ -13359,13 +26364,324 @@ namespace WeDevs\Dokan\REST {
         }
     }
     /**
-     * StoreSettings API Controller
+     * Store API Controller
      *
      * @package dokan
      *
      * @author weDevs <info@wedevs.com>
      */
-    class StoreSettingController extends \WP_REST_Controller
+    class StoreController extends \WP_REST_Controller
+    {
+        use \WeDevs\Dokan\Traits\VendorAuthorizable;
+        /**
+         * Endpoint namespace
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan/v1';
+        /**
+         * Route name
+         *
+         * @var string
+         */
+        protected $base = 'stores';
+        /**
+         * Register all routes releated with stores
+         *
+         * @return void
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Get stores
+         *
+         * @since 1.0.0
+         *
+         * @param $request
+         *
+         * @return object|WP_Error|WP_REST_Response
+         */
+        public function get_stores($request)
+        {
+        }
+        /**
+         * Get singe store
+         *
+         * Public endpoint: Returns public data for all users/guests (respecting admin settings).
+         * Sensitive data is only returned for authorized users (vendor, vendor staff, or admin).
+         *
+         * For vendor staff accessing via their own ID, the vendor ID is resolved to show their vendor's store.
+         * Vendors and vendor staff attempting to access another vendor's store will be blocked (403).
+         *
+         * @since 1.0.0
+         *
+         * @param $request
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function get_store($request)
+        {
+        }
+        /**
+         * Delete store
+         *
+         * @since 2.8.0
+         *
+         * @param $request
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function delete_store($request)
+        {
+        }
+        /**
+         * Update store permission check method
+         *
+         * @param $request
+         *
+         * @since 2.9.2
+         *
+         * @return bool
+         */
+        public function update_store_permissions_check($request)
+        {
+        }
+        /**
+         * Update Store
+         *
+         * @since 2.9.2
+         *
+         * @param WP_REST_Request $request
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function update_store($request)
+        {
+        }
+        /**
+         * Get restricted fields for store update based on user role.
+         *
+         * @since 4.2.5
+         *
+         * @param \WeDevs\Dokan\Vendor\Vendor $store Store object.
+         * @param \WP_REST_Request $request Request object.
+         *
+         * @return array Array of restricted field names.
+         */
+        protected function get_restricted_fields_for_update($store, $request)
+        {
+        }
+        /**
+         * Create store
+         *
+         * @param $request
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function create_store($request)
+        {
+        }
+        /**
+         * Undocumented function
+         *
+         * @since 1.0.0
+         *
+         * @return bool
+         */
+        public function permission_check_for_manageable_part()
+        {
+        }
+        /**
+         * Prepare links for the request.
+         *
+         * @param \WC_Data        $data    Object data.
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return array                   Links for the given post.
+         */
+        protected function prepare_links($data, $request)
+        {
+        }
+        /**
+         * Format item's collection for response
+         *
+         * @param object $response
+         * @param object $request
+         * @param int $total_items
+         *
+         * @return object
+         */
+        public function format_collection_response($response, $request, $total_items)
+        {
+        }
+        /**
+         * Get store Products
+         *
+         * @param WP_REST_Request|array $request
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function get_store_products($request)
+        {
+        }
+        /**
+         * Get store reviews
+         *
+         * @since 2.8.0
+         *
+         * @return object|WP_Error|WP_REST_Response
+         */
+        public function get_store_reviews($request)
+        {
+        }
+        /**
+         * Get total counting for store review
+         *
+         * @param integer $id [hold store id]
+         * @param string $post_type
+         * @param string $status
+         *
+         * @since 2.8.0
+         *
+         * @return integer
+         */
+        public function get_total_review_count($id, $post_type, $status)
+        {
+        }
+        /**
+         * Prepare a single user output for response
+         *
+         * Public data is returned for all users/guests (respecting admin settings for hiding vendor info).
+         * Sensitive data is only returned for authorized users (vendor, vendor staff, or admin).
+         *
+         * @param Vendor $store
+         * @param WP_REST_Request $request Request object.
+         * @param array $additional_fields (optional)
+         * @param bool $is_authorized (optional) Whether the current user is authorized to view sensitive data.
+         *
+         * @return WP_REST_Response $response Response data.
+         */
+        public function prepare_item_for_response($store, $request, $additional_fields = [])
+        {
+        }
+        /**
+         * Get restricted fields for store view based on user authorization.
+         *
+         * Determines which fields should be hidden from the store data response based on:
+         * - User authorization status (authorized users see more data)
+         * - User role (vendor staff cannot see admin commission data)
+         * - Admin settings (for hiding vendor info like address, phone, email)
+         * - Vendor preferences (vendor can choose to hide email)
+         *
+         * @since 4.2.5
+         *
+         * @param \WeDevs\Dokan\Vendor\Vendor $store Store object.
+         * @param \WP_REST_Request $request Request object.
+         *
+         * @return array Array of restricted field names that should be removed from the response.
+         */
+        protected function get_restricted_fields_for_view($store, $request)
+        {
+        }
+        /**
+         * Prepare a single user output for response
+         *
+         * @param object $item
+         * @param WP_REST_Request $request Request object.
+         * @param array $additional_fields (optional)
+         *
+         * @return array $response Response data.
+         */
+        public function prepare_reviews_for_response($item, $request, $additional_fields = [])
+        {
+        }
+        /**
+         * Check store availability
+         *
+         * @param WP_REST_Request $request
+         *
+         * @since 2.9.13
+         *
+         * @return WP_REST_Response
+         */
+        public function check_store_availability($request)
+        {
+        }
+        /**
+         * Send email to vendor
+         *
+         * @param WP_REST_Request
+         *
+         * @since 2.9.23
+         *
+         * @return WP_REST_Response
+         */
+        public function send_email($request)
+        {
+        }
+        /**
+         * Update vendor status
+         *
+         * @since 2.9.23
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function update_vendor_status($request)
+        {
+        }
+        /**
+         * Batch update for vendor listing
+         *
+         * @param $request
+         *
+         * @since 2.9.23
+         *
+         * @return array|WP_Error
+         */
+        public function batch_update($request)
+        {
+        }
+        /**
+         * Get singe store
+         *
+         * @since 3.2.11
+         *
+         * @param $request
+         *
+         * @return WP_Error|WP_REST_Response
+         */
+        public function get_store_category($request)
+        {
+        }
+        /**
+         * Retrieves the query params for the collections.
+         *
+         * @since 3.7.22
+         *
+         * @return array Query parameters for the collection.
+         */
+        public function get_store_collection_params(): array
+        {
+        }
+        /**
+         * Updated query params for the store.
+         *
+         * @since 3.14.10
+         *
+         * @return array Query parameters for the store update.
+         */
+        public function get_store_update_params(): array
+        {
+        }
+    }
+    /**
+     * StoreSettings API Controller
+     * @package dokan
+     *
+     * @author weDevs <info@wedevs.com>
+     */
+    class StoreSettingController extends \WeDevs\Dokan\REST\StoreController
     {
         /**
          * Endpoint namespace
@@ -13392,7 +26708,7 @@ namespace WeDevs\Dokan\REST {
          *
          * @param \WP_REST_Request $request
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.2.12
          *
          * @return WP_Error|\WP_REST_Response
          */
@@ -13400,7 +26716,7 @@ namespace WeDevs\Dokan\REST {
         {
         }
         /**
-         * @param $request
+         * @param \WP_REST_Request $request
          *
          * @return mixed|WP_Error|\WP_HTTP_Response|\WP_REST_Response
          */
@@ -13418,9 +26734,11 @@ namespace WeDevs\Dokan\REST {
         /**
          * Get vendor
          *
+         * @param \WP_REST_Request|null
+         *
          * @return WP_Error|Vendor
          */
-        protected function get_vendor()
+        protected function get_vendor($request = null)
         {
         }
         /**
@@ -13637,6 +26955,7 @@ namespace WeDevs\Dokan\REST {
          * @since 3.3.3
          *
          * @return WP_Error|WP_HTTP_Response|WP_REST_Response
+         * @throws Exception
          */
         public function get_preferences()
         {
@@ -13661,6 +26980,58 @@ namespace WeDevs\Dokan\REST {
          * @return array Collection parameters.
          */
         public function get_collection_params()
+        {
+        }
+    }
+    class VendorProductCategoriesController extends \WC_REST_Product_Categories_Controller
+    {
+        /**
+         * Endpoint namespace.
+         * @since 4.0.0
+         *
+         * @var string
+         */
+        protected $namespace = 'dokan/v1';
+        /**
+         * Register the routes for terms.
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Check if a given request has access to read items.
+         *
+         * Override the get_items_permissions_check method
+         * @return boolean
+         */
+        public function get_items_permissions_check($request): bool
+        {
+        }
+        /**
+         * Check if a given request has access to read a single item.
+         *
+         * Override the get_item_permissions_check method
+         * @return boolean
+         */
+        public function get_item_permissions_check($request): bool
+        {
+        }
+        /**
+         * Get all product categories.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_Error|WP_REST_Response
+         */
+        public function get_items($request)
+        {
+        }
+        /**
+         * Get a single product category.
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_Error|WP_REST_Response
+         */
+        public function get_item($request)
         {
         }
     }
@@ -14040,6 +27411,91 @@ namespace WeDevs\Dokan\REST {
          * @return WP_REST_Response|WP_Error
          */
         public function get_withdraw_summary()
+        {
+        }
+        /**`
+         * Make a withdraw method default for a vendor.
+         *
+         * @since 4.0.0
+         *
+         * @param WP_REST_Request $request
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function handle_make_default_method(\WP_REST_Request $request)
+        {
+        }
+        /**
+         * Get user data.
+         *
+         * @since 4.3.3
+         *
+         * @param int $user_id User ID.
+         *
+         * @return array
+         */
+        public function get_user_data($user_id)
+        {
+        }
+    }
+    /**
+     * Dokan Withdraw Export Controller
+     *
+     * Handles withdraw report exports by implementing ExportableInterface
+     * and extending WooCommerce's GenericController.
+     *
+     * @since 4.1.3
+     */
+    class WithdrawExportController extends \Automattic\WooCommerce\Admin\API\Reports\GenericController implements \Automattic\WooCommerce\Admin\API\Reports\ExportableInterface
+    {
+        protected $namespace = 'dokan/v1';
+        /**
+         * Route base.
+         *
+         * @var string
+         */
+        protected $rest_base = '/reports/withdraws';
+        /**
+         * Get the column names for export.
+         *
+         * @return array Key value pair of Column ID => Label.
+         */
+        public function get_export_columns()
+        {
+        }
+        /**
+         * Get the column values for export.
+         *
+         * @param array $item Single report item/row.
+         * @return array Key value pair of Column ID => Value.
+         */
+        public function prepare_item_for_export($item)
+        {
+        }
+        /**
+         * Get withdraw items for export.
+         *
+         * @param \WP_REST_Request $request Full details about the request.
+         * @return \WP_REST_Response|\WP_Error
+         */
+        public function get_items($request)
+        {
+        }
+        /**
+         * Get the query params for collections.
+         *
+         * @return array
+         */
+        public function get_collection_params()
+        {
+        }
+        /**
+         * Check if a given request has access to read items.
+         *
+         * @param  \WP_REST_Request $request Full details about the request.
+         * @return \WP_Error|boolean
+         */
+        public function get_items_permissions_check($request)
         {
         }
     }
@@ -14820,6 +28276,18 @@ namespace WeDevs\Dokan\ReverseWithdrawal {
         {
         }
         /**
+         * Skip cart validation for reverse withdrawal
+         *
+         * @since 4.0.2
+         *
+         * @param bool $needs_validation Whether to skip cart validation.
+         *
+         * @return bool
+         */
+        public function skip_cart_validation_for_reverse_withdraw(bool $needs_validation): bool
+        {
+        }
+        /**
          * After reverse withdrawal is inserted
          *
          * After a reverse withdrawal entry is inserted, we will check if we had to take any actions or revert previous taken actions.
@@ -15560,7 +29028,7 @@ namespace WeDevs\Dokan {
         /**
          * Returns an array of arguments for ordering products based on the selected values.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.2.7
          *
          * @param string $orderby Order by param
          * @param string $order Order param
@@ -15573,7 +29041,7 @@ namespace WeDevs\Dokan {
         /**
          * Handle numeric price sorting
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.2.7
          *
          * @param array $args Query args
          *
@@ -15585,7 +29053,7 @@ namespace WeDevs\Dokan {
         /**
          * Handle numeric price sorting
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.2.7
          *
          * @param array $args Query args
          *
@@ -15599,7 +29067,7 @@ namespace WeDevs\Dokan {
          *
          * This lets us sort by meta value desc, and have a second orderby param
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.2.7
          *
          * @param array $args Query args
          *
@@ -15611,7 +29079,7 @@ namespace WeDevs\Dokan {
         /**
          * Order by rating post clauses
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.2.7
          *
          * @param array $args Query args
          *
@@ -15623,13 +29091,23 @@ namespace WeDevs\Dokan {
         /**
          * Join wc_product_meta_lookup to posts if not already joined.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.2.7
          *
          * @param string $sql SQL join
          *
          * @return string
          */
         private function append_product_sorting_table_join($sql)
+        {
+        }
+        /**
+         * Flush rewrite rules if the version is 4.0 or above.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         */
+        public function maybe_flash_rewrite_rules()
         {
         }
     }
@@ -15693,6 +29171,59 @@ namespace WeDevs\Dokan\Shipping {
         public function change_shipping_pack_name($title, $i, $package)
         {
         }
+        /**
+         * Add shipping tax rate based on vendor product items.
+         *
+         * @since 4.2.4
+         *
+         * @param $rate \WC_Shipping_Rate
+         * @param $args array
+         * @param $wc_shipping_method \WC_Shipping_Method
+         *
+         * @return \WC_Shipping_Rate
+         */
+        public function add_shipping_method_rate($rate, $args, $wc_shipping_method)
+        {
+        }
+    }
+    class Tax extends \WC_Tax
+    {
+        /**
+         * Get tax rates for shipping
+         *
+         * @since 4.2.4
+         *
+         * @param $args
+         *
+         * @return array
+         */
+        public static function get_tax_rates($args)
+        {
+        }
+        /**
+         * Get shipping tax class from vendor cart items.
+         *
+         * @since 4.2.4
+         *
+         * @param $args
+         *
+         * @return false|mixed|string|null
+         */
+        private static function get_shipping_tax_class_from_vendor_cart_items($args)
+        {
+        }
+        /**
+         * Retrieves a list of unique tax classes for shipping from the provided vendor cart items.
+         *
+         * @static 4.2.4
+         *
+         * @param array $cart_items An array of cart items.
+         *
+         * @return array An array of unique tax classes applicable to shipping for the provided cart items.
+         */
+        public static function get_vendor_cart_item_tax_classes_for_shipping($cart_items)
+        {
+        }
     }
 }
 namespace WeDevs\Dokan\Shortcodes {
@@ -15703,6 +29234,31 @@ namespace WeDevs\Dokan\Shortcodes {
          * Render best selling products
          *
          * @param  array  $atts
+         *
+         * @return string
+         */
+        public function render_shortcode($atts)
+        {
+        }
+    }
+    class CustomerMigration extends \WeDevs\Dokan\Abstracts\DokanShortcode
+    {
+        /**
+         * Shortcode name.
+         *
+         * @since 3.7.25 (PRO)
+         * @since 3.14.10 Migration from DokanPro
+         *
+         * @var string Shortcode name
+         */
+        protected $shortcode = 'dokan-customer-migration';
+        /**
+         * Render [dokan-customer-migration] shortcode
+         *
+         * @since 3.7.25 (PRO)
+         * @since 3.14.10 Migration from DokanPro
+         *
+         * @param array $atts
          *
          * @return string
          */
@@ -15727,6 +29283,75 @@ namespace WeDevs\Dokan\Shortcodes {
         {
         }
     }
+    /**
+     * Fullwidth vendor layout
+     *
+     * @since 4.2.0
+     */
+    class FullWidthVendorLayout implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Script/style handle key for vendor dashboard React app.
+         *
+         * @var string
+         */
+        protected $script_key = 'dokan-vendor-dashboard';
+        /**
+         * Register hooks.
+         *
+         * @return void
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Update vendor layout style option.
+         *
+         * @since 4.2.0
+         *
+         * @return void
+         */
+        public function update_layout_style(): void
+        {
+        }
+        /**
+         * Load a custom fullwidth template.
+         *
+         * This method intercepts the template_include filter and returns
+         * a custom blank template when fullwidth mode is activated.
+         * The custom template preserves wp_head() and wp_footer() hooks
+         * to ensure all enqueued scripts and styles are loaded properly.
+         *
+         * @since 4.2.0
+         *
+         * @param string $template Path to the template
+         *
+         * @return string Modified template path
+         */
+        public function rewrite_vendor_dashboard_template($template)
+        {
+        }
+        /**
+         * Register and enqueue React vendor dashboard assets when viewing the seller dashboard.
+         *
+         * @since 4.2.0
+         *
+         * @return void
+         */
+        public function register_vendor_dashboard_assets()
+        {
+        }
+        /**
+         * Enqueue React vendor dashboard assets when viewing the seller dashboard.
+         *
+         * @since 4.2.0
+         *
+         * @return void
+         */
+        public function enqueue_vendor_dashboard_assets()
+        {
+        }
+    }
     class MyOrders extends \WeDevs\Dokan\Abstracts\DokanShortcode
     {
         protected $shortcode = 'dokan-my-orders';
@@ -15746,6 +29371,7 @@ namespace WeDevs\Dokan\Shortcodes {
          *  Register Dokan shortcodes
          *
          * @since 3.0.0
+         * @since 3.14.10 Added dokan-customer-migration shortcode.
          *
          * @return void
          */
@@ -15784,6 +29410,28 @@ namespace WeDevs\Dokan\Shortcodes {
         protected $shortcode = 'dokan-top-rated-product';
         /**
          * Render top rated products via shortcode
+         *
+         * @param array $atts
+         *
+         * @return string
+         */
+        public function render_shortcode($atts)
+        {
+        }
+    }
+    class VendorOnboardingRegistration extends \WeDevs\Dokan\Abstracts\DokanShortcode
+    {
+        protected $shortcode = 'dokan-vendor-onboarding-registration';
+        /**
+         * Vendor onboarding form shortcode callback
+         *
+         * @since 5.0.0
+         *
+         * Supported attributes:
+         * - show_login        (yes|no) Show the login form. Default: yes.
+         * - show_registration (yes|no) Show the vendor registration form. Default: yes.
+         *
+         * Hiding one section centers the other in the layout.
          *
          * @param array $atts
          *
@@ -15878,7 +29526,7 @@ namespace WeDevs\Dokan\ThemeSupport {
         /**
          * Set current page for the query
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.5
          *
          * @see https://github.com/weDevsOfficial/dokan/issues/838
          *
@@ -16355,7 +30003,7 @@ namespace WeDevs\Dokan\Upgrade {
          *
          * @var array
          */
-        private static $upgrades = ['1.2' => \WeDevs\Dokan\Upgrade\Upgrades\V_1_2::class, '2.1' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_1::class, '2.3' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_3::class, '2.4.11' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_4_11::class, '2.4.12' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_4_12::class, '2.5.7' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_5_7::class, '2.6.9' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_6_9::class, '2.7.3' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_7_3::class, '2.7.6' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_7_6::class, '2.8.0' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_8_0::class, '2.8.3' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_8_3::class, '2.8.6' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_8_6::class, '2.9.4' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_9_4::class, '2.9.13' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_9_13::class, '2.9.16' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_9_16::class, '2.9.19' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_9_19::class, '2.9.23' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_9_23::class, '3.0.4' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_0_4::class, '3.0.10' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_0_10::class, '3.1.0' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_1_0::class, '3.1.1' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_1_1::class, '3.2.12' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_2_12::class, '3.3.1' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_3_1::class, '3.3.7' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_3_7::class, '3.3.8' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_3_8::class, '3.5.1' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_5_1::class, '3.6.2' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_6_2::class, '3.6.4' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_6_4::class, '3.6.5' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_6_5::class, '3.7.10' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_7_10::class, '3.7.19' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_7_19::class];
+        private static $upgrades = ['1.2' => \WeDevs\Dokan\Upgrade\Upgrades\V_1_2::class, '2.1' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_1::class, '2.3' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_3::class, '2.4.11' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_4_11::class, '2.4.12' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_4_12::class, '2.5.7' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_5_7::class, '2.6.9' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_6_9::class, '2.7.3' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_7_3::class, '2.7.6' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_7_6::class, '2.8.0' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_8_0::class, '2.8.3' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_8_3::class, '2.8.6' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_8_6::class, '2.9.4' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_9_4::class, '2.9.13' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_9_13::class, '2.9.16' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_9_16::class, '2.9.19' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_9_19::class, '2.9.23' => \WeDevs\Dokan\Upgrade\Upgrades\V_2_9_23::class, '3.0.4' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_0_4::class, '3.0.10' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_0_10::class, '3.1.0' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_1_0::class, '3.1.1' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_1_1::class, '3.2.12' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_2_12::class, '3.3.1' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_3_1::class, '3.3.7' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_3_7::class, '3.3.8' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_3_8::class, '3.5.1' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_5_1::class, '3.6.2' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_6_2::class, '3.6.4' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_6_4::class, '3.6.5' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_6_5::class, '3.7.10' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_7_10::class, '3.7.19' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_7_19::class, '3.13.0' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_13_0::class, '3.14.0' => \WeDevs\Dokan\Upgrade\Upgrades\V_3_14_0::class, '5.0.0' => \WeDevs\Dokan\Upgrade\Upgrades\V_5_0_0::class];
         /**
          * Get DB installed version number
          *
@@ -16544,7 +30192,7 @@ namespace WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses {
     /**
      * Dokan Product attribute author id updater class
      *
-     * @since DOKAN_LITE_SINCE
+     * @since 3.0.10
      */
     class V_3_0_10_ProductAttributesAuthorId extends \WeDevs\Dokan\Abstracts\DokanBackgroundProcesses
     {
@@ -16553,7 +30201,7 @@ namespace WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses {
          *
          * @param mixed $item
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.10
          *
          * @return mixed
          */
@@ -16566,7 +30214,7 @@ namespace WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses {
          *
          * @param $paged
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.10
          *
          * @return array|boolean
          */
@@ -16577,7 +30225,7 @@ namespace WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses {
     /**
      * Dokan Product attribute author id updater class
      *
-     * @since DOKAN_LITE_SINCE
+     * @since 3.1.1
      */
     class V_3_1_1_RefundTableUpdate extends \WeDevs\Dokan\Abstracts\DokanBackgroundProcesses
     {
@@ -16594,7 +30242,7 @@ namespace WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses {
          *
          * @param mixed $item
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.1.1
          *
          * @return mixed
          */
@@ -16912,7 +30560,7 @@ namespace WeDevs\Dokan\Upgrade\Upgrades {
         /**
          * Get table_name and columns in key value pair
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.4
          *
          * @return array
          */
@@ -16922,7 +30570,7 @@ namespace WeDevs\Dokan\Upgrade\Upgrades {
         /**
          * Update various dokan tables
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.4
          *
          * @return void
          */
@@ -17136,14 +30784,14 @@ namespace WeDevs\Dokan\Upgrade\Upgrades {
     /**
      * Upgrader Class.
      *
-     * @since DOKAN_LITE_SINCE
+     * @since 3.7.10
      */
     class V_3_7_10 extends \WeDevs\Dokan\Abstracts\DokanUpgrader
     {
         /**
          * Rewrite variable product variations author IDs.
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.7.10
          *
          * @return void
          */
@@ -17165,8 +30813,91 @@ namespace WeDevs\Dokan\Upgrade\Upgrades {
         {
         }
     }
+    class V_3_13_0 extends \WeDevs\Dokan\Abstracts\DokanUpgrader
+    {
+        public static function resync_wc_order_stats_to_sync_dokan_stats()
+        {
+        }
+    }
+    class V_3_14_0 extends \WeDevs\Dokan\Abstracts\DokanUpgrader
+    {
+        /**
+         * Update global commission settings.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public static function update_global_commission_type()
+        {
+        }
+        /**
+         * Update vendor and product comission settings.
+         *
+         * @since 3.14.0
+         *
+         * @return void
+         */
+        public static function update_commission()
+        {
+        }
+    }
+    /**
+     * Upgrade class for version 5.0.0.
+     *
+     * @since 5.0.0
+     */
+    class V_5_0_0 extends \WeDevs\Dokan\Abstracts\DokanUpgrader
+    {
+        /**
+         * Alter dokan_order_stats table to add new columns and regenerate data.
+         *
+         * @since 5.0.0
+         *
+         * @return void
+         */
+        public static function alter_dokan_order_stats_table_and_regenerate()
+        {
+        }
+        /**
+         * Create Vendor Onboarding page if it doesn't exist.
+         *
+         * @since 5.0.0
+         *
+         * @return void
+         */
+        public static function create_vendor_onboarding_page()
+        {
+        }
+    }
 }
 namespace WeDevs\Dokan\Utilities {
+    class AdminSettings
+    {
+        /**
+         * Get new seller selling status setting.
+         * We are placing this function here because this function may access from admin and front-end both.
+         *
+         * @since 4.0.2
+         *
+         * @param string $status
+         *
+         * @return string
+         */
+        public function get_new_seller_enable_selling_status($status = '')
+        {
+        }
+        /**
+         * Dokan new seller enable selling statuses.
+         *
+         * @since 4.0.2
+         *
+         * @return array
+         */
+        public function new_seller_enable_selling_statuses()
+        {
+        }
+    }
     class OrderUtil
     {
         /**
@@ -17307,9 +31038,202 @@ namespace WeDevs\Dokan\Utilities {
         public static function get_table_for_order_meta()
         {
         }
+        /**
+         * Determine whether customer-identifying details (billing/shipping address, billing full name, customer email)
+         * should be rendered in vendor order emails.
+         *
+         * Centralizes the gate so the same hook value is honored across all vendor email templates
+         * (vendor-new-order / vendor-completed-order, HTML and plain text).
+         *
+         * @since 5.0.2
+         *
+         * @param WC_Order $order Order object.
+         *
+         * @return bool True to render customer details, false to hide.
+         */
+        public static function should_show_email_customer_details($order): bool
+        {
+        }
+    }
+    /**
+     * ReportUtil class
+     *
+     * @since 4.0.0
+     */
+    class ReportUtil
+    {
+        /**
+         * Check if analytics is enabled for the current seller.
+         *
+         * This checks if the seller is enabled and the analytics toggle option is set to "yes".
+         *
+         * @since 4.0.0
+         *
+         * @return bool True if analytics is enabled, false otherwise.
+         */
+        public static function is_analytics_enabled(): bool
+        {
+        }
+        /**
+         * Check if product listing is belongs to Report menu
+         *
+         * @since 4.0.0
+         *
+         * @return bool
+         */
+        public static function is_report_products_url(): bool
+        {
+        }
+        /**
+         * Get the excluded order statuses for analytics.
+         *
+         * @since 4.1.0
+         *
+         * @return array List of excluded order statuses.
+         */
+        public static function get_exclude_order_statuses(): array
+        {
+        }
+    }
+    /**
+     * Utility class for cleaning and normalizing rich text content.
+     *
+     * @since 4.3.1
+     */
+    class RichTextSanitizerUtil
+    {
+        /**
+         * Sanitize and clean rich text content.
+         *
+         * Strips all HTML tags, decodes HTML entities, and removes special/invisible
+         * characters such as BOMs, zero-width spaces, and control characters.
+         *
+         * @since 4.3.1
+         *
+         * @param string $text The text to sanitize and clean.
+         *
+         * @return string Sanitized and cleaned plain text.
+         */
+        public static function sanitize_richtext_content(string $text): string
+        {
+        }
+        /**
+         * Replace rich text special characters.
+         *
+         * @since 4.3.1
+         *
+         * @see sitepress-multilingual-cms/vendor/wpml/wpml/src/Core/Component/WordsToTranslate/Domain/Calculator/PrepareContent/Rules/UnicodeTrait.php
+         *
+         * @param string $text The text containing special characters.
+         *
+         * @return string Text with special characters replaced or removed.
+         */
+        protected static function replace_richtext_chars(string $text): string
+        {
+        }
+    }
+    class VendorUtil
+    {
+        /**
+         * Get the vendor default store banner URL.
+         *
+         * @since 4.0.6
+         *
+         * @return string The default store banner URL.
+         */
+        public static function get_vendor_default_banner_url(): string
+        {
+        }
+        /**
+         * Get the vendor default store avatar URL.
+         *
+         * @since 4.0.6
+         *
+         * @return string
+         */
+        public static function get_vendor_default_avatar_url(): string
+        {
+        }
+        /**
+         * Get the vendor/store ID associated with a user.
+         *
+         * This method determines the vendor ID based on the user's role:
+         * - Vendors: Returns their own user ID as the vendor ID
+         * - Vendor staff: Returns their parent vendor's ID (stored in user meta)
+         * - Other users: Returns 0 if not associated with any vendor
+         *
+         * @since 4.2.5
+         *
+         * @param int $user_id Optional. The user ID to get the vendor ID for. Defaults to 0 (current user).
+         *
+         * @return int The vendor/store ID. Returns 0 if the user is not a vendor or vendor staff,
+         *             or if vendor ID cannot be determined.
+         */
+        public static function get_vendor_id_for_user(int $user_id = 0): int
+        {
+        }
     }
 }
 namespace WeDevs\Dokan\Vendor {
+    /**
+     * ApiMeta Class.
+     *
+     * Handles Dokan vendor user meta registration for the REST API.
+     */
+    class ApiMeta
+    {
+        /**
+         * Constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Registers Dokan specific user data to the WordPress user API.
+         *
+         * @since 4.2.5
+         *
+         * @return void
+         */
+        public function register_user_data()
+        {
+        }
+        /**
+         * Fetches the vendor-specific user data values for returning via the REST API.
+         *
+         * @since 4.2.5
+         *
+         * @param array $user Current user data from REST API.
+         * @return array Vendor-specific user data including vendor_id.
+         */
+        public function get_user_data_values($user)
+        {
+        }
+        /**
+         * We store some Dokan specific user meta attached to users endpoint,
+         * so that we can track certain preferences or values for vendors.
+         * Additional fields can be added in the function below, and then used via Dokan's currentUser data.
+         *
+         * @since 4.2.5
+         *
+         * @return array Fields to expose over the WP user endpoint.
+         */
+        public function get_user_data_fields()
+        {
+        }
+        /**
+         * Helper to retrieve user data fields.
+         *
+         * @since 4.2.5
+         *
+         * @param int    $user_id  User ID.
+         * @param string $field Field name.
+         * @return mixed The user field value.
+         */
+        public static function get_user_data_field($user_id, $field)
+        {
+        }
+    }
     /**
      * Change product status
      *
@@ -17325,6 +31249,391 @@ namespace WeDevs\Dokan\Vendor {
          * @return int[]
          */
         public function get_products()
+        {
+        }
+    }
+    class Coupon
+    {
+        public const DOKAN_COUPON_META_KEY = '_dokan_coupon_info';
+        public function __construct()
+        {
+        }
+        /**
+         * Removes coupon information from an order item when a coupon is deleted.
+         *
+         * This function:
+         * - Retrieves the coupon code from the order item.
+         * - Removes the coupon discount from all applicable items in the order.
+         * - If the order has sub-orders, it ensures the coupon is also removed from all child orders.
+         * - If it's a sub-order, it removes the coupon from relevant items in the parent order.
+         *
+         * @param int $item_id The ID of the order item representing the coupon.
+         *
+         * @return void
+         *
+         * @throws Exception If there is an issue initializing the WC_Order_Item_Coupon object.
+         */
+        public function remove_coupon_info_from_order_item($item_id)
+        {
+        }
+        /**
+         * Get Product IDs from order items and remove coupon discount from items.
+         *
+         * @param $removed_coupon
+         * @param $order_items
+         *
+         * @return array
+         *
+         * @throws Exception
+         */
+        private function remove_coupon_discount_from_items($removed_coupon, $order_items): array
+        {
+        }
+        /**
+         * Intercepts coupon application to handle line-item coupon discounts.
+         * WooCommerce removes the coupon from the order and recalculates totals. For reference, see:
+         *
+         * @see https://github.com/woocommerce/woocommerce/blob/8abd6e97ca598381cb07287a2e7b735799cb55d5/plugins/woocommerce/includes/abstracts/abstract-wc-order.php#L1339
+         * WooCommerce does not provide a direct hook to retrieve coupon amounts per line items from the WC_Discounts object.
+         * However, the `get_discounts` method of the `WC_Discounts` class allows access to this information.
+         * This implementation utilizes the following steps to calculate line-item discounts:
+         * 1. Remove the interfering WC hook used by Dokan hook.
+         * 2. Reapply the coupon to the order or cart.
+         * 3. Trigger the Dokan action to apply the coupon to the order or cart.
+         * 4. Reattach the interfering WC hook used by Dokan hook.
+         *
+         * @param int $apply_quantity The number of items to which the coupon applies.
+         * @param object $item The cart or order item object.
+         * @param WC_Coupon $coupon The coupon being applied.
+         * @param WC_Discounts $discounts The discount object managing the coupon.
+         *
+         * @return int
+         */
+        public function intercept_wc_coupon(int $apply_quantity, $item, \WC_Coupon $coupon, \WC_Discounts $discounts): int
+        {
+        }
+        /**
+         * Save coupon discount data for an item.
+         *
+         * @param WC_Coupon $coupon The coupon being applied.
+         * @param WC_Discounts $discounts Discount object.
+         * @param object $item The cart or order item object.
+         *
+         * @return void
+         * @throws Exception
+         */
+        public function save_item_coupon_discount(\WC_Coupon $coupon, \WC_Discounts $discounts, $item): void
+        {
+        }
+        /**
+         * Save coupon data to a cart item.
+         *
+         * @param WC_Coupon $coupon The coupon being applied.
+         * @param WC_Discounts $discounts Discount object.
+         * @param object $item The cart item object.
+         *
+         * @return void
+         */
+        protected function save_coupon_data_to_cart_item(\WC_Coupon $coupon, \WC_Discounts $discounts, $item): void
+        {
+        }
+        /**
+         * Save coupon data to an order item.
+         *
+         * @param WC_Coupon $coupon The coupon being applied.
+         * @param WC_Discounts $discounts Discount object.
+         * @param object $item The order item object.
+         * @param WC_Order $order The order object.
+         *
+         * @return void
+         * @throws Exception
+         */
+        protected function save_coupon_data_to_order_item(\WC_Coupon $coupon, \WC_Discounts $discounts, $item, \WC_Order $order): void
+        {
+        }
+        /**
+         * Process coupon for child orders.
+         *
+         * @param WC_Order $order
+         * @param WC_Coupon $coupon
+         *
+         * @return void
+         * @throws Exception
+         */
+        public function apply_coupon_to_child_orders(\WC_Order $order, \WC_Coupon $coupon): void
+        {
+        }
+        /**
+         * @param WC_Order $order
+         * @param string $removed_coupon
+         * @return void
+         */
+        private function remove_coupon_from_child_orders(\WC_Order $order, string $removed_coupon)
+        {
+        }
+        /**
+         * Add coupon info to an order item during checkout.
+         *
+         * @param WC_Order_Item_Product $item The order item object.
+         * @param string $cart_item_key The cart item key.
+         * @param array $values Cart item values.
+         */
+        public function add_coupon_info_to_order_item($item, $cart_item_key, $values): void
+        {
+        }
+        /**
+         * Remove coupon info from a cart item when a coupon is removed.
+         *
+         * @param string $coupon_code The coupon code being removed.
+         */
+        public function remove_coupon_info_from_cart_item(string $coupon_code): void
+        {
+        }
+    }
+    class DokanOrderLineItemCouponInfo
+    {
+        private $discount = 0;
+        private $coupon_code = '';
+        private $per_qty_amount = 0;
+        private $quantity = 0;
+        private $admin_coupons_enabled_for_vendor = '';
+        /**
+         * Expected types are 'from_vendor' or 'from_admin' or 'shared' or ''
+         * @var string Coupon commission type
+         */
+        private $coupon_commissions_type = '';
+        private $admin_shared_coupon_type = '';
+        private $admin_shared_coupon_amount = '';
+        private bool $subsidy_supported = true;
+        /**
+         * Check if subsidy is supported
+         *
+         * @since 4.0.0
+         *
+         * @return bool
+         */
+        public function is_subsidy_supported(): bool
+        {
+        }
+        /**
+         * Set subsidy supported
+         *
+         * @since 4.0.0
+         *
+         * @param bool $subsidy_supported
+         *
+         * @return void
+         */
+        public function set_subsidy_supported(bool $subsidy_supported): void
+        {
+        }
+        /**
+         * Get coupon info
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function get_coupon_info(): array
+        {
+        }
+        /**
+         * Set coupon info
+         *
+         * @since 4.0.0
+         *
+         * @param $coupon_info
+         *
+         * @return $this
+         */
+        public function set_coupon_info($coupon_info): self
+        {
+        }
+        /**
+         * Get discount amount
+         *
+         * @since 4.0.0
+         *
+         * @return float
+         */
+        public function get_discount(): float
+        {
+        }
+        /**
+         * Set discount amount
+         *
+         * @since 4.0.0
+         *
+         * @param float $discount
+         *
+         * @return $this
+         */
+        public function set_discount(float $discount): self
+        {
+        }
+        /**
+         * Get coupon code
+         *
+         * @since 4.0.0
+         *
+         * @return string
+         */
+        public function get_coupon_code(): string
+        {
+        }
+        /**
+         * Set coupon code
+         *
+         * @since 4.0.0
+         *
+         * @param string $coupon_code
+         *
+         * @return $this
+         */
+        public function set_coupon_code(string $coupon_code): self
+        {
+        }
+        /**
+         * Get per qty amount
+         *
+         * @since 4.0.0
+         *
+         * @return float
+         */
+        public function get_per_qty_amount(): float
+        {
+        }
+        /**
+         * Set per qty amount
+         *
+         * @since 4.0.0
+         *
+         * @param float $per_qty_amount
+         *
+         * @return $this
+         */
+        public function set_per_qty_amount(int $per_qty_amount): self
+        {
+        }
+        /**
+         * Get quantity
+         *
+         * @since 4.0.0
+         *
+         * @return int
+         */
+        public function get_quantity(): int
+        {
+        }
+        /**
+         * Set quantity
+         *
+         * @since 4.0.0
+         *
+         * @param int $quantity
+         *
+         * @return $this
+         */
+        public function set_quantity(int $quantity): self
+        {
+        }
+        /**
+         * Get admin coupons enabled for vendor
+         *
+         * @since 4.0.0
+         *
+         * @return string
+         */
+        public function get_admin_coupons_enabled_for_vendor(): string
+        {
+        }
+        /**
+         * Set admin coupons enabled for vendor
+         *
+         * @since 4.0.0
+         *
+         * @param string $admin_coupons_enabled_for_vendor
+         *
+         * @return $this
+         */
+        public function set_admin_coupons_enabled_for_vendor(string $admin_coupons_enabled_for_vendor): self
+        {
+        }
+        /**
+         * Get coupon commissions type
+         *
+         * @since 4.0.0
+         *
+         * @return string
+         */
+        public function get_coupon_commissions_type(): string
+        {
+        }
+        /**
+         * Set coupon commissions type
+         *
+         * @since 4.0.0
+         *
+         * @param string $coupon_commissions_type
+         *
+         * @return $this
+         */
+        public function set_coupon_commissions_type(string $coupon_commissions_type): self
+        {
+        }
+        /**
+         * Get admin shared coupon type
+         *
+         * @since 4.0.0
+         *
+         * @return string
+         */
+        public function get_admin_shared_coupon_type(): string
+        {
+        }
+        /**
+         * Set admin shared coupon type
+         *
+         * @since 4.0.0
+         *
+         * @param string $admin_shared_coupon_type
+         *
+         * @return $this
+         */
+        public function set_admin_shared_coupon_type(string $admin_shared_coupon_type): self
+        {
+        }
+        /**
+         * Get admin shared coupon amount
+         *
+         * @since 4.0.0
+         *
+         * @return string
+         */
+        public function get_admin_shared_coupon_amount(): string
+        {
+        }
+        public function set_admin_shared_coupon_amount(string $admin_shared_coupon_amount): self
+        {
+        }
+        /**
+         * Get vendor discount
+         *
+         * @since 4.0.0
+         *
+         * @return float
+         */
+        public function get_vendor_discount()
+        {
+        }
+        /**
+         * Get admin discount
+         *
+         * @since 4.0.0
+         *
+         * @return float
+         */
+        public function get_admin_discount()
         {
         }
     }
@@ -17439,6 +31748,30 @@ namespace WeDevs\Dokan\Vendor {
          * @return array
          */
         public function get_featured($args = [])
+        {
+        }
+        /**
+         * Activate a vendor (enable selling).
+         *
+         * @since 5.0.2
+         *
+         * @param int $vendor_id
+         *
+         * @return array|\WP_Error
+         */
+        public function activate($vendor_id)
+        {
+        }
+        /**
+         * Deactivate a vendor (disable selling).
+         *
+         * @since 5.0.2
+         *
+         * @param int $vendor_id
+         *
+         * @return array|\WP_Error
+         */
+        public function deactivate($vendor_id)
         {
         }
     }
@@ -17858,6 +32191,120 @@ namespace WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages {
 }
 namespace WeDevs\Dokan\Vendor {
     /**
+     * Seller setup wizard class
+     */
+    class SetupWizard extends \WeDevs\Dokan\Admin\SetupWizard
+    {
+        /**
+         * @var int
+         */
+        public $store_id;
+        /**
+         * @var array
+         */
+        public $store_info;
+        /**
+         * Hook in tabs.
+         */
+        public function __construct()
+        {
+        }
+        // define the woocommerce_registration_redirect callback
+        public function filter_woocommerce_registration_redirect($url)
+        {
+        }
+        /**
+         * Show the setup wizard.
+         */
+        public function setup_wizard()
+        {
+        }
+        /**
+         * Enqueue vendor setup wizard scripts
+         *
+         * @since 3.7.0
+         *
+         * @return void
+         */
+        public function frontend_enqueue_scripts()
+        {
+        }
+        /**
+         * Setup Wizard Header.
+         */
+        public function setup_wizard_header()
+        {
+        }
+        /**
+         * Setup Wizard Footer.
+         */
+        public function setup_wizard_footer()
+        {
+        }
+        /**
+         * Introduction step.
+         */
+        public function dokan_setup_introduction()
+        {
+        }
+        /**
+         * Store step.
+         */
+        public function dokan_setup_store()
+        {
+        }
+        /**
+         * Save store options.
+         */
+        public function dokan_setup_store_save()
+        {
+        }
+        /**
+         * Payment step.
+         */
+        public function dokan_setup_payment()
+        {
+        }
+        /**
+         * Save payment options.
+         */
+        public function dokan_setup_payment_save()
+        {
+        }
+        /**
+         * Final step.
+         */
+        public function dokan_setup_ready()
+        {
+        }
+        /**
+         * Gets the URL for the next step in the wizard
+         *
+         * Handles special logic to skip the payment step if no withdrawal methods
+         * are active, preventing users from accessing an empty payment step
+         *
+         * @since 2.9.27
+         *
+         * @return string The URL for the next step
+         */
+        public function get_next_step_link(): string
+        {
+        }
+        /**
+         * Sets up the wizard steps
+         *
+         * Defines the steps for the setup wizard, conditionally including
+         * the payment step only if active withdrawal methods exist
+         *
+         * @since 2.9.27
+         *
+         * @return void
+         */
+        protected function set_steps()
+        {
+        }
+    }
+    /**
      * Store Lists Class
      *
      * @since 2.9.30
@@ -17967,14 +32414,14 @@ namespace WeDevs\Dokan\Vendor {
     /**
     * User Switching functionality
     *
-    * @since  DOKAN_LITE_SINCE
+    * @since  3.0.6
     */
     class UserSwitch
     {
         /**
          * Load automatically when class initiate
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.6
          */
         public function __construct()
         {
@@ -17982,7 +32429,7 @@ namespace WeDevs\Dokan\Vendor {
         /**
          * Is feature active or not
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.6
          *
          * @return boolean
          */
@@ -17992,7 +32439,7 @@ namespace WeDevs\Dokan\Vendor {
         /**
          * Add localize scription for loading if feature available or not
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.6
          *
          * @return array
          */
@@ -18002,7 +32449,7 @@ namespace WeDevs\Dokan\Vendor {
         /**
          * Populate switch url for user
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.6
          *
          * @return array
          */
@@ -18012,11 +32459,1018 @@ namespace WeDevs\Dokan\Vendor {
         /**
          * Switch to or Switch Back to user message in vendor dashboard
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.0.6
          *
          * @return void
          */
         public function show_user_switching_message()
+        {
+        }
+    }
+    /**
+     * Dokan Vendor
+     *
+     * @since 2.6.10
+     */
+    #[\AllowDynamicProperties]
+    class Vendor
+    {
+        /**
+         * Set class public properties
+         *
+         * @since 3.7.19
+         *
+         * @return void
+         */
+        public function __set($key, $value)
+        {
+        }
+        /**
+         * Get public properties
+         *
+         * @since 3.7.19
+         *
+         * @return mixed|null
+         */
+        public function __get($key)
+        {
+        }
+        /**
+         * The vendor ID
+         *
+         * @var integer
+         */
+        public $id = 0;
+        /**
+         * Holds the user data object
+         *
+         * @var null|WP_User
+         */
+        public $data = null;
+        /**
+         * Holds the store info
+         *
+         * @var array
+         */
+        private $shop_data = array();
+        /**
+         * Holds the chanages data
+         *
+         * @var array
+         */
+        private $changes = array();
+        /**
+         * The constructor
+         *
+         * @param int|WP_User $vendor
+         */
+        public function __construct($vendor = null)
+        {
+        }
+        /**
+         * Magic method to access vendor properties
+         *
+         * When you try to access a property by calling a method
+         * with 'get_' prefixed, this magic method will look into
+         * shop_data for that property.
+         *
+         * @param string $name
+         * @param array  $param
+         *
+         * @return mixed|void
+         */
+        public function __call($name, $param)
+        {
+        }
+        /**
+         * Vendor info to array
+         *
+         * @since 2.8
+         *
+         * @return array
+         */
+        public function to_array()
+        {
+        }
+        /**
+         * Check if key is exist
+         *
+         * @param $key
+         *
+         * @return string
+         */
+        public function get_value($key)
+        {
+        }
+        /**
+         * Check if the user is vendor
+         *
+         * @return boolean
+         */
+        public function is_vendor()
+        {
+        }
+        /**
+         * If the selling capacity is enabled
+         *
+         * @return boolean
+         */
+        public function is_enabled()
+        {
+        }
+        /**
+         * If the vendor is marked as trusted
+         *
+         * @return boolean
+         */
+        public function is_trusted()
+        {
+        }
+        /**
+         * If the vendor is marked as featured
+         *
+         * @return boolean
+         */
+        public function is_featured()
+        {
+        }
+        /**
+         * If reset sub category is enabled
+         *
+         * @return boolean
+         */
+        public function get_reset_sub_category()
+        {
+        }
+        /**
+         * Populate store info
+         *
+         * @return void
+         */
+        public function popluate_store_data()
+        {
+        }
+        /*
+        |--------------------------------------------------------------------------
+        | Getters
+        |--------------------------------------------------------------------------
+        */
+        /**
+         * Get the store info by lazyloading
+         *
+         * @return array
+         */
+        public function get_shop_info()
+        {
+        }
+        /**
+         * Get store info by key
+         *
+         * @param  string $item
+         *
+         * @return mixed
+         */
+        public function get_info_part($item)
+        {
+        }
+        /**
+         * Get store ID
+         *
+         * @since 3.0.0
+         *
+         * @return int
+         */
+        public function get_id()
+        {
+        }
+        /**
+         * Get the vendor name
+         *
+         * @return string
+         */
+        public function get_name()
+        {
+        }
+        /**
+         * Get the shop name
+         *
+         * @return string
+         */
+        public function get_shop_name()
+        {
+        }
+        /**
+         * Get the shop URL
+         *
+         * @return string
+         */
+        public function get_shop_url()
+        {
+        }
+        /**
+         * Get email address
+         *
+         * @return string
+         */
+        public function get_email()
+        {
+        }
+        /**
+         * Get first name
+         *
+         * @since 2.8
+         *
+         * @return string
+         */
+        public function get_first_name()
+        {
+        }
+        /**
+         * Get last name
+         *
+         * @since 2.8
+         *
+         * @return string
+         */
+        public function get_last_name()
+        {
+        }
+        /**
+         * Get last name
+         *
+         * @since 2.8
+         *
+         * @return string
+         */
+        public function get_register_date()
+        {
+        }
+        /**
+         * Get the shop name
+         *
+         * @return array
+         */
+        public function get_social_profiles()
+        {
+        }
+        /**
+         * Get the shop payment profiles
+         *
+         * @return array
+         */
+        public function get_payment_profiles()
+        {
+        }
+        /**
+         * Get the phone name
+         *
+         * @return string
+         */
+        public function get_phone()
+        {
+        }
+        /**
+         * Get the shop address
+         *
+         * @return array
+         */
+        public function get_address()
+        {
+        }
+        /**
+         * Get the shop location
+         *
+         * @return array
+         */
+        public function get_location()
+        {
+        }
+        /**
+         * Get the store banner URL.
+         *
+         * This method first checks if a specific banner ID is set for the store and retrieves it. If not set,
+         * it falls back to the default store banner defined in the Dokan settings.
+         *
+         * @since 4.0.6 Applied default banner image.
+         *
+         * @return string
+         */
+        public function get_banner(): string
+        {
+        }
+        /**
+         * Get the shop banner id
+         *
+         * @since 2.9.13
+         *
+         * @return int
+         */
+        public function get_banner_id()
+        {
+        }
+        /**
+         * Get the shop profile icon.
+         *
+         * @since 2.8
+         * @since 4.0.6 Applied default vendor profile image.
+         *
+         * @return string
+         */
+        public function get_avatar()
+        {
+        }
+        /**
+         * Get shop gravatar id
+         *
+         * @since 2.9.13
+         *
+         * @return int
+         */
+        public function get_avatar_id()
+        {
+        }
+        /**
+         * If should show the email
+         *
+         * @return boolean
+         */
+        public function show_email()
+        {
+        }
+        /**
+         * Check if terms and conditions enabled
+         *
+         * @since 2.8
+         *
+         * @return boolean
+         */
+        public function toc_enabled()
+        {
+        }
+        /**
+         * Get terms and conditions
+         *
+         * @since 2.8
+         *
+         * @return string
+         */
+        public function get_toc()
+        {
+        }
+        /**
+         * Get a vendor products
+         *
+         * @return object
+         */
+        public function get_products()
+        {
+        }
+        /**
+         * Get a vendor all published products
+         *
+         * @since 3.2.11
+         *
+         * @return array
+         */
+        public function get_published_products()
+        {
+        }
+        /**
+         * Get a vendor all published products
+         *
+         * @since 3.2.11
+         *
+         * @return array
+         */
+        public function get_best_selling_products()
+        {
+        }
+        /**
+         * Get a vendor store published products categories
+         *
+         * @param bool $best_selling
+         *
+         * @since 3.2.11
+         *
+         * @return array
+         */
+        public function get_store_categories($best_selling = false)
+        {
+        }
+        /**
+         * Get vendor used terms list.
+         *
+         * @since 3.5.0
+         *
+         * @param $vendor_id
+         * @param $taxonomy
+         *
+         * @return array|mixed
+         */
+        public function get_vendor_used_terms_list($vendor_id, $taxonomy)
+        {
+        }
+        /**
+         * Get vendor orders
+         *
+         * @since 3.0.0
+         *
+         * @return WP_Error|WC_Order[] objects
+         */
+        public function get_orders($args = [])
+        {
+        }
+        /**
+         * Get the total sales amount of this vendor
+         *
+         * @return float
+         */
+        public function get_total_sales()
+        {
+        }
+        /**
+         * Get total pageview for all the products
+         *
+         * @return integer
+         */
+        public function get_product_views()
+        {
+        }
+        /**
+         * Get vendor total earnings
+         *
+         * @return float|string float if formatted is false, string otherwise
+         */
+        public function get_earnings($formatted = true, $on_date = '')
+        {
+        }
+        /**
+         * Get balance
+         *
+         * @since 3.0.0
+         *
+         * @param bool $formatted
+         * @param string $on_date
+         *
+         * @return float|string float if formatted is false, string otherwise
+         */
+        public function get_balance($formatted = true, $on_date = '')
+        {
+        }
+        /**
+         * Get vendor rating
+         *
+         * @since 3.0.0
+         *
+         * @return array
+         */
+        public function get_rating()
+        {
+        }
+        /**
+         * Get vendor readable rating
+         *
+         * @since 3.0.0
+         *
+         * @return void|string
+         */
+        public function get_readable_rating($display = true)
+        {
+        }
+        /**
+         * Make vendor active
+         *
+         * @since 2.8.0
+         *
+         * @return array
+         */
+        public function make_active()
+        {
+        }
+        /**
+         * Make vendor inactive
+         *
+         * @since 2.8.0
+         *
+         * @return array
+         */
+        public function make_inactive()
+        {
+        }
+        /**
+         * Change product status when toggling seller active status
+         *
+         * @since 2.6.9
+         * @since 3.7.18 introduced new bg process to change product status
+         *
+         * @param string $task_type
+         *
+         * @return void
+         */
+        public function change_product_status($task_type)
+        {
+        }
+        /**
+         * Get store opening closing time
+         *
+         * @return array
+         */
+        public function get_store_time()
+        {
+        }
+        /**
+         * Get store opening closing time
+         *
+         * @return boolean|null on failure
+         */
+        public function is_store_time_enabled()
+        {
+        }
+        /**
+         * Get store open notice
+         *
+         * @param string $default_notice
+         *
+         * @return string
+         */
+        public function get_store_open_notice($default_notice = '')
+        {
+        }
+        /**
+         * Get store close notice
+         *
+         * @param string $default_notice
+         *
+         * @return string
+         */
+        public function get_store_close_notice($default_notice = '')
+        {
+        }
+        /*
+        |--------------------------------------------------------------------------
+        | Setters
+        |--------------------------------------------------------------------------
+        */
+        /**
+         * Set enable tnc
+         *
+         * @param int value
+         */
+        public function set_enable_tnc($value)
+        {
+        }
+        /**
+         * Set store tnc
+         *
+         * @since 3.0.0
+         *
+         * @param string
+         *
+         * @return void
+         */
+        public function set_store_tnc($value)
+        {
+        }
+        /**
+         * Set gravatar
+         *
+         * @param int value
+         */
+        public function set_gravatar_id($value)
+        {
+        }
+        /**
+         * Set banner
+         *
+         * @param int value
+         */
+        public function set_banner_id($value)
+        {
+        }
+        /**
+         * Set banner
+         *
+         * @param int value
+         */
+        public function set_icon($value)
+        {
+        }
+        /**
+         * Set store name
+         *
+         * @param string
+         */
+        public function set_store_name($value)
+        {
+        }
+        /**
+         * Set phone
+         *
+         * @param string
+         */
+        public function set_phone($value)
+        {
+        }
+        /**
+         * Set show email
+         *
+         * @param string
+         */
+        public function set_show_email($value)
+        {
+        }
+        /**
+         * Set show email
+         *
+         * @param string
+         */
+        public function set_fb($value)
+        {
+        }
+        /**
+         * Set show email
+         *
+         * @param string
+         */
+        public function set_gplus($value)
+        {
+        }
+        /**
+         * Set show email
+         *
+         * @param string
+         */
+        public function set_twitter($value)
+        {
+        }
+        /**
+         * Set show email
+         *
+         * @param string
+         */
+        public function set_pinterest($value)
+        {
+        }
+        /**
+         * Set show email
+         *
+         * @param string
+         */
+        public function set_linkedin($value)
+        {
+        }
+        /**
+         * Set show email
+         *
+         * @param string
+         */
+        public function set_youtube($value)
+        {
+        }
+        /**
+         * Set TikTok
+         *
+         * @param string
+         */
+        public function set_tiktok($value)
+        {
+        }
+        /**
+         * Set show email
+         *
+         * @param string
+         */
+        public function set_instagram($value)
+        {
+        }
+        /**
+         * Set threads
+         *
+         * @param string
+         */
+        public function set_threads($value)
+        {
+        }
+        /**
+         * Set flickr
+         *
+         * @param string
+         */
+        public function set_flickr($value)
+        {
+        }
+        /**
+         * Set paypal email
+         *
+         * @param string $value
+         */
+        public function set_paypal_email($value)
+        {
+        }
+        /**
+         * Set bank ac name
+         *
+         * @param string $value
+         */
+        public function set_bank_ac_name($value)
+        {
+        }
+        /**
+         * Set bank ac type
+         *
+         * @param string $value
+         */
+        public function set_bank_ac_type($value)
+        {
+        }
+        /**
+         * Set bank ac number
+         *
+         * @param string $value
+         */
+        public function set_bank_ac_number($value)
+        {
+        }
+        /**
+         * Set bank name
+         *
+         * @param string $value
+         */
+        public function set_bank_bank_name($value)
+        {
+        }
+        /**
+         * Set bank address
+         *
+         * @param string value
+         */
+        public function set_bank_bank_addr($value)
+        {
+        }
+        /**
+         * Set bank routing number
+         *
+         * @param string value
+         */
+        public function set_bank_routing_number($value)
+        {
+        }
+        /**
+         * Set bank iban
+         *
+         * @param string $value
+         */
+        public function set_bank_iban($value)
+        {
+        }
+        /**
+         * Set bank swtif number
+         *
+         * @param string $value
+         */
+        public function set_bank_swift($value)
+        {
+        }
+        public function set_address($value)
+        {
+        }
+        /**
+         * Set street 1
+         *
+         * @param string $value
+         */
+        public function set_street_1($value)
+        {
+        }
+        /**
+         * Set street 2
+         *
+         * @param string $value
+         */
+        public function set_street_2($value)
+        {
+        }
+        /**
+         * Set city
+         *
+         * @param string $value
+         */
+        public function set_city($value)
+        {
+        }
+        /**
+         * Set zip
+         *
+         * @param string $value
+         */
+        public function set_zip($value)
+        {
+        }
+        /**
+         * Set state
+         *
+         * @param string $value
+         */
+        public function set_state($value)
+        {
+        }
+        /**
+         * Set country
+         *
+         * @param string $value
+         */
+        public function set_country($value)
+        {
+        }
+        /**
+         * Sets a prop for a setter method.
+         *
+         * This stores changes in a special array so we can track what needs saving
+         * the the DB later.
+         *
+         * @since 2.9.11
+         *
+         * @param string $prop Name of prop to set.
+         * @param mixed  $value Value of the prop.
+         */
+        protected function set_prop($prop, $value)
+        {
+        }
+        /**
+         * Get vendor meta data
+         *
+         * @since 2.9.23
+         *
+         * @param string $key
+         * @param bool $single  Whether to return a single value
+         *
+         * @return mixed|null|false
+         */
+        public function get_meta($key, $single = false)
+        {
+        }
+        /**
+         * Update vendor meta data
+         *
+         * @since 2.9.11
+         *
+         * @param string $key
+         * @param mixed $value
+         *
+         * @return void
+         */
+        public function update_meta($key, $value)
+        {
+        }
+        /**
+         * Update meta data
+         *
+         * @since  2.9.23
+         *
+         * @return void
+         */
+        public function update_meta_data()
+        {
+        }
+        /**
+         * Sets a prop for a setter method.
+         *
+         * @since 2.9.11
+         *
+         * @param string $prop    Name of prop to set.
+         * @param string $social Name of social settings to set, fb, twitter
+         * @param string $value
+         */
+        protected function set_social_prop($prop, $social = 'social', $value = '')
+        {
+        }
+        /**
+         * Set address props
+         *
+         * @param string $prop
+         * @param string $address
+         * @param string value
+         */
+        protected function set_address_prop($prop, $address = 'address', $value = '')
+        {
+        }
+        /**
+         * Set payment props
+         *
+         * @param string $prop
+         * @param string $paypal
+         * @param mix value
+         */
+        protected function set_payment_prop($prop, $paypal = 'paypal', $value = '')
+        {
+        }
+        /**
+         * Set store open close props
+         *
+         * @param string $prop
+         * @param array $value
+         *
+         * @since 2.9.13
+         *
+         * @return void
+         */
+        protected function set_store_open_close_prop($prop, $value)
+        {
+        }
+        /**
+         * Set store times
+         *
+         * @param array $data
+         *
+         * @since 2.9.13
+         *
+         * @return void
+         */
+        public function set_store_times(array $data)
+        {
+        }
+        /**
+         * Set store times enable
+         *
+         * @param boolean $value
+         *
+         * @since 2.9.13
+         *
+         * @return void
+         */
+        public function set_store_times_enable($value)
+        {
+        }
+        /**
+         * Set store times open notice
+         *
+         * @param string $value
+         *
+         * @since 2.9.13
+         *
+         * @return void
+         */
+        public function set_store_times_open_notice($value)
+        {
+        }
+        /**
+         * Set store times close notice
+         *
+         * @param string $value
+         *
+         * @since 2.9.13
+         *
+         * @return void
+         */
+        public function set_store_times_close_notice($value)
+        {
+        }
+        /**
+         * Merge changes with data and clear.
+         *
+         * @since 2.9.11
+         */
+        public function apply_changes()
+        {
+        }
+        /**
+         * Save the object
+         *
+         * @since 2.9.11
+         */
+        public function save()
+        {
+        }
+        /**
+         * Returns vendor commission settings data.
+         *
+         * @since 3.14.0
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function get_commission_settings()
+        {
+        }
+        /**
+         * Saves commission settings.
+         *
+         * @since 3.14.0
+         *
+         * @param array $commission
+         *
+         * @return \WeDevs\Dokan\Commission\Model\Setting
+         */
+        public function save_commission_settings($commission = [])
+        {
+        }
+        /**
+         * Get vendor profile url for admin
+         *
+         * @since 3.10.2
+         *
+         * @return string
+         */
+        public function get_profile_url(): string
         {
         }
     }
@@ -18122,7 +33576,192 @@ namespace WeDevs\Dokan\Vendor {
         }
     }
 }
+namespace WeDevs\Dokan {
+    class VendorNavMenuChecker
+    {
+        /**
+         * @since 4.0.0
+         *
+         * @var array $template_dependencies List of template dependencies.
+         * [ 'route' => [ ['slug' => 'template-slug', 'name' => 'template-name' (Optional), 'args' = [] (Optional)  ] ] ]
+         */
+        protected array $template_dependencies = ['withdraw' => [['slug' => 'withdraw/withdraw-dashboard'], ['slug' => 'withdraw/withdraw'], ['slug' => 'withdraw/header'], ['slug' => 'withdraw/status-listing'], ['slug' => 'withdraw/pending-request-listing'], ['slug' => 'withdraw/approved-request-listing'], ['slug' => 'withdraw/cancelled-request-listing'], ['slug' => 'withdraw/tmpl-withdraw-request-popup'], ['slug' => 'withdraw/request-form'], ['slug' => 'withdraw/pending-request-listing-dashboard']]];
+        /**
+         * Forcefully resolved dependencies.
+         *
+         * Using `dokan_is_dashboard_nav_dependency_resolved` filter hook.
+         *
+         * @since 4.0.0
+         *
+         * @var array $forcefully_resolved_dependencies List of forcefully resolved dependencies.
+         */
+        protected array $forcefully_resolved_dependencies = [];
+        /**
+         * Constructor.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Get template dependencies.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function get_template_dependencies(): array
+        {
+        }
+        /**
+         * Convert menu items to react menu items
+         *
+         * @since 4.0.0
+         *
+         * @param array $menu_items Menu items.
+         *
+         * @return array
+         */
+        public function convert_to_react_menu(array $menu_items): array
+        {
+        }
+        /**
+         * Rewrite URL to React route if applicable.
+         *
+         * @since 4.0.8
+         *
+         * @param string $url URL.
+         * @param string $name Name.
+         * @param bool $new_url New URL.
+         *
+         * @return string
+         */
+        public function maybe_rewrite_to_react_route(string $url, $name, $new_url): string
+        {
+        }
+        /**
+         * Check if the dependency is cleared or not.
+         *
+         * @since 4.0.0
+         *
+         * @param string $route Route.
+         *
+         * @return bool
+         */
+        protected function is_dependency_resolved(string $route): bool
+        {
+        }
+        /**
+         * List forcefully resolved dependencies.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function list_force_dependency_resolved_alteration(): array
+        {
+        }
+        /**
+         * Get URL for the route.
+         *
+         * @since 4.0.0
+         *
+         * @param string $route Route.
+         *
+         * @return string
+         */
+        protected function get_url_for_route(string $route): string
+        {
+        }
+        /**
+         * Get template dependencies resolutions.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        protected function get_template_dependencies_resolutions(): array
+        {
+        }
+        /**
+         * Get overridden template part path.
+         *
+         * @since 4.0.0
+         *
+         * @param string $slug Template slug.
+         * @param string $name Template name.
+         * @param array $args Arguments.
+         *
+         * @return false|string Returns the template file if found otherwise false.
+         */
+        protected function get_overridden_template(string $slug, string $name = '', array $args = [])
+        {
+        }
+        /**
+         * List overridden templates.
+         *
+         * @since 4.0.0
+         *
+         * @return array
+         */
+        public function list_overridden_templates(): array
+        {
+        }
+        /**
+         * Display notice if templates are overridden.
+         *
+         * @since 4.0.0
+         *
+         * @param array $notices Notices.
+         *
+         * @return array
+         */
+        public function display_notice(array $notices): array
+        {
+        }
+        /**
+         * Add template dependencies to status page.
+         *
+         * @since 4.0.0
+         *
+         * @return void
+         * @throws Exception
+         */
+        public function add_status_section(\WeDevs\Dokan\Admin\Status\Status $status)
+        {
+        }
+    }
+}
 namespace WeDevs\Dokan\Walkers {
+    class Category extends \Walker
+    {
+        public $tree_type = 'category';
+        public $db_fields = ['parent' => 'parent', 'id' => 'term_id'];
+        //TODO: decouple this
+        public function start_lvl(&$output, $depth = 0, $args = [])
+        {
+        }
+        public function end_lvl(&$output, $depth = 0, $args = [])
+        {
+        }
+        public function start_el(&$output, $category, $depth = 0, $args = [], $id = 0)
+        {
+        }
+        public function end_el(&$output, $category, $depth = 0, $args = [])
+        {
+        }
+    }
+    /**
+     * Category walker for generating dokan store category
+     */
+    class StoreCategory extends \WeDevs\Dokan\Walkers\Category
+    {
+        public function __construct($seller_id)
+        {
+        }
+        public function start_el(&$output, $category, $depth = 0, $args = [], $id = 0)
+        {
+        }
+    }
     class TaxonomyDropdown extends \Walker
     {
         /**
@@ -18152,6 +33791,19 @@ namespace WeDevs\Dokan\Walkers {
         {
         }
         /**
+         * Override display_element method to add additional validation
+         *
+         * @param object $element           Data object.
+         * @param array  $children_elements List of elements to continue traversing.
+         * @param int    $max_depth         Max depth to traverse.
+         * @param int    $depth             Depth of current element.
+         * @param array  $args              An array of arguments.
+         * @param string $output            Used to append additional content.
+         */
+        public function display_element($element, &$children_elements, $max_depth, $depth, $args, &$output)
+        {
+        }
+        /**
          * Start element
          *
          * @param string $output
@@ -18162,33 +33814,6 @@ namespace WeDevs\Dokan\Walkers {
          *
          * @return void
          */
-        public function start_el(&$output, $category, $depth = 0, $args = [], $id = 0)
-        {
-        }
-    }
-    class CategoryDropdownSingle extends \WeDevs\Dokan\Walkers\TaxonomyDropdown
-    {
-        private $post_id = '';
-        /**
-         * @see Walker::$db_fields
-         * @var array
-         */
-        public $db_fields = array('parent' => 'parent', 'id' => 'term_id');
-        public function __construct($post_id)
-        {
-        }
-        public function start_el(&$output, $category, $depth = 0, $args = array(), $id = 0)
-        {
-        }
-    }
-    /**
-     * Category walker for generating dokan store category
-     */
-    class StoreCategory extends \WeDevs\Dokan\Walkers\Category
-    {
-        public function __construct($seller_id)
-        {
-        }
         public function start_el(&$output, $category, $depth = 0, $args = [], $id = 0)
         {
         }
@@ -18251,7 +33876,7 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Front-end display of widget.
          *
-         * @since DOKAN_PRO_SINCE
+         * @since 3.5.0
          *
          * @param array $args     Widget arguments.
          * @param array $instance Saved values from database.
@@ -18264,7 +33889,7 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Back-end widget form.
          *
-         * @since DOKAN_PRO_SINCE
+         * @since 3.5.0
          *
          * @param array $instance Previously saved values from database.
          *
@@ -18276,7 +33901,7 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Sanitize widget form values as they are saved.
          *
-         * @since DOKAN_PRO_SINCE
+         * @since 3.5.0
          *
          * @param array $new_instance Values just sent to be saved.
          * @param array $old_instance Previously saved values from database.
@@ -18293,7 +33918,7 @@ namespace WeDevs\Dokan\Widgets {
         /**
          * Get this widget taxonomy.
          *
-         * @since DOKAN_PRO_SINCE
+         * @since 3.5.0
          *
          * @param array $instance Array of instance options.
          *
@@ -18704,6 +34329,18 @@ namespace WeDevs\Dokan\Withdraw {
         {
         }
         /**
+         * Dokan withdraw localize scripts.
+         *
+         * @since 4.0.0
+         *
+         * @param array $localized_args
+         *
+         * @return array
+         */
+        public function localize_withdraw_scripts($localized_args)
+        {
+        }
+        /**
          * Dokan Custom Withdraw Method Title
          *
          * @since 3.3.7
@@ -18747,6 +34384,218 @@ namespace WeDevs\Dokan\Withdraw {
          * @return void
          */
         public function ajax_handle_make_default_method()
+        {
+        }
+    }
+    /**
+     * Withdraw base class
+     *
+     * @since   2.4
+     *
+     * @author  wedDevs <info@wedevs.com>
+     *
+     * @package dokan
+     */
+    class Manager
+    {
+        /**
+         * Validate approval request
+         *
+         * @since 3.0.0
+         *
+         * @param array $args
+         *
+         * @return bool|\WP_Error
+         */
+        public function is_valid_approval_request($args)
+        {
+        }
+        /**
+         * Validate cancellation request
+         *
+         * @since 3.0.0
+         *
+         * @param array $args
+         *
+         * @return bool|\WP_Error
+         */
+        public function is_valid_cancellation_request($args)
+        {
+        }
+        /**
+         * Update withdraw status
+         *
+         * @since 2.4
+         *
+         * @param int    $id
+         * @param int    $user_id
+         * @param string $status
+         *
+         * @return void
+         */
+        public function update_status($id, $user_id, $status)
+        {
+        }
+        /**
+         * Insert an withdraw approval request
+         *
+         * @param array $data
+         *
+         * @return bool|\WP_Error
+         */
+        public function insert_withdraw($args = [])
+        {
+        }
+        /**
+         * Check if a user has already pending withdraw request
+         *
+         * @param integer $user_id
+         *
+         * @return boolean
+         */
+        public function has_pending_request($user_id)
+        {
+        }
+        /**
+         * Get withdraw request of a user
+         *
+         * @param integer $user_id
+         * @param integer $status
+         * @param integer $limit
+         * @param integer $offset
+         *
+         * @return Withdraw[]
+         */
+        public function get_withdraw_requests($user_id = '', $status = 0, $limit = 10, $offset = 0): array
+        {
+        }
+        /**
+         * Get status code by status type
+         *
+         * @param string
+         *
+         * @return integer
+         */
+        public function get_status_code($status)
+        {
+        }
+        /**
+         * Get withdraw details by method and user
+         *
+         * @param string $method
+         * @param int    $user_id
+         *
+         * @return array
+         */
+        public function get_formatted_details($method, $user_id)
+        {
+        }
+        /**
+         * Get withdraw status from code
+         *
+         * @since 3.0.0
+         *
+         * @param int $code
+         *
+         * @return string
+         */
+        public function get_status_name($code)
+        {
+        }
+        /**
+         * Get list of withdraws
+         *
+         * @since 3.0.0
+         *
+         * @param  array $args
+         *
+         * @return array|object
+         */
+        public function all($args = [])
+        {
+        }
+        /**
+         * @since 3.2.0
+         *
+         * @return int|null
+         */
+        public function get_total_withdraw_count()
+        {
+        }
+        /**
+         * Get a single withdraw
+         *
+         * @since 3.0.0
+         *
+         * @param 3.0.0 $id
+         *
+         * @return \WeDevs\Dokan\Withdraw\Withdraw|null
+         */
+        public function get($id)
+        {
+        }
+        /**
+         * Create a withdraw request
+         *
+         * @since 3.0.0
+         *
+         * @param array $args
+         *
+         * @return \WeDevs\Dokan\Withdraw\Withdraw|\WP_Error
+         */
+        public function create($args)
+        {
+        }
+        /**
+         * Check if a user has sufficient withdraw balance
+         *
+         * @param integer $user_id
+         *
+         * @return boolean
+         */
+        public function has_withdraw_balance($user_id)
+        {
+        }
+        /**
+         * Get the system withdraw limit
+         *
+         * @return integer
+         */
+        public function get_withdraw_limit()
+        {
+        }
+        /**
+         * Get a sellers balance
+         *
+         * @param integer $user_id
+         *
+         * @return integer
+         */
+        public function get_user_balance($user_id)
+        {
+        }
+        /**
+         * Export withdraw data
+         *
+         * @since 3.0.0
+         *
+         * @param array $args
+         *
+         * @return \WeDevs\Dokan\Withdraw\Export\Manager
+         */
+        public function export($args)
+        {
+        }
+        /**
+         * Returns users withdraws summary.
+         *
+         * @since 3.7.10
+         *
+         * @param int $user_id
+         *
+         * @return array
+         */
+        public function get_user_withdraw_summary($user_id = '')
         {
         }
     }
@@ -18851,7 +34700,7 @@ namespace WeDevs\Dokan\Withdraw {
         /**
          * Get details
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.2.12
          *
          * @return string
          */
@@ -18973,7 +34822,7 @@ namespace WeDevs\Dokan\Withdraw {
         /**
          * Set details
          *
-         * @since DOKAN_LITE_SINCE
+         * @since 3.2.12
          *
          * @param string $details
          *
@@ -19256,18 +35105,338 @@ namespace WeDevs\Dokan\Withdraw {
         }
     }
 }
-namespace {
-    class DokanCategoryWalker extends \WeDevs\Dokan\Walkers\CategoryDropdownSingle
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument {
+    interface ArgumentInterface
     {
         /**
-         * Constructor method
-         *
-         * @param int $post_id
+         * @return mixed
          */
-        public function __construct($post_id)
+        public function getValue();
+    }
+    interface DefaultValueInterface extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\ArgumentInterface
+    {
+        /**
+         * @return mixed
+         */
+        public function getDefaultValue();
+    }
+    interface ResolvableArgumentInterface extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\ArgumentInterface
+    {
+        public function getValue(): string;
+    }
+    class ResolvableArgument implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\ResolvableArgumentInterface
+    {
+        protected $value;
+        public function __construct(string $value)
+        {
+        }
+        public function getValue(): string
         {
         }
     }
+    class DefaultValueArgument extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\ResolvableArgument implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\DefaultValueInterface
+    {
+        protected $defaultValue;
+        public function __construct(string $value, $defaultValue = null)
+        {
+        }
+        /**
+         * @return mixed|null
+         */
+        public function getDefaultValue()
+        {
+        }
+    }
+    interface LiteralArgumentInterface extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\ArgumentInterface
+    {
+    }
+    class LiteralArgument implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\LiteralArgumentInterface
+    {
+        public const TYPE_ARRAY = 'array';
+        public const TYPE_BOOL = 'boolean';
+        public const TYPE_BOOLEAN = 'boolean';
+        public const TYPE_CALLABLE = 'callable';
+        public const TYPE_DOUBLE = 'double';
+        public const TYPE_FLOAT = 'double';
+        public const TYPE_INT = 'integer';
+        public const TYPE_INTEGER = 'integer';
+        public const TYPE_OBJECT = 'object';
+        public const TYPE_STRING = 'string';
+        /**
+         * @var mixed
+         */
+        protected $value;
+        public function __construct($value, ?string $type = null)
+        {
+        }
+        /**
+         * {@inheritdoc}
+         */
+        public function getValue()
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\Literal {
+    class ArrayArgument extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\LiteralArgument
+    {
+        public function __construct(array $value)
+        {
+        }
+    }
+    class BooleanArgument extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\LiteralArgument
+    {
+        public function __construct(bool $value)
+        {
+        }
+    }
+    class CallableArgument extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\LiteralArgument
+    {
+        public function __construct(callable $value)
+        {
+        }
+    }
+    class FloatArgument extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\LiteralArgument
+    {
+        public function __construct(float $value)
+        {
+        }
+    }
+    class IntegerArgument extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\LiteralArgument
+    {
+        public function __construct(int $value)
+        {
+        }
+    }
+    class ObjectArgument extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\LiteralArgument
+    {
+        public function __construct(object $value)
+        {
+        }
+    }
+    class StringArgument extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\LiteralArgument
+    {
+        public function __construct(string $value)
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition {
+    interface DefinitionAggregateInterface extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareInterface, \IteratorAggregate
+    {
+        public function add(string $id, $definition): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function addShared(string $id, $definition): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function getDefinition(string $id): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface;
+        public function has(string $id): bool;
+        public function hasTag(string $tag): bool;
+        public function resolve(string $id);
+        public function resolveNew(string $id);
+        public function resolveTagged(string $tag): array;
+        public function resolveTaggedNew(string $tag): array;
+    }
+    class DefinitionAggregate implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionAggregateInterface
+    {
+        use \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareTrait;
+        /**
+         * @var DefinitionInterface[]
+         */
+        protected $definitions = [];
+        public function __construct(array $definitions = [])
+        {
+        }
+        public function add(string $id, $definition): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function addShared(string $id, $definition): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function has(string $id): bool
+        {
+        }
+        public function hasTag(string $tag): bool
+        {
+        }
+        public function getDefinition(string $id): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Definition\DefinitionInterface
+        {
+        }
+        public function resolve(string $id)
+        {
+        }
+        public function resolveNew(string $id)
+        {
+        }
+        public function resolveTagged(string $tag): array
+        {
+        }
+        public function resolveTaggedNew(string $tag): array
+        {
+        }
+        public function getIterator(): \Generator
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\Psr\Container {
+    /**
+     * Base interface representing a generic exception in a container.
+     */
+    interface ContainerExceptionInterface extends \Throwable
+    {
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\Exception {
+    class ContainerException extends \RuntimeException implements \WeDevs\Dokan\ThirdParty\Packages\Psr\Container\ContainerExceptionInterface
+    {
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\Psr\Container {
+    /**
+     * No entry was found in the container.
+     */
+    interface NotFoundExceptionInterface extends \WeDevs\Dokan\ThirdParty\Packages\Psr\Container\ContainerExceptionInterface
+    {
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\Exception {
+    class NotFoundException extends \InvalidArgumentException implements \WeDevs\Dokan\ThirdParty\Packages\Psr\Container\NotFoundExceptionInterface
+    {
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector {
+    interface InflectorInterface
+    {
+        public function getType(): string;
+        public function inflect(object $object): void;
+        public function invokeMethod(string $name, array $args): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorInterface;
+        public function invokeMethods(array $methods): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorInterface;
+        public function setProperties(array $properties): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorInterface;
+        public function setProperty(string $property, $value): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorInterface;
+    }
+    class Inflector implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\ArgumentResolverInterface, \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorInterface
+    {
+        use \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\ArgumentResolverTrait;
+        use \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareTrait;
+        /**
+         * @var string
+         */
+        protected $type;
+        /**
+         * @var callable|null
+         */
+        protected $callback;
+        /**
+         * @var array
+         */
+        protected $methods = [];
+        /**
+         * @var array
+         */
+        protected $properties = [];
+        public function __construct(string $type, ?callable $callback = null)
+        {
+        }
+        public function getType(): string
+        {
+        }
+        public function invokeMethod(string $name, array $args): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorInterface
+        {
+        }
+        public function invokeMethods(array $methods): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorInterface
+        {
+        }
+        public function setProperty(string $property, $value): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorInterface
+        {
+        }
+        public function setProperties(array $properties): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorInterface
+        {
+        }
+        public function inflect(object $object): void
+        {
+        }
+    }
+    interface InflectorAggregateInterface extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareInterface, \IteratorAggregate
+    {
+        public function add(string $type, ?callable $callback = null): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\Inflector;
+        public function inflect(object $object);
+    }
+    class InflectorAggregate implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\InflectorAggregateInterface
+    {
+        use \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareTrait;
+        /**
+         * @var Inflector[]
+         */
+        protected $inflectors = [];
+        public function add(string $type, ?callable $callback = null): \WeDevs\Dokan\ThirdParty\Packages\League\Container\Inflector\Inflector
+        {
+        }
+        public function inflect($object)
+        {
+        }
+        public function getIterator(): \Generator
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container {
+    class ReflectionContainer implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\ArgumentResolverInterface, \WeDevs\Dokan\ThirdParty\Packages\Psr\Container\ContainerInterface
+    {
+        use \WeDevs\Dokan\ThirdParty\Packages\League\Container\Argument\ArgumentResolverTrait;
+        use \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareTrait;
+        /**
+         * @var boolean
+         */
+        protected $cacheResolutions;
+        /**
+         * @var array
+         */
+        protected $cache = [];
+        public function __construct(bool $cacheResolutions = false)
+        {
+        }
+        public function get($id, array $args = [])
+        {
+        }
+        public function has($id): bool
+        {
+        }
+        public function call(callable $callable, array $args = [])
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider {
+    interface ServiceProviderAggregateInterface extends \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareInterface, \IteratorAggregate
+    {
+        public function add(\WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderInterface $provider): \WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderAggregateInterface;
+        public function provides(string $id): bool;
+        public function register(string $service): void;
+    }
+    class ServiceProviderAggregate implements \WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderAggregateInterface
+    {
+        use \WeDevs\Dokan\ThirdParty\Packages\League\Container\ContainerAwareTrait;
+        /**
+         * @var ServiceProviderInterface[]
+         */
+        protected $providers = [];
+        /**
+         * @var array
+         */
+        protected $registered = [];
+        public function add(\WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderInterface $provider): \WeDevs\Dokan\ThirdParty\Packages\League\Container\ServiceProvider\ServiceProviderAggregateInterface
+        {
+        }
+        public function provides(string $service): bool
+        {
+        }
+        public function getIterator(): \Generator
+        {
+        }
+        public function register(string $service): void
+        {
+        }
+    }
+}
+namespace {
     class WeDevs_Promotion extends \WeDevs\Dokan\Admin\Promotion
     {
     }
@@ -19366,7 +35535,7 @@ namespace Appsero {
          *
          * @var string
          */
-        public $version = '2.0.2';
+        public $version = '2.0.4';
         /**
          * Hash identifier of the plugin
          *
@@ -19539,7 +35708,7 @@ namespace Appsero {
          */
         public $notice;
         /**
-         * Wheather to the notice or not
+         * Whether to show the notice or not
          *
          * @var bool
          */
@@ -19549,7 +35718,7 @@ namespace Appsero {
          *
          * @var array
          */
-        protected $extra_data = [];
+        protected $extra_data = array();
         /**
          * AppSero\Client
          *
@@ -19557,14 +35726,17 @@ namespace Appsero {
          */
         protected $client;
         /**
+         * Whether to include plugin data
+         *
          * @var bool
          */
         private $plugin_data = false;
         /**
          * Initialize the class
          *
-         * @param null $name
-         * @param null $file
+         * @param mixed  $client Client object or string.
+         * @param string $name   Name of the plugin/theme.
+         * @param string $file   Main plugin file path.
          */
         public function __construct($client, $name = null, $file = null)
         {
@@ -19572,7 +35744,7 @@ namespace Appsero {
         /**
          * Don't show the notice
          *
-         * @return \self
+         * @return self
          */
         public function hide_notice()
         {
@@ -19580,7 +35752,7 @@ namespace Appsero {
         /**
          * Add plugin data if needed
          *
-         * @return \self
+         * @return self
          */
         public function add_plugin_data()
         {
@@ -19588,19 +35760,19 @@ namespace Appsero {
         /**
          * Add extra data if needed
          *
-         * @param array $data
+         * @param array $data Extra data.
          *
-         * @return \self
+         * @return self
          */
-        public function add_extra($data = [])
+        public function add_extra($data = array())
         {
         }
         /**
          * Set custom notice text
          *
-         * @param string $text
+         * @param string $text Custom notice text.
          *
-         * @return \self
+         * @return self
          */
         public function notice($text = '')
         {
@@ -19640,7 +35812,7 @@ namespace Appsero {
         /**
          * Send tracking data to AppSero server
          *
-         * @param bool $override
+         * @param bool $override Whether to override the tracking allowed check.
          *
          * @return void
          */
@@ -19736,6 +35908,54 @@ namespace Appsero {
         {
         }
         /**
+         * Validate the request nonce.
+         *
+         * @return bool
+         */
+        private function is_valid_request()
+        {
+        }
+        /**
+         * Check if the current user has manage options capability.
+         *
+         * @return bool
+         */
+        private function has_manage_options_capability()
+        {
+        }
+        /**
+         * Check if the current request is for opt-in.
+         *
+         * @return bool
+         */
+        private function is_optin_request()
+        {
+        }
+        /**
+         * Check if the current request is for opt-out.
+         *
+         * @return bool
+         */
+        private function is_optout_request()
+        {
+        }
+        /**
+         * Handle redirection after opt-in/opt-out actions.
+         *
+         * @param string $param The query parameter to remove.
+         */
+        private function handle_redirection($param)
+        {
+        }
+        /**
+         * Check if the current page is updater.php or similar inaccessible pages.
+         *
+         * @return bool
+         */
+        private function is_inaccessible_page()
+        {
+        }
+        /**
          * Tracking optin
          *
          * @return void
@@ -19754,8 +35974,7 @@ namespace Appsero {
         /**
          * Get the number of post counts
          *
-         * @param string $post_type
-         *
+         * @param string $post_type The post type to count.
          * @return int
          */
         public function get_post_count($post_type)
@@ -19796,8 +36015,7 @@ namespace Appsero {
         /**
          * Add weekly cron schedule
          *
-         * @param array $schedules
-         *
+         * @param array $schedules Existing cron schedules.
          * @return array
          */
         public function add_weekly_schedule($schedules)
@@ -20203,10 +36421,18 @@ namespace Appsero {
         {
         }
         /**
+         * Initialize the admin hooks
+         *
+         * @return void
+         */
+        public function admin_init()
+        {
+        }
+        /**
          * Check for plugin updates
          *
-         * @param object $transient_data
-         * @return object
+         * @param stdClass|bool $transient_data
+         * @return stdClass
          */
         public function check_plugin_update($transient_data)
         {
@@ -20286,10 +36512,9 @@ namespace Appsero {
         /**
          * Show warning notice for required plugins
          *
-         * @param array $warnings
          * @return void
          */
-        public function show_warning_notice($warnings)
+        protected function show_warning_notice()
         {
         }
         /**
@@ -20304,11 +36529,14 @@ namespace Appsero {
         public function add_custom_plugin_row($plugin_file, $plugin_data, $status, $warnings)
         {
         }
+        public function validate_plugin_update_url($reply, $package)
+        {
+        }
     }
 }
 namespace {
     // autoload_real.php @generated by Composer
-    class ComposerAutoloaderInitacc6c52464de5e312268058e6bdf7155
+    class ComposerAutoloaderInit6be158b6a5cc2161316d5e1659af025b
     {
         private static $loader;
         public static function loadClassLoader($class)
@@ -20323,12 +36551,12 @@ namespace {
     }
 }
 namespace Composer\Autoload {
-    class ComposerStaticInitacc6c52464de5e312268058e6bdf7155
+    class ComposerStaticInit6be158b6a5cc2161316d5e1659af025b
     {
         public static $files = array('b45b351e6b6f7487d819961fef2fda77' => __DIR__ . '/..' . '/jakeasmith/http_build_url/src/http_build_url.php', '0ea370e600bbac1ed14210d26fb957e5' => __DIR__ . '/../..' . '/includes/functions-rest-api.php', '5002a4b4787d157353289afe21b0d460' => __DIR__ . '/../..' . '/includes/functions-dashboard-navigation.php');
-        public static $prefixLengthsPsr4 = array('W' => array('WeDevs\Dokan\\' => 13), 'A' => array('Appsero\\' => 8));
-        public static $prefixDirsPsr4 = array('WeDevs\Dokan\\' => array(0 => __DIR__ . '/../..' . '/includes'), 'Appsero\\' => array(0 => __DIR__ . '/..' . '/appsero/client/src', 1 => __DIR__ . '/..' . '/appsero/updater/src'));
-        public static $classMap = array('Appsero\Client' => __DIR__ . '/..' . '/appsero/client/src/Client.php', 'Appsero\Insights' => __DIR__ . '/..' . '/appsero/client/src/Insights.php', 'Appsero\License' => __DIR__ . '/..' . '/appsero/client/src/License.php', 'Appsero\Updater' => __DIR__ . '/..' . '/appsero/updater/src/Updater.php', 'Composer\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php', 'WeDevs\Dokan\Abstracts\DokanBackgroundProcesses' => __DIR__ . '/../..' . '/includes/Abstracts/DokanBackgroundProcesses.php', 'WeDevs\Dokan\Abstracts\DokanCache' => __DIR__ . '/../..' . '/includes/Abstracts/DokanCache.php', 'WeDevs\Dokan\Abstracts\DokanModel' => __DIR__ . '/../..' . '/includes/Abstracts/DokanModel.php', 'WeDevs\Dokan\Abstracts\DokanPromotion' => __DIR__ . '/../..' . '/includes/Abstracts/DokanPromotion.php', 'WeDevs\Dokan\Abstracts\DokanRESTAdminController' => __DIR__ . '/../..' . '/includes/Abstracts/DokanRESTAdminController.php', 'WeDevs\Dokan\Abstracts\DokanRESTController' => __DIR__ . '/../..' . '/includes/Abstracts/DokanRESTController.php', 'WeDevs\Dokan\Abstracts\DokanShortcode' => __DIR__ . '/../..' . '/includes/Abstracts/DokanShortcode.php', 'WeDevs\Dokan\Abstracts\DokanUpgrader' => __DIR__ . '/../..' . '/includes/Abstracts/DokanUpgrader.php', 'WeDevs\Dokan\Abstracts\ProductStatusChanger' => __DIR__ . '/../..' . '/includes/Abstracts/ProductStatusChanger.php', 'WeDevs\Dokan\Admin\AdminBar' => __DIR__ . '/../..' . '/includes/Admin/AdminBar.php', 'WeDevs\Dokan\Admin\Hooks' => __DIR__ . '/../..' . '/includes/Admin/Hooks.php', 'WeDevs\Dokan\Admin\Menu' => __DIR__ . '/../..' . '/includes/Admin/Menu.php', 'WeDevs\Dokan\Admin\Notices\Helper' => __DIR__ . '/../..' . '/includes/Admin/Notices/Helper.php', 'WeDevs\Dokan\Admin\Notices\LimitedTimePromotion' => __DIR__ . '/../..' . '/includes/Admin/Notices/LimitedTimePromotion.php', 'WeDevs\Dokan\Admin\Notices\Manager' => __DIR__ . '/../..' . '/includes/Admin/Notices/Manager.php', 'WeDevs\Dokan\Admin\Notices\PluginReview' => __DIR__ . '/../..' . '/includes/Admin/Notices/PluginReview.php', 'WeDevs\Dokan\Admin\Notices\SetupWizard' => __DIR__ . '/../..' . '/includes/Admin/Notices/SetupWizard.php', 'WeDevs\Dokan\Admin\Notices\WhatsNew' => __DIR__ . '/../..' . '/includes/Admin/Notices/WhatsNew.php', 'WeDevs\Dokan\Admin\Pointers' => __DIR__ . '/../..' . '/includes/Admin/Pointers.php', 'WeDevs\Dokan\Admin\Promotion' => __DIR__ . '/../..' . '/includes/Admin/Promotion.php', 'WeDevs\Dokan\Admin\Settings' => __DIR__ . '/../..' . '/includes/Admin/Settings.php', 'WeDevs\Dokan\Admin\SetupWizard' => __DIR__ . '/../..' . '/includes/Admin/SetupWizard.php', 'WeDevs\Dokan\Admin\SetupWizardNoWC' => __DIR__ . '/../..' . '/includes/Admin/SetupWizardNoWC.php', 'WeDevs\Dokan\Admin\SetupWizardWCAdmin' => __DIR__ . '/../..' . '/includes/Admin/SetupWizardWCAdmin.php', 'WeDevs\Dokan\Admin\UserProfile' => __DIR__ . '/../..' . '/includes/Admin/UserProfile.php', 'WeDevs\Dokan\Admin\WithdrawLogExporter' => __DIR__ . '/../..' . '/includes/Admin/WithdrawLogExporter.php', 'WeDevs\Dokan\Ajax' => __DIR__ . '/../..' . '/includes/Ajax.php', 'WeDevs\Dokan\Assets' => __DIR__ . '/../..' . '/includes/Assets.php', 'WeDevs\Dokan\BackgroundProcess\Manager' => __DIR__ . '/../..' . '/includes/BackgroundProcess/Manager.php', 'WeDevs\Dokan\BackgroundProcess\RewriteVariableProductsAuthor' => __DIR__ . '/../..' . '/includes/BackgroundProcess/RewriteVariableProductsAuthor.php', 'WeDevs\Dokan\Blocks\ProductBlock' => __DIR__ . '/../..' . '/includes/Blocks/ProductBlock.php', 'WeDevs\Dokan\Cache' => __DIR__ . '/../..' . '/includes/Cache.php', 'WeDevs\Dokan\CacheInvalidate' => __DIR__ . '/../..' . '/includes/CacheInvalidate.php', 'WeDevs\Dokan\CatalogMode\Admin\Settings' => __DIR__ . '/../..' . '/includes/CatalogMode/Admin/Settings.php', 'WeDevs\Dokan\CatalogMode\Controller' => __DIR__ . '/../..' . '/includes/CatalogMode/Controller.php', 'WeDevs\Dokan\CatalogMode\Dashboard\ProductBulkEdit' => __DIR__ . '/../..' . '/includes/CatalogMode/Dashboard/ProductBulkEdit.php', 'WeDevs\Dokan\CatalogMode\Dashboard\Products' => __DIR__ . '/../..' . '/includes/CatalogMode/Dashboard/Products.php', 'WeDevs\Dokan\CatalogMode\Dashboard\Settings' => __DIR__ . '/../..' . '/includes/CatalogMode/Dashboard/Settings.php', 'WeDevs\Dokan\CatalogMode\Helper' => __DIR__ . '/../..' . '/includes/CatalogMode/Helper.php', 'WeDevs\Dokan\CatalogMode\Hooks' => __DIR__ . '/../..' . '/includes/CatalogMode/Hooks.php', 'WeDevs\Dokan\Commission' => __DIR__ . '/../..' . '/includes/Commission.php', 'WeDevs\Dokan\Core' => __DIR__ . '/../..' . '/includes/Core.php', 'WeDevs\Dokan\Customizer' => __DIR__ . '/../..' . '/includes/Customizer.php', 'WeDevs\Dokan\Customizer\HeadingControl' => __DIR__ . '/../..' . '/includes/Customizer/HeadingControl.php', 'WeDevs\Dokan\Customizer\RadioImageControl' => __DIR__ . '/../..' . '/includes/Customizer/RadioImageControl.php', 'WeDevs\Dokan\Dashboard\Manager' => __DIR__ . '/../..' . '/includes/Dashboard/Manager.php', 'WeDevs\Dokan\Dashboard\Templates\Dashboard' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Dashboard.php', 'WeDevs\Dokan\Dashboard\Templates\Main' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Main.php', 'WeDevs\Dokan\Dashboard\Templates\Manager' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Manager.php', 'WeDevs\Dokan\Dashboard\Templates\MultiStepCategories' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/MultiStepCategories.php', 'WeDevs\Dokan\Dashboard\Templates\Orders' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Orders.php', 'WeDevs\Dokan\Dashboard\Templates\Products' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Products.php', 'WeDevs\Dokan\Dashboard\Templates\ReverseWithdrawal' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/ReverseWithdrawal.php', 'WeDevs\Dokan\Dashboard\Templates\Settings' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Settings.php', 'WeDevs\Dokan\Dashboard\Templates\Withdraw' => __DIR__ . '/../..' . '/includes/Dashboard/Templates/Withdraw.php', 'WeDevs\Dokan\DummyData\Importer' => __DIR__ . '/../..' . '/includes/DummyData/Importer.php', 'WeDevs\Dokan\Emails\ContactSeller' => __DIR__ . '/../..' . '/includes/Emails/ContactSeller.php', 'WeDevs\Dokan\Emails\Manager' => __DIR__ . '/../..' . '/includes/Emails/Manager.php', 'WeDevs\Dokan\Emails\NewProduct' => __DIR__ . '/../..' . '/includes/Emails/NewProduct.php', 'WeDevs\Dokan\Emails\NewProductPending' => __DIR__ . '/../..' . '/includes/Emails/NewProductPending.php', 'WeDevs\Dokan\Emails\NewSeller' => __DIR__ . '/../..' . '/includes/Emails/NewSeller.php', 'WeDevs\Dokan\Emails\ProductPublished' => __DIR__ . '/../..' . '/includes/Emails/ProductPublished.php', 'WeDevs\Dokan\Emails\ReverseWithdrawalInvoice' => __DIR__ . '/../..' . '/includes/Emails/ReverseWithdrawalInvoice.php', 'WeDevs\Dokan\Emails\VendorCompletedOrder' => __DIR__ . '/../..' . '/includes/Emails/VendorCompletedOrder.php', 'WeDevs\Dokan\Emails\VendorNewOrder' => __DIR__ . '/../..' . '/includes/Emails/VendorNewOrder.php', 'WeDevs\Dokan\Emails\VendorProductReview' => __DIR__ . '/../..' . '/includes/Emails/VendorProductReview.php', 'WeDevs\Dokan\Emails\VendorWithdrawRequest' => __DIR__ . '/../..' . '/includes/Emails/VendorWithdrawRequest.php', 'WeDevs\Dokan\Emails\WithdrawApproved' => __DIR__ . '/../..' . '/includes/Emails/WithdrawApproved.php', 'WeDevs\Dokan\Emails\WithdrawCancelled' => __DIR__ . '/../..' . '/includes/Emails/WithdrawCancelled.php', 'WeDevs\Dokan\Exceptions\DokanException' => __DIR__ . '/../..' . '/includes/Exceptions/DokanException.php', 'WeDevs\Dokan\FakeMailer' => __DIR__ . '/../..' . '/includes/FakeMailer.php', 'WeDevs\Dokan\Frontend\Frontend' => __DIR__ . '/../..' . '/includes/Frontend/Frontend.php', 'WeDevs\Dokan\Frontend\MyAccount\BecomeAVendor' => __DIR__ . '/../..' . '/includes/Frontend/MyAccount/BecomeAVendor.php', 'WeDevs\Dokan\Install\Installer' => __DIR__ . '/../..' . '/includes/Install/Installer.php', 'WeDevs\Dokan\Order\Admin\Hooks' => __DIR__ . '/../..' . '/includes/Order/Admin/Hooks.php', 'WeDevs\Dokan\Order\Admin\Permissions' => __DIR__ . '/../..' . '/includes/Order/Admin/Permissions.php', 'WeDevs\Dokan\Order\Ajax' => __DIR__ . '/../..' . '/includes/Order/Ajax.php', 'WeDevs\Dokan\Order\Controller' => __DIR__ . '/../..' . '/includes/Order/Controller.php', 'WeDevs\Dokan\Order\EmailHooks' => __DIR__ . '/../..' . '/includes/Order/EmailHooks.php', 'WeDevs\Dokan\Order\Frontend\Hooks' => __DIR__ . '/../..' . '/includes/Order/Frontend/Hooks.php', 'WeDevs\Dokan\Order\Hooks' => __DIR__ . '/../..' . '/includes/Order/Hooks.php', 'WeDevs\Dokan\Order\Manager' => __DIR__ . '/../..' . '/includes/Order/Manager.php', 'WeDevs\Dokan\Order\MiscHooks' => __DIR__ . '/../..' . '/includes/Order/MiscHooks.php', 'WeDevs\Dokan\Order\OrderCache' => __DIR__ . '/../..' . '/includes/Order/OrderCache.php', 'WeDevs\Dokan\PageViews' => __DIR__ . '/../..' . '/includes/PageViews.php', 'WeDevs\Dokan\Privacy' => __DIR__ . '/../..' . '/includes/Privacy.php', 'WeDevs\Dokan\ProductCategory\Categories' => __DIR__ . '/../..' . '/includes/ProductCategory/Categories.php', 'WeDevs\Dokan\ProductCategory\Helper' => __DIR__ . '/../..' . '/includes/ProductCategory/Helper.php', 'WeDevs\Dokan\ProductCategory\Hooks' => __DIR__ . '/../..' . '/includes/ProductCategory/Hooks.php', 'WeDevs\Dokan\ProductCategory\ProductCategoryCache' => __DIR__ . '/../..' . '/includes/ProductCategory/ProductCategoryCache.php', 'WeDevs\Dokan\ProductSections\AbstractProductSection' => __DIR__ . '/../..' . '/includes/ProductSections/AbstractProductSection.php', 'WeDevs\Dokan\ProductSections\BestSelling' => __DIR__ . '/../..' . '/includes/ProductSections/BestSelling.php', 'WeDevs\Dokan\ProductSections\Featured' => __DIR__ . '/../..' . '/includes/ProductSections/Featured.php', 'WeDevs\Dokan\ProductSections\Latest' => __DIR__ . '/../..' . '/includes/ProductSections/Latest.php', 'WeDevs\Dokan\ProductSections\Manager' => __DIR__ . '/../..' . '/includes/ProductSections/Manager.php', 'WeDevs\Dokan\ProductSections\TopRated' => __DIR__ . '/../..' . '/includes/ProductSections/TopRated.php', 'WeDevs\Dokan\Product\Hooks' => __DIR__ . '/../..' . '/includes/Product/Hooks.php', 'WeDevs\Dokan\Product\Manager' => __DIR__ . '/../..' . '/includes/Product/Manager.php', 'WeDevs\Dokan\Product\ProductAttribute' => __DIR__ . '/../..' . '/includes/Product/ProductAttribute.php', 'WeDevs\Dokan\Product\ProductCache' => __DIR__ . '/../..' . '/includes/Product/ProductCache.php', 'WeDevs\Dokan\Product\VendorStoreInfo' => __DIR__ . '/../..' . '/includes/Product/VendorStoreInfo.php', 'WeDevs\Dokan\REST\AdminDashboardController' => __DIR__ . '/../..' . '/includes/REST/AdminDashboardController.php', 'WeDevs\Dokan\REST\AdminMiscController' => __DIR__ . '/../..' . '/includes/REST/AdminMiscController.php', 'WeDevs\Dokan\REST\AdminNoticeController' => __DIR__ . '/../..' . '/includes/REST/AdminNoticeController.php', 'WeDevs\Dokan\REST\AdminReportController' => __DIR__ . '/../..' . '/includes/REST/AdminReportController.php', 'WeDevs\Dokan\REST\ChangeLogController' => __DIR__ . '/../..' . '/includes/REST/ChangeLogController.php', 'WeDevs\Dokan\REST\DummyDataController' => __DIR__ . '/../..' . '/includes/REST/DummyDataController.php', 'WeDevs\Dokan\REST\Manager' => __DIR__ . '/../..' . '/includes/REST/Manager.php', 'WeDevs\Dokan\REST\OrderController' => __DIR__ . '/../..' . '/includes/REST/OrderController.php', 'WeDevs\Dokan\REST\OrderControllerV2' => __DIR__ . '/../..' . '/includes/REST/OrderControllerV2.php', 'WeDevs\Dokan\REST\ProductAttributeController' => __DIR__ . '/../..' . '/includes/REST/ProductAttributeController.php', 'WeDevs\Dokan\REST\ProductAttributeTermsController' => __DIR__ . '/../..' . '/includes/REST/ProductAttributeTermsController.php', 'WeDevs\Dokan\REST\ProductBlockController' => __DIR__ . '/../..' . '/includes/REST/ProductBlockController.php', 'WeDevs\Dokan\REST\ProductController' => __DIR__ . '/../..' . '/includes/REST/ProductController.php', 'WeDevs\Dokan\REST\ProductControllerV2' => __DIR__ . '/../..' . '/includes/REST/ProductControllerV2.php', 'WeDevs\Dokan\REST\ReverseWithdrawalController' => __DIR__ . '/../..' . '/includes/REST/ReverseWithdrawalController.php', 'WeDevs\Dokan\REST\StoreController' => __DIR__ . '/../..' . '/includes/REST/StoreController.php', 'WeDevs\Dokan\REST\StoreSettingController' => __DIR__ . '/../..' . '/includes/REST/StoreSettingController.php', 'WeDevs\Dokan\REST\StoreSettingControllerV2' => __DIR__ . '/../..' . '/includes/REST/StoreSettingControllerV2.php', 'WeDevs\Dokan\REST\VendorDashboardController' => __DIR__ . '/../..' . '/includes/REST/VendorDashboardController.php', 'WeDevs\Dokan\REST\WithdrawController' => __DIR__ . '/../..' . '/includes/REST/WithdrawController.php', 'WeDevs\Dokan\REST\WithdrawControllerV2' => __DIR__ . '/../..' . '/includes/REST/WithdrawControllerV2.php', 'WeDevs\Dokan\Registration' => __DIR__ . '/../..' . '/includes/Registration.php', 'WeDevs\Dokan\ReverseWithdrawal\Admin\Hooks' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Admin/Hooks.php', 'WeDevs\Dokan\ReverseWithdrawal\Admin\Settings' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Admin/Settings.php', 'WeDevs\Dokan\ReverseWithdrawal\Ajax' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Ajax.php', 'WeDevs\Dokan\ReverseWithdrawal\BackgroundProcess\AsyncRequests' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/BackgroundProcess/AsyncRequests.php', 'WeDevs\Dokan\ReverseWithdrawal\BackgroundProcess\CronActions' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/BackgroundProcess/CronActions.php', 'WeDevs\Dokan\ReverseWithdrawal\Cache' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Cache.php', 'WeDevs\Dokan\ReverseWithdrawal\Cart' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Cart.php', 'WeDevs\Dokan\ReverseWithdrawal\FailedActions' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/FailedActions.php', 'WeDevs\Dokan\ReverseWithdrawal\Helper' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Helper.php', 'WeDevs\Dokan\ReverseWithdrawal\Hooks' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Hooks.php', 'WeDevs\Dokan\ReverseWithdrawal\InstallerHelper' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/InstallerHelper.php', 'WeDevs\Dokan\ReverseWithdrawal\Manager' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Manager.php', 'WeDevs\Dokan\ReverseWithdrawal\Order' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/Order.php', 'WeDevs\Dokan\ReverseWithdrawal\ReverseWithdrawal' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/ReverseWithdrawal.php', 'WeDevs\Dokan\ReverseWithdrawal\SettingsHelper' => __DIR__ . '/../..' . '/includes/ReverseWithdrawal/SettingsHelper.php', 'WeDevs\Dokan\Rewrites' => __DIR__ . '/../..' . '/includes/Rewrites.php', 'WeDevs\Dokan\Shipping\Hooks' => __DIR__ . '/../..' . '/includes/Shipping/Hooks.php', 'WeDevs\Dokan\Shortcodes\BestSellingProduct' => __DIR__ . '/../..' . '/includes/Shortcodes/BestSellingProduct.php', 'WeDevs\Dokan\Shortcodes\Dashboard' => __DIR__ . '/../..' . '/includes/Shortcodes/Dashboard.php', 'WeDevs\Dokan\Shortcodes\MyOrders' => __DIR__ . '/../..' . '/includes/Shortcodes/MyOrders.php', 'WeDevs\Dokan\Shortcodes\Shortcodes' => __DIR__ . '/../..' . '/includes/Shortcodes/Shortcodes.php', 'WeDevs\Dokan\Shortcodes\Stores' => __DIR__ . '/../..' . '/includes/Shortcodes/Stores.php', 'WeDevs\Dokan\Shortcodes\TopRatedProduct' => __DIR__ . '/../..' . '/includes/Shortcodes/TopRatedProduct.php', 'WeDevs\Dokan\Shortcodes\VendorRegistration' => __DIR__ . '/../..' . '/includes/Shortcodes/VendorRegistration.php', 'WeDevs\Dokan\ThemeSupport\Astra' => __DIR__ . '/../..' . '/includes/ThemeSupport/Astra.php', 'WeDevs\Dokan\ThemeSupport\Divi' => __DIR__ . '/../..' . '/includes/ThemeSupport/Divi.php', 'WeDevs\Dokan\ThemeSupport\Electro' => __DIR__ . '/../..' . '/includes/ThemeSupport/Electro.php', 'WeDevs\Dokan\ThemeSupport\Enfold' => __DIR__ . '/../..' . '/includes/ThemeSupport/Enfold.php', 'WeDevs\Dokan\ThemeSupport\Flatsome' => __DIR__ . '/../..' . '/includes/ThemeSupport/Flatsome.php', 'WeDevs\Dokan\ThemeSupport\Manager' => __DIR__ . '/../..' . '/includes/ThemeSupport/Manager.php', 'WeDevs\Dokan\ThemeSupport\Rehub' => __DIR__ . '/../..' . '/includes/ThemeSupport/Rehub.php', 'WeDevs\Dokan\ThemeSupport\Storefront' => __DIR__ . '/../..' . '/includes/ThemeSupport/Storefront.php', 'WeDevs\Dokan\ThemeSupport\TwentyTwenty' => __DIR__ . '/../..' . '/includes/ThemeSupport/TwentyTwenty.php', 'WeDevs\Dokan\Tracker' => __DIR__ . '/../..' . '/includes/Tracker.php', 'WeDevs\Dokan\Traits\AjaxResponseError' => __DIR__ . '/../..' . '/includes/Traits/AjaxResponseError.php', 'WeDevs\Dokan\Traits\ChainableContainer' => __DIR__ . '/../..' . '/includes/Traits/ChainableContainer.php', 'WeDevs\Dokan\Traits\ObjectCache' => __DIR__ . '/../..' . '/includes/Traits/ObjectCache.php', 'WeDevs\Dokan\Traits\RESTResponseError' => __DIR__ . '/../..' . '/includes/Traits/RESTResponseError.php', 'WeDevs\Dokan\Traits\Singleton' => __DIR__ . '/../..' . '/includes/Traits/Singleton.php', 'WeDevs\Dokan\Traits\TransientCache' => __DIR__ . '/../..' . '/includes/Traits/TransientCache.php', 'WeDevs\Dokan\Upgrade\AdminNotice' => __DIR__ . '/../..' . '/includes/Upgrade/AdminNotice.php', 'WeDevs\Dokan\Upgrade\Hooks' => __DIR__ . '/../..' . '/includes/Upgrade/Hooks.php', 'WeDevs\Dokan\Upgrade\Manager' => __DIR__ . '/../..' . '/includes/Upgrade/Manager.php', 'WeDevs\Dokan\Upgrade\Upgrades' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_2_8_3_VendorBalance' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_8_3_VendorBalance.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_2_9_16_StoreSettings' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_9_16_StoreSettings.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_2_9_23_StoreName' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_9_23_StoreName.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_2_9_4_OrderPostAuthor' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_2_9_4_OrderPostAuthor.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_3_0_10_ProductAttributesAuthorId' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_0_10_ProductAttributesAuthorId.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_3_1_1_RefundTableUpdate' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_1_1_RefundTableUpdate.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_3_3_8_VendorStoreTimes' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_3_8_VendorStoreTimes.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_3_6_2_UpdateProductCategories' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_6_2_UpdateProductCategories.php', 'WeDevs\Dokan\Upgrade\Upgrades\BackgroundProcesses\V_3_7_19_UpdateOrderMeta' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/BackgroundProcesses/V_3_7_19_UpdateOrderMeta.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_1_2' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_1_2.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_1.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_3' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_3.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_4_11' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_4_11.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_4_12' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_4_12.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_5_7' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_5_7.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_6_9' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_6_9.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_7_3' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_7_3.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_7_6' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_7_6.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_8_0' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_8_0.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_8_3' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_8_3.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_8_6' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_8_6.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_9_13' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_13.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_9_16' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_16.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_9_19' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_19.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_9_23' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_23.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_2_9_4' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_2_9_4.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_0_10' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_0_10.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_0_4' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_0_4.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_1_0' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_1_0.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_1_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_1_1.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_2_12' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_2_12.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_3_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_3_1.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_3_7' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_3_7.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_3_8' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_3_8.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_5_1' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_5_1.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_6_2' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_6_2.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_6_4' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_6_4.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_6_5' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_6_5.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_7_10' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_7_10.php', 'WeDevs\Dokan\Upgrade\Upgrades\V_3_7_19' => __DIR__ . '/../..' . '/includes/Upgrade/Upgrades/V_3_7_19.php', 'WeDevs\Dokan\Utilities\OrderUtil' => __DIR__ . '/../..' . '/includes/Utilities/OrderUtil.php', 'WeDevs\Dokan\Vendor\ChangeProductStatus' => __DIR__ . '/../..' . '/includes/Vendor/ChangeProductStatus.php', 'WeDevs\Dokan\Vendor\Hooks' => __DIR__ . '/../..' . '/includes/Vendor/Hooks.php', 'WeDevs\Dokan\Vendor\Manager' => __DIR__ . '/../..' . '/includes/Vendor/Manager.php', 'WeDevs\Dokan\Vendor\SettingsApi\Abstracts\Gateways' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Abstracts/Gateways.php', 'WeDevs\Dokan\Vendor\SettingsApi\Abstracts\Page' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Abstracts/Page.php', 'WeDevs\Dokan\Vendor\SettingsApi\Manager' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Manager.php', 'WeDevs\Dokan\Vendor\SettingsApi\Processor' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Processor.php', 'WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Payments\Gateways\Bank' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Payments/Gateways/Bank.php', 'WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Payments\Gateways\PayPal' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Payments/Gateways/PayPal.php', 'WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Payments\Payments' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Payments/Payments.php', 'WeDevs\Dokan\Vendor\SettingsApi\Settings\Pages\Store' => __DIR__ . '/../..' . '/includes/Vendor/SettingsApi/Settings/Pages/Store.php', 'WeDevs\Dokan\Vendor\SetupWizard' => __DIR__ . '/../..' . '/includes/Vendor/SetupWizard.php', 'WeDevs\Dokan\Vendor\StoreListsFilter' => __DIR__ . '/../..' . '/includes/Vendor/StoreListsFilter.php', 'WeDevs\Dokan\Vendor\UserSwitch' => __DIR__ . '/../..' . '/includes/Vendor/UserSwitch.php', 'WeDevs\Dokan\Vendor\Vendor' => __DIR__ . '/../..' . '/includes/Vendor/Vendor.php', 'WeDevs\Dokan\Vendor\VendorCache' => __DIR__ . '/../..' . '/includes/Vendor/VendorCache.php', 'WeDevs\Dokan\Walkers\Category' => __DIR__ . '/../..' . '/includes/Walkers/Category.php', 'WeDevs\Dokan\Walkers\CategoryDropdownSingle' => __DIR__ . '/../..' . '/includes/Walkers/CategoryDropdownSingle.php', 'WeDevs\Dokan\Walkers\StoreCategory' => __DIR__ . '/../..' . '/includes/Walkers/StoreCategory.php', 'WeDevs\Dokan\Walkers\TaxonomyDropdown' => __DIR__ . '/../..' . '/includes/Walkers/TaxonomyDropdown.php', 'WeDevs\Dokan\Widgets\BestSellingProducts' => __DIR__ . '/../..' . '/includes/Widgets/BestSellingProducts.php', 'WeDevs\Dokan\Widgets\FilterByAttributes' => __DIR__ . '/../..' . '/includes/Widgets/FilterByAttributes.php', 'WeDevs\Dokan\Widgets\Manager' => __DIR__ . '/../..' . '/includes/Widgets/Manager.php', 'WeDevs\Dokan\Widgets\ProductCategoryMenu' => __DIR__ . '/../..' . '/includes/Widgets/ProductCategoryMenu.php', 'WeDevs\Dokan\Widgets\StoreCategoryMenu' => __DIR__ . '/../..' . '/includes/Widgets/StoreCategoryMenu.php', 'WeDevs\Dokan\Widgets\StoreContactForm' => __DIR__ . '/../..' . '/includes/Widgets/StoreContactForm.php', 'WeDevs\Dokan\Widgets\StoreLocation' => __DIR__ . '/../..' . '/includes/Widgets/StoreLocation.php', 'WeDevs\Dokan\Widgets\StoreOpenClose' => __DIR__ . '/../..' . '/includes/Widgets/StoreOpenClose.php', 'WeDevs\Dokan\Widgets\TopratedProducts' => __DIR__ . '/../..' . '/includes/Widgets/TopratedProducts.php', 'WeDevs\Dokan\Withdraw\Export\CSV' => __DIR__ . '/../..' . '/includes/Withdraw/Export/CSV.php', 'WeDevs\Dokan\Withdraw\Export\Manager' => __DIR__ . '/../..' . '/includes/Withdraw/Export/Manager.php', 'WeDevs\Dokan\Withdraw\Hooks' => __DIR__ . '/../..' . '/includes/Withdraw/Hooks.php', 'WeDevs\Dokan\Withdraw\Manager' => __DIR__ . '/../..' . '/includes/Withdraw/Manager.php', 'WeDevs\Dokan\Withdraw\Withdraw' => __DIR__ . '/../..' . '/includes/Withdraw/Withdraw.php', 'WeDevs\Dokan\Withdraw\WithdrawCache' => __DIR__ . '/../..' . '/includes/Withdraw/WithdrawCache.php', 'WeDevs\Dokan\Withdraw\Withdraws' => __DIR__ . '/../..' . '/includes/Withdraw/Withdraws.php');
+        public static $prefixLengthsPsr4 = array('W' => array('WeDevs\Dokan\ThirdParty\Packages\\' => 33, 'WeDevs\Dokan\\' => 13), 'A' => array('Appsero\\' => 8));
+        public static $prefixDirsPsr4 = array('WeDevs\Dokan\ThirdParty\Packages\\' => array(0 => __DIR__ . '/../..' . '/lib/packages'), 'WeDevs\Dokan\\' => array(0 => __DIR__ . '/../..' . '/includes'), 'Appsero\\' => array(0 => __DIR__ . '/..' . '/appsero/updater/src', 1 => __DIR__ . '/..' . '/appsero/client/src'));
+        public static $classMap = array('Composer\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php');
         public static function getInitializer(\Composer\Autoload\ClassLoader $loader)
         {
         }
@@ -20405,93 +36633,21 @@ namespace {
         }
     }
 }
-/*
- * This file is part of Composer.
- *
- * (c) Nils Adermann <naderman@naderman.de>
- *     Jordi Boggiano <j.boggiano@seld.be>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-namespace Composer\Autoload {
-    /**
-     * Scope isolated include.
-     *
-     * Prevents access to $this/self from included files.
-     *
-     * @param  string $file
-     * @return void
-     * @private
-     */
-    function includeFile($file)
-    {
-    }
-}
 namespace {
     /**
-     * Wrapper for wc_doing_it_wrong.
+     * Get the container.
      *
-     * @since 3.0.0
+     * @since 3.13.0
      *
-     * @param string $function Function used.
-     * @param string $message Message to log.
-     * @param string $version Version the message was added in.
-     *
-     * @return void
+     * @return Container The global container instance.
      */
-    function dokan_doing_it_wrong($function, $message, $version)
+    function dokan_get_container(): \WeDevs\Dokan\DependencyManagement\Container
     {
     }
     /**
-     * Dokan get product status
+     * Load Dokan Plugin when all plugins loaded.
      *
-     * @since 2.5
-     *
-     * @deprecated 2.5.1
-     *
-     * @return string|array
-     **/
-    function dokan_get_product_status($status)
-    {
-    }
-    /**
-     * Load depericated widget class dynamically
-     *
-     * @since 3.0.0
-     *
-     * @return void
-     */
-    function dokan_depricated_widget_classes()
-    {
-    }
-    /**
-     * Depricated function for render seller metabox in product
-     *
-     * @param object $post
-     *
-     * @return void|html
-     */
-    function dokan_seller_meta_box($post)
-    {
-    }
-    /**
-     * Support for Elementor Store Widgets
-     *
-     * @since 3.0.0
-     *
-     * @param array             $default_widget_args
-     * @param \Widget_WordPress $widget_wordpress
-     *
-     * @return array
-     */
-    function dokan_depricated_elementor_store_widgets($default_widget_args, $widget_wordpress)
-    {
-    }
-    /**
-     * Load Dokan Plugin when all plugins loaded
-     *
-     * @return WeDevs_Dokan
+     * @return WeDevs_Dokan The singleton instance of WeDevs_Dokan.
      */
     function dokan()
     {
@@ -21030,7 +37186,7 @@ namespace {
     /**
      * Get dokan store products filter catalog orderby
      *
-     * @since DOKAN_LITE_SINCE
+     * @since 3.2.7
      *
      * @return array
      */
@@ -21516,11 +37672,14 @@ namespace {
     /**
      * Check if a user is seller
      *
-     * @param int $user_id
+     * @since 3.14.9 Added `$exclude_staff` as optional parameter
+     *
+     * @param int  $user_id       User ID
+     * @param bool $exclude_staff Exclude staff
      *
      * @return bool
      */
-    function dokan_is_user_seller($user_id)
+    function dokan_is_user_seller($user_id, $exclude_staff = \false)
     {
     }
     /**
@@ -21531,6 +37690,16 @@ namespace {
      * @return bool
      */
     function dokan_is_user_customer($user_id)
+    {
+    }
+    /**
+     * Get reserved URL slugs that cannot be used for custom slugs like store base
+     *
+     * @since 4.1.5
+     *
+     * @return array List of reserved slugs
+     */
+    function dokan_get_reserved_url_slugs()
     {
     }
     /**
@@ -21602,7 +37771,7 @@ namespace {
     /**
      * Count stock product type from a user
      *
-     * @since DOKAN_LITE_SINCE
+     * @since 3.2.5
      *
      * @param string $post_type
      * @param int    $user_id
@@ -21638,6 +37807,8 @@ namespace {
     /**
      * Get store seller percentage settings
      *
+     * @deprecated 3.14.0 Do Not Use This Function
+     *
      * @param int $seller_id
      * @param int $product_id
      *
@@ -21648,6 +37819,8 @@ namespace {
     }
     /**
      * Get Dokan commission type by seller or product or both
+     *
+     * @deprecated 3.14.0 Do Not Use This Function
      *
      * @since 2.6.9
      *
@@ -21893,11 +38066,14 @@ namespace {
     /**
      * Get store page url of a seller
      *
+     * @since 3.14.9 Added `$tab` optional parameter.
+     *
      * @param int $user_id
+     * @param string $tab Tab endpoint (Optional). Default is empty.
      *
      * @return string
      */
-    function dokan_get_store_url($user_id)
+    function dokan_get_store_url($user_id, $tab = '')
     {
     }
     /**
@@ -22157,11 +38333,12 @@ namespace {
     /**
      * Get navigation url for the dokan dashboard
      *
-     * @param string $name endpoint name
+     * @param string $name    endpoint name
+     * @param bool   $new_url if true, it will return the new url format
      *
      * @return string url
      */
-    function dokan_get_navigation_url($name = '')
+    function dokan_get_navigation_url($name = '', $new_url = \false)
     {
     }
     /**
@@ -22352,7 +38529,9 @@ namespace {
     {
     }
     /**
-     * Calculate category wise commission for given product
+     * Calculate category wise commission for given product.
+     *
+     * @deprecated 3.14.0 Do Not Use This Function
      *
      * @since 2.6.8
      *
@@ -22364,7 +38543,9 @@ namespace {
     {
     }
     /**
-     * Calculate category wise commission type for given product
+     * Calculate category wise commission type for given product.
+     *
+     * @deprecated 3.14.0 Do Not Use This Function
      *
      * @since 2.6.9
      *
@@ -22409,7 +38590,7 @@ namespace {
      *
      * @param int $vendor_id
      *
-     * @return \Dokan_Vendor
+     * @return WeDevs\Dokan\Vendor\Vendor
      */
     function dokan_get_vendor($vendor_id = \null)
     {
@@ -22529,6 +38710,8 @@ namespace {
     }
     /**
      * Dokan get variable product earnings
+     *
+     * @deprecated 2.9.21
      *
      * @param int  $product_id
      * @param bool $formated
@@ -22743,7 +38926,7 @@ namespace {
     /**
      * Check which vendor info should be hidden
      *
-     * @since DOKAN_LITE_SINCE
+     * @since 3.0.4
      *
      * @param string $option
      *
@@ -22892,7 +39075,7 @@ namespace {
     /**
      * Get threshold day for a user
      *
-     * @since DOKAN_LITE_SINCE
+     * @since 3.2.2
      *
      * @param int $user_id
      *
@@ -23000,6 +39183,8 @@ namespace {
      *
      * @since 3.3.3
      *
+     * @deprecated 4.3.0
+     *
      * @param bool $boolean
      *
      * @return array|bool
@@ -23011,6 +39196,7 @@ namespace {
      * Handle google reCaptcha validation request.
      *
      * @since 3.3.6
+     * @deprecated 4.3.0
      *
      * @param string $action
      * @param string $token
@@ -23058,7 +39244,7 @@ namespace {
     /**
      * Check is 12-hour format in current setup.
      *
-     * @since DOKAN_PRO_SINCE
+     * @since 3.6.0
      *
      * @return bool
      */
@@ -23162,7 +39348,7 @@ namespace {
     /**
      * Checks if the theme sidebar is enabled on store page
      *
-     * @since DOKAN_LITE_SINCE
+     * @since 3.1.0
      *
      * @return bool
      */
@@ -23546,7 +39732,7 @@ namespace {
      * Show more products from current seller
      *
      * @since 2.5
-     * @since DOKAN_LITE_SINCE added filter 'dokan_get_more_products_per_page'
+     * @since 3.2.2 added filter 'dokan_get_more_products_per_page'
      *
      * @param int|string $seller_id
      * @param int|string $posts_per_page
@@ -23670,9 +39856,8 @@ namespace {
      * Prints seller info in product single page
      *
      * @global WC_Product $product
-     * @param type $val
      */
-    function dokan_product_seller_tab($val)
+    function dokan_product_seller_tab()
     {
     }
     /**
@@ -23719,7 +39904,7 @@ namespace {
      *
      * @return void
      */
-    function dokan_author_field_quick_edit()
+    function dokan_author_field_quick_edit($scope = \null)
     {
     }
     /**
@@ -23783,14 +39968,6 @@ namespace {
      * @return string
      */
     function dokan_add_privacy_policy()
-    {
-    }
-    /**
-     * @param string $fileIdentifier
-     * @param string $file
-     * @return void
-     */
-    function composerRequireacc6c52464de5e312268058e6bdf7155($fileIdentifier, $file)
     {
     }
     /**
