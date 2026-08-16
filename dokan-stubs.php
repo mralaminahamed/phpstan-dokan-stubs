@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.9';
+        public $version = '5.0.10';
         /**
          * Instance of self
          *
@@ -12461,6 +12461,337 @@ namespace WeDevs\Dokan\Commission {
         }
     }
     /**
+     * Class OrderRefundCommission - Calculate the vendor earning and admin commission portions of an order refund.
+     *
+     * The line-item portions are prorated from the order's commission
+     * (see Calculator::calculate_for_refund()), while refunded tax, shipping
+     * and gateway fees are routed to whichever party received them originally.
+     *
+     * @since 5.0.10
+     *
+     * @package WeDevs\Dokan\Commission
+     */
+    class OrderRefundCommission
+    {
+        const SELLER = \WeDevs\Dokan\Commission\OrderCommission::SELLER;
+        const ADMIN = \WeDevs\Dokan\Commission\OrderCommission::ADMIN;
+        /**
+         * The refund being calculated.
+         *
+         * @var WC_Order_Refund|null
+         */
+        private ?\WC_Order_Refund $refund = null;
+        /**
+         * The refunded (parent of the refund) order.
+         *
+         * @var WC_Order|null
+         */
+        private ?\WC_Order $order = null;
+        /**
+         * Whether the refund commission has been calculated.
+         *
+         * @var bool
+         */
+        protected bool $is_calculated = false;
+        /**
+         * Prorated line-item commission portions of the refund.
+         *
+         * @var Commission|null
+         */
+        protected ?\WeDevs\Dokan\Commission\Model\Commission $refund_commission = null;
+        /**
+         * Set the refund to calculate for.
+         *
+         * @since 5.0.10
+         *
+         * @param WC_Order_Refund $refund
+         *
+         * @return self
+         */
+        public function set_refund(\WC_Order_Refund $refund): self
+        {
+        }
+        /**
+         * Get the refund.
+         *
+         * @since 5.0.10
+         *
+         * @return WC_Order_Refund|null
+         */
+        public function get_refund(): ?\WC_Order_Refund
+        {
+        }
+        /**
+         * Set the refunded order explicitly.
+         *
+         * Optional; when omitted the order is resolved from the refund's parent ID.
+         *
+         * @since 5.0.10
+         *
+         * @param WC_Order $order
+         *
+         * @return self
+         */
+        public function set_order(\WC_Order $order): self
+        {
+        }
+        /**
+         * Get the refunded order.
+         *
+         * @since 5.0.10
+         *
+         * @return WC_Order|null
+         */
+        public function get_order(): ?\WC_Order
+        {
+        }
+        /**
+         * Calculate the commission portions of the refund.
+         *
+         * @since 5.0.10
+         *
+         * @throws \Exception If the refund or its parent order is not resolvable.
+         *
+         * @return self
+         */
+        public function calculate(): self
+        {
+        }
+        /**
+         * Get the vendor's prorated net earning in the refund (line items only).
+         *
+         * @since 5.0.10
+         *
+         * @return float
+         */
+        public function get_vendor_net_earning(): float
+        {
+        }
+        /**
+         * Get the admin's prorated net commission in the refund (line items only).
+         *
+         * @since 5.0.10
+         *
+         * @return float
+         */
+        public function get_admin_net_commission(): float
+        {
+        }
+        /**
+         * Get the admin's prorated net earning in the refund.
+         *
+         * Populated instead of commission/vendor earning for admin-earning
+         * order types (subscriptions, advertisements, etc.).
+         *
+         * @since 5.0.10
+         *
+         * @return float
+         */
+        public function get_admin_net_earning(): float
+        {
+        }
+        /**
+         * Get the refunded tax (product tax + shipping tax) allocated to the vendor.
+         *
+         * @since 5.0.10
+         *
+         * @return float
+         */
+        public function get_vendor_tax_refund(): float
+        {
+        }
+        /**
+         * Get the refunded tax (product tax + shipping tax) allocated to the admin.
+         *
+         * @since 5.0.10
+         *
+         * @return float
+         */
+        public function get_admin_tax_refund(): float
+        {
+        }
+        /**
+         * Get the refunded shipping allocated to the vendor.
+         *
+         * @since 5.0.10
+         *
+         * @return float
+         */
+        public function get_vendor_shipping_refund(): float
+        {
+        }
+        /**
+         * Get the refunded shipping allocated to the admin.
+         *
+         * @since 5.0.10
+         *
+         * @return float
+         */
+        public function get_admin_shipping_refund(): float
+        {
+        }
+        /**
+         * Get the gateway fee returned to the vendor for the refunded portion.
+         *
+         * Defaults to 0 via the `dokan_refund_gateway_fee` filter; supplied by the
+         * associated payment gateway when it returns its fee on refund.
+         *
+         * @since 5.0.10
+         *
+         * @return float
+         */
+        public function get_vendor_gateway_fee_refund(): float
+        {
+        }
+        /**
+         * Get the gateway fee returned to the admin for the refunded portion.
+         *
+         * Defaults to 0 via the `dokan_refund_gateway_fee` filter; supplied by the
+         * associated payment gateway when it returns its fee on refund.
+         *
+         * @since 5.0.10
+         *
+         * @return float
+         */
+        public function get_admin_gateway_fee_refund(): float
+        {
+        }
+        /**
+         * Get the total amount the vendor gives back for this refund.
+         *
+         * Prorated line-item earning plus refunded tax/shipping allocated to the
+         * vendor, minus any gateway fee the payment gateway returns to the vendor
+         * (0 unless the gateway supplies it via `dokan_refund_gateway_fee`).
+         *
+         * @since 5.0.10
+         *
+         * @return float
+         */
+        public function get_vendor_total_refund(): float
+        {
+        }
+        /**
+         * Get the total amount the admin gives back for this refund.
+         *
+         * Prorated line-item commission (plus admin net earning for admin-earning
+         * order types) plus refunded tax/shipping allocated to the admin, minus any
+         * gateway fee the payment gateway returns to the admin (0 unless the
+         * gateway supplies it via `dokan_refund_gateway_fee`).
+         *
+         * @since 5.0.10
+         *
+         * @return float
+         */
+        public function get_admin_total_refund(): float
+        {
+        }
+        /**
+         * Whether the refunded order is a parent order holding sub-orders.
+         *
+         * Parent orders are excluded from commission adjustment; the vendor
+         * sub-orders carry the actual earnings.
+         *
+         * @since 5.0.10
+         *
+         * @return bool
+         */
+        protected function has_sub_orders(): bool
+        {
+        }
+        /**
+         * Ensure the refund commission has been calculated.
+         *
+         * @since 5.0.10
+         *
+         * @return void
+         */
+        protected function ensure_calculated(): void
+        {
+        }
+        /**
+         * Get the refunded tax allocated to the given recipient.
+         *
+         * @since 5.0.10
+         *
+         * @param string $recipient Either self::SELLER or self::ADMIN.
+         *
+         * @return float
+         */
+        protected function get_tax_refund_for(string $recipient): float
+        {
+        }
+        /**
+         * Get the refunded shipping allocated to the given recipient.
+         *
+         * @since 5.0.10
+         *
+         * @param string $recipient Either self::SELLER or self::ADMIN.
+         *
+         * @return float
+         */
+        protected function get_shipping_refund_for(string $recipient): float
+        {
+        }
+        /**
+         * Get the gateway fee returned for the refunded portion, when paid by the given recipient.
+         *
+         * Most payment gateways keep their processing fee when a payment is
+         * refunded, so this defaults to 0. Gateways that do return the fee on
+         * refund (e.g. Paystack) should hook `dokan_refund_gateway_fee` and supply
+         * the returned amount; the prorated share
+         * ( order_gateway_fee × |refund_total| / order_total ) is provided as a
+         * convenience.
+         *
+         * @since 5.0.10
+         *
+         * @param string $recipient Either self::SELLER or self::ADMIN.
+         *
+         * @return float
+         */
+        protected function get_gateway_fee_refund_for(string $recipient): float
+        {
+        }
+        /**
+         * Get the refunded tax and shipping-tax totals from the refund's tax items.
+         *
+         * @since 5.0.10
+         *
+         * @return array{tax: float, shipping_tax: float}
+         */
+        protected function get_refunded_tax_totals(): array
+        {
+        }
+        /**
+         * Get the gateway fee borne by the given recipient.
+         *
+         * Mirrors OrderCommission::get_vendor_gateway_fee() and
+         * get_admin_gateway_fee(): the `dokan_gateway_fee` meta belongs to the
+         * `dokan_gateway_fee_paid_by` party, while the admin may bear its own
+         * separately stored portion (`dokan_admin_gateway_fee` meta) even when the
+         * seller pays the vendor share — e.g. Paystack split payments distribute
+         * the fee between the vendor and the admin.
+         *
+         * @since 5.0.10
+         *
+         * @param string $recipient Either self::SELLER or self::ADMIN.
+         *
+         * @return float
+         */
+        protected function get_gateway_fee_borne_by(string $recipient): float
+        {
+        }
+        /**
+         * Get the order's gateway fee and who paid it.
+         *
+         * @since 5.0.10
+         *
+         * @return array{fee: float, paid_by: string}
+         */
+        protected function get_dokan_gateway_fee(): array
+        {
+        }
+    }
+    /**
      * Class OrderLineItemCommission - Calculate order line item commission
      *
      * @since 4.0.0
@@ -15628,7 +15959,7 @@ namespace WeDevs\Dokan\DependencyManagement\Providers {
          * Tag for services added to the container.
          */
         protected $tags = ['commission-service'];
-        protected $services = [\WeDevs\Dokan\Commission\OrderCommission::class, \WeDevs\Dokan\Commission\OrderLineItemCommission::class, \WeDevs\Dokan\Commission\ProductCommission::class, \WeDevs\Dokan\Commission\Calculator::class, \WeDevs\Dokan\Order\VendorBalanceUpdateHandler::class];
+        protected $services = [\WeDevs\Dokan\Commission\OrderCommission::class, \WeDevs\Dokan\Commission\OrderLineItemCommission::class, \WeDevs\Dokan\Commission\OrderRefundCommission::class, \WeDevs\Dokan\Commission\ProductCommission::class, \WeDevs\Dokan\Commission\Calculator::class, \WeDevs\Dokan\Order\VendorBalanceUpdateHandler::class];
         /**
          * Register the classes.
          */
@@ -21311,6 +21642,7 @@ namespace WeDevs\Dokan\Order {
          * Get the refunded tax amount for the vendor.
          *
          * @since 4.0.0
+         * @deprecated 5.0.10 Use OrderRefundCommission::get_vendor_tax_refund() instead.
          *
          * @param \WC_Order_Refund $refund_order The refund object.
          * @param \WC_Order        $order  The original order object.
@@ -21324,6 +21656,7 @@ namespace WeDevs\Dokan\Order {
          * Get the refunded shipping amount for the vendor.
          *
          * @since 4.0.0
+         * @deprecated 5.0.10 Use OrderRefundCommission::get_vendor_shipping_refund() instead.
          *
          * @param \WC_Order_Refund $refund_order The refund object.
          * @param \WC_Order        $order  The original order object.
@@ -21338,13 +21671,16 @@ namespace WeDevs\Dokan\Order {
          *
          * @since 4.0.0
          *
-         * @param float       $vendor_refund The amount to refund the vendor.
-         * @param \WC_Order_Refund   $order         The original order object.
-         * @param \WC_Order   $order         The original order object.
+         * @param float            $vendor_payout_refund  The vendor refund amount after the gateway fee is deducted.
+         * @param \WC_Order_Refund $refund_order          The refund order object.
+         * @param \WC_Order        $order                 The original order object.
+         * @param float|null       $vendor_earning_refund The vendor refund amount before the gateway fee deduction.
+         *                                                Falls back to $vendor_payout_refund when the action is fired
+         *                                                with three arguments (e.g. older Dokan Pro versions).
          *
          * @return void
          */
-        public function insert_into_balance_table($vendor_refund_amount, $refund_order, $order)
+        public function insert_into_balance_table($vendor_payout_refund, $refund_order, $order, $vendor_earning_refund = null)
         {
         }
         /**
@@ -25754,6 +26090,38 @@ namespace WeDevs\Dokan\REST {
          * @return WP_REST_Response|WP_Error
          */
         public function get_product_summary($request)
+        {
+        }
+        /**
+         * Get the product types excluded from the vendor product listing.
+         *
+         * The vendor product list sends its own `exclude_types` set — omitting the
+         * types it wants shown (e.g. it drops `auction` to reveal auctions). Every
+         * other request (the manual order product picker, the legacy page) sends
+         * nothing and falls back to the default `[ 'auction', 'booking' ]`, so those
+         * keep excluding them.
+         *
+         * @since 5.0.10
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return array
+         */
+        protected function get_exclude_types($request)
+        {
+        }
+        /**
+         * Collection param schema for `exclude_types`.
+         *
+         * Product type slugs to hide from the vendor listing. Consumed by
+         * get_exclude_types(); the vendor product list sends it (omitting the types
+         * it wants shown, e.g. `auction`).
+         *
+         * @since 5.0.10
+         *
+         * @return array
+         */
+        protected function get_exclude_types_param()
         {
         }
         /**
@@ -36894,7 +37262,7 @@ namespace Appsero {
         {
         }
         /**
-         * Initialize the admin hooks
+         * Initialize the admin-only hooks
          *
          * @return void
          */
@@ -37003,6 +37371,131 @@ namespace Appsero {
         {
         }
         public function validate_plugin_update_url($reply, $package)
+        {
+        }
+    }
+}
+namespace Appsero\Tests\Stub {
+    /**
+     * Minimal stand-in for \Appsero\Client.
+     *
+     * Updater only reads these public properties and calls license(),
+     * send_request() and __trans().
+     */
+    class ClientStub
+    {
+        public $slug = 'happy-elementor-addons-pro';
+        public $name = 'Happy Elementor Addons Pro';
+        public $type = 'plugin';
+        public $basename = 'happy-elementor-addons-pro/happy-elementor-addons-pro.php';
+        public $project_version = '1.0.0';
+        public $hash = 'test-hash';
+        /**
+         * Value returned by send_request(). Tests overwrite this.
+         *
+         * @var mixed
+         */
+        public $request_response = null;
+        /**
+         * Number of times send_request() has been called.
+         *
+         * Lets tests assert that no remote HTTP call was made.
+         *
+         * @var int
+         */
+        public $send_request_calls = 0;
+        public function license()
+        {
+        }
+        public function send_request($params, $route, $blocking = false)
+        {
+        }
+        public function __trans($text)
+        {
+        }
+    }
+}
+namespace Appsero\Tests {
+    class UpdaterTest extends \PHPUnit\Framework\TestCase
+    {
+        /**
+         * @var ClientStub
+         */
+        private $client;
+        protected function setUp(): void
+        {
+        }
+        protected function tearDown(): void
+        {
+        }
+        /**
+         * Build the version-info object that Updater caches in a transient.
+         *
+         * @param string $new_version
+         * @return object
+         */
+        private function version_info(string $new_version)
+        {
+        }
+        /**
+         * The bug: these filters were only registered inside admin_init, so they did
+         * not exist during the WP-Cron request that drives auto-updates, leaving the
+         * plugin out of the update_plugins transient and blanking its Automatic
+         * Updates column.
+         *
+         * @see https://github.com/getdokan/client-issue/issues/492
+         */
+        public function test_plugin_update_transient_filter_is_registered_on_every_request(): void
+        {
+        }
+        public function test_plugins_api_filter_is_registered_on_every_request(): void
+        {
+        }
+        public function test_admin_only_ui_is_still_deferred_to_admin_init(): void
+        {
+        }
+        public function test_theme_client_does_not_register_plugin_filters(): void
+        {
+        }
+        public function test_check_plugin_update_adds_plugin_to_response_when_newer_version_exists(): void
+        {
+        }
+        /**
+         * no_update matters as much as response: WP_Plugins_List_Table sets
+         * 'update-supported' => true from EITHER bucket, and without it the
+         * Automatic Updates column renders as unavailable.
+         */
+        public function test_check_plugin_update_adds_plugin_to_no_update_when_already_current(): void
+        {
+        }
+        public function test_check_plugin_update_tolerates_non_object_transient(): void
+        {
+        }
+        /**
+         * AppSero only includes `package` in the version-info payload when the
+         * license resolves to ACTIVE (appsero-api ReleaseResponseService); `new_version`
+         * is returned regardless. Making cron work (this branch) means a package-less
+         * entry now reaches WP_Automatic_Updater, which has no package guard (unlike
+         * the admin UI, which does). Without `disable_autoupdate`, should_update()
+         * returns true and WordPress emails the admin a failed-auto-update notice on
+         * every cron run, forever. The entry must still land in `response` so the
+         * update row and license-renewal prompt keep rendering.
+         */
+        public function test_check_plugin_update_sets_disable_autoupdate_when_package_is_missing(): void
+        {
+        }
+        /**
+         * The converse: a licensed site (package present) must keep auto-updating
+         * exactly as before. Guards against over-applying the flag.
+         */
+        public function test_check_plugin_update_does_not_set_disable_autoupdate_when_package_is_present(): void
+        {
+        }
+        /**
+         * disable_autoupdate is only meaningful on a response entry, so it must not
+         * be set when the entry lands in no_update.
+         */
+        public function test_check_plugin_update_does_not_set_disable_autoupdate_when_entry_is_no_update(): void
         {
         }
     }

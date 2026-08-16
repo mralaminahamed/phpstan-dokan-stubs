@@ -5,6 +5,8 @@
  * @see https://github.com/mralaminahamed/phpstan-dokan-stubs
  */
 
+\define('HOUR_IN_SECONDS', 3600);
+\define('ABSPATH', __DIR__ . '/');
 \define('HTTP_URL_REPLACE', 1);
 \define('HTTP_URL_JOIN_PATH', 2);
 \define('HTTP_URL_JOIN_QUERY', 4);
