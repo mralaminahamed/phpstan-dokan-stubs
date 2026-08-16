@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.5';
+        public $version = '5.0.6';
         /**
          * Instance of self
          *
@@ -2277,6 +2277,21 @@ namespace WeDevs\Dokan\Admin\Dashboard {
          * @return void
          */
         public function enqueue_scripts()
+        {
+        }
+        /**
+         * Check whether the current admin request targets one of the given Dokan pages.
+         *
+         * Matches the locale-stable `page` slug rather than the screen id, whose prefix
+         * is derived from the translatable menu title and breaks on non-Latin locales.
+         *
+         * @since 5.0.6
+         *
+         * @param array<string> $page_slugs Admin page slugs to match against.
+         *
+         * @return bool
+         */
+        protected function is_dokan_admin_page(array $page_slugs): bool
         {
         }
         /**
@@ -9295,6 +9310,38 @@ namespace WeDevs\Dokan\Captcha {
         }
         /** Echoes provider fields into contact form, keeping backward compatibility */
         public function maybe_render_contact_form_field($seller_id): void
+        {
+        }
+        /**
+         * Render the captcha field on the registration form.
+         *
+         * Hooked to both `register_form` (Dokan vendor registration & onboarding templates) and
+         * `woocommerce_register_form` (WooCommerce My Account registration). A static guard makes
+         * sure the field is output only once per request, avoiding a duplicate token field/widget.
+         *
+         * @since 5.0.6
+         *
+         * @return void
+         */
+        public function maybe_render_registration_field(): void
+        {
+        }
+        /**
+         * Validate the captcha token submitted with a registration request.
+         *
+         * Hooked to `woocommerce_register_post`, which fires for every WooCommerce registration
+         * after the registration nonce has already been verified upstream. Adds an error to the
+         * registration error bag when verification fails, which aborts the registration.
+         *
+         * @since 5.0.6
+         *
+         * @param string    $username          Submitted username.
+         * @param string    $email             Submitted email.
+         * @param \WP_Error $validation_errors Registration error bag.
+         *
+         * @return void
+         */
+        public function validate_registration_captcha($username, $email, $validation_errors): void
         {
         }
         /**
@@ -21595,6 +21642,18 @@ namespace WeDevs\Dokan\Product {
         public function update_product_brands_by_id(int $product_id, array $product_data = array()): void
         {
         }
+        /**
+         * Sync category data for commission
+         *
+         * @since 5.0.6
+         *
+         * @param int   $product_id   The ID of the product being updated.
+         *
+         * @return void
+         */
+        public function sync_category_data_for_commission(int $product_id): void
+        {
+        }
     }
     /**
      * Product manager Class
@@ -24043,6 +24102,22 @@ namespace WeDevs\Dokan\REST {
         public function get_commission($request)
         {
         }
+        /**
+         * Normalize the `category_ids` request param to a flat list of term IDs.
+         *
+         * The product editor's category field is an async-select that submits option
+         * objects ([ { value, label }, ... ]); the commission lookup only needs the
+         * integer term IDs, so reduce any object shape to its `value` before use.
+         *
+         * @since 5.0.6
+         *
+         * @param mixed $value Raw `category_ids` value from the request.
+         *
+         * @return int[]
+         */
+        public function sanitize_category_ids($value): array
+        {
+        }
     }
     class CustomersController extends \WC_REST_Customers_Controller
     {
@@ -26094,6 +26169,24 @@ namespace WeDevs\Dokan\REST {
          * @return WP_Error|WP_REST_Response
          */
         public function update_item($request)
+        {
+        }
+        /**
+         * Replace WooCommerce's admin-oriented "approved download directory" rejection with vendor-friendly guidance.
+         *
+         * WooCommerce raises product_invalid_download whenever a downloadable file can't be used — most often because
+         * its folder isn't an approved download directory — and tells the user to "contact a site administrator,"
+         * which a vendor can't act on. The specific cause isn't exposed (the error code and data are generic) and
+         * WooCommerce has already run the directory check, so rather than re-deriving it we simply restate the
+         * message; the field's tooltip explains the approved-directory requirement up front.
+         *
+         * @since 5.0.6
+         *
+         * @param WP_Error $error Error returned from the parent WooCommerce REST save.
+         *
+         * @return WP_Error
+         */
+        protected function clarify_download_error(\WP_Error $error): \WP_Error
         {
         }
         /**
