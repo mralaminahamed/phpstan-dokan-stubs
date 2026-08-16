@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.10';
+        public $version = '5.0.11';
         /**
          * Instance of self
          *
@@ -30322,6 +30322,96 @@ namespace WeDevs\Dokan\ThemeSupport {
         public function payment_request_button_style()
         {
         }
+        /**
+         * Bridge Astra's global button presets onto Dokan store and store listing page buttons.
+         *
+         * Astra emits its Global > Buttons preset on `button` / `.button` / `input[type="submit"]`,
+         * all of which Dokan's `.dokan-btn` rules outrank, so vendor store and store listing pages
+         * silently ignore the theme's button geometry while every other page on the site honours it.
+         *
+         * @since 5.0.11
+         *
+         * @return void
+         */
+        public function inherit_theme_button_presets()
+        {
+        }
+        /**
+         * Check that every Astra helper the button bridge reads through is loaded.
+         *
+         * @since 5.0.11
+         *
+         * @return bool
+         */
+        protected function has_astra_button_helpers()
+        {
+        }
+        /**
+         * Build the button preset CSS for every breakpoint Astra exposes.
+         *
+         * @since 5.0.11
+         *
+         * @return string
+         */
+        protected function build_button_preset_css()
+        {
+        }
+        /**
+         * Map the CSS properties the bridge emits for a single device.
+         *
+         * Empty values are left in place for Astra to drop, so a preset the admin never
+         * configured keeps falling through to Dokan's own styling instead of blanking it.
+         *
+         * @since 5.0.11
+         *
+         * @param array  $preset Astra button options keyed by the role they play here.
+         * @param string $device One of `desktop`, `tablet` or `mobile`.
+         *
+         * @return array
+         */
+        protected function get_button_properties(array $preset, $device)
+        {
+        }
+        /**
+         * Selector list that carries the preset onto Dokan's buttons.
+         *
+         * @since 5.0.11
+         *
+         * @return string
+         */
+        protected function get_button_selector()
+        {
+        }
+        /**
+         * Refresh the customizer preview whenever a bridged button setting changes.
+         *
+         * Astra live-previews its own buttons over postMessage, which never reloads the preview
+         * frame, so the server-built bridge CSS would stay stale inside the customizer and store
+         * page buttons would look out of sync exactly where the admin is configuring them.
+         *
+         * @since 5.0.11
+         *
+         * @return void
+         */
+        protected function sync_customizer_preview()
+        {
+        }
+        /**
+         * Whitelist a CSS length value.
+         *
+         * Astra returns theme option data verbatim when it is not a well formed responsive array,
+         * so nothing from the customizer is trusted before it reaches the style block.
+         *
+         * @since 5.0.11
+         *
+         * @param mixed $value              Raw value returned by an Astra helper.
+         * @param bool  $allow_rem_fallback Astra folds a rem fallback into pixel font sizes (`16px;font-size:1.0666rem`).
+         *
+         * @return string
+         */
+        protected function sanitize_css_length($value, bool $allow_rem_fallback = false)
+        {
+        }
     }
     /**
      * Divi Theme Support
@@ -31893,6 +31983,22 @@ namespace WeDevs\Dokan\Utilities {
          * @return bool True to render customer details, false to hide.
          */
         public static function should_show_email_customer_details($order): bool
+        {
+        }
+        /**
+         * Whether the current user may act on the given order in a bulk operation.
+         *
+         * A vendor may act only on their own orders; admins and shop managers (manage_woocommerce)
+         * may act on any order. Centralizing this keeps every bulk-order entry point — the REST
+         * bulk-actions endpoint and the legacy vendor-dashboard bulk form — guarded by one rule.
+         *
+         * @since 5.0.11
+         *
+         * @param int|string $order_id Order id to check.
+         *
+         * @return bool
+         */
+        public static function current_user_can_manage_order($order_id): bool
         {
         }
     }
