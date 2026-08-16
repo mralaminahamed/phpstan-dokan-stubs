@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.12';
+        public $version = '5.0.13';
         /**
          * Instance of self
          *
@@ -927,6 +927,35 @@ namespace WeDevs\Dokan\Abstracts {
     */
     abstract class DokanRESTController extends \WP_REST_Controller
     {
+        /**
+         * Author id pinned by the route, overriding any caller supplied scope.
+         *
+         * `0` means no pinning, so the regular author gate in
+         * `prepare_objects_query()` applies.
+         *
+         * @since 5.0.13
+         *
+         * @var int
+         */
+        protected $forced_author = 0;
+        /**
+         * Pin the listing to a single vendor, regardless of request params.
+         *
+         * Routes served with a public `permission_callback` cannot rely on the
+         * capability based author gate in `prepare_objects_query()`, because an
+         * anonymous caller resolves to author `0` and `WP_Query` silently drops the
+         * clause. Such routes must decide the scope themselves instead of widening
+         * the shared gate for every caller.
+         *
+         * @since 5.0.13
+         *
+         * @param int $author_id Vendor id to scope the listing to.
+         *
+         * @return void
+         */
+        public function set_forced_author(int $author_id)
+        {
+        }
         /**
          * Get object.
          *
@@ -39919,6 +39948,28 @@ namespace {
      * @return array
      */
     function dokan_get_seller_status_count()
+    {
+    }
+    /**
+     * Count the vendors that are waiting for admin approval.
+     *
+     * Delegates to the very query the Vendors list is built from instead of reusing
+     * `dokan_get_seller_status_count()['inactive']`. That figure is derived as
+     * "everything that is not approved", so it also counts users carrying no
+     * `dokan_enable_selling` meta at all — every administrator, for one, since
+     * `dokan_admin_user_register()` only writes that meta for the `seller` role. The
+     * listing matches on `dokan_enable_selling = 'no'` and therefore leaves those users
+     * out, so a count taken from `inactive` is one an admin can never clear: the page it
+     * points at has nothing pending to show.
+     *
+     * Cached in the shared `vendors` group, which VendorCache already invalidates on
+     * vendor create/update/delete and on enable/disable.
+     *
+     * @since 5.0.13
+     *
+     * @return int
+     */
+    function dokan_get_pending_vendor_count()
     {
     }
     /**
