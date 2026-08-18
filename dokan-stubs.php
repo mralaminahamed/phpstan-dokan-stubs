@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.13';
+        public $version = '5.0.14';
         /**
          * Instance of self
          *
@@ -6251,13 +6251,18 @@ namespace WeDevs\Dokan\Admin {
         {
         }
         /**
-         * Should we show the WooCommerce Conversion Tracking install option?
+         * Whether the current user may install plugins through Dokan.
          *
-         * True only if the user can install plugins.
+         * Authorizes the wizard and onboarding install sinks, and gates the visibility of
+         * the 'Recommended' step. Both capabilities are required because the queued
+         * installer activates whatever it downloads.
+         *
+         * @since 5.0.14 Made public for the onboarding controller, and added the
+         *                    `activate_plugins` requirement.
          *
          * @return boolean
          */
-        protected function user_can_install_plugin()
+        public function user_can_install_plugin()
         {
         }
         protected function display_recommended_item($item_info)
@@ -24217,6 +24222,24 @@ namespace WeDevs\Dokan\REST {
         {
         }
         /**
+         * Check whether the current user may install plugins through this controller.
+         *
+         * Deliberately stricter than the admin base check: this route downloads code from
+         * wordpress.org, and `manage_woocommerce` is a capability a Shop Manager holds
+         * without holding `install_plugins`. Scoped to the install route rather than
+         * overriding `check_permission()`, so any read route added here later keeps the
+         * ordinary admin capability.
+         *
+         * `activate_plugins` is not required: this route only writes the plugin to disk.
+         *
+         * @since 5.0.14
+         *
+         * @return bool
+         */
+        public function check_install_permission()
+        {
+        }
+        /**
          * Install a plugin from WordPress.org.
          *
          * @since SUSPENDED
@@ -26920,6 +26943,18 @@ namespace WeDevs\Dokan\REST {
         {
         }
         /**
+         * Checks if a given request can put a reverse withdrawal payment into the cart.
+         *
+         * @since 5.0.14
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         *
+         * @return bool|WP_Error
+         */
+        public function add_to_cart_permissions_check($request)
+        {
+        }
+        /**
          * This method will return due status of a single vendor
          *
          * @since 3.7.16
@@ -27360,6 +27395,19 @@ namespace WeDevs\Dokan\REST {
          * @return array Array of restricted field names that should be removed from the response.
          */
         protected function get_restricted_fields_for_view($store, $request)
+        {
+        }
+        /**
+         * Whether the current user's role may see admin-configured commission settings at all.
+         *
+         * Callers must additionally confirm the user is authorized for the store in question,
+         * since this only answers the role question — vendor staff are excluded deliberately.
+         *
+         * @since 5.0.14
+         *
+         * @return bool
+         */
+        protected function can_view_commission_settings(): bool
         {
         }
         /**
@@ -29114,6 +29162,57 @@ namespace WeDevs\Dokan\ReverseWithdrawal {
         {
         }
         /**
+         * Get the total of the vendor's reverse withdrawal payments that are not in the ledger yet.
+         *
+         * A payment reaches the ledger only when its order is completed, so orders still waiting on that are
+         * invisible to the balance and have to be accounted for separately before accepting another payment.
+         *
+         * @since 5.0.14
+         *
+         * @param int $vendor_id
+         *
+         * @return float
+         */
+        public static function get_awaiting_payment_total($vendor_id)
+        {
+        }
+        /**
+         * Total the reverse withdrawal payment amounts carried by a set of orders.
+         *
+         * @since 5.0.14
+         *
+         * @param \WC_Order[] $orders
+         *
+         * @return float
+         */
+        protected static function sum_payment_amounts(array $orders)
+        {
+        }
+        /**
+         * Get the vendor's reverse withdrawal payment orders that are still waiting to reach the ledger.
+         *
+         * @since 5.0.14
+         *
+         * @param int $vendor_id
+         *
+         * @return \WC_Order[]
+         */
+        public static function get_awaiting_payment_orders($vendor_id)
+        {
+        }
+        /**
+         * Build the message shown when an unfinished payment order is holding the balance.
+         *
+         * @since 5.0.14
+         *
+         * @param \WC_Order[] $orders
+         *
+         * @return string
+         */
+        protected static function get_awaiting_payment_message(array $orders)
+        {
+        }
+        /**
          * This method will add reverse payment amount to cart
          *
          * @since 3.7.16
@@ -29470,6 +29569,14 @@ namespace WeDevs\Dokan\ReverseWithdrawal {
      */
     class Order
     {
+        /**
+         * Marks an order whose payment was resolved without writing a ledger row.
+         *
+         * @since 5.0.14
+         *
+         * @var string
+         */
+        const PAYMENT_SETTLED_META = '_dokan_reverse_withdrawal_payment_settled';
         /**
          * Order constructor.
          *
@@ -39974,6 +40081,14 @@ namespace {
     }
     /**
      * Install a plugin from wp.org
+     *
+     * Installs *and activates* the plugin, despite the name.
+     *
+     * Performs no capability check by design, so that non-request callers such as WP-CLI and
+     * cron keep working. Installing and activating arbitrary code is a full-trust action, so
+     * any caller reachable from a request MUST gate itself on `install_plugins` and
+     * `activate_plugins` first — `manage_woocommerce` is not sufficient, since a Shop Manager
+     * holds it without holding either plugin capability.
      *
      * Example:
      * To download WooCommerce `dokan_install_wp_org_plugin( 'woocommerce' )`
