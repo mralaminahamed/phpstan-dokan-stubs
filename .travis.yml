@@ -32,8 +32,8 @@ before_script:
 
 script:
   - "bash -x ./generate.sh"
-  - "php -l dokan-constants-stubs.php"
-  - "php -l dokan-stubs.php"
+  - "php -l dokan-constants-stubs.stub"
+  - "php -l dokan-stubs.stub"
   - "git diff --exit-code"
   - |
-    php -r 'require "vendor/php-stubs/wordpress-stubs/wordpress-stubs.php"; require "vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php"; require "dokan-constants-stubs.php"; require "dokan-stubs.php";'
+    php -r 'require "vendor/php-stubs/wordpress-stubs/wordpress-stubs.php"; require "vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php"; require "dokan-constants-stubs.stub"; require "dokan-stubs.stub";'

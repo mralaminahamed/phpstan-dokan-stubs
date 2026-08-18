@@ -1,8 +1,8 @@
 parameters:
     paths:
-        - dokan-stubs.php
+        - dokan-stubs.stub
     scanFiles:
-        - dokan-constants-stubs.php
+        - dokan-constants-stubs.stub
     bootstrapFiles:
         - configs/bootstrap.php
     level: 5

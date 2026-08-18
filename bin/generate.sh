@@ -8,8 +8,8 @@ ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
 HEADER=$'/**\n * Generated stub declarations for Dokan.\n * @see https://dokan.co\n * @see https://github.com/mralaminahamed/phpstan-dokan-stubs\n */'
 
-FILE="$ROOT_DIR/dokan-stubs.php"
-FILE_CONSTANTS="$ROOT_DIR/dokan-constants-stubs.php"
+FILE="$ROOT_DIR/dokan-stubs.stub"
+FILE_CONSTANTS="$ROOT_DIR/dokan-constants-stubs.stub"
 GENERATOR_BIN="$ROOT_DIR/vendor/bin/generate-stubs"
 FINDER_FILE="$ROOT_DIR/configs/finder.php"
 

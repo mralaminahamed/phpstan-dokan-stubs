@@ -36,8 +36,8 @@ composer require --dev mralaminahamed/dokan-stubs:^2.0
 ### Manual Installation
 
 Download the stub files directly:
-- [dokan-stubs.php](https://raw.githubusercontent.com/mralaminahamed/phpstan-dokan-stubs/main/dokan-stubs.php)
-- [dokan-constants-stubs.php](https://raw.githubusercontent.com/mralaminahamed/phpstan-dokan-stubs/main/dokan-constants-stubs.php)
+- [dokan-stubs.stub](https://raw.githubusercontent.com/mralaminahamed/phpstan-dokan-stubs/main/dokan-stubs.stub)
+- [dokan-constants-stubs.stub](https://raw.githubusercontent.com/mralaminahamed/phpstan-dokan-stubs/main/dokan-constants-stubs.stub)
 
 ## 🔧 Basic Configuration
 
@@ -66,8 +66,8 @@ For advanced usage examples, see the [Usage Guide](./docs/usage.md).
 ```
 phpstan-dokan-stubs/
 ├── configs/                           # Configuration files for stub generation
-├── dokan-constants-stubs.php          # Constants stub file
-├── dokan-stubs.php                    # Main stubs file with classes and functions
+├── dokan-constants-stubs.stub          # Constants stub file
+├── dokan-stubs.stub                    # Main stubs file with classes and functions
 ├── phpstan.neon                       # PHPStan configuration
 ├── source/                            # Source for generating stubs
 └── tests/                             # Test files
