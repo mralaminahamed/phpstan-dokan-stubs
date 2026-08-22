@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.15';
+        public $version = '5.0.16';
         /**
          * Instance of self
          *
@@ -1792,6 +1792,9 @@ namespace WeDevs\Dokan\Traits {
          * ```
          *
          * @since 3.3.2
+         * @since 5.0.16 Removed the redundant `wp_cache_flush_group()` call. It targeted a group
+         *                    no key is ever written to, while forcing persistent backends such as
+         *                    Redis into a full keyspace scan on every call.
          *
          * @param string $group Group of caches to clear.
          *
@@ -22716,11 +22719,13 @@ namespace WeDevs\Dokan\Order {
         /**
          * Remove customer sensitive information while exporting order
          *
+         * `customer_note` is kept, matching the vendor order details page.
+         *
          * @since 3.8.0 Moved this method from Order/Hooks.php file
          *
          * @param array $headers
          *
-         * @return mixed
+         * @return array
          */
         public function hide_customer_info_from_vendor_order_export($headers)
         {
@@ -24370,6 +24375,67 @@ namespace WeDevs\Dokan\ProductEditor {
          * @return array The same fields array (unmodified).
          */
         private function assert_field_schema(array $fields): array
+        {
+        }
+        /**
+         * Find a field in a flat schema by id.
+         *
+         * Sections and fields share one id namespace, so the type is part of the match: a section - or an item an
+         * extension adds through `dokan_product_editor_prepared_schema` - carrying the same id must not answer for
+         * the field, since it has no `requireds` map and would silently switch a rule off.
+         *
+         * @since 5.0.16
+         *
+         * @param array  $schema Flat schema items.
+         * @param string $id     Field id to find.
+         *
+         * @return array|null
+         */
+        public static function get_field(array $schema, string $id): ?array
+        {
+        }
+        /**
+         * Resolve a field's label for a product type, falling back to its shared label.
+         *
+         * Fields can vary by product type through the `labels`, `requireds` and `visibilities` maps, which
+         * Dokan Pro's Product Form Manager writes into. These three resolvers are the PHP counterpart of
+         * `resolveLabel`, `resolveRequired` and `resolveVisibility` in
+         * `src/dashboard/product-editor/utils.tsx`, so both sides read the schema the same way.
+         *
+         * @since 5.0.16
+         *
+         * @param array  $field        Schema field.
+         * @param string $product_type Product type the field is resolved for.
+         *
+         * @return string
+         */
+        public static function get_label(array $field, string $product_type = \WeDevs\Dokan\ProductEditor\Elements::PRODUCT_TYPE_SIMPLE): string
+        {
+        }
+        /**
+         * Whether a field must be filled in for a product type.
+         *
+         * @since 5.0.16
+         *
+         * @param array  $field        Schema field.
+         * @param string $product_type Product type the field is resolved for.
+         *
+         * @return bool
+         */
+        public static function is_required(array $field, string $product_type = \WeDevs\Dokan\ProductEditor\Elements::PRODUCT_TYPE_SIMPLE): bool
+        {
+        }
+        /**
+         * Whether a field is rendered for a product type.
+         *
+         * @since 5.0.16
+         *
+         * @param array  $field        Schema field.
+         * @param string $product_type Product type the field is resolved for.
+         *
+         * @return bool
+         */
+        public static function is_visible(array $field, string $product_type = \WeDevs\Dokan\ProductEditor\Elements::PRODUCT_TYPE_SIMPLE): bool
         {
         }
         /**
@@ -28035,6 +28101,56 @@ namespace WeDevs\Dokan\REST {
          * @return WP_Error|WP_REST_Response
          */
         public function update_item($request)
+        {
+        }
+        /**
+         * Prepare a single product for create or update.
+         *
+         * Every save funnels through here - WooCommerce routes create, update and batch alike through
+         * save_object() - so form-level validation runs once here instead of per endpoint, and it judges
+         * the product WooCommerce assembled rather than the raw payload. The product itself is not written
+         * until save_object() calls save() on what this returns, though the parent call can already have
+         * created attachment records when a payload sends images by URL; the vendor form only ever sends
+         * attachment ids.
+         *
+         * @since 5.0.16
+         *
+         * @param WP_REST_Request $request  Full details about the request.
+         * @param bool            $creating Whether a new product is being created.
+         *
+         * @return WC_Data|WP_Error
+         */
+        protected function prepare_object_for_database($request, $creating = false)
+        {
+        }
+        /**
+         * Reject a downloadable product saved without a file while the form marks "Downloadable Files" as required.
+         *
+         * The required flag lives in the form schema, where Dokan Pro's Product Form Manager writes it, so it is
+         * read back from the schema rather than hard-coded. Browser-side validation alone can be bypassed, which
+         * is how incomplete downloadable products reach the review queue.
+         *
+         * Judged on the assembled product rather than on the payload, because the payload can be shaped to dodge
+         * the rule: WooCommerce turns a product downloadable from `downloadable` alone and only reads `downloads`
+         * when that key is sent, and it drops file-less rows in save_downloadable_files(). A save that leaves
+         * both fields alone, such as quick edit, stays out of scope.
+         *
+         * Deliberately scoped to this one field: the schema marks several fields required that a partial form
+         * never renders yet still submits empty - the quick-create modal omits the required Description - so
+         * enforcing every required field here would reject those saves outright. Extensions that need their own
+         * rules can hook `dokan_rest_pre_insert_product_object`.
+         *
+         * Product variations are out of reach here: WooCommerce saves them through WC_REST_Product_Variations_Controller,
+         * which never enters this controller, so a downloadable variation is guarded in the browser only.
+         *
+         * @since 5.0.16
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @param WC_Data         $product Product assembled from the request, not yet saved.
+         *
+         * @return WP_Error|null Error when the required file is missing, null otherwise.
+         */
+        protected function validate_required_downloads($request, $product)
         {
         }
         /**
