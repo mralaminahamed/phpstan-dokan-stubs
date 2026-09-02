@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.17';
+        public $version = '5.0.18';
         /**
          * Instance of self
          *
@@ -10449,6 +10449,38 @@ namespace WeDevs\Dokan\Blocks {
         }
     }
 }
+namespace WeDevs\Dokan\CLI {
+    /**
+     * Dokan WP-CLI command registry.
+     *
+     * Owns the `wp dokan` command namespace and exposes the `dokan_cli_commands`
+     * filter so Dokan and its extensions (e.g. Dokan Pro) can register commands
+     * under the same namespace from a single place.
+     *
+     * @since 5.0.18
+     */
+    class Manager
+    {
+        /**
+         * Bootstraps the CLI command registry.
+         *
+         * @since 5.0.18
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Registers every Dokan WP-CLI command collected from the filter.
+         *
+         * @since 5.0.18
+         *
+         * @return void
+         */
+        public function register_commands()
+        {
+        }
+    }
+}
 namespace WeDevs\Dokan {
     /**
      * Cache Helper class.
@@ -17244,6 +17276,37 @@ namespace WeDevs\Dokan\DependencyManagement\Providers {
         protected $services = [\WeDevs\Dokan\Captcha\Manager::class, \WeDevs\Dokan\Captcha\Providers\GoogleRecaptchaV3Provider::class, \WeDevs\Dokan\Captcha\Providers\CloudflareTurnstileProvider::class];
         /**
          * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+    /**
+     * Class CliServiceProvider
+     *
+     * Registers the WP-CLI command registry with the dependency container and tags
+     * it so it is only resolved while running under WP-CLI.
+     *
+     * @since 5.0.18
+     */
+    class CliServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tags used to identify the service in the container.
+         *
+         * @var array
+         */
+        protected $tags = ['cli-service'];
+        /**
+         * List of services provided by this provider.
+         *
+         * @var array
+         */
+        protected $services = [\WeDevs\Dokan\CLI\Manager::class];
+        /**
+         * Register the CLI Manager in the container and add the corresponding tags.
+         *
+         * @return void
          */
         public function register(): void
         {
