@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.0.18';
+        public $version = '5.0.19';
         /**
          * Instance of self
          *
@@ -24682,7 +24682,21 @@ namespace WeDevs\Dokan\ProductEditor {
         /**
          * Transform featured image and gallery image IDs into the WC REST images array.
          *
+         * Every entry carries a `position` — 0 for the featured image, 1..n for the gallery — because
+         * the flat array on its own cannot express a product that has gallery images but no featured
+         * image. This mirrors the convention ProductController (v1) already splits on; WooCommerce's
+         * own v3 images schema has no `position`, and ignores the key while preserving it, since that
+         * schema sets no `additionalProperties`. ProductControllerV3::apply_image_positions() is the
+         * only consumer.
+         *
+         * The two fields compile into one WooCommerce array, so a request carrying either of them
+         * describes the product's whole image state — sending only one clears the other side.
+         *
          * @since 5.0.0
+         *
+         * @param array $data Request body keyed by schema field id.
+         *
+         * @return array
          */
         public function resolve_images(array $data): array
         {
@@ -28187,6 +28201,27 @@ namespace WeDevs\Dokan\REST {
         {
         }
         /**
+         * Restore the vendor's featured/gallery split after WooCommerce has consumed `images`.
+         *
+         * WooCommerce takes the featured image from array index 0, and its v3 images schema has no
+         * `position` at all, so a product saved with gallery images but no featured image loses its
+         * first gallery image to the featured slot — with a single gallery image the gallery ends up
+         * empty. PayloadResolver::resolve_images() tags every entry with the position the vendor
+         * actually chose, so the split is reapplied here.
+         *
+         * Payloads this plugin did not resolve carry no positions and are left to WooCommerce.
+         *
+         * @since 5.0.19
+         *
+         * @param WC_Data|WC_Product $product Product assembled from the request, not yet saved.
+         * @param WP_REST_Request    $request Full details about the request.
+         *
+         * @return WC_Data|WC_Product
+         */
+        protected function apply_image_positions($product, $request)
+        {
+        }
+        /**
          * Reject a downloadable product saved without a file while the form marks "Downloadable Files" as required.
          *
          * The required flag lives in the form schema, where Dokan Pro's Product Form Manager writes it, so it is
@@ -29864,7 +29899,82 @@ namespace WeDevs\Dokan {
      */
     class Registration
     {
+        /**
+         * Nonce action marking a request as coming from Dokan's own vendor sign-up form.
+         *
+         * @since 5.0.19
+         *
+         * @var string
+         */
+        const VENDOR_FORM_NONCE_ACTION = 'dokan_vendor_registration_form';
+        /**
+         * Field carrying the vendor sign-up form marker.
+         *
+         * @since 5.0.19
+         *
+         * @var string
+         */
+        const VENDOR_FORM_NONCE_FIELD = 'dokan_vendor_registration_form_nonce';
         public function __construct()
+        {
+        }
+        /**
+         * Build the marker identifying Dokan's dedicated vendor sign-up form.
+         *
+         * @since 5.0.19
+         *
+         * @return string
+         */
+        protected function get_vendor_form_marker()
+        {
+        }
+        /**
+         * Print the marker identifying Dokan's dedicated vendor sign-up form.
+         *
+         * @since 5.0.19
+         *
+         * @return void
+         */
+        public function render_vendor_form_marker()
+        {
+        }
+        /**
+         * Add the marker to a rendered vendor sign-up form that did not print it itself.
+         *
+         * A theme override copied before the marker existed never fires the action, and the toggle would
+         * then close that site's own vendor page with no way to tell why. Stamping the rendered markup
+         * keeps such an override working, whatever it did to the form.
+         *
+         * @since 5.0.19
+         *
+         * @param string $content Rendered vendor sign-up markup.
+         *
+         * @return string
+         */
+        public function inject_vendor_form_marker($content)
+        {
+        }
+        /**
+         * Roles a visitor may register as through the request being processed.
+         *
+         * The appearance setting only hides the vendor option in the WooCommerce form's template, so a
+         * role that form never offered has to be refused server side too.
+         *
+         * @since 5.0.19
+         *
+         * @return array
+         */
+        public function get_allowed_registration_roles()
+        {
+        }
+        /**
+         * Whether the request was submitted from Dokan's dedicated vendor sign-up form.
+         *
+         * @since 5.0.19
+         *
+         * @return bool
+         */
+        protected function is_vendor_form_request()
         {
         }
         /**
