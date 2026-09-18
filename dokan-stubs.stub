@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.1.1';
+        public $version = '5.1.2';
         /**
          * Instance of self
          *
@@ -19287,6 +19287,19 @@ namespace WeDevs\Dokan\Intelligence\Admin {
         {
         }
         /**
+         * Replace saved model ids that a provider has since retired.
+         *
+         * @since 5.1.2
+         *
+         * @param array  $values     Section setting values.
+         * @param string $section_id Section id.
+         *
+         * @return mixed Untouched when the section is not the AI section.
+         */
+        public function remap_retired_model_values($values, $section_id)
+        {
+        }
+        /**
          * Render AI section in Dokan settings
          *
          * @param array $sections
@@ -19560,6 +19573,18 @@ namespace WeDevs\Dokan\Intelligence\REST {
         {
         }
         public function handle_request($request)
+        {
+        }
+        /**
+         * Build a misconfiguration error response.
+         *
+         * @since 5.1.2
+         *
+         * @param string $message Human readable reason.
+         *
+         * @return WP_Error
+         */
+        protected function configuration_error(string $message): \WP_Error
         {
         }
     }
@@ -20253,6 +20278,59 @@ namespace WeDevs\Dokan\Intelligence\Services {
         {
         }
         abstract public function get_default_model_id(): string;
+        /**
+         * Get the models of a generation type, keyed by model id.
+         *
+         * `get_models()` is a filter, so a third party may enlist a model under an
+         * arbitrary key. Re-keying here keeps every id lookup honest.
+         *
+         * @since 5.1.2
+         *
+         * @param string $type The type of generation (e.g., 'text', 'image').
+         *
+         * @return array<string, AIModelInterface>
+         */
+        protected function get_models_map(string $type): array
+        {
+        }
+        /**
+         * Check whether a model id is still registered for a generation type.
+         *
+         * @since 5.1.2
+         *
+         * @param string $type     The type of generation (e.g., 'text', 'image').
+         * @param string $model_id Model id to look for.
+         *
+         * @return bool
+         */
+        public function has_model_id(string $type, string $model_id): bool
+        {
+        }
+        /**
+         * Resolve the model to use for a generation type, tolerating stale saved ids.
+         *
+         * @since 5.1.2
+         *
+         * @param string $type     The type of generation (e.g., 'text', 'image').
+         * @param string $model_id Optional. Saved model id to prefer.
+         *
+         * @return AIModelInterface|null
+         */
+        public function resolve_model(string $type, string $model_id = ''): ?\WeDevs\Dokan\Intelligence\Services\AIModelInterface
+        {
+        }
+        /**
+         * Get the default model id for a generation type.
+         *
+         * @since 5.1.2
+         *
+         * @param string $type The type of generation (e.g., 'text', 'image').
+         *
+         * @return string Empty string when the provider has no model of that type.
+         */
+        public function get_default_model_id_by_type(string $type): string
+        {
+        }
         /**
          * @inheritDoc
          */
@@ -24427,7 +24505,7 @@ namespace WeDevs\Dokan\ProductEditor {
          *
          * @var array
          */
-        private array $supported_variants = ['text', 'select', 'multiselect', 'async_select', 'checkbox', 'textarea', 'editor', 'radio', 'number', 'file', 'datetime', 'image', 'gallery', 'attribute', 'location_map'];
+        private array $supported_variants = ['text', 'select', 'multiselect', 'async_select', 'checkbox', 'textarea', 'editor', 'radio', 'number', 'file', 'datetime', 'image', 'gallery', 'attribute', 'location_map', 'spmv_search'];
         /**
          * Validate field schema and log developer notices for invalid fields.
          *
