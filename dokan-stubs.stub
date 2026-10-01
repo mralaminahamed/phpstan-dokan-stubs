@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.1.3';
+        public $version = '5.2.0';
         /**
          * Instance of self
          *
@@ -2764,6 +2764,12 @@ namespace WeDevs\Dokan\Abstracts {
          */
         protected $dependencies = array();
         /**
+         * The settings validations.
+         *
+         * @var array $validations Validations.
+         */
+        protected $validations = array();
+        /**
          * Settings Type.
          *
          * @var string $type Settings Type.
@@ -2776,11 +2782,34 @@ namespace WeDevs\Dokan\Abstracts {
          */
         public $hook_key = '';
         /**
-         * The key for generating dynamic Dependency.
+         * Page doc link.
          *
-         * @var string $dependency_key Dependency Key.
+         * @var string|null $doc_link
          */
-        public $dependency_key = '';
+        protected ?string $doc_link = null;
+        /**
+         * Get the subpage doc link.
+         *
+         * @return string|null
+         */
+        public function get_doc_link(): ?string
+        {
+        }
+        /**
+         * Help text of the settings element.
+         *
+         * @var string $helpText Help text.
+         */
+        protected $tooltip = '';
+        /**
+         * Set the subpage doc link.
+         *
+         * @param string $doc_link
+         *  return SettingsElement
+         */
+        public function set_doc_link(string $doc_link): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
         /**
          * The constructor.
          *
@@ -2852,6 +2881,24 @@ namespace WeDevs\Dokan\Abstracts {
         {
         }
         /**
+         * Get the Help Text of the Settings element.
+         *
+         * @return string
+         */
+        public function get_tooltip(): string
+        {
+        }
+        /**
+         * Set the Help Text of the Settings element.
+         *
+         * @param string $tooltip Title.
+         *
+         * @return SettingsElement
+         */
+        public function set_tooltip(string $tooltip): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
          * Get the icon of the Settings element.
          *
          * @return string
@@ -2885,24 +2932,6 @@ namespace WeDevs\Dokan\Abstracts {
          * @return SettingsElement
          */
         public function set_hook_key(string $hook_key): \WeDevs\Dokan\Abstracts\SettingsElement
-        {
-        }
-        /**
-         * Get Dependencies key.
-         *
-         * @return string
-         */
-        public function get_dependency_key(): string
-        {
-        }
-        /**
-         * Set Dependencies key.
-         *
-         * @param string $dependency_key The dependency_key.
-         *
-         * @return SettingsElement
-         */
-        public function set_dependency_key(string $dependency_key): \WeDevs\Dokan\Abstracts\SettingsElement
         {
         }
         /**
@@ -2984,6 +3013,61 @@ namespace WeDevs\Dokan\Abstracts {
         {
         }
         /**
+         * Get element validation array.
+         *
+         * @since 5.2.0
+         *
+         * @return array
+         */
+        public function get_validations(): array
+        {
+        }
+        /**
+         * Set Validations.
+         *
+         * @SINCE 5.2.0
+         *
+         * @param array $validations Validations.
+         *
+         * @return SettingsElement
+         */
+        public function set_validations(array $validations): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Add Validation to the SettingsElement.
+         *
+         * @since 5.2.0
+         *
+         * Supports multiple formats:
+         *
+         * Format 1: Multiple rules as pipe-separated string
+         * ->add_validation( 'required|not_empty|min_value', 'Error message' )
+         *
+         * Format 2: Rules as array with params
+         * ->add_validation( ['not_empty', 'min_value' => 10, 'max_value' => 1440 ], 'Error message' )
+         *
+         * @param string|array $rules   Validation rules (string or array).
+         * @param string       $message Custom error message.
+         *
+         * @return SettingsElement
+         */
+        public function add_validation($rules, string $message = ''): \WeDevs\Dokan\Abstracts\SettingsElement
+        {
+        }
+        /**
+         * Check if a string is a valid validation rule name.
+         *
+         * @since 5.2.0
+         *
+         * @param mixed $value The value to check.
+         *
+         * @return bool True if it's a validation rule name.
+         */
+        protected function is_validation_rule($value): bool
+        {
+        }
+        /**
          * Add child element.
          *
          * @param SettingsElement $element Settings element.
@@ -3007,6 +3091,8 @@ namespace WeDevs\Dokan\Abstracts {
         }
         /**
          * Validate the Data.
+         *
+         * @since 5.2.0 Updated to support error messages from data_validation.
          *
          * @param mixed $data Data to store.
          *
@@ -3035,6 +3121,8 @@ namespace WeDevs\Dokan\Abstracts {
         }
         /**
          * Data Validation condition.
+         *
+         * @since 5.2.0 Updated return type to support error messages.
          *
          * @param mixed $data Data for validation.
          *
@@ -3089,6 +3177,14 @@ namespace WeDevs\Dokan\Abstracts {
          * @return array
          */
         public function populate(): array
+        {
+        }
+        /**
+         * Populate settings children_only.
+         *
+         * @return array
+         */
+        public function populate_children_only(): array
         {
         }
         /**
@@ -3646,6 +3742,12 @@ namespace WeDevs\Dokan\Admin\Dashboard {
          */
         public const PRODUCT_EDITOR_SWITCH_ACTION = 'switch_product_editor';
         /**
+         * Option that stores the site-wide opt-in to the new settings screen.
+         *
+         * @since 5.2.0
+         */
+        public const NEW_SETTINGS_OPTION = 'dokan_new_settings_page_enabled';
+        /**
          * Default transient expiration time in seconds (15 days)
          *
          * @since 4.1.3
@@ -3681,6 +3783,54 @@ namespace WeDevs\Dokan\Admin\Dashboard {
          * @return void
          */
         public function handle_dashboard_redirect(): void
+        {
+        }
+        /**
+         * Whether the site uses the classic (legacy) settings screen.
+         *
+         * @since 5.2.0
+         *
+         * @return bool
+         */
+        public function is_legacy_settings_page(): bool
+        {
+        }
+        /**
+         * Switch the site-wide settings screen to classic or new.
+         *
+         * @since 5.2.0
+         *
+         * @param string $switch_to `legacy` or `new`; anything else toggles the current screen.
+         *
+         * @return bool Whether the classic screen is active after the switch.
+         */
+        protected function switch_settings_page(string $switch_to): bool
+        {
+        }
+        /**
+         * Whether the classic screen is active for a Dokan admin page.
+         *
+         * @since 5.2.0
+         *
+         * @param string $key Page key, e.g. `settings`, `withdraw` or `dashboard`.
+         *
+         * @return bool
+         */
+        public function is_legacy_page(string $key): bool
+        {
+        }
+        /**
+         * Get the admin URL of a Dokan page on the screen (classic or new) the site uses.
+         *
+         * Only for pages that exist on both screens.
+         *
+         * @since 5.2.0
+         *
+         * @param string $route Hash route, e.g. `settings` or `vendors?status=pending`. Empty for the dashboard.
+         *
+         * @return string
+         */
+        public function get_admin_page_url(string $route = ''): string
         {
         }
         /**
@@ -4099,6 +4249,50 @@ namespace WeDevs\Dokan\Admin\Dashboard\Pages {
          * @since 4.2.0
          *
          * @return void
+         */
+        public function register(): void
+        {
+        }
+    }
+    /**
+     * The settings page class.
+     *
+     * @since 5.2.0
+     */
+    class Settings extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
+    {
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function menu(string $capability, string $position): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * @inheritDoc
          */
         public function register(): void
         {
@@ -4794,6 +4988,56 @@ namespace WeDevs\Dokan\Admin\Notices {
         }
     }
     /**
+     * Nudges admins on the classic settings screen toward the new settings.
+     *
+     * @since 5.2.0
+     */
+    class NewSettingsNotice
+    {
+        /**
+         * Notice scope, rendered only on the classic settings screen.
+         *
+         * @since 5.2.0
+         */
+        public const SCOPE = 'legacy_settings';
+        /**
+         * Transient set while the notice is postponed.
+         *
+         * @since 5.2.0
+         */
+        public const POSTPONED_TRANSIENT = 'dokan_new_settings_notice_postponed';
+        /**
+         * Class constructor.
+         *
+         * @since 5.2.0
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Add the new settings notice.
+         *
+         * @since 5.2.0
+         *
+         * @param array $notices
+         *
+         * @return array
+         */
+        public function show_notice($notices)
+        {
+        }
+        /**
+         * Hide the notice site-wide for a while.
+         *
+         * @since 5.2.0
+         *
+         * @return void
+         */
+        public function postpone_notice()
+        {
+        }
+    }
+    /**
      * Review notice class.
      *
      * For displaying asking for review notice in admin panel.
@@ -5004,1278 +5248,16 @@ namespace WeDevs\Dokan\Admin\OnboardingSetup {
         {
         }
         /**
-         * Describe the settings options for frontend.
+         * Step navigation metadata for the frontend.
+         *
+         * The wizard fetches each step's field schema lazily over REST
+         * (`/dokan/v1/admin/setup-guide/{id}`), so only the step list is injected here.
          *
          * @since 4.0.0
          *
          * @return array
          */
         public function settings(): array
-        {
-        }
-    }
-}
-namespace WeDevs\Dokan\Admin\OnboardingSetup\Components {
-    class ComponentFactory
-    {
-        /**
-         * Get a new Page object.
-         *
-         * @param string $id ID.
-         *
-         * @return Page
-         */
-        public static function page(string $id): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Page
-        {
-        }
-        /**
-         * Get a new tab object.
-         *
-         * @param string $id ID.
-         *
-         * @return Tab
-         */
-        public static function tab(string $id): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Tab
-        {
-        }
-        /**
-         * Get a new Section object.
-         *
-         * @param string $id ID.
-         *
-         * @return Section
-         */
-        public static function section(string $id): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Section
-        {
-        }
-        /**
-         * Get a new SubSection object.
-         *
-         * @param string $id ID.
-         *
-         * @return SubSection
-         */
-        public static function sub_section(string $id): \WeDevs\Dokan\Admin\OnboardingSetup\Components\SubSection
-        {
-        }
-        /**
-         * Get a new Field object.
-         *
-         * @param string $id ID.
-         * @param string $type Field Type.
-         *
-         * @return Text|Number|Checkbox|Radio|Select|Tel|Password|RadioBox|Switcher|MultiCheck|Currency
-         */
-        public static function field(string $id, string $type = 'text'): \WeDevs\Dokan\Abstracts\SettingsElement
-        {
-        }
-    }
-    /**
-     * Settings element Field.
-     */
-    class Field extends \WeDevs\Dokan\Abstracts\SettingsElement
-    {
-        /**
-         * Is children Supported.
-         *
-         * @var bool $support_children Children support.
-         */
-        protected $support_children = false;
-        /**
-         * The Input Element Type.
-         *
-         * @var string $input_type The Input Element Type.
-         */
-        protected $input_type = 'text';
-        /**
-         * The Settings Element Type.
-         *
-         * @var string $type Type Field.
-         */
-        protected $type = 'field';
-        /**
-         * Map for the Input type.
-         *
-         * @var string[] $field_map Map for the Input type.
-         */
-        protected $field_map = array('text' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text::class, 'number' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Number::class, 'checkbox' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Checkbox::class, 'select' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Select::class, 'radio' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Radio::class, 'tel' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Tel::class, 'password' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Password::class, 'radio_box' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\RadioBox::class, 'switch' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Switcher::class, 'multicheck' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\MultiCheck::class, 'currency' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Currency::class, 'combine_input' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission\CombineInput::class, 'category_based_commission' => \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission\CategoryBasedCommission::class);
-        /**
-         * Constructor.
-         *
-         * @param string $id ID of the input field.
-         * @param string $type Type of the input field.
-         */
-        public function __construct(string $id, string $type = 'text')
-        {
-        }
-        /**
-         * Get input field.
-         *
-         * @return SettingsElement
-         */
-        public function get_input(): \WeDevs\Dokan\Abstracts\SettingsElement
-        {
-        }
-        /**
-         * Populate The Page Object.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Map input type to respective input class.
-         *
-         * @param string $id ID.
-         * @param string $input_type Input Type.
-         *
-         * @return SettingsElement
-         */
-        private function input_map(string $id, string $input_type): \WeDevs\Dokan\Abstracts\SettingsElement
-        {
-        }
-        /**
-         * Sanitize data for storage.
-         *
-         * @param mixed $data Data for sanitization.
-         *
-         * @return array|float|string
-         */
-        public function sanitize_element($data)
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param mixed $data Data for display.
-         *
-         * @return mixed
-         */
-        public function escape_element($data)
-        {
-        }
-    }
-    /**
-     * Field Group Class.
-     */
-    class FieldGroup extends \WeDevs\Dokan\Abstracts\SettingsElement
-    {
-        /**
-         * Settings Element type.
-         *
-         * @var string $type Settings Element type.
-         */
-        protected $type = 'fieldgroup';
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Sanitize data for storage.
-         *
-         * @param mixed $data Data for sanitization.
-         *
-         * @return array|string
-         */
-        public function sanitize_element($data)
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param array $data Data for display.
-         *
-         * @return array
-         */
-        public function escape_element($data): array
-        {
-        }
-    }
-}
-namespace WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields {
-    /**
-     * Test Field.
-     */
-    class Text extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Field
-    {
-        /**
-         * Default Value.
-         *
-         * @var string $default Default.
-         */
-        protected $default = '';
-        /**
-         * Placeholder.
-         *
-         * @var string $placeholder Placeholder.
-         */
-        protected $placeholder = '';
-        /**
-         * Input field is read-only.
-         *
-         * @var bool $is_readonly Whether to read only.
-         */
-        protected $is_readonly = false;
-        /**
-         * Whether the field is disabled.
-         *
-         * @var bool $disabled Whether the field is disabled.
-         */
-        protected $disabled = false;
-        /**
-         * The size of the field.
-         *
-         * @var int $size The size of the field.
-         */
-        protected $size = 20;
-        /**
-         * Constructor.
-         *
-         * @param string $id Input ID.
-         */
-        public function __construct(string $id)
-        {
-        }
-        /**
-         * Get Default.
-         *
-         * @return string
-         */
-        public function get_default(): string
-        {
-        }
-        /**
-         * Set Default.
-         *
-         * @param string $default_value Default value.
-         *
-         * @return SettingsElement
-         */
-        public function set_default(string $default_value): \WeDevs\Dokan\Abstracts\SettingsElement
-        {
-        }
-        /**
-         * Get Placeholder.
-         *
-         * @return string
-         */
-        public function get_placeholder(): string
-        {
-        }
-        /**
-         * Set placeholder.
-         *
-         * @param string $placeholder Placeholder.
-         *
-         * @return SettingsElement
-         */
-        public function set_placeholder(string $placeholder): \WeDevs\Dokan\Abstracts\SettingsElement
-        {
-        }
-        /**
-         * Is field read only or not.
-         *
-         * @return bool
-         */
-        public function is_readonly(): bool
-        {
-        }
-        /**
-         * Set readonly flag.
-         *
-         * @param bool $is_readonly Readonly flag.
-         *
-         * @return Text
-         */
-        public function set_readonly(bool $is_readonly): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
-        {
-        }
-        /**
-         * Check if the field is disabled.
-         *
-         * @return bool
-         */
-        public function is_disabled(): bool
-        {
-        }
-        /**
-         * Set the field as disabled state.
-         *
-         * @param bool $disabled Whether the field is disabled.
-         *
-         * @return Text
-         */
-        public function set_disabled(bool $disabled): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
-        {
-        }
-        /**
-         * Get the field size.
-         *
-         * @return int
-         */
-        public function get_size(): int
-        {
-        }
-        /**
-         * Set the field size.
-         *
-         * @param int $size The size of the field.
-         *
-         * @return Text
-         */
-        public function set_size(int $size): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
-        {
-        }
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-        /**
-         * Sanitize data for storage.
-         *
-         * @param mixed $data Data for sanitization.
-         *
-         * @return float|string
-         */
-        public function sanitize_element($data)
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param string $data Data for display.
-         *
-         * @return string
-         */
-        public function escape_element($data)
-        {
-        }
-    }
-    /**
-     * Checkbox Field.
-     */
-    class Checkbox extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
-    {
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'checkbox';
-        /**
-         * Options.
-         *
-         * @var array $options Options.
-         */
-        protected $options = array();
-        /**
-         * Get options.
-         *
-         * @return array
-         */
-        public function get_options(): array
-        {
-        }
-        /**
-         * Set options.
-         *
-         * @param array $options Options.
-         *
-         * @return SettingsElement
-         */
-        public function set_options(array $options)
-        {
-        }
-        /**
-         * Add an option.
-         *
-         * @param string      $option option to Display.
-         * @param string|null $value value for the checkbox option. Default is null.
-         *
-         * @return Checkbox|Select|Radio
-         */
-        public function add_option(string $option, string $value)
-        {
-        }
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param string $data Data for display.
-         *
-         * @return string
-         */
-        public function escape_element($data): string
-        {
-        }
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-    }
-}
-namespace WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission {
-    /**
-     * CategoryBasedCommission Field.
-     */
-    class CategoryBasedCommission extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Field
-    {
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'category_based_commission';
-        /**
-         * Reset subcategory flag.
-         *
-         * @var string $reset_subcategory Whether to apply parent category commission to subcategories.
-         */
-        protected $reset_subcategory;
-        /**
-         * Constructor.
-         *
-         * @param string $id Input ID.
-         */
-        public function __construct(string $id)
-        {
-        }
-        /**
-         * Get Reset Subcategory Flag.
-         *
-         * @return string
-         */
-        public function get_reset_subcategory(): string
-        {
-        }
-        /**
-         * Set Reset Subcategory Flag.
-         *
-         * @param string $reset_subcategory Reset subcategory flag.
-         *
-         * @return CategoryBasedCommission
-         */
-        public function set_reset_subcategory(string $reset_subcategory): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission\CategoryBasedCommission
-        {
-        }
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param mixed $data Data for display.
-         *
-         * @return string
-         */
-        public function escape_element($data)
-        {
-        }
-    }
-    /**
-     * CombineInput Field.
-     */
-    class CombineInput extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Field
-    {
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'combine_input';
-        /**
-         * Additional fee.
-         *
-         * @var string $additional_fee Fixed value.
-         */
-        protected $additional_fee = '';
-        /**
-         * Percentage value.
-         *
-         * @var string $admin_percentage Percentage value.
-         */
-        protected $admin_percentage = '';
-        /**
-         * Constructor.
-         *
-         * @param string $id Input ID.
-         */
-        public function __construct(string $id)
-        {
-        }
-        /**
-         * Get fixed value.
-         *
-         * @return string
-         */
-        public function get_additional_fee(): string
-        {
-        }
-        /**
-         * Set fixed value.
-         *
-         * @param string $additional_fee Fixed value.
-         *
-         * @return CombineInput
-         */
-        public function set_additional_fee(string $additional_fee): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission\CombineInput
-        {
-        }
-        /**
-         * Get percentage value.
-         *
-         * @return string
-         */
-        public function get_admin_percentage(): string
-        {
-        }
-        /**
-         * Set percentage value.
-         *
-         * @param string $percentage Percentage value.
-         *
-         * @return CombineInput
-         */
-        public function set_admin_percentage(string $percentage): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Commission\CombineInput
-        {
-        }
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param mixed $data Data for display.
-         *
-         * @return string
-         */
-        public function escape_element($data): string
-        {
-        }
-    }
-}
-namespace WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields {
-    class Currency extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
-    {
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'currency';
-        /**
-         * Currency symbol.
-         *
-         * @var string $currency_symbol Currency symbol.
-         */
-        protected string $currency_symbol;
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-        /**
-         * Get currency symbol.
-         *
-         * @return string
-         */
-        public function get_currency_symbol(): ?string
-        {
-        }
-        /**
-         * Set currency symbol.
-         *
-         * @param string $currency_symbol Currency symbol.
-         *
-         * @return Currency
-         */
-        public function set_currency_symbol(string $currency_symbol): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Currency
-        {
-        }
-    }
-    /**
-     * CheckboxGroup Field.
-     */
-    class MultiCheck extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Field
-    {
-        /**
-         * Default Value.
-         *
-         * @var array $default Default.
-         */
-        protected $default = [];
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'multicheck';
-        /**
-         * Options.
-         *
-         * @var array $options Options.
-         */
-        protected $options = array();
-        /**
-         * Constructor.
-         *
-         * @param string $id Input ID.
-         */
-        public function __construct(string $id)
-        {
-        }
-        /**
-         * Get options.
-         *
-         * @return array
-         */
-        public function get_options(): array
-        {
-        }
-        /**
-         * Set options.
-         *
-         * @param array $options Options.
-         *
-         * @return SettingsElement
-         */
-        public function set_options(array $options)
-        {
-        }
-        /**
-         * Add an option.
-         *
-         * @param string      $option option to Display.
-         * @param string|null $value value for the checkbox option. Default is null.
-         *
-         * @return MultiCheck
-         */
-        public function add_option(string $option, string $value)
-        {
-        }
-        /**
-         * Get Default.
-         *
-         * @return array
-         */
-        public function get_default(): array
-        {
-        }
-        /**
-         * Set Default.
-         *
-         * @param array $default_value Default value.
-         *
-         * @return SettingsElement
-         */
-        public function set_default($default_value): \WeDevs\Dokan\Abstracts\SettingsElement
-        {
-        }
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-    }
-    /**
-     * Test Field.
-     */
-    class Number extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
-    {
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'number';
-        /**
-         * Minimum.
-         *
-         * @var float $minimum Minimum.
-         */
-        protected $minimum;
-        /**
-         * Maximum.
-         *
-         * @var float Maximum.
-         */
-        protected $maximum;
-        /**
-         * Increment number.
-         *
-         * @var float $step Increment number.
-         */
-        protected $step = 0.1;
-        /**
-         * Get minimum value.
-         *
-         * @return float
-         */
-        public function get_minimum(): ?float
-        {
-        }
-        /**
-         * Set minimum value.
-         *
-         * @param float $minimum The minimum value.
-         *
-         * @return Number
-         */
-        public function set_minimum(float $minimum): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Number
-        {
-        }
-        /**
-         * Get minimum value.
-         *
-         * @return float
-         */
-        public function get_maximum(): ?float
-        {
-        }
-        /**
-         * Set maximum value.
-         *
-         * @param float $maximum Value.
-         *
-         * @return Number
-         */
-        public function set_maximum(float $maximum): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Number
-        {
-        }
-        /**
-         * Get step value.
-         *
-         * @return float
-         */
-        public function get_step(): ?float
-        {
-        }
-        /**
-         * Set step value.
-         *
-         * @param float $step Value.
-         *
-         * @return Number
-         */
-        public function set_step(float $step): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Number
-        {
-        }
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Sanitize data for storage.
-         *
-         * @param mixed $data Data for sanitization.
-         *
-         * @return mixed
-         */
-        public function sanitize_element($data)
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param string $data Data for display.
-         *
-         * @return float
-         */
-        public function escape_element($data): float
-        {
-        }
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-    }
-    /**
-     * Test Field.
-     */
-    class Password extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
-    {
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'password';
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-    }
-    /**
-     * Checkbox Field.
-     */
-    class Radio extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Checkbox
-    {
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'radio';
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param string $data Data for display.
-         *
-         * @return string
-         */
-        public function escape_element($data): string
-        {
-        }
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-    }
-    /**
-     * RadioButton Field.
-     *
-     * Custom field that provides radio options as button.
-     */
-    class RadioBox extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Radio
-    {
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'radio_box';
-    }
-    /**
-     * Select Field.
-     */
-    class Select extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Checkbox
-    {
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'select';
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param string $data Data for display.
-         *
-         * @return string
-         */
-        public function escape_element($data): string
-        {
-        }
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-    }
-    /**
-     * Switcher Field.
-     *
-     * Custom field that provides a toggle switch for boolean values.
-     */
-    class Switcher extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Radio
-    {
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'switch';
-        /**
-         * Options.
-         *
-         * @var array $options Options.
-         */
-        protected $states = array();
-        /**
-         * Get options.
-         *
-         * @return array
-         */
-        public function get_states(): array
-        {
-        }
-        /**
-         * Set active value.
-         *
-         * @param string $label Enable state label.
-         * @param string $value Enable state value.
-         *
-         * @return Switcher
-         */
-        public function set_enable_state(string $label, string $value): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Switcher
-        {
-        }
-        /**
-         * Get active value.
-         *
-         * @return array
-         */
-        public function get_enable_state(): array
-        {
-        }
-        public function set_disable_state(string $label, string $value): \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Switcher
-        {
-        }
-        /**
-         * Get active value.
-         *
-         * @return array
-         */
-        public function get_disable_state(): array
-        {
-        }
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-    }
-    /**
-     * Test Field.
-     */
-    class Tel extends \WeDevs\Dokan\Admin\OnboardingSetup\Components\Fields\Text
-    {
-        /**
-         * Input Type.
-         *
-         * @var string $input_type Input Type.
-         */
-        protected $input_type = 'tel';
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Populate settings array.
-         *
-         * @return array
-         */
-        public function populate(): array
-        {
-        }
-    }
-}
-namespace WeDevs\Dokan\Admin\OnboardingSetup\Components {
-    /**
-     * Page Class.
-     */
-    class Page extends \WeDevs\Dokan\Abstracts\SettingsElement
-    {
-        /**
-         * Settings Element type.
-         *
-         * @var string $type Settings Element type.
-         */
-        protected $type = 'page';
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Sanitize data for storage.
-         *
-         * @param mixed $data Data for sanitization.
-         *
-         * @return array|string
-         */
-        public function sanitize_element($data)
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param array $data Data for display.
-         *
-         * @return array
-         */
-        public function escape_element($data): array
-        {
-        }
-    }
-    /**
-     * Section Class.
-     */
-    class Section extends \WeDevs\Dokan\Abstracts\SettingsElement
-    {
-        /**
-         * Settings Element type.
-         *
-         * @var string $type Settings Element type.
-         */
-        protected $type = 'section';
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Sanitize data for storage.
-         *
-         * @param mixed $data Data for sanitization.
-         *
-         * @return array|string
-         */
-        public function sanitize_element($data)
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param array $data Data for display.
-         *
-         * @return array
-         */
-        public function escape_element($data): array
-        {
-        }
-    }
-    /**
-     * Subsection Class.
-     */
-    class SubSection extends \WeDevs\Dokan\Abstracts\SettingsElement
-    {
-        /**
-         * Settings Element type.
-         *
-         * @var string $type Settings Element type.
-         */
-        protected $type = 'subsection';
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Sanitize data for storage.
-         *
-         * @param mixed $data Data for sanitization.
-         *
-         * @return mixed
-         */
-        public function sanitize_element($data)
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param array $data Data for display.
-         *
-         * @return array
-         */
-        public function escape_element($data): array
-        {
-        }
-    }
-    /**
-     * Tab Class.
-     */
-    class Tab extends \WeDevs\Dokan\Abstracts\SettingsElement
-    {
-        /**
-         * Settings Element type.
-         *
-         * @var string $type Settings Element type.
-         */
-        protected $type = 'tab';
-        /**
-         * Data validation.
-         *
-         * @param mixed $data Data for validation.
-         *
-         * @return bool
-         */
-        public function data_validation($data): bool
-        {
-        }
-        /**
-         * Sanitize data for storage.
-         *
-         * @param mixed $data Data for sanitization.
-         *
-         * @return mixed
-         */
-        public function sanitize_element($data)
-        {
-        }
-        /**
-         * Escape data for display.
-         *
-         * @param array $data Data for display.
-         *
-         * @return array
-         */
-        public function escape_element($data): array
         {
         }
     }
@@ -6297,13 +5279,25 @@ namespace WeDevs\Dokan\Admin\OnboardingSetup\Steps {
          */
         public function get_id(): string;
         /**
-         * Get settings options to check for.
+         * Get the step title.
          *
-         * @since 4.0.0
+         * @since 5.2.0
          *
-         * @return string[] The settings options.
+         * @return string The step title.
          */
-        public function get_settings_options(): array;
+        public function get_title(): string;
+        /**
+         * Canonical SettingsSchema field ids this step exposes, in display order.
+         *
+         * The step harvests these fields from the shared admin settings schema and
+         * saves their values into the single `dokan_admin_settings` option, so the
+         * wizard and the settings page stay one source of truth.
+         *
+         * @since 5.2.0
+         *
+         * @return string[] The canonical field ids.
+         */
+        public function get_field_ids(): array;
         /**
          * Get the step priority.
          *
@@ -6344,25 +5338,18 @@ namespace WeDevs\Dokan\Admin\OnboardingSetup\Steps {
          * @return array The step styles.
          */
         public function styles(): array;
-        /**
-         * Pass the settings options to frontend.
-         *
-         * @since 4.0.0
-         *
-         * @return array The settings options.
-         */
-        public function settings(): array;
-        /**
-         * Describe the settings options.
-         *
-         * @since 4.0.0
-         *
-         * @return void
-         */
-        public function option_dispatcher($data): void;
     }
     /**
      * The abstract step class.
+     *
+     * A setup step is a curated view over the shared admin settings schema. Instead
+     * of declaring its own field tree, a step lists the canonical {@see SettingsSchema}
+     * field ids it exposes via {@see get_field_ids()}. The step harvests those fields
+     * from {@see SettingsRegistry} and saves their values into the single
+     * `dokan_admin_settings` option through {@see SettingsRepository}, so the wizard
+     * and the settings page remain one source of truth. Legacy options
+     * (`dokan_selling`, `dokan_withdraw`, ...) stay in sync automatically through the
+     * settings legacy read-overlay — the step never writes them directly.
      *
      * @since 4.0.0
      */
@@ -6390,15 +5377,13 @@ namespace WeDevs\Dokan\Admin\OnboardingSetup\Steps {
         /**
          * The storage key.
          *
+         * Retained as the namespace for the per-step completion flag
+         * (`{storage_key}_completed`). Setting values are NOT stored here — they go
+         * to the single `dokan_admin_settings` option keyed by canonical field id.
+         *
          * @var string
          */
         protected $storage_key = 'dokan_admin_onboarding_setup_step';
-        /**
-         * The settings options.
-         *
-         * @var array
-         */
-        protected $settings_options = [];
         /**
          * Get the step ID.
          *
@@ -6476,73 +5461,74 @@ namespace WeDevs\Dokan\Admin\OnboardingSetup\Steps {
          */
         abstract public function styles(): array;
         /**
-         * Describe the settings options.
+         * Canonical SettingsSchema field ids this step exposes, in display order.
+         *
+         * @since 5.2.0
+         *
+         * @return string[]
+         */
+        abstract public function get_field_ids(): array;
+        /**
+         * No-op: steps no longer describe their own field tree.
+         *
+         * Required because {@see Settings} declares `describe_settings()` abstract and
+         * invokes it on `init`. The field tree now comes from {@see populate()}.
          *
          * @since 4.0.0
          *
          * @return void
          */
-        abstract public function describe_settings(): void;
-        /**
-         * Get the settings options for frontend.
-         *
-         * @since 4.0.0
-         *
-         * @return array
-         */
-        abstract public function settings(): array;
-        /**
-         * Dispatch the options to settings options.
-         *
-         * @since 4.0.0
-         *
-         * @param mixed $data The data to dispatch.
-         *
-         * @return void
-         */
-        abstract public function option_dispatcher($data): void;
-        /**
-         * Get the settings options.
-         *
-         * @since 4.0.0
-         *
-         * @return array
-         */
-        public function get_settings_options(): array
+        public function describe_settings(): void
         {
         }
         /**
-         * Get the settings options.
+         * Harvest this step's elements from the canonical admin settings schema.
+         *
+         * Returns a page subtree — `[ page, section, ...fields ]` — consumable by the
+         * plugin-ui Onboarding component. Fields are re-parented under one section and
+         * carry their current values (populated by {@see SettingsRegistry}).
+         *
+         * @since 5.2.0
+         *
+         * @return array
+         */
+        public function populate(): array
+        {
+        }
+        /**
+         * Return only the field elements (used by the REST update response).
+         *
+         * @since 5.2.0
+         *
+         * @return array
+         */
+        public function populate_children_only(): array
+        {
+        }
+        /**
+         * Persist a flat canonical-id payload into `dokan_admin_settings`.
+         *
+         * Only ids this step declares are written (whitelist). The legacy read-overlay
+         * keeps `dokan_selling`/`dokan_withdraw`/... in sync on read — no direct legacy
+         * write is needed.
+         *
+         * @since 4.0.0
+         *
+         * @param mixed $data canonical_field_id => value map.
+         *
+         * @return bool
+         */
+        public function save($data): bool
+        {
+        }
+        /**
+         * Whether the step has been completed.
          *
          * @since 4.0.0
          *
          * @return bool
          */
         public function is_completed(): bool
-        {
-        }
-        /**
-         * Dispatch the options to settings options.
-         *
-         * @since 4.0.0
-         *
-         * @param mixed $data The data to dispatch.
-         *
-         * @return void
-         */
-        public function dispatch($data): void
-        {
-        }
-        /**
-         * Listen for settings save.
-         *
-         * @since 4.0.0
-         *
-         * @param string $option The option to listen for.
-         *
-         * @return void
-         */
-        public function listen_for_settings_save($option)
         {
         }
         /**
@@ -6556,40 +5542,45 @@ namespace WeDevs\Dokan\Admin\OnboardingSetup\Steps {
         {
         }
     }
+    /**
+     * The appearance setup step.
+     *
+     * @since 4.0.0
+     */
     class AppearanceStep extends \WeDevs\Dokan\Admin\OnboardingSetup\Steps\AbstractStep
     {
         /**
          * The step ID.
          *
-         * @var string The step ID.
+         * @var string
          */
         protected $id = 'appearance';
         /**
          * The step priority.
          *
-         * @var int The step priority.
+         * @var int
          */
         protected int $priority = 40;
         /**
-         * The settings options.
+         * The storage key (namespace for the completion flag).
          *
-         * @var array The settings options.
-         */
-        protected $settings_options = ['dokan_appearance'];
-        /**
-         * The storage key.
-         *
-         * @var string The storage key.
+         * @var string
          */
         protected $storage_key = 'dokan_admin_onboarding_setup_step_appearance';
         /**
-         * Get default appearance settings
-         *
-         * @since 4.0.0
-         *
-         * @return array Default appearance settings
+         * @inheritDoc
          */
-        protected function get_default_settings(): array
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         *
+         * The legacy per-field "hide vendor info" toggles (email/phone/address)
+         * collapse into the single `store_page_vendor_info_visibility` multicheck;
+         * the settings legacy bridge maps it back to `dokan_appearance.hide_vendor_info`.
+         */
+        public function get_field_ids(): array
         {
         }
         /**
@@ -6610,66 +5601,48 @@ namespace WeDevs\Dokan\Admin\OnboardingSetup\Steps {
         public function styles(): array
         {
         }
-        /**
-         * @inheritDoc
-         */
-        public function describe_settings(): void
-        {
-        }
-        /**
-         * @inheritDoc
-         */
-        public function settings(): array
-        {
-        }
-        /**
-         * @inheritDoc
-         */
-        public function option_dispatcher($data): void
-        {
-        }
     }
+    /**
+     * The basic setup step.
+     *
+     * @since 4.0.0
+     */
     class BasicStep extends \WeDevs\Dokan\Admin\OnboardingSetup\Steps\AbstractStep
     {
         /**
          * The step ID.
          *
-         * @var string The step ID.
+         * @var string
          */
         protected $id = 'basic';
         /**
          * The step priority.
          *
-         * @var int The step priority.
+         * @var int
          */
         protected int $priority = 10;
         /**
          * The step skippable or not.
-         * The default is true.
          *
-         * @var bool $skippable The step skippable or not.
+         * @var bool
          */
         protected bool $skippable = false;
         /**
-         * The settings options.
+         * The storage key (namespace for the completion flag).
          *
-         * @var array The settings options.
-         */
-        protected $settings_options = ['dokan_selling'];
-        /**
-         * The storage key.
-         *
-         * @var string The storage key.
+         * @var string
          */
         protected $storage_key = 'dokan_admin_onboarding_setup_step_basic';
         /**
-         * Get default basic settings
-         *
-         * @since 4.0.0
-         *
-         * @return array Default basic settings
+         * @inheritDoc
          */
-        protected function get_default_settings(): array
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_field_ids(): array
         {
         }
         /**
@@ -6690,59 +5663,42 @@ namespace WeDevs\Dokan\Admin\OnboardingSetup\Steps {
         public function styles(): array
         {
         }
-        /**
-         * @inheritDoc
-         */
-        public function describe_settings(): void
-        {
-        }
-        /**
-         * @inheritDoc
-         */
-        public function settings(): array
-        {
-        }
-        /**
-         * @inheritDoc
-         */
-        public function option_dispatcher($data): void
-        {
-        }
     }
+    /**
+     * The commission setup step.
+     *
+     * @since 4.0.0
+     */
     class CommissionStep extends \WeDevs\Dokan\Admin\OnboardingSetup\Steps\AbstractStep
     {
         /**
          * The step ID.
          *
-         * @var string The step ID.
+         * @var string
          */
         protected $id = 'commission';
         /**
          * The step priority.
          *
-         * @var int The step priority.
+         * @var int
          */
         protected int $priority = 20;
         /**
-         * The settings options.
+         * The storage key (namespace for the completion flag).
          *
-         * @var array The settings options.
-         */
-        protected $settings_options = ['dokan_selling'];
-        /**
-         * The storage key.
-         *
-         * @var string The storage key.
+         * @var string
          */
         protected $storage_key = 'dokan_admin_onboarding_setup_step_commission';
         /**
-         * Get default commission settings
-         *
-         * @since 4.0.0
-         *
-         * @return array Default commission settings
+         * @inheritDoc
          */
-        protected function get_default_settings(): array
+        public function get_title(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_field_ids(): array
         {
         }
         /**
@@ -6763,59 +5719,46 @@ namespace WeDevs\Dokan\Admin\OnboardingSetup\Steps {
         public function styles(): array
         {
         }
-        /**
-         * @inheritDoc
-         */
-        public function describe_settings(): void
-        {
-        }
-        /**
-         * @inheritDoc
-         */
-        public function settings(): array
-        {
-        }
-        /**
-         * @inheritDoc
-         */
-        public function option_dispatcher($data): void
-        {
-        }
     }
+    /**
+     * The withdraw setup step.
+     *
+     * @since 4.0.0
+     */
     class WithdrawStep extends \WeDevs\Dokan\Admin\OnboardingSetup\Steps\AbstractStep
     {
         /**
          * The step ID.
          *
-         * @var string The step ID.
+         * @var string
          */
         protected $id = 'withdraw';
         /**
          * The step priority.
          *
-         * @var int The step priority.
+         * @var int
          */
         protected int $priority = 30;
         /**
-         * The storage key.
+         * The storage key (namespace for the completion flag).
          *
-         * @var string The storage key.
+         * @var string
          */
         protected $storage_key = 'dokan_admin_onboarding_setup_step_withdraw';
         /**
-         * The settings options.
-         *
-         * @var array The settings options.
+         * @inheritDoc
          */
-        protected $settings_options = ['dokan_withdraw'];
+        public function get_title(): string
+        {
+        }
         /**
-         * Get default withdraw settings
+         * @inheritDoc
          *
-         * @since 4.0.0
-         *
-         * @return array Default withdraw settings
+         * Pro-registered withdraw methods (Razorpay, Custom, ...) are intentionally
+         * not listed — the wizard exposes the core methods. Any id absent from the
+         * active schema is skipped by {@see AbstractStep::populate()}.
          */
-        protected function get_default_settings(): array
+        public function get_field_ids(): array
         {
         }
         /**
@@ -6830,25 +5773,10 @@ namespace WeDevs\Dokan\Admin\OnboardingSetup\Steps {
         public function scripts(): array
         {
         }
+        /**
+         * @inheritDoc
+         */
         public function styles(): array
-        {
-        }
-        /**
-         * @inheritDoc
-         */
-        public function describe_settings(): void
-        {
-        }
-        /**
-         * @inheritDoc
-         */
-        public function settings(): array
-        {
-        }
-        /**
-         * @inheritDoc
-         */
-        public function option_dispatcher($data): void
         {
         }
     }
@@ -7217,6 +6145,20 @@ namespace WeDevs\Dokan\Admin {
         {
         }
         /**
+         * Flush rewrite rules when the vendor store URL slug changes.
+         *
+         * @since 5.2.0
+         *
+         * @param string $option_name  Legacy option name.
+         * @param array  $option_value Legacy option value after the save.
+         * @param array  $old_options  Legacy option value before the save.
+         *
+         * @return void
+         */
+        public function flush_store_url_rewrites($option_name, $option_value, $old_options)
+        {
+        }
+        /**
          * Dokan data clear setting
          *
          * @since 3.2.15
@@ -7253,6 +6195,2391 @@ namespace WeDevs\Dokan\Admin {
         {
         }
     }
+}
+namespace WeDevs\Dokan\Admin\Settings\Migration {
+    /**
+     * Bridge Bootstrap.
+     *
+     * With the new flat `dokan_admin_settings` option as the canonical source
+     * of truth, this bootstrap installs read-time overlay filters on every
+     * mapped legacy `dokan_<section>` wp_option. Any `get_option('dokan_general')`
+     * caller — Pro modules, third-party code, internal helpers — receives a
+     * payload with mapped values projected in from the new flat option.
+     *
+     * The write side is handled at each writer (via
+     * {@see LegacySettingsBridge::persist_legacy_section()}): mapped keys land
+     * in `dokan_admin_settings`. Plain `update_option()` writes to a legacy row
+     * that bypass those writers are adopted by {@see LegacyMirror}. When the legacy mirror is enabled (default —
+     * see {@see LegacySettingsBridge::is_legacy_mirror_enabled()}) the legacy
+     * row also keeps a physical copy of mapped values, maintained by
+     * {@see LegacyMirror}, so plugin versions without this bridge (downgrades)
+     * still read current data. With the mirror disabled the legacy row holds
+     * unmapped keys only and the flat option is the single physical source.
+     *
+     * Reentry latch: the bridge's own internal reads (build_map, hydrate*)
+     * must see raw legacy data, not the overlay; the static guard short-
+     * circuits the filter while bridge work is in flight.
+     *
+     * @since 5.2.0
+     */
+    class BridgeBootstrap implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Reentry latch. True while the overlay filter is itself running or
+         * while the bridge is mid-reentrant work.
+         *
+         * @var bool
+         */
+        private static bool $in_overlay = false;
+        /**
+         * Bridge collaborator. May be null on construct — auto-resolved from
+         * the DI container on first use so the bootstrap can be registered as
+         * a zero-arg service.
+         *
+         * @var LegacySettingsBridge|null
+         */
+        private ?\WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge $bridge;
+        /**
+         * Sections we've already attached the `option_<name>` filter for.
+         *
+         * @var array<string,bool>
+         */
+        private array $registered_sections = [];
+        /**
+         * @param LegacySettingsBridge|null $bridge
+         */
+        public function __construct(?\WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge $bridge = null)
+        {
+        }
+        /**
+         * Run a callback with the overlay filters suppressed.
+         *
+         * Required by writers that must observe and persist the RAW legacy rows:
+         * with the overlay active, `update_option()`'s internal old-value read is
+         * projected too, so a physically-stale row can look up-to-date and the
+         * write silently no-ops. The latch is saved/restored so nested calls are
+         * safe.
+         *
+         * @since 5.2.0
+         *
+         * @param callable $callback Callback to run without the overlay.
+         *
+         * @return mixed The callback's return value.
+         */
+        public static function without_overlay(callable $callback)
+        {
+        }
+        /**
+         * Whether the overlay is currently suppressed.
+         *
+         * True while bridge-internal work runs (overlay projection, mirror
+         * writes). Write listeners use it to ignore the bridge's own writes to
+         * the legacy rows.
+         *
+         * @since 5.2.0
+         *
+         * @return bool
+         */
+        public static function is_overlay_suppressed(): bool
+        {
+        }
+        /**
+         * Lazily resolve the bridge.
+         *
+         * @return LegacySettingsBridge|null
+         */
+        private function resolve_bridge(): ?\WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Register `option_<section>` filters for every legacy section the
+         * bridge knows about. Safe to call more than once: previously-registered
+         * sections are skipped (multiple boots in one request can happen during
+         * tests).
+         *
+         * @return void
+         */
+        public function register_overlay_filters(): void
+        {
+        }
+        /**
+         * Filter callback: project mapped values from the new flat option onto
+         * the raw legacy section read.
+         *
+         * @param mixed  $value  Raw option value (may be `false` if option absent).
+         * @param string $option Option name (provided by WordPress for the
+         *                       `default_option_*` filter shape; deduced from
+         *                       current_filter() otherwise).
+         *
+         * @return mixed
+         */
+        public function apply_overlay($value, $option = '')
+        {
+        }
+        /**
+         * Unique legacy wp_option names that the bridge currently knows about.
+         *
+         * @param LegacySettingsBridge $bridge
+         *
+         * @return array<int,string>
+         */
+        private function known_sections(\WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge $bridge): array
+        {
+        }
+    }
+    /**
+     * Legacy Address value object.
+     *
+     * Describes a single value's location inside a legacy `dokan_<section>`
+     * wp_option. Supports dotted-string addresses ("option.field" or
+     * "option.path.to.field") and struct form (`['option' => ..., 'field' => ...]`).
+     * The first segment is the wp_option name; every segment after that is a
+     * path inside the option array.
+     *
+     * @since 5.2.0
+     */
+    final class LegacyAddress
+    {
+        /**
+         * Legacy wp_option name.
+         *
+         * @var string
+         */
+        private $option;
+        /**
+         * Path inside the option array (one or more segments).
+         *
+         * @var array<int,string>
+         */
+        private $path;
+        /**
+         * @param string            $option
+         * @param array<int,string> $path
+         */
+        private function __construct(string $option, array $path)
+        {
+        }
+        /**
+         * Parse an address from either dotted-string or struct form.
+         *
+         * Returns null for malformed input (blank option/segment, no separator,
+         * etc.). Callers should treat null as a signal to skip the mapping
+         * entry, not as a fatal error.
+         *
+         * @param mixed $input Dotted string ("opt.field" or "opt.a.b") or struct
+         *                     `['option' => string, 'field' => string]`.
+         *
+         * @return self|null
+         */
+        public static function parse($input): ?self
+        {
+        }
+        /**
+         * @return string Legacy wp_option name.
+         */
+        public function option(): string
+        {
+        }
+        /**
+         * @return array<int,string> Path inside the option array.
+         */
+        public function path(): array
+        {
+        }
+        /**
+         * Walk the path and return the value, or null if any segment is missing.
+         *
+         * @param array<string,mixed> $legacy Decoded option value.
+         *
+         * @return mixed
+         */
+        public function read_from(array $legacy)
+        {
+        }
+        /**
+         * Write a value into the path, auto-creating intermediate arrays.
+         *
+         * Mutates the passed array in place.
+         *
+         * @param array<string,mixed> $legacy By-reference legacy option value.
+         * @param mixed               $value
+         *
+         * @return void
+         */
+        public function write_to(array &$legacy, $value): void
+        {
+        }
+    }
+    /**
+     * Legacy Mirror.
+     *
+     * Keeps the legacy per-section `dokan_*` rows a physical, downgrade-safe
+     * copy of the mapped values in `dokan_admin_settings`, and reconciles edits
+     * made while this code was absent (plugin downgraded to a version without
+     * the bridge) back into the flat option on re-upgrade.
+     *
+     * Two responsibilities, both gated on
+     * {@see LegacySettingsBridge::is_legacy_mirror_enabled()}:
+     *
+     * 1. Write-through: every `dokan_admin_settings_changed` fans the changed
+     *    values out to the legacy rows via
+     *    {@see LegacySettingsBridge::write_new_to_legacy()}, so an OLD plugin
+     *    version reading raw `dokan_general` etc. sees current data.
+     * 2. Direct-write adoption: a plain `update_option( 'dokan_<section>' )`
+     *    from CLI, cron or third-party code is adopted into
+     *    `dokan_admin_settings` as soon as it happens. Without this the overlay
+     *    keeps serving the stale flat value, so the write has no effect.
+     * 3. Reconciliation: a baseline snapshot of the mapped legacy values (in
+     *    new-key space) is stored after every mirror write. On `admin_init`
+     *    the raw rows are compared against that baseline; keys that changed
+     *    while the bridge was not watching are adopted into
+     *    `dokan_admin_settings` — last write wins, so settings saved on an old
+     *    plugin version survive the re-upgrade instead of being shadowed by a
+     *    stale flat-option snapshot. Baseline entries for fields that are not
+     *    mapped right now (e.g. a deactivated module) are kept, so an edit made
+     *    while the module was off is still adopted when it comes back.
+     *
+     * All raw row reads/writes run inside
+     * {@see BridgeBootstrap::without_overlay()} — with the overlay active,
+     * `update_option()`'s internal old-value read is projected from the flat
+     * option, a stale row looks current, and the physical write silently
+     * no-ops.
+     *
+     * @since 5.2.0
+     */
+    class LegacyMirror implements \WeDevs\Dokan\Contracts\Hookable
+    {
+        /**
+         * Option holding the baseline snapshot of mapped legacy values, keyed
+         * by new-flat field id, as of the last mirror write.
+         */
+        public const SNAPSHOT_KEY = 'dokan_admin_settings_legacy_snapshot';
+        /**
+         * Bridge collaborator. May be null on construct — auto-resolved from
+         * the DI container on first use so the mirror can be registered as a
+         * zero-arg service.
+         *
+         * @var LegacySettingsBridge|null
+         */
+        private ?\WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge $bridge;
+        /**
+         * Flat-option repository. Lazily resolved like the bridge.
+         *
+         * @var SettingsRepositoryInterface|null
+         */
+        private ?\WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface $settings_repo;
+        /**
+         * Legacy-section repository. Lazily resolved like the bridge.
+         *
+         * @var LegacySettingsRepositoryInterface|null
+         */
+        private ?\WeDevs\Dokan\Admin\Settings\Repository\LegacySettingsRepositoryInterface $legacy_repo;
+        /**
+         * In-flight direct writes, keyed by legacy option name: `old` (overlay-projected) and `value`.
+         *
+         * @var array<string,array{old:array,value:array}>
+         */
+        private array $pending_writes = [];
+        /**
+         * @param LegacySettingsBridge|null              $bridge        Optional bridge for testing.
+         * @param SettingsRepositoryInterface|null       $settings_repo Optional repo for testing.
+         * @param LegacySettingsRepositoryInterface|null $legacy_repo   Optional legacy repo for testing.
+         */
+        public function __construct(?\WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge $bridge = null, ?\WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface $settings_repo = null, ?\WeDevs\Dokan\Admin\Settings\Repository\LegacySettingsRepositoryInterface $legacy_repo = null)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function register_hooks(): void
+        {
+        }
+        /**
+         * Attach the direct-write listeners for every mapped legacy row.
+         *
+         * `pre_update_option_{section}` records the write; adoption runs on the `update_option`
+         * / `add_option` actions. Both fire after WordPress picks update vs insert and
+         * before the row is written, so the pick is unaffected (adopting earlier made
+         * update_option() return false on a missing row), a zero-row update is still
+         * adopted, and `update_option_{section}` listeners already see the new value.
+         * A plain `add_option()` is not adopted: it has no previous value to diff, and
+         * an installer's default payload would otherwise overwrite the flat option.
+         *
+         * @since 5.2.0
+         *
+         * @return void
+         */
+        public function register_write_listeners(): void
+        {
+        }
+        /**
+         * Record a direct write to a legacy row: its overlay-projected old value and new value.
+         *
+         * @since 5.2.0
+         *
+         * @param mixed  $value     Value being written.
+         * @param mixed  $old_value Previous (overlay-projected) value.
+         * @param string $option    Legacy option name.
+         *
+         * @return mixed Unchanged value.
+         */
+        public function capture_direct_write($value, $old_value, $option)
+        {
+        }
+        /**
+         * Adopt a direct write just before WordPress updates the existing row.
+         *
+         * @since 5.2.0
+         *
+         * @param string $option    Option name.
+         * @param mixed  $old_value Previous value.
+         * @param mixed  $value     Value being written.
+         *
+         * @return void
+         */
+        public function adopt_before_update($option, $old_value, $value): void
+        {
+        }
+        /**
+         * Adopt a direct write just before WordPress inserts the missing row.
+         *
+         * @since 5.2.0
+         *
+         * @param string $option Option name.
+         * @param mixed  $value  Value being written.
+         *
+         * @return void
+         */
+        public function adopt_before_add($option, $value): void
+        {
+        }
+        /**
+         * Adopt the changed fields of a recorded direct write into `dokan_admin_settings`.
+         *
+         * Only fields whose value differs from the recorded old value are adopted,
+         * so untouched (possibly stale) fields never overwrite the flat option.
+         *
+         * @since 5.2.0
+         *
+         * @param string $option Legacy option name.
+         * @param mixed  $value  Value being written to the row.
+         *
+         * @return void
+         */
+        private function adopt_direct_write(string $option, $value): void
+        {
+        }
+        /**
+         * Write-through: mirror a changed flat-option slice into the legacy rows.
+         *
+         * Listens on `dokan_admin_settings_changed`, so every internal save path
+         * (REST controller, legacy section saves, reconciliation) keeps the rows
+         * current. `null` entries (key removals reported by `replace()`) are
+         * skipped — the stale legacy leaf is harmless because reads stay
+         * overlay-projected.
+         *
+         * @since 5.2.0
+         *
+         * @param array<string,mixed> $changed Added/modified flat-option entries.
+         *
+         * @return void
+         */
+        public function mirror_changes(array $changed): void
+        {
+        }
+        /**
+         * Reconcile edits made while the bridge was absent (downgrade window).
+         *
+         * Compares the raw legacy rows against the stored baseline snapshot.
+         * A key whose raw legacy value changed since the baseline was written
+         * by something without the bridge — an older plugin version — so its
+         * value is adopted into `dokan_admin_settings` (last write wins).
+         *
+         * First run (no baseline yet): materializes the full mirror into the
+         * legacy rows, healing rows stripped under the old strict model, then
+         * stamps the baseline.
+         *
+         * Keys absent from the baseline are never adopted: they are either
+         * newly-mapped schema fields (where the flat option may hold the newer
+         * value) or rows the lazy read-time hydration already serves live.
+         *
+         * @since 5.2.0
+         *
+         * @return void
+         */
+        public function maybe_reconcile(): void
+        {
+        }
+        /**
+         * Store the baseline snapshot of the mapped legacy values.
+         *
+         * Entries of the previous baseline whose field is not mapped right now
+         * are carried over. A deactivated module drops its fields from the
+         * schema; without this, the next save would erase their baseline, and an
+         * edit made to its legacy row while it was off would never be adopted on
+         * reactivation. Entries for fields removed for good stay behind as inert
+         * data — reconciliation only walks currently-mapped fields.
+         *
+         * @since 5.2.0
+         *
+         * @param array<string,mixed>|null $snapshot Precomputed snapshot, or null to recompute.
+         *
+         * @return void
+         */
+        public function stamp(?array $snapshot = null): void
+        {
+        }
+        /**
+         * Project the RAW legacy rows into new-key space.
+         *
+         * Reads every mapped section with the overlay suppressed and transforms
+         * the mapped values through the bridge, producing a deterministic
+         * `field_id => value` map suitable for baseline comparison and adoption.
+         *
+         * @since 5.2.0
+         *
+         * @return array<string,mixed>
+         */
+        public function snapshot_legacy_as_new(): array
+        {
+        }
+        /**
+         * Fire `dokan_before_saving_settings` for every legacy section a new-settings save maps to.
+         *
+         * @since 5.2.0
+         *
+         * @param array<string,mixed> $new_slice New-option keys and values about to be saved.
+         *
+         * @return array<string,array>|WP_Error Legacy rows before the save keyed by option name,
+         *                                      or a validation error when a listener stopped the save.
+         */
+        public function before_save(array $new_slice)
+        {
+        }
+        /**
+         * Fire `dokan_after_saving_settings` per legacy section once a new-settings save is stored.
+         *
+         * @since 5.2.0
+         *
+         * @param array<string,array> $before Result of {@see before_save()}.
+         *
+         * @return void
+         */
+        public function after_save(array $before): void
+        {
+        }
+        /**
+         * Lazily resolve the legacy-section repository.
+         *
+         * @return LegacySettingsRepositoryInterface
+         */
+        private function resolve_legacy_repo(): \WeDevs\Dokan\Admin\Settings\Repository\LegacySettingsRepositoryInterface
+        {
+        }
+        /**
+         * Lazily resolve the bridge.
+         *
+         * @return LegacySettingsBridge|null
+         */
+        private function resolve_bridge(): ?\WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge
+        {
+        }
+        /**
+         * Lazily resolve the flat-option repository.
+         *
+         * @return SettingsRepositoryInterface|null
+         */
+        private function resolve_settings_repo(): ?\WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface
+        {
+        }
+    }
+    /**
+     * Legacy Settings Bridge.
+     *
+     * Bidirectional mapping between the new flat `dokan_settings` wp_option and
+     * the legacy per-page `dokan_*` wp_options. Supports the legacy-view toggle
+     * without coupling the new REST write path to legacy storage.
+     *
+     * See docs/superpowers/specs/2026-05-15-legacy-settings-bridge-design.md.
+     *
+     * @since 5.2.0
+     */
+    class LegacySettingsBridge
+    {
+        /**
+         * Cached normalized mapping, lazily built per-request.
+         *
+         * Each entry is either:
+         *   - A single {@see LegacyAddress} for 1:1 mappings, or
+         *   - `array<string $slot, LegacyAddress>` for 1:N mappings, where each
+         *     slot name is a logical handle the transformer uses to assemble the
+         *     unified new value from / split it into N legacy addresses.
+         *
+         * @var array<string, LegacyAddress|array<string, LegacyAddress>>|null
+         */
+        private ?array $map = null;
+        /**
+         * Cached defaults index, built alongside the mapping.
+         *
+         * @var array<string,mixed>|null
+         */
+        private ?array $defaults = null;
+        /**
+         * Cached reverse index keyed by legacy option name.
+         *
+         * For each option, the inner array maps new_key → entry, where the entry
+         * is either a single {@see LegacyAddress} (1:1 mapping) or
+         * `array<string $slot, LegacyAddress>` containing only the slots whose
+         * addresses live under that option (1:N mappings can span options).
+         *
+         * @var array<string, array<string, LegacyAddress|array<string, LegacyAddress>>>|null
+         */
+        private ?array $by_option = null;
+        /**
+         * Cached transformer specs keyed by new-flat id. Each value is either a
+         * FQCN string (class implementing TransformerInterface) or an array shape
+         * `['to_new' => callable, 'to_legacy' => callable]` for callable adapters.
+         *
+         * @var array<string,string|array{to_new:mixed,to_legacy:mixed}>|null
+         */
+        private ?array $transformers = null;
+        /**
+         * New-flat ids whose schema entry sets `legacy_merge => true`. For these
+         * the transformed value is merged over the stored legacy array instead of
+         * replacing it. See {@see write_address()}.
+         *
+         * @var array<string,bool>|null
+         */
+        private ?array $merge_keys = null;
+        /**
+         * Cached resolved transformer instances keyed by FQCN (for class specs)
+         * or by `callable:<new_key>` (for callable-pair specs).
+         *
+         * @var array<string,TransformerInterface>
+         */
+        private array $transformer_cache = [];
+        /**
+         * Re-entry latch for {@see build_map()}. True while a build is in flight.
+         *
+         * `harvest_from_schema()` applies the `dokan_get_admin_settings_schema`
+         * filter; some Pro module schema callbacks call `dokan_get_option()` which
+         * funnels back through the bridge. Without this guard the nested call would
+         * recurse indefinitely. While building, nested callers receive the
+         * partially-built map (or an empty array on the first call) — a tolerable
+         * approximation, since the only callers in that path are computing their
+         * own default values during schema construction.
+         *
+         * @var bool
+         */
+        private bool $building_map = false;
+        /**
+         * Number of callbacks attached to `dokan_get_admin_settings_schema` when
+         * the cached map was last built. Used to invalidate the memo when more
+         * schema providers register later in the request — Pro modules register
+         * during `init` at varying priorities, so a bridge caller firing at init
+         * priority 5 would otherwise freeze a half-built map before priority 10
+         * registrations land.
+         *
+         * @var int|null
+         */
+        private ?int $cached_filter_count = null;
+        /**
+         * Settings repository — used to read the current new payload when
+         * projecting it back into a legacy-shaped array.
+         *
+         * @var SettingsRepositoryInterface
+         */
+        private \WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface $settings_repo;
+        /**
+         * @param SettingsRepositoryInterface|null $settings_repo Optional repo for testing.
+         */
+        public function __construct(?\WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface $settings_repo = null)
+        {
+        }
+        /**
+         * Whether legacy rows are kept as a full, downgrade-safe mirror.
+         *
+         * Enabled (default): mapped values are written through to the legacy
+         * `dokan_*` rows on every save ({@see LegacyMirror}), legacy payloads are
+         * NOT stripped of mapped keys, and edits made by an older plugin version
+         * (which knows nothing about `dokan_admin_settings`) are reconciled back
+         * into the flat option on re-upgrade. Disabled: the pre-mirror strict
+         * model — mapped keys live only in `dokan_admin_settings` and legacy rows
+         * hold the unmapped remainder.
+         *
+         * Single-line switch: `add_filter( 'dokan_admin_settings_legacy_mirror', '__return_false' );`
+         *
+         * @since 5.2.0
+         *
+         * @return bool
+         */
+        public static function is_legacy_mirror_enabled(): bool
+        {
+        }
+        /**
+         * Unique legacy wp_option names the current mapping refers to, including
+         * options reached only through multi-slot (1:N) mappings.
+         *
+         * @since 5.2.0
+         *
+         * @return array<int,string>
+         */
+        public function known_sections(): array
+        {
+        }
+        /**
+         * Flush the in-request caches held by this bridge and its collaborators.
+         *
+         * Drops the mapping memo, the defaults/transformers indices, and asks the
+         * underlying `SettingsRepositoryInterface` to drop its snapshot. Useful in
+         * tests where the DB is rolled back between cases without firing the
+         * option hooks (a `delete_option` on an already-empty row is a no-op).
+         *
+         * @since 5.2.0
+         *
+         * @return void
+         */
+        public function flush_cache(): void
+        {
+        }
+        /**
+         * Return the normalized mapping of new flat ids to legacy addresses.
+         *
+         * Single-mapped entries surface as `['option' => ..., 'field' => ...]`.
+         * Multi-mapped entries surface as `[$slot => ['option' => ..., 'field' => ...], ...]`.
+         *
+         * @return array<string, array{option:string,field:string}|array<string,array{option:string,field:string}>>
+         */
+        public function get_mapping(): array
+        {
+        }
+        /**
+         * Transform a sanitized legacy AJAX payload into the new-flat slice.
+         *
+         * Used by the legacy save handler to mirror writes into `dokan_settings`.
+         * Caller is responsible for the merge + `update_option` — the bridge does
+         * not write.
+         *
+         * @param string               $option_name    Legacy wp_option name (e.g., `dokan_appearance`).
+         * @param array<string,mixed>  $legacy_payload Sanitized submission for that option.
+         *
+         * @return array<string,mixed> New-flat slice ready to merge into `dokan_settings`.
+         */
+        public function transform_legacy_payload_to_new(string $option_name, array $legacy_payload): array
+        {
+        }
+        /**
+         * Fill missing keys in the new option from mapped legacy options.
+         *
+         * Never overwrites existing new-option values — new is source of truth.
+         * For mapped keys missing on both sides, falls back to the schema default.
+         * Legacy reads are batched per option name.
+         *
+         * @param array<string,mixed> $new_option Current `dokan_settings` array.
+         *
+         * @return array<string,mixed> Hydrated new option.
+         */
+        public function hydrate_new_from_legacy(array $new_option): array
+        {
+        }
+        /**
+         * Project the current new option into a legacy-shaped array.
+         *
+         * Asymmetric to `hydrate_new_from_legacy`: this DOES overwrite legacy
+         * values when the new option has them, because the new option is source
+         * of truth. Used by the legacy read path so toggling to legacy reflects
+         * saves made via the new UI.
+         *
+         * @param string              $option_name   Legacy wp_option name.
+         * @param array<string,mixed> $legacy_option Current legacy option array.
+         *
+         * @return array<string,mixed> Legacy-shaped array with new values projected in.
+         */
+        public function hydrate_legacy_from_new(string $option_name, array $legacy_option): array
+        {
+        }
+        /**
+         * Remove mapped key paths from a legacy-shaped payload.
+         *
+         * Used by writers that persist a legacy section option but want the
+         * mapped keys to live exclusively in the new flat option. For 1:1
+         * addresses, walks the path and unsets the leaf; for 1:N multi mappings
+         * unsets every slot whose address lives under this section. Empty
+         * parent arrays produced by leaf removal are pruned so the section row
+         * doesn't accumulate dead structure.
+         *
+         * @since 5.2.0
+         *
+         * @param string              $option_name Legacy wp_option name.
+         * @param array<string,mixed> $payload     Legacy-shaped payload.
+         *
+         * @return array<string,mixed> Payload with mapped paths removed.
+         */
+        public function strip_mapped_keys(string $option_name, array $payload): array
+        {
+        }
+        /**
+         * Persist a legacy section payload through the bridge:
+         *   1. Mirror mapped keys into the new flat option.
+         *   2. When the legacy mirror is disabled, strip those mapped keys
+         *      from the payload; when enabled (default), keep them so the
+         *      legacy row stays a downgrade-safe physical copy.
+         *
+         * Returns the payload to write; the caller is responsible for the
+         * `update_option( $option_name, ... )` write. The split keeps callers
+         * in control of side effects (do_action hooks, cache flushes, etc.)
+         * while centralizing the mirror logic.
+         *
+         * If the new-option write throws, we log and continue — the legacy row
+         * write still proceeds so the save is not lost entirely.
+         *
+         * @since 5.2.0
+         *
+         * @param string              $option_name Legacy wp_option name.
+         * @param array<string,mixed> $payload     Legacy-shaped payload.
+         *
+         * @return array<string,mixed> Payload safe to `update_option`.
+         */
+        public function persist_legacy_section(string $option_name, array $payload): array
+        {
+        }
+        /**
+         * Unset a value at the given path; prune empty arrays back up the chain.
+         *
+         * Recursive because PHP's stacked-reference pattern (`$stack[] = &$cursor;
+         * $cursor = &$cursor[$seg];`) silently rebinds the stored references when
+         * `$cursor` is reassigned.
+         *
+         * @param array<string,mixed> $target By-reference legacy payload.
+         * @param array<int,string>   $path
+         * @param int                 $i      Current path index.
+         *
+         * @return void
+         */
+        private function unset_path(array &$target, array $path, int $i = 0): void
+        {
+        }
+        /**
+         * Mirror a new-option slice back into the relevant legacy wp_options.
+         *
+         * Used when the new UI writes `dokan_settings`. The bridge groups changes
+         * by legacy option name, reads each legacy option, writes the mapped
+         * sub-paths in-place, and persists with `update_option`. Returns the list
+         * of legacy option names that were written.
+         *
+         * @param array<string,mixed> $new_slice Subset of `dokan_settings` keys to mirror.
+         *
+         * @return array<int,string> Legacy option names that were updated.
+         */
+        public function write_new_to_legacy(array $new_slice): array
+        {
+        }
+        /**
+         * Apply a new-option slice onto legacy rows without persisting them.
+         *
+         * @since 5.2.0
+         *
+         * @param array<string,mixed> $new_slice New-option keys and values.
+         * @param array<string,array> $legacy    Legacy rows keyed by option name.
+         *
+         * @return array<string,array> The legacy rows with the slice applied.
+         */
+        public function apply_new_to_legacy(array $new_slice, array $legacy): array
+        {
+        }
+        /**
+         * Legacy option names a new-option slice maps to.
+         *
+         * @since 5.2.0
+         *
+         * @param array<string,mixed> $new_slice New-option keys and values.
+         *
+         * @return array<int,string>
+         */
+        public function legacy_options_for(array $new_slice): array
+        {
+        }
+        /**
+         * Transform a new-option slice into legacy writes grouped by option name.
+         *
+         * @param array<string,mixed> $new_slice New-option keys and values.
+         *
+         * @return array<string,array<int,array{0:LegacyAddress,1:mixed,2:string}>>
+         */
+        private function group_legacy_writes(array $new_slice): array
+        {
+        }
+        /**
+         * Write a transformed value into a 1:1 legacy address.
+         *
+         * For a field whose schema entry sets `legacy_merge => true` the value is
+         * merged over the existing array leaf, so keys the field does not own
+         * (e.g. Germanized hide flags in `hide_vendor_info`) are kept. Every other
+         * field replaces the leaf.
+         *
+         * @since 5.2.0
+         *
+         * @param string              $new_key      New-flat field id.
+         * @param LegacyAddress       $address      Target legacy address.
+         * @param array<string,mixed> $legacy       By-reference legacy option value.
+         * @param mixed               $legacy_value Transformed value to write.
+         *
+         * @return void
+         */
+        private function write_address(string $new_key, \WeDevs\Dokan\Admin\Settings\Migration\LegacyAddress $address, array &$legacy, $legacy_value): void
+        {
+        }
+        /**
+         * Schema default for a mapped new key, or `null` if unknown.
+         *
+         * @param string $new_key
+         *
+         * @return mixed
+         */
+        private function get_schema_default(string $new_key)
+        {
+        }
+        /**
+         * Check whether every path segment exists in the legacy array.
+         *
+         * @param array<string,mixed> $legacy
+         * @param array<int,string>   $path
+         *
+         * @return bool
+         */
+        private function path_exists(array $legacy, array $path): bool
+        {
+        }
+        /**
+         * Resolve the transformer for a new-flat id (pass-through by default).
+         *
+         * Resolution order: DI container (so tests/addons can swap fakes), then
+         * plain `new` instantiation. On any failure the pass-through transformer
+         * is returned so the bridge stays best-effort.
+         *
+         * @param string $new_key
+         *
+         * @return TransformerInterface
+         */
+        private function resolve_transformer(string $new_key): \WeDevs\Dokan\Admin\Settings\Migration\Transformer\TransformerInterface
+        {
+        }
+        /**
+         * Shared pass-through transformer instance.
+         *
+         * @return TransformerInterface
+         */
+        private function get_pass_through(): \WeDevs\Dokan\Admin\Settings\Migration\Transformer\TransformerInterface
+        {
+        }
+        /**
+         * Build (and cache) the mapping, defaults index, and reverse-by-option index.
+         *
+         * The map is memoized but keyed on the combined callback count of
+         * `dokan_get_admin_settings_schema` and `dokan_intelligence_providers`
+         * (the latter drives the dynamic AI api_key/model fields). Contributors
+         * register at varying priorities during boot; if a bridge caller fires
+         * before all are registered, the count grows on the next call and the
+         * memo invalidates automatically.
+         *
+         * Recursion safety: see `$building_map`.
+         *
+         * @return array<string,LegacyAddress>
+         */
+        private function build_map(): array
+        {
+        }
+        /**
+         * Walk the post-filter schema, collecting legacy_key attrs and defaults.
+         *
+         * Accepts elements that are either `type: field` OR `bridge_only: true`.
+         * Bridge-only fields participate in mapping but are not emitted by the
+         * new UI; they still round-trip through the bridge.
+         *
+         * @return array{0: array<string,string|array{option:string,field:string}>, 1: array<string,mixed>, 2: array<string,string|array{to_new:mixed,to_legacy:mixed}>, 3: array<string,bool>}
+         */
+        private function harvest_from_schema(): array
+        {
+        }
+        /**
+         * Normalize raw addresses into value objects, dropping malformed entries.
+         *
+         * Two `legacy_key` shapes are accepted:
+         *   - Single: dotted string ("option.field") or struct
+         *     `['option' => ..., 'field' => ...]`.
+         *   - Multi:  associative array of slot name => single-form address. The
+         *     transformer's `to_new` receives `array<slot, mixed>`; `to_legacy`
+         *     must return the same shape.
+         *
+         * @param array<string, mixed> $map
+         *
+         * @return array{0: array<string, LegacyAddress|array<string, LegacyAddress>>, 1: array<string, array<string, LegacyAddress|array<string, LegacyAddress>>>}
+         */
+        private function normalize(array $map): array
+        {
+        }
+        /**
+         * Read a wp_option and coerce non-array values to an empty array so callers
+         * can safely path-walk the result.
+         *
+         * @param string $option_name
+         *
+         * @return array<string, mixed>
+         */
+        private function read_option(string $option_name): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin\Settings\Migration\Transformer {
+    /**
+     * Reshape contract for a single settings field as it crosses the
+     * legacy ⇄ new boundary.
+     *
+     * Implementations are resolved per-field via the schema's
+     * `legacy_transformer` attribute (FQCN string). When absent the bridge uses
+     * the {@see PassThroughTransformer}.
+     *
+     * @since 5.2.0
+     */
+    interface TransformerInterface
+    {
+        /**
+         * Convert a legacy-shape value into the new-flat shape.
+         *
+         * @param mixed $legacy_value
+         *
+         * @return mixed
+         */
+        public function to_new($legacy_value);
+        /**
+         * Convert a new-flat value into the legacy shape.
+         *
+         * @param mixed $new_value
+         *
+         * @return mixed
+         */
+        public function to_legacy($new_value);
+    }
+    /**
+     * Callable-backed transformer adapter.
+     *
+     * Lets schema authors declare `legacy_transformer` as a pair of callables
+     * instead of shipping a dedicated class:
+     *
+     *     'legacy_transformer' => [
+     *         'to_new'    => 'absint',
+     *         'to_legacy' => [ MyHelper::class, 'to_string' ],
+     *     ],
+     *
+     * Accepts string callables, `[Class, method]` array callables, closures, and
+     * invokable objects. Closures and invokable objects are convenient for inline
+     * transforms but cannot be serialized — if the schema is ever cached to a
+     * transient or other persistent store, use a string callable, a
+     * `[Class, method]` pair, or a dedicated transformer class instead.
+     *
+     * @since 5.2.0
+     */
+    final class CallableTransformer implements \WeDevs\Dokan\Admin\Settings\Migration\Transformer\TransformerInterface
+    {
+        /**
+         * @var callable
+         */
+        private $to_new;
+        /**
+         * @var callable
+         */
+        private $to_legacy;
+        /**
+         * @param mixed $to_new    String callable or `[Class, method]` array.
+         * @param mixed $to_legacy String callable or `[Class, method]` array.
+         *
+         * @throws InvalidArgumentException When either argument is not a safe callable.
+         */
+        public function __construct($to_new, $to_legacy)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function to_new($legacy_value)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function to_legacy($new_value)
+        {
+        }
+        /**
+         * Validate that a callable is filter-safe (string or `[Class, method]`).
+         *
+         * @param mixed  $candidate
+         * @param string $label
+         *
+         * @return callable
+         *
+         * @throws InvalidArgumentException
+         */
+        private static function ensure_safe_callable($candidate, string $label): callable
+        {
+        }
+    }
+    /**
+     * Bridges a `double_input` field whose two inputs each map to an independent
+     * scalar legacy key.
+     *
+     * Shapes:
+     *   legacy: two separate keys (e.g. `store_banner_width`, `store_banner_height`)
+     *   new:    [ 'first' => <int>, 'second' => <int> ]   // the double_input value shape
+     *
+     * The field's multi-mapped `legacy_key` addresses the two legacy keys under the
+     * same slot names the value uses (`first` / `second`), so the reshape is a
+     * straight pass-through with integer coercion and a default fallback for any
+     * slot the legacy row is missing (e.g. when the Pro-injected width/height keys
+     * were never saved). Both directions share the same shape, so the conversion is
+     * symmetric.
+     *
+     *     'legacy_key' => [
+     *         'first'  => 'dokan_appearance.store_banner_width',
+     *         'second' => 'dokan_appearance.store_banner_height',
+     *     ],
+     *     'legacy_transformer' => DoubleInputTransformer::class,
+     *
+     * @since 5.2.0
+     */
+    final class DoubleInputTransformer implements \WeDevs\Dokan\Admin\Settings\Migration\Transformer\TransformerInterface
+    {
+        /**
+         * Default store banner width when the legacy `first` slot is missing.
+         */
+        const FIRST_DEFAULT = 625;
+        /**
+         * Default store banner height when the legacy `second` slot is missing.
+         */
+        const SECOND_DEFAULT = 300;
+        /**
+         * {@inheritDoc}
+         *
+         * @param array<string,mixed>|null $legacy_value
+         *
+         * @return array{first:int,second:int}
+         */
+        public function to_new($legacy_value)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         *
+         * @param array<string,mixed>|null $new_value
+         *
+         * @return array{first:int,second:int}
+         */
+        public function to_legacy($new_value)
+        {
+        }
+        /**
+         * Coerce both slots to integers, falling back to the slot default.
+         *
+         * Legacy and new share the same `first`/`second` slot shape, so the
+         * conversion is symmetric and both directions reuse this method.
+         *
+         * @param mixed $value
+         *
+         * @return array{first:int,second:int}
+         */
+        private function reshape($value): array
+        {
+        }
+    }
+    /**
+     * Maps the legacy `hide_vendor_info` multicheck shape to/from the new
+     * `vendor_info_visibility` field.
+     *
+     * Two things flip between the shapes:
+     *
+     * 1. Semantics. Legacy stores "what to hide" — a non-empty value at `email`
+     *    means hide the email. New stores "what to show" — `store_email: true`
+     *    means show it. Empty legacy / missing key = show.
+     * 2. Keys. Legacy: `email` / `phone` / `address`. New: `store_email` /
+     *    `store_phone` / `store_address`.
+     *
+     * Legacy WordPress multicheck values are the option key as a string when
+     * checked, empty string when unchecked. We normalize anything truthy on the
+     * legacy side to "hidden" so partial / pre-filtered payloads still round-trip.
+     *
+     * `to_legacy()` returns only the three keys above. The legacy leaf can also
+     * hold Germanized flags (`dokan_vat_number`, `dokan_bank_iban`, ...), which
+     * this transformer does not own. The schema field sets `legacy_merge => true`,
+     * so the bridge merges this output over the stored leaf and keeps those flags.
+     *
+     * @since 5.2.0
+     */
+    final class HideVendorInfoTransformer implements \WeDevs\Dokan\Admin\Settings\Migration\Transformer\TransformerInterface
+    {
+        /**
+         * Mapping of new schema keys → legacy multicheck keys.
+         *
+         * @var array<string, string>
+         */
+        private const KEY_MAP = ['store_email' => 'email', 'store_phone' => 'phone', 'store_address' => 'address'];
+        /**
+         * {@inheritDoc}
+         */
+        public function to_new($legacy_value)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function to_legacy($new_value)
+        {
+        }
+    }
+    /**
+     * Inverts `on`/`off` between legacy and new shapes.
+     *
+     * Used for legacy fields whose semantics are negated in the new schema —
+     * e.g. legacy `disable_welcome_wizard` ↔ new `welcome_wizard`, where a
+     * legacy value of `off` ("not disabled") corresponds to a new value of
+     * `on` ("enabled"). Any value other than `on`/`off` is passed through
+     * unchanged so unexpected stored values are not silently mutated.
+     *
+     * @since 5.2.0
+     */
+    final class InvertOnOffTransformer implements \WeDevs\Dokan\Admin\Settings\Migration\Transformer\TransformerInterface
+    {
+        /**
+         * {@inheritDoc}
+         */
+        public function to_new($legacy_value)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function to_legacy($new_value)
+        {
+        }
+        /**
+         * @param mixed $value
+         *
+         * @return mixed
+         */
+        private function flip($value)
+        {
+        }
+    }
+    /**
+     * Builds a callable transformer pair for a `multicheck` variant whose option
+     * slots each bridge to an independent legacy `'on'`/`'off'` switch.
+     *
+     *   Legacy: per-slot key holds 'on' (checked) or 'off' (unchecked)
+     *   New:    [ 'slot_a', 'slot_c', ... ]   // string[] of enabled slot keys
+     *
+     * Use this when each `multicheck` option owns its own legacy boolean address
+     * (e.g. `dokan_appearance.store_map`) rather than living under a shared
+     * multicheck parent. Companion to {@see MulticheckArrayTransformer}, which
+     * serves the WordPress multicheck parent-array convention (key-as-value).
+     *
+     * Schema authors pass the slot list so `to_legacy` can clear unselected
+     * slots — exactly the same factory signature as the sibling transformer:
+     *
+     *     'legacy_transformer' => MulticheckArrayBooleanTransformer::for_slots( [ 'store_map' ] ),
+     *
+     * Closures are filter-safe in the current pipeline (no schema persistence);
+     * swap to a dedicated class if the schema ever gets cached to a transient.
+     *
+     * @since 5.2.0
+     */
+    final class MulticheckArrayBooleanTransformer
+    {
+        /**
+         * Build the callable pair for the given slot universe.
+         *
+         * @param array<int,string> $slot_keys Every slot the bridge knows about.
+         *                                     `to_legacy` walks this list to
+         *                                     emit `'on'` for enabled slots and
+         *                                     `'off'` for the rest.
+         *
+         * @return array{to_new: Closure, to_legacy: Closure}
+         */
+        public static function for_slots(array $slot_keys): array
+        {
+        }
+    }
+    /**
+     * Builds a callable transformer pair for a `multicheck` variant that bridges to
+     * a WordPress multicheck legacy option.
+     *
+     *   Legacy: [ 'wc-completed' => 'wc-completed', 'wc-processing' => '', ... ]
+     *   New:    [ 'wc-completed', ... ]   // string[] of enabled keys (multicheck shape)
+     *
+     * Plugin-ui's `multicheck` field stores enabled keys as an array, not as a
+     * `Record<key, bool>`. So `to_legacy` cannot infer the disabled set from the
+     * new value alone — it needs the full slot universe up front so it can emit
+     * empty strings for unselected slots and clear them on the legacy side.
+     *
+     * Schema authors pass the slot list from the same source that drives the
+     * field's `options` and `legacy_key`:
+     *
+     *     'legacy_transformer' => MulticheckArrayTransformer::for_slots( array_keys( $statuses ) ),
+     *
+     * The returned pair is a `[ 'to_new' => Closure, 'to_legacy' => Closure ]` array
+     * that the bridge wraps in a {@see CallableTransformer}. Closures are
+     * filter-safe in the current pipeline (no schema persistence); if the schema
+     * ever gets cached to a transient, swap to a dedicated class.
+     *
+     * Companion to {@see MulticheckSlotTransformer}, which serves the
+     * `Record<key, bool>` shape used by `info_preview` / `multi_switch`-style fields.
+     *
+     * @since 5.2.0
+     */
+    final class MulticheckArrayTransformer
+    {
+        /**
+         * Build the callable pair for the given slot universe.
+         *
+         * @param array<int,string> $slot_keys Every legacy slot the field is
+         *                                     bridged to. Order doesn't matter;
+         *                                     used only as a complete set so
+         *                                     `to_legacy` can clear unselected
+         *                                     slots.
+         *
+         * @return array{to_new: Closure, to_legacy: Closure}
+         */
+        public static function for_slots(array $slot_keys): array
+        {
+        }
+    }
+    /**
+     * Identity transformer.
+     *
+     * Used by {@see \WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge}
+     * when a field has no `legacy_transformer` attribute. Values move between
+     * legacy and new shapes unchanged.
+     *
+     * @since 5.2.0
+     */
+    final class PassThroughTransformer implements \WeDevs\Dokan\Admin\Settings\Migration\Transformer\TransformerInterface
+    {
+        /**
+         * {@inheritDoc}
+         */
+        public function to_new($legacy_value)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function to_legacy($new_value)
+        {
+        }
+    }
+    /**
+     * Bridges the new `single_product_page_appearance` info_preview field to three
+     * legacy switches.
+     *
+     * Slot layout (driven by the schema's multi `legacy_key`):
+     *
+     *   slot              | legacy address                              | legacy value | semantic
+     *   ------------------|---------------------------------------------|--------------|---------
+     *   vendor_info       | dokan_general.show_vendor_info              | "on" / ""    | direct
+     *   more_products_tab | dokan_general.enabled_more_products_tab     | "on" / ""    | direct
+     *   shipping_tab      | dokan_selling.disable_shipping_tab          | "on" / ""    | inverted
+     *
+     * `shipping_tab` is **inverted**: legacy `disable_shipping_tab = "on"` means
+     * the tab is hidden, so the new schema value (which means "show") is the
+     * negation. The first two slots are direct ("on" ⇔ true).
+     *
+     * @since 5.2.0
+     */
+    final class SingleProductAppearanceTransformer implements \WeDevs\Dokan\Admin\Settings\Migration\Transformer\TransformerInterface
+    {
+        /**
+         * {@inheritDoc}
+         *
+         * @param array<string,mixed>|null $legacy_value
+         */
+        public function to_new($legacy_value)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         *
+         * @return array<string,string>
+         */
+        public function to_legacy($new_value)
+        {
+        }
+    }
+    /**
+     * Bridges one withdraw-method charge entry between the legacy and new shapes.
+     *
+     * Shape map:
+     *   legacy: [ 'fixed' => 7.89, 'percentage' => 10.11 ]
+     *   new:    [ 'admin_percentage' => '10.11', 'additional_fee' => '7.89' ]
+     *
+     * The legacy `dokan_withdraw.withdraw_charges` option is a parent array keyed
+     * by method (`paypal`, `bank`, `dokan_stripe_express`, `skrill`,
+     * `dokan_custom`, …). Each new field declares its own dotted `legacy_key`
+     * pointing to one sub-path:
+     *
+     *   'legacy_key' => 'dokan_withdraw.withdraw_charges.paypal',
+     *
+     * The bridge resolves the path with {@see LegacyAddress::read_from} /
+     * `write_to`, so a single transformer instance round-trips every method.
+     *
+     * Values are passed through unchanged on the values themselves — only the
+     * key names are flipped (percentage ⇔ admin_percentage, fixed ⇔
+     * additional_fee). The combine_input field stores strings (from the text
+     * inputs), so this transformer doesn't coerce types and leaves rounding /
+     * formatting to the consumer.
+     *
+     * @since 5.2.0
+     */
+    final class WithdrawChargeTransformer implements \WeDevs\Dokan\Admin\Settings\Migration\Transformer\TransformerInterface
+    {
+        /**
+         * {@inheritDoc}
+         *
+         * @param array<string,mixed>|null $legacy_value
+         */
+        public function to_new($legacy_value)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         *
+         * @return array<string,mixed>
+         */
+        public function to_legacy($new_value)
+        {
+        }
+    }
+    /**
+     * Builds a callable transformer pair for one slot of a WordPress multicheck
+     * legacy option (e.g. `dokan_withdraw.withdraw_methods`,
+     * `dokan_withdraw.withdraw_order_status`).
+     *
+     *   Legacy: [ '<slot_key>' => '<slot_key>', ... ]   // enabled = key as value
+     *   New:    one boolean switch per slot, value "on" | "off"
+     *
+     * Each new switch field is one boolean toggle, but the legacy parent array
+     * uses the WordPress multicheck convention where an enabled method stores
+     * its own key as the value (`'paypal' => 'paypal'`) so downstream code can
+     * read the enabled set with `array_filter` / `array_intersect`. That makes
+     * the value method-aware, which prevents a single zero-arg transformer
+     * class from serving every method.
+     *
+     * Wiring is intentionally one-line in the schema:
+     *
+     *     'legacy_key'         => 'dokan_withdraw.withdraw_methods.paypal',
+     *     'legacy_transformer' => WithdrawMethodToggleTransformer::for_method( 'paypal' ),
+     *
+     * Returns a `[ 'to_new' => Closure, 'to_legacy' => Closure ]` pair that the
+     * bridge wraps in a {@see CallableTransformer}. Closures are filter-safe in
+     * the current pipeline (no schema persistence); switch to a dedicated class
+     * per method if the schema ever gets cached to a transient.
+     *
+     * @since 5.2.0
+     */
+    final class WithdrawMethodToggleTransformer
+    {
+        /**
+         * Build the callable pair for one method key.
+         *
+         * @param string $method_key Legacy method id (e.g. "paypal", "bank",
+         *                           "dokan_stripe_express").
+         *
+         * @return array{to_new: Closure, to_legacy: Closure}
+         */
+        public static function for_method(string $method_key): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin\Settings\Repository {
+    /**
+     * Legacy Settings Repository contract.
+     *
+     * Single sanctioned read/write surface for the legacy per-section `dokan_*`
+     * wp_options (`dokan_general`, `dokan_selling`, `dokan_appearance`,
+     * `dokan_pages`, `dokan_privacy`, `dokan_withdraw`, …).
+     *
+     * Reads apply the new-flat overlay via {@see \WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge}.
+     * Writes persist to the legacy section option AND mirror mapped keys to the
+     * new flat option via {@see SettingsRepositoryInterface}.
+     *
+     * @since 5.2.0
+     */
+    interface LegacySettingsRepositoryInterface
+    {
+        /**
+         * Full overlay-applied view of one legacy section.
+         *
+         * @param string $section Legacy wp_option name (e.g. `dokan_general`).
+         *
+         * @return array<string,mixed>
+         */
+        public function all(string $section): array;
+        /**
+         * Single-key overlay-applied read.
+         *
+         * @param string $section       Legacy wp_option name.
+         * @param string $key           Field id inside that section.
+         * @param mixed  $default_value Returned when the key is absent.
+         *
+         * @return mixed
+         */
+        public function get(string $section, string $key, $default_value = null);
+        /**
+         * Batch upsert: merges `$slice` into the legacy section option and
+         * mirrors mapped keys to `dokan_admin_settings`.
+         *
+         * Fires:
+         *  - `dokan_legacy_settings_pre_save` filter — subscribers may mutate `$slice`.
+         *  - `dokan_legacy_settings_changed` action — fires on non-empty diff.
+         *
+         * @param string              $section Legacy wp_option name.
+         * @param array<string,mixed> $slice
+         *
+         * @return array<string,mixed> Added/changed entries actually written.
+         */
+        public function update(string $section, array $slice): array;
+        /**
+         * Full replacement of one section's payload. Returns a deletion-aware
+         * diff (removed keys appear as `null`). Mirrors mapped keys to the new
+         * flat option.
+         *
+         * @param string              $section Legacy wp_option name.
+         * @param array<string,mixed> $payload
+         *
+         * @return array<string,mixed>
+         */
+        public function replace(string $section, array $payload): array;
+        /**
+         * Drop the in-request snapshot. Pass null to flush every section.
+         *
+         * @param string|null $section
+         *
+         * @return void
+         */
+        public function flush_cache(?string $section = null): void;
+    }
+    /**
+     * Default legacy settings repository.
+     *
+     * Reads/writes legacy per-section `dokan_*` wp_options with overlay + mirror.
+     *
+     * @since 5.2.0
+     */
+    final class LegacySettingsRepository implements \WeDevs\Dokan\Admin\Settings\Repository\LegacySettingsRepositoryInterface
+    {
+        private \WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface $new_repo;
+        private \WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge $bridge;
+        /**
+         * Per-section in-request snapshot cache.
+         *
+         * @var array<string, array<string, mixed>>
+         */
+        private array $snapshots = [];
+        public function __construct(?\WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface $new_repo = null, ?\WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge $bridge = null)
+        {
+        }
+        public function all(string $section): array
+        {
+        }
+        public function get(string $section, string $key, $default_value = null)
+        {
+        }
+        public function update(string $section, array $slice): array
+        {
+        }
+        public function replace(string $section, array $payload): array
+        {
+        }
+        public function flush_cache(?string $section = null): void
+        {
+        }
+        /**
+         * WP hook listener for `added_option` / `updated_option` / `deleted_option`.
+         * All three pass the changed option name as their first argument.
+         *
+         * @param string $option Option name that changed.
+         *
+         * @return void
+         */
+        public function on_section_changed($option = ''): void
+        {
+        }
+        /**
+         * Listener for the new flat option — every section snapshot must be flushed
+         * because the overlay source changed.
+         *
+         * @return void
+         */
+        public function flush_all_snapshots(): void
+        {
+        }
+        /**
+         * Strict-equality diff: returns added or modified entries only.
+         *
+         * @param array<string,mixed> $old
+         * @param array<string,mixed> $new_payload
+         *
+         * @return array<string,mixed>
+         */
+        private static function diff(array $old, array $new_payload): array
+        {
+        }
+    }
+    /**
+     * Settings Repository contract.
+     *
+     * Single sanctioned read/write surface for the new flat admin settings
+     * payload (`dokan_admin_settings`). All internal save paths must flow
+     * through an implementation so that custom events fire consistently and
+     * the in-request snapshot stays coherent.
+     *
+     * @since 5.2.0
+     */
+    interface SettingsRepositoryInterface
+    {
+        /**
+         * Return the full settings payload. Empty array when the option does
+         * not exist or stores a non-array value; never null.
+         *
+         * @return array<string,mixed>
+         */
+        public function all(): array;
+        /**
+         * Single-key read with default. Reads the in-request snapshot so repeat
+         * calls within one write/read cycle stay consistent.
+         *
+         * @param string $key
+         * @param mixed  $default_value
+         *
+         * @return mixed
+         */
+        public function get(string $key, $default_value = null);
+        /**
+         * Batch upsert. Only the supplied keys are written; everything else in
+         * storage is preserved (`array_merge` semantics). Returns the computed
+         * diff (added/changed keys with their new values).
+         *
+         * Fires:
+         *   - `dokan_admin_settings_pre_save` filter — subscribers may mutate `$slice`.
+         *   - `dokan_admin_settings_changed` action — fired only when the diff is
+         *     non-empty after the write succeeds.
+         *
+         * @param array<string,mixed> $slice
+         *
+         * @return array<string,mixed> The change set actually written.
+         */
+        public function update(array $slice): array;
+        /**
+         * Replace the entire payload. Used for migrations / imports only.
+         * Internal save paths should prefer `update()`.
+         *
+         * @param array<string,mixed> $payload
+         *
+         * @return array<string,mixed> Diff including removed keys as `null`.
+         */
+        public function replace(array $payload): array;
+        /**
+         * Drop the in-request snapshot. Used by tests and by subscribers that
+         * must re-read after foreign writes (e.g. raw `update_option` calls
+         * from third-party code).
+         *
+         * @return void
+         */
+        public function flush_cache(): void;
+    }
+    /**
+     * Default settings repository backed by the `dokan_admin_settings` wp_option.
+     *
+     * @since 5.2.0
+     */
+    final class SettingsRepository implements \WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface
+    {
+        /**
+         * Canonical storage key for the new flat admin settings payload.
+         */
+        public const OPTION_KEY = 'dokan_admin_settings';
+        /**
+         * In-request snapshot of the payload. Null means "not yet loaded".
+         *
+         * @var array<string,mixed>|null
+         */
+        private ?array $snapshot = null;
+        /**
+         * Subscribes a cache-invalidation listener to WordPress's option hooks
+         * for {@see self::OPTION_KEY}. Foreign writers (raw `update_option`
+         * calls, migrations, third-party code) bypass `update()` but still fire
+         * the WP hook — without this listener the repository's in-request
+         * snapshot would go stale until {@see flush_cache()} is called.
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function all(): array
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function get(string $key, $default_value = null)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function update(array $slice): array
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function replace(array $payload): array
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function flush_cache(): void
+        {
+        }
+        /**
+         * Added/changed entries only. Strict equality so `false` vs `0` and
+         * similar near-misses count as changes.
+         *
+         * @param array<string,mixed> $old
+         * @param array<string,mixed> $new_payload
+         *
+         * @return array<string,mixed>
+         */
+        private static function diff(array $old, array $new_payload): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin\Settings\Schema {
+    /**
+     * Validates the flat array admin settings schema for correctness.
+     *
+     * This validator ensures that every element in the schema has the correct structure,
+     * valid parent references, and can trace a path back to a root page element.
+     *
+     * ## Validation Checks
+     *
+     * 1. **Required properties** — Each element type must have its mandatory keys
+     *    (e.g., pages need `id`, `type`, `title`; fields need `id`, `type`, `variant`).
+     * 2. **Parent reference integrity** — Every parent pointer (e.g., `page_id`, `section_id`)
+     *    must reference an existing element of the correct type.
+     * 3. **Parent requirement** — Non-root elements (section, fieldgroup, field, etc.) must
+     *    have at least one parent pointer to connect them to the hierarchy.
+     * 4. **Reachability** — Every element must trace a parent chain back to a `page` element.
+     *    Detects orphaned elements and circular references.
+     * 5. **Duplicate IDs** — Warns when the same type+id+parent combination appears more than once.
+     * 6. **Variant validation** — Field elements must use a known variant string.
+     *
+     * ## Extensibility
+     *
+     * All validation rules are extensible via WordPress filters so that Pro, modules,
+     * and third-party plugins can register custom element types, parent pointers, and variants
+     * without triggering false validation errors.
+     *
+     * ### Filters
+     *
+     * - `dokan_admin_settings_schema_required_properties` — Add/modify required properties per element type.
+     *   Receives `array<string, string[]>` mapping type => required property keys.
+     *
+     * - `dokan_admin_settings_schema_parent_pointer_map` — Add/modify parent pointer key → type mappings.
+     *   Receives `array<string, string>` mapping pointer key (e.g., `page_id`) => parent element type.
+     *
+     * - `dokan_admin_settings_schema_types_requiring_parent` — Add/modify which element types must
+     *   have at least one parent pointer. Receives `string[]` of type names.
+     *
+     * - `dokan_admin_settings_known_variants` — Register custom field variants.
+     *   Receives `string[]` of known variant strings.
+     *
+     * - `dokan_admin_settings_schema_skip_validation` — Return `true` to bypass all validation.
+     *   Receives `bool` and `array` of elements.
+     *
+     * - `dokan_admin_settings_schema_validation_result` — Modify the final validation result.
+     *   Receives `array{errors: array, warnings: array}` and the elements array.
+     *
+     * ### Actions
+     *
+     * - `dokan_admin_settings_schema_before_validate` — Fired before validation starts.
+     *   Receives the elements array and the `SchemaValidator` instance (use `add_error()`/`add_warning()`).
+     *
+     * - `dokan_admin_settings_schema_after_validate` — Fired after all checks complete.
+     *   Receives the result array, elements array, and the `SchemaValidator` instance.
+     *
+     * ### Constants
+     *
+     * - `DOKAN_DISABLE_SCHEMA_VALIDATION` — Define as `true` to disable validation entirely (production kill switch).
+     *
+     * ## Usage
+     *
+     * ```php
+     * $validator = new SchemaValidator();
+     * $result    = $validator->validate( $schema_elements );
+     *
+     * if ( ! SchemaValidator::is_valid( $result ) ) {
+     *     foreach ( $result['errors'] as $error ) {
+     *         error_log( 'Dokan schema error: ' . $error );
+     *     }
+     * }
+     * ```
+     *
+     * @since 5.2.0
+     */
+    class SchemaValidator
+    {
+        /**
+         * Default element types and their required properties.
+         *
+         * Each key is an element type string, and the value is an array of property
+         * keys that MUST be present and non-empty on elements of that type.
+         *
+         * Note: For types that accept multiple possible parent pointers (e.g., `section`
+         * can have `subpage_id` or `tab_id`), the parent check is handled separately
+         * by `check_parent_requirements()` rather than listing a specific pointer here.
+         *
+         * @var array<string, string[]>
+         */
+        private const DEFAULT_REQUIRED_PROPERTIES = ['page' => ['id', 'type', 'title'], 'subpage' => ['id', 'type', 'page_id'], 'section' => ['id', 'type'], 'tab' => ['id', 'type'], 'subsection' => ['id', 'type'], 'fieldgroup' => ['id', 'type'], 'field' => ['id', 'type', 'variant']];
+        /**
+         * Default element types that must have at least one parent pointer.
+         *
+         * These types cannot be root elements — they must be connected to the hierarchy
+         * via any parent pointer key from the parent pointer map. The validator does NOT
+         * restrict which specific container type is valid; any parent pointer satisfies
+         * the requirement, allowing flexible nesting.
+         *
+         * `page` is excluded because it IS the root element.
+         * `subpage` already requires `page_id` via DEFAULT_REQUIRED_PROPERTIES.
+         *
+         * @var string[]
+         */
+        private const DEFAULT_TYPES_REQUIRING_PARENT = ['section', 'tab', 'subsection', 'fieldgroup', 'field'];
+        /**
+         * Default parent pointer keys and the element type they reference.
+         *
+         * Maps each pointer key (e.g., `page_id`) to the type of element it must
+         * point to (e.g., `page`). Used for:
+         * - Validating that referenced parent elements exist.
+         * - Determining all valid parent pointer keys for parent requirement checks.
+         * - Walking the parent chain for reachability checks.
+         *
+         * @var array<string, string>
+         */
+        private const DEFAULT_PARENT_POINTER_MAP = ['page_id' => 'page', 'subpage_id' => 'subpage', 'tab_id' => 'tab', 'section_id' => 'section', 'subsection_id' => 'subsection', 'field_group_id' => 'fieldgroup'];
+        /**
+         * Default known field variants shipped with Dokan Lite.
+         *
+         * This list is used to warn about unrecognized variant strings. Pro and
+         * third-party plugins should register their custom variants via the
+         * `dokan_admin_settings_known_variants` filter rather than modifying this list.
+         *
+         * @var string[]
+         */
+        private const DEFAULT_KNOWN_VARIANTS = ['text', 'number', 'checkbox', 'select', 'refresh_select', 'radio', 'tel', 'password', 'radio_box', 'switch', 'danger_switch', 'multicheck', 'currency', 'combine_input', 'category_based_commission', 'radio_capsule', 'info', 'info_preview', 'double_input', 'base_field_label', 'customize_radio', 'html', 'notice', 'repeater', 'rich_text', 'show_hide', 'select_color_picker', 'copy_field', 'file_upload', 'wp_media_upload', 'vendor_info_preview', 'single_product_preview', 'textarea', 'withdraw_schedule', 'collapsible_switch', 'biweekly_week_pair', 'quarter_anchor_month', 'color_customizer', 'delivery_days', 'google_auth', 'verification_methods'];
+        /**
+         * Collected validation errors (hard failures).
+         *
+         * @var string[]
+         */
+        private array $errors = [];
+        /**
+         * Collected validation warnings (non-blocking issues).
+         *
+         * @var string[]
+         */
+        private array $warnings = [];
+        /**
+         * Validate the settings schema and return any errors or warnings.
+         *
+         * Runs all validation checks in sequence: required properties, parent references,
+         * parent requirements, reachability, duplicate IDs, and variant validation.
+         *
+         * Can be bypassed via the `DOKAN_DISABLE_SCHEMA_VALIDATION` constant or
+         * the `dokan_admin_settings_schema_skip_validation` filter.
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of settings schema elements.
+         *
+         * @return array{errors: string[], warnings: string[]} Validation result.
+         */
+        public function validate(array $elements): array
+        {
+        }
+        /**
+         * Get the required properties map, filtered for extensibility.
+         *
+         * Third parties can add new element types or modify which properties
+         * are required for existing types.
+         *
+         * @since 5.2.0
+         *
+         * @return array<string, string[]> Map of element type => required property keys.
+         */
+        private function get_required_properties(): array
+        {
+        }
+        /**
+         * Get the parent pointer map, filtered for extensibility.
+         *
+         * Defines which pointer keys (e.g., `page_id`) reference which element types (e.g., `page`).
+         * This map is used across multiple validation checks.
+         *
+         * @since 5.2.0
+         *
+         * @return array<string, string> Map of pointer key => expected parent element type.
+         */
+        private function get_parent_pointer_map(): array
+        {
+        }
+        /**
+         * Get the element types that require at least one parent pointer.
+         *
+         * Any key from the parent pointer map satisfies the requirement.
+         * The validator does NOT restrict which specific container type is valid
+         * for which child type — allowing flexible nesting.
+         *
+         * @since 5.2.0
+         *
+         * @return string[] Element type strings that must have a parent pointer.
+         */
+        private function get_types_requiring_parent(): array
+        {
+        }
+        /**
+         * Check that each element has all required properties for its type.
+         *
+         * Iterates every element and verifies that all properties listed in the
+         * required properties map are present and non-empty. Elements with an
+         * unrecognized type generate a warning suggesting filter registration.
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of schema elements.
+         */
+        private function check_required_properties(array $elements): void
+        {
+        }
+        /**
+         * Check that all parent pointer values reference existing elements of the correct type.
+         *
+         * For every parent pointer key found on an element (e.g., `page_id`, `section_id`),
+         * verifies that an element of the expected type exists with that ID.
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of schema elements.
+         */
+        private function check_parent_references(array $elements): void
+        {
+        }
+        /**
+         * Check that non-root elements have at least one parent pointer.
+         *
+         * Uses all keys from the parent pointer map as valid parent pointers.
+         * Does not restrict which container type is valid for which child type,
+         * allowing flexible nesting (e.g., a section inside a subpage, tab, or any container).
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of schema elements.
+         */
+        private function check_parent_requirements(array $elements): void
+        {
+        }
+        /**
+         * Check that every non-page element can trace a parent chain back to a page.
+         *
+         * Walks up the parent pointer chain for each element, following pointer keys
+         * to their parent elements, until it either reaches a `page` element (success)
+         * or runs out of parents (warning). Also detects circular reference chains.
+         *
+         * This ensures no element is "orphaned" — every element is reachable from
+         * a root page and will appear in the rendered settings UI.
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of schema elements.
+         */
+        private function check_reachability(array $elements): void
+        {
+        }
+        /**
+         * Check for duplicate element IDs within the same scope.
+         *
+         * Scope is determined by type + id for structural elements, and
+         * type + id + parent pointer for fields (since the same field ID
+         * can legitimately exist in different sections, e.g., "enabled"
+         * in both reverse_withdrawal and email-verification).
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of schema elements.
+         */
+        private function check_duplicate_ids(array $elements): void
+        {
+        }
+        /**
+         * Check that all field elements use a recognized variant string.
+         *
+         * Unknown variants generate a warning (not an error) since they may be
+         * registered by Pro or third-party plugins that load after Lite.
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of schema elements.
+         */
+        private function check_variants(array $elements): void
+        {
+        }
+        /**
+         * Check that every field-type element has a globally unique id.
+         *
+         * Unlike `check_duplicate_ids()` (which scopes uniqueness to a field's parent
+         * and produces warnings), this rule enforces uniqueness across the ENTIRE
+         * merged schema and produces ERRORS. Required because settings are stored
+         * in a single `dokan_settings` option keyed by field id — a duplicate id
+         * means one field's value would silently overwrite another's.
+         *
+         * Non-field elements (page, subpage, section, etc.) are exempt: they have
+         * no storage slot, so an id collision between a fieldgroup and a field is
+         * harmless (and used intentionally in the schema, e.g., `google_map_api_key`).
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of schema elements.
+         */
+        private function check_unique_field_ids(array $elements): void
+        {
+        }
+        /**
+         * Add a validation error programmatically.
+         *
+         * Useful in the `dokan_admin_settings_schema_before_validate` action hook
+         * for adding custom validation errors from external code.
+         *
+         * @since 5.2.0
+         *
+         * @param string $message Human-readable error message.
+         */
+        public function add_error(string $message): void
+        {
+        }
+        /**
+         * Add a validation warning programmatically.
+         *
+         * Useful in the `dokan_admin_settings_schema_before_validate` action hook
+         * for adding custom validation warnings from external code.
+         *
+         * @since 5.2.0
+         *
+         * @param string $message Human-readable warning message.
+         */
+        public function add_warning(string $message): void
+        {
+        }
+        /**
+         * Check whether a validation result indicates success (no errors).
+         *
+         * Warnings are non-blocking and do not cause this to return false.
+         *
+         * @since 5.2.0
+         *
+         * @param array{errors: string[], warnings: string[]} $result Validation result from `validate()`.
+         *
+         * @return bool True if no errors were found.
+         */
+        public static function is_valid(array $result): bool
+        {
+        }
+    }
+    /**
+     * Settings Registry — collects, processes, and serves the admin settings schema.
+     *
+     * Responsibilities:
+     * 1. Collect the flat array schema from SettingsSchema::get_schema().
+     * 2. Auto-generate hook_key for elements that omit it.
+     * 3. Fire hook_key filters on structural nodes so Pro/extensions can inject children.
+     * 4. Populate field values from wp_options (falling back to defaults).
+     * 5. Fill default properties (display, dependencies, validations, etc.).
+     * 6. Run SchemaValidator in debug/dev mode.
+     *
+     * @since 5.2.0
+     */
+    class SettingsRegistry
+    {
+        /**
+         * Cached processed schema. Null means not yet built.
+         *
+         * @var array|null
+         */
+        private ?array $cache = null;
+        /**
+         * Settings repository — single read surface for the stored payload.
+         *
+         * @var SettingsRepositoryInterface
+         */
+        private \WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface $settings_repo;
+        /**
+         * Constructor.
+         *
+         * @param SettingsRepositoryInterface|null $settings_repo Optional repository for testing.
+         */
+        public function __construct(?\WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface $settings_repo = null)
+        {
+        }
+        /**
+         * Get the fully processed settings schema.
+         *
+         * Returns the flat array with all values populated, defaults filled,
+         * hook_key filters fired, and validation run (in debug mode).
+         *
+         * @since 5.2.0
+         *
+         * @param bool $force_refresh Force rebuild even if cached.
+         *
+         * @return array Flat array of processed settings elements.
+         */
+        public function get_schema(bool $force_refresh = false): array
+        {
+        }
+        /**
+         * Resolve lazily-declared option lists into concrete arrays.
+         *
+         * Fields whose option list is expensive to build (e.g. a DB-backed page
+         * select) declare `options` as a closure instead of an eager array, so
+         * the cost is paid only here — when the schema is built for the admin
+         * UI/REST. The front-end legacy-settings bridge harvests SettingsSchema
+         * directly and never reads `options`, so it never invokes these closures.
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat schema elements.
+         *
+         * @return array
+         */
+        private function resolve_dynamic_options(array $elements): array
+        {
+        }
+        /**
+         * Clear the cached schema.
+         *
+         * Retained for backward compatibility — callers (e.g. AdminSettingsController)
+         * invoke this after a save. WordPress's get_option() caches within a request,
+         * so no separate options cache is needed here.
+         *
+         * @since 5.2.0
+         */
+        public function clear_cache(): void
+        {
+        }
+        /**
+         * Auto-generate hook_key for elements that don't have one.
+         *
+         * Hook_key format: `dokan_settings_{page}_{subpage}_{section}_{field}_children`.
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of schema elements.
+         *
+         * @return array Elements with hook_key populated.
+         */
+        private function generate_keys(array $elements): array
+        {
+        }
+        /**
+         * Fire hook_key filters on structural nodes.
+         *
+         * For each structural element (page, subpage, section, tab, subsection, fieldgroup),
+         * fires `apply_filters( $hook_key, $children, $node )` where $children are the
+         * elements that have this node as their parent. This allows Pro and extensions
+         * to inject additional elements at specific tree positions.
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of schema elements.
+         *
+         * @return array Elements with any hook-injected children merged in.
+         */
+        private function fire_hook_key_filters(array $elements): array
+        {
+        }
+        /**
+         * Fill default properties on elements that omit them.
+         *
+         * Ensures every element has consistent properties for the frontend,
+         * even if they weren't explicitly set in the schema definition.
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of schema elements.
+         *
+         * @return array Elements with defaults filled.
+         */
+        private function fill_defaults(array $elements): array
+        {
+        }
+        /**
+         * Populate field values from the single dokan_settings wp_option.
+         *
+         * Reads `dokan_settings` once and looks up each field's value by its id.
+         * Falls back to the field's `default` when the id is absent from storage.
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements Flat array of schema elements.
+         *
+         * @return array Elements with field `value` populated.
+         */
+        private function populate_values(array $elements): array
+        {
+        }
+        /**
+         * Run schema validation in debug/dev mode.
+         *
+         * Only runs when WP_DEBUG is true and DOKAN_DISABLE_SCHEMA_VALIDATION is not set.
+         * Logs errors and warnings to the PHP error log.
+         *
+         * @since 5.2.0
+         *
+         * @param array $elements The processed schema elements.
+         */
+        private function maybe_validate(array $elements): void
+        {
+        }
+    }
+    /**
+     * Flat array settings schema for the admin settings page.
+     *
+     * Replaces the OOP ElementFactory/Page class approach with plain PHP arrays.
+     * Each element is an associative array passed to plugin-ui's Settings component.
+     *
+     * Extension point: `apply_filters( 'dokan_get_admin_settings_schema', $elements )`
+     *
+     * @since 5.2.0
+     */
+    class SettingsSchema
+    {
+        /**
+         * Get the complete admin settings schema.
+         *
+         * @return array Flat array of settings elements.
+         */
+        public static function get_schema(): array
+        {
+        }
+        /**
+         * Helper to get pages for select dropdowns.
+         *
+         * Field `options` reference this lazily (via a closure — see general_page()
+         * and the privacy policy field) so the query only fires when SettingsRegistry
+         * resolves the schema for the admin UI/REST — never on the front-end
+         * legacy-settings bridge harvest path, which ignores `options`.
+         *
+         * Intentionally NOT memoized in a function-static. WordPress's per-request
+         * WP_Query cache already dedupes this identical page query across the field
+         * call sites (a repeat call issues no SQL), and that cache is invalidated
+         * when pages change. A function-static here would instead be un-resettable
+         * (no reflection access, clear_cache() can't reach it) and could serve stale
+         * options within a long-lived process or after a page is created mid-request.
+         *
+         * @return array
+         */
+        private static function get_page_options(): array
+        {
+        }
+        /**
+         * Lazy provider for the page-select option list.
+         *
+         * Returns a closure that yields {@see get_page_options()} when invoked.
+         * Fields reference this so the page query is deferred until
+         * SettingsRegistry resolves the schema for the admin UI/REST — the
+         * front-end legacy-settings bridge harvests the schema but never reads
+         * `options`, so the query is skipped on every public request.
+         *
+         * Public so Pro modules (which always load alongside Lite) can reuse the
+         * same lazy page-option provider via the `dokan_get_admin_settings_schema`
+         * filter instead of duplicating the query. Sharing this also shares the
+         * per-request memo in {@see get_page_options()}, so the admin build runs
+         * the page query once across all consumers.
+         *
+         * @return \Closure
+         */
+        public static function get_lazy_page_options(): \Closure
+        {
+        }
+        /**
+         * General page schema.
+         *
+         * @return array
+         */
+        private static function general_page(): array
+        {
+        }
+        /**
+         * Transaction page schema.
+         *
+         * @return array
+         */
+        private static function transaction_page(): array
+        {
+        }
+        /**
+         * Build the `withdraw_order_status` multi-switch field.
+         *
+         * Options are derived from the legacy `dokan_settings_withdraw_order_status_options`
+         * filter so Pro modules / extensions that already extend that filter continue to
+         * add statuses on both the legacy and new UIs with one declaration. The new
+         * field stores a `Record<string,bool>` keyed by status (e.g. `wc-completed`),
+         * each slot bridged through {@see MulticheckSlotTransformer} to the legacy
+         * `dokan_withdraw.withdraw_order_status` parent array.
+         *
+         * @return array
+         */
+        private static function withdraw_order_status_field(): array
+        {
+        }
+        /**
+         * Vendor page schema.
+         *
+         * @return array
+         */
+        private static function vendor_page(): array
+        {
+        }
+        /**
+         * Appearance page schema.
+         *
+         * @return array
+         */
+        private static function appearance_page(): array
+        {
+        }
+        /**
+         * Convert an associative `value => label` array into the shape a
+         * `radio_capsule` field's `options` attribute expects.
+         *
+         * Each input pair becomes one `{ title, value, icon }` element. Use this
+         * to feed the output of helpers such as
+         * `AdminSettings::new_seller_enable_selling_statuses()` (which return
+         * `value => label` maps) directly into a `radio_capsule` schema element
+         * without losing the option order or having to repeat the icon-lookup
+         * boilerplate at every call site.
+         *
+         * @since 5.2.0
+         *
+         * @param array<string,string> $options Associative map of `option_value => display_label`.
+         *                                      Keys become the field value; values become the visible title.
+         * @param array<string,string> $icons   Optional `option_value => icon_identifier` map used to attach
+         *                                      an icon to each capsule. Missing keys default to `''`.
+         *
+         * @return array<int,array{title:string,value:string,icon:string}>
+         */
+        public static function map_array_to_radio_capsule_options(array $options, array $icons = []): array
+        {
+        }
+        /**
+         * Compliance page schema.
+         *
+         * @return array
+         */
+        private static function compliance_page(): array
+        {
+        }
+        /**
+         * AI Assist page schema.
+         *
+         * Page/subpage/section structure is static; engine options and per-provider
+         * fieldgroups (api_info / api_notice / api_key / model) are generated
+         * dynamically from {@see \WeDevs\Dokan\Intelligence\Manager}'s registered
+         * providers, so adding a new AI provider (Lite or Pro) flows through with
+         * no schema edits. Each generated api_key/model field declares its own
+         * `legacy_key` against the `dokan_ai` option using the established
+         * `dokan_ai_<provider_id>_api_key` / `dokan_ai_<provider_id>_model`
+         * convention (`dokan_ai_image_<provider_id>_*` for the image side), so the
+         * legacy admin form and the new UI stay in sync via the bridge.
+         *
+         * The image section is appended only when at least one image-capable
+         * provider is registered — Lite ships none, Pro registers Leonardo AI
+         * (and any others) via the Intelligence Manager, so Lite-only installs
+         * see just the text section.
+         *
+         * @return array
+         */
+        private static function ai_assist_page(): array
+        {
+        }
+        /**
+         * Resolve registered AI providers for the given kind ('text' | 'image').
+         *
+         * Returns an empty array when the Intelligence module is not loaded or
+         * the container can't resolve Manager — keeps schema generation
+         * best-effort so a partial bootstrap never breaks the settings UI.
+         *
+         * Public so Dokan Pro can resolve image providers when registering the
+         * Product Image Enhancement schema via `dokan_get_admin_settings_schema`.
+         *
+         * @param string $kind
+         *
+         * @return array
+         */
+        public static function resolve_ai_providers(string $kind): array
+        {
+        }
+        /**
+         * Build the 5-element per-provider fieldgroup (group + api_info +
+         * api_notice + api_key + model). Shared between the Lite text section and
+         * the Pro image section (registered via `dokan_get_admin_settings_schema`)
+         * so the dynamic per-provider shape stays in lock-step across both
+         * plugins. Public for that cross-plugin reuse.
+         *
+         * @param array $cfg
+         *
+         * @return array
+         */
+        public static function ai_provider_group(array $cfg): array
+        {
+        }
+        /**
+         * Moderation page schema (shell — Pro injects content).
+         *
+         * @return array
+         */
+        private static function moderation_page(): array
+        {
+        }
+        /**
+         * Product page schema (shell — Pro injects content).
+         *
+         * @return array
+         */
+        private static function product_page(): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Admin {
     /**
      * Setup wizard class
      *
@@ -17197,7 +18524,7 @@ namespace WeDevs\Dokan\DependencyManagement\Providers {
          * Tag for services added to the container.
          */
         public const TAG = 'admin-service';
-        protected $services = [self::TAG, \WeDevs\Dokan\Admin\Status\Status::class];
+        protected $services = [self::TAG, \WeDevs\Dokan\Admin\Status\Status::class, \WeDevs\Dokan\Admin\Settings::class];
         /**
          * {@inheritDoc}
          *
@@ -17209,6 +18536,23 @@ namespace WeDevs\Dokan\DependencyManagement\Providers {
         public function provides(string $alias): bool
         {
         }
+        /**
+         * Register the classes.
+         */
+        public function register(): void
+        {
+        }
+    }
+    class AdminSettingsServiceProvider extends \WeDevs\Dokan\DependencyManagement\BaseServiceProvider
+    {
+        /**
+         * Tag for services added to the container.
+         */
+        protected $tags = ['admin-settings-service'];
+        /**
+         * Services to register.
+         */
+        protected $services = [\WeDevs\Dokan\Admin\Settings\Schema\SettingsRegistry::class, \WeDevs\Dokan\Admin\Settings\Schema\SchemaValidator::class, \WeDevs\Dokan\Admin\Settings\Repository\SettingsRepository::class, \WeDevs\Dokan\Admin\Settings\Migration\LegacySettingsBridge::class, \WeDevs\Dokan\Admin\Settings\Repository\LegacySettingsRepository::class, \WeDevs\Dokan\Admin\Settings\Migration\BridgeBootstrap::class, \WeDevs\Dokan\Admin\Settings\Migration\LegacyMirror::class];
         /**
          * Register the classes.
          */
@@ -20408,6 +21752,16 @@ namespace WeDevs\Dokan\Intelligence\Services\Providers {
         public function get_api_key_url(): string
         {
         }
+        /**
+         * Get the image url.
+         *
+         * @since 5.2.0
+         *
+         * @return string
+         */
+        public function get_image_url(): string
+        {
+        }
     }
     class OpenAI extends \WeDevs\Dokan\Intelligence\Services\Provider
     {
@@ -20433,6 +21787,16 @@ namespace WeDevs\Dokan\Intelligence\Services\Providers {
         {
         }
         public function get_api_key_url(): string
+        {
+        }
+        /**
+         * Get the image url.
+         *
+         * @since 5.2.0
+         *
+         * @return string
+         */
+        public function get_image_url(): string
         {
         }
     }
@@ -25968,6 +27332,228 @@ namespace WeDevs\Dokan\REST {
         {
         }
     }
+    /**
+     * Admin Settings REST Controller.
+     *
+     * GET  /dokan/v1/admin/settings          — Returns the full flat array schema with values.
+     * PUT  /dokan/v1/admin/settings/{page_id} — Saves flat values for a specific page.
+     *
+     * @since 5.2.0
+     */
+    class AdminSettingsController extends \WeDevs\Dokan\REST\DokanBaseAdminController
+    {
+        /**
+         * Route base.
+         *
+         * @var string
+         */
+        protected $rest_base = 'settings';
+        /**
+         * Settings registry instance.
+         *
+         * @var SettingsRegistry
+         */
+        protected \WeDevs\Dokan\Admin\Settings\Schema\SettingsRegistry $registry;
+        /**
+         * Settings repository instance.
+         *
+         * @var SettingsRepositoryInterface
+         */
+        protected \WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface $settings_repo;
+        /**
+         * Legacy mirror, which fires the legacy save hooks.
+         *
+         * @var LegacyMirror
+         */
+        protected \WeDevs\Dokan\Admin\Settings\Migration\LegacyMirror $legacy_mirror;
+        /**
+         * Constructor.
+         *
+         * @param SettingsRegistry|null            $registry      Optional registry instance (for testing).
+         * @param SettingsRepositoryInterface|null $settings_repo Optional repository instance (for testing).
+         * @param LegacyMirror|null                $legacy_mirror Optional legacy mirror (for testing).
+         */
+        public function __construct(?\WeDevs\Dokan\Admin\Settings\Schema\SettingsRegistry $registry = null, ?\WeDevs\Dokan\Admin\Settings\Repository\SettingsRepositoryInterface $settings_repo = null, ?\WeDevs\Dokan\Admin\Settings\Migration\LegacyMirror $legacy_mirror = null)
+        {
+        }
+        /**
+         * Register REST routes.
+         *
+         * @since 5.2.0
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * GET handler — returns the full flat array schema with populated values.
+         *
+         * @since 5.2.0
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return WP_REST_Response
+         */
+        public function get_items($request)
+        {
+        }
+        /**
+         * PUT handler — saves field values for a specific page.
+         *
+         * Expects request body:
+         * ```json
+         * {
+         *   "page_id": "general",
+         *   "values": {
+         *     "custom_store_url": "store",
+         *     "admin_percentage": "10"
+         *   }
+         * }
+         * ```
+         *
+         * The keys in `values` are field ids (globally unique per SchemaValidator).
+         * Unknown keys are silently ignored. Values are merged into the single
+         * `dokan_admin_settings` wp_option.
+         *
+         * @since 5.2.0
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function update_item($request)
+        {
+        }
+        /**
+         * Get all field elements belonging to a specific page.
+         *
+         * @since 5.2.0
+         *
+         * @param array  $schema  The full schema.
+         * @param string $page_id The page ID.
+         *
+         * @return array Field elements.
+         */
+        protected function get_fields_by_page(array $schema, string $page_id): array
+        {
+        }
+        /**
+         * Recursively collect all descendant element IDs for a page.
+         *
+         * @since 5.2.0
+         *
+         * @param array  $schema  The full schema.
+         * @param string $page_id The page ID.
+         *
+         * @return string[] All descendant element IDs.
+         */
+        protected function collect_page_descendants(array $schema, string $page_id): array
+        {
+        }
+        /**
+         * Check whether the submitted values hide a field through its dependencies.
+         *
+         * @since 5.2.0
+         *
+         * @param array $field  The field schema element.
+         * @param array $values The submitted values.
+         *
+         * @return bool
+         */
+        protected function is_field_hidden(array $field, array $values): bool
+        {
+        }
+        /**
+         * Validate a field value against the field's validation rules.
+         *
+         * Applies declarative rules from `$field['validations']` (required,
+         * min_value, max_value, not_in), then runs the optional per-field
+         * `validation_func`, then exposes the accumulated errors to the
+         * `dokan_admin_settings_validate_field` filter so addons can layer
+         * variant-specific or cross-field validation on top.
+         *
+         * @since 5.2.0
+         *
+         * @param array $field The field schema element.
+         * @param mixed $value The submitted value.
+         *
+         * @return string[] Array of error messages (empty if valid).
+         */
+        protected function validate_field_value(array $field, $value): array
+        {
+        }
+        /**
+         * Range errors for percentage / fixed-fee pairs, including nested per-category values.
+         *
+         * @since 5.2.0
+         *
+         * @param array $value Field value.
+         *
+         * @return string[]
+         */
+        protected function get_charge_errors(array $value): array
+        {
+        }
+        /**
+         * Allowed option values of a select/radio field, or null when the field has no fixed option list.
+         *
+         * @since 5.2.0
+         *
+         * @param array $field The field schema element.
+         *
+         * @return string[]|null
+         */
+        protected function get_option_values(array $field): ?array
+        {
+        }
+        /**
+         * Sanitize a field value based on its variant.
+         *
+         * @since 5.2.0
+         *
+         * @param array $field The field schema element.
+         * @param mixed $value The submitted value.
+         *
+         * @return mixed Sanitized value.
+         */
+        protected function sanitize_field_value(array $field, $value)
+        {
+        }
+        /**
+         * Whether a value is, or contains, an infinite or NaN number.
+         *
+         * @since 5.2.0
+         *
+         * @param mixed $value           Sanitized field value.
+         * @param bool  $numeric_strings Also treat numeric strings like '1e400' as numbers.
+         *
+         * @return bool
+         */
+        protected function has_non_finite_number($value, bool $numeric_strings = false): bool
+        {
+        }
+        /**
+         * Recursively sanitize an array/object value.
+         *
+         * @since 5.2.0
+         *
+         * @param mixed $value The value to sanitize.
+         *
+         * @return mixed
+         */
+        protected function sanitize_recursive($value)
+        {
+        }
+        /**
+         * REST schema for the settings endpoint.
+         *
+         * @since 5.2.0
+         *
+         * @return array
+         */
+        public function get_item_schema(): array
+        {
+        }
+    }
     class AdminSetupGuideController extends \WeDevs\Dokan\REST\DokanBaseAdminController
     {
         /**
@@ -26034,16 +27620,6 @@ namespace WeDevs\Dokan\REST {
         public function set_items_as_completed($request): \WP_REST_Response
         {
         }
-        /**
-         * Parse settings for storage.
-         *
-         * @param array $settings_data Settings data for parsing.
-         *
-         * @return array
-         */
-        private function parse_settings_data(array $settings_data): array
-        {
-        }
     }
     /**
      * Dokan Changelog handler class
@@ -26105,10 +27681,13 @@ namespace WeDevs\Dokan\REST {
          * Checking if have any permission.
          *
          * @since 3.14.0
+         * @since 5.2.0 Vendors need a product capability and may only calculate against their own vendor ID and products.
          *
-         * @return boolean
+         * @param WP_REST_Request $request
+         *
+         * @return bool|WP_Error
          */
-        public function get_permissions_check()
+        public function get_permissions_check($request)
         {
         }
         /**
@@ -27164,8 +28743,13 @@ namespace WeDevs\Dokan\REST {
          */
         protected $namespace = 'dokan/v3';
         /**
-         * @param               $downloads
-         * @param \WC_Product[] $products
+         * Attach product and file details to each download permission.
+         *
+         * @since 4.0.0
+         * @since 5.2.0 Skips permissions whose product or file is gone instead of fataling.
+         *
+         * @param \stdClass[]   $downloads Permissions already run through prepare_download_for_response(), so `product_id` lives in `product['id']`.
+         * @param \WC_Product[] $products  Keyed by product ID.
          *
          * @return array
          */
@@ -31923,6 +33507,25 @@ namespace WeDevs\Dokan\Shortcodes {
         {
         }
         /**
+         * Whether the marketplace runs the React (latest) vendor dashboard layout.
+         *
+         * Deliberately resolved per callback instead of once in `register_hooks()`:
+         * hooks are registered on `plugins_loaded`, and reading a Dokan setting
+         * walks the legacy settings bridge, which builds the translated admin
+         * settings schema. Doing that before `init` — where
+         * `load_plugin_textdomain()` runs — trips WordPress 6.7+'s
+         * `_load_textdomain_just_in_time` notice on every request. Every callback
+         * below fires on `init` or later, and the repository memoizes the section
+         * snapshot, so the deferred read costs nothing.
+         *
+         * @since 5.2.0
+         *
+         * @return bool
+         */
+        protected function is_latest_layout(): bool
+        {
+        }
+        /**
          * Update vendor layout style option.
          *
          * @since 4.2.0
@@ -32585,6 +34188,39 @@ namespace WeDevs\Dokan {
     }
 }
 namespace WeDevs\Dokan\Traits {
+    /**
+     * Trait for handling recursive settings replacement.
+     *
+     * @since 5.2.0
+     */
+    trait SettingsRecursion
+    {
+        /**
+         * Handle settings recursively replace.
+         *
+         * @since 5.2.0
+         *
+         * @param array $existing
+         * @param array $new_settings
+         *
+         * @return array
+         */
+        protected function settings_recursive_replace(array $existing, array $new_settings): array
+        {
+        }
+        /**
+         * Check if an array is a list.
+         *
+         * @since 5.2.0
+         *
+         * @param array $settings
+         *
+         * @return bool
+         */
+        protected function is_list(array $settings): bool
+        {
+        }
+    }
     /**
      * Singleton Trait
      *
@@ -33603,6 +35239,23 @@ namespace WeDevs\Dokan\Utilities {
          * @return array
          */
         public function new_seller_enable_selling_statuses()
+        {
+        }
+        /**
+         * Order statuses that can release a withdraw request.
+         *
+         * Single source of truth for the `dokan_settings_withdraw_order_status_options`
+         * filter — consumed by the legacy admin settings registration
+         * ({@see \WeDevs\Dokan\Admin\Settings}) and by the new flat schema
+         * ({@see \WeDevs\Dokan\Admin\Settings\Schema\SettingsSchema}) so additions
+         * made by Pro / extensions show up on both UIs and in the bridge mapping
+         * with one declaration.
+         *
+         * @since 5.2.0
+         *
+         * @return array<string,string> Map of `wc-<status>` slug => translated label.
+         */
+        public static function withdraw_order_status_options(): array
         {
         }
     }
@@ -38207,6 +39860,114 @@ namespace {
     class WeDevs_Promotion extends \WeDevs\Dokan\Admin\Promotion
     {
     }
+}
+namespace DokanFlatShowIf\Sniffs\FlatShowIf {
+    class FlatShowIfSniff implements \PHP_CodeSniffer\Sniffs\Sniff
+    {
+        /**
+         * Path fragments to exclude. The legacy onboarding wizard uses the older
+         * `SettingsElement::add_dependency()` API which supports dot-paths by
+         * design; flagging those calls produces noise without value.
+         *
+         * @var string[]
+         */
+        private $excluded_path_fragments = ['/Admin/OnboardingSetup/', '\Admin\OnboardingSetup\\'];
+        /**
+         * @inheritDoc
+         */
+        public function register(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function process(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr)
+        {
+        }
+        /**
+         * Determine whether the literal at $stackPtr appears in one of the three
+         * dependency-key contexts: a `show_if` array key, the value of a
+         * `dependencies[][key]` entry, or the first argument of `->add_dependency()`.
+         */
+        private function is_dependency_key_context(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr): bool
+        {
+        }
+        /**
+         * Is this literal the first argument of `->add_dependency(...)` or `add_dependency(...)`?
+         */
+        private function is_add_dependency_first_arg(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr): bool
+        {
+        }
+        /**
+         * Is this literal an array KEY inside a `show_if` array literal?
+         *
+         * Pattern matches:
+         *
+         *     'show_if' => [
+         *         'commission_type' => 'fixed',     // <-- literal at $stackPtr
+         *     ],
+         *
+         * The literal qualifies only when:
+         *  1. The immediately following non-whitespace token is `=>`, AND
+         *  2. Walking out one bracket level lands us at a `'show_if' =>` entry.
+         */
+        private function is_show_if_array_key(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr): bool
+        {
+        }
+        /**
+         * Is this literal the VALUE of a `'key' => '...'` entry inside a
+         * `dependencies` array?
+         *
+         * Pattern matches:
+         *
+         *     'dependencies' => [
+         *         [ 'key' => 'commission_type', 'value' => 'fixed' ],  // <-- literal at $stackPtr
+         *     ],
+         */
+        private function is_dependencies_key_value(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr): bool
+        {
+        }
+        /**
+         * Find the opening token of the innermost short-array `[` or `array(`
+         * literal that contains $stackPtr. Returns the open-token position or false.
+         */
+        private function find_containing_array_open(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr)
+        {
+        }
+    }
+}
+namespace DokanSettingsRepository\Sniffs\Repository {
+    class ForbidRawOptionWriteSniff implements \PHP_CodeSniffer\Sniffs\Sniff
+    {
+        /**
+         * Functions that should never write `dokan_admin_settings` outside the
+         * repository.
+         *
+         * @var string[]
+         */
+        private $forbidden_functions = ['update_option', 'add_option', 'delete_option'];
+        /**
+         * Path fragments to exclude. The repository owns the canonical writes;
+         * the sniff lives in `tools/` and is auto-skipped already.
+         *
+         * @var string[]
+         */
+        private $excluded_path_fragments = ['/Admin/Settings/Repository/SettingsRepository.php', '\Admin\Settings\Repository\SettingsRepository.php'];
+        /**
+         * @inheritDoc
+         */
+        public function register(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function process(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr)
+        {
+        }
+    }
+}
+namespace {
     /**
      * Dokan Uninstall
      *
@@ -40905,6 +42666,18 @@ namespace {
     {
     }
     /**
+     * Get the admin URL of a Dokan page on the screen (classic or new) the site uses.
+     *
+     * @since 5.2.0
+     *
+     * @param string $route Hash route, e.g. `settings` or `withdraw`. Empty for the dashboard.
+     *
+     * @return string
+     */
+    function dokan_get_admin_page_url(string $route = ''): string
+    {
+    }
+    /**
      * Ads additional columns to admin user table
      *
      * @param array $columns
@@ -40924,6 +42697,34 @@ namespace {
      * @return mixed
      */
     function dokan_get_option($option, $section, $default_value = '')
+    {
+    }
+    /**
+     * Save a legacy section option through the settings repository.
+     *
+     * Routes a full-row legacy payload through {@see LegacySettingsRepository::replace()},
+     * which:
+     *   1. Mirrors mapped keys into the new flat `dokan_admin_settings` option
+     *      (the canonical source of truth).
+     *   2. Persists the payload under the legacy `$option_name` row. With the
+     *      legacy mirror enabled (default) mapped keys stay in the row so a
+     *      downgraded plugin still reads current data; with it disabled they
+     *      are stripped and only the unmapped remainder is stored.
+     *   3. Fires `dokan_legacy_settings_changed` and refreshes the in-request snapshot.
+     *
+     * Callers should NOT also call `update_option( $option_name, ... )` — the
+     * repository owns that write. If the DI container is unavailable (early
+     * bootstrap, isolated tests), this falls back to a raw `update_option` so
+     * legacy writes still succeed without the source-of-truth guarantee.
+     *
+     * @since 5.2.0
+     *
+     * @param string              $option_name Legacy wp_option name (e.g. `dokan_general`).
+     * @param array<string,mixed> $payload     Legacy-shaped payload to persist.
+     *
+     * @return void
+     */
+    function dokan_save_legacy_settings_section(string $option_name, array $payload): void
     {
     }
     /**
