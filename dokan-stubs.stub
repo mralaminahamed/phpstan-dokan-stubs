@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.2.1';
+        public $version = '5.3.0';
         /**
          * Instance of self
          *
@@ -3860,6 +3860,24 @@ namespace WeDevs\Dokan\Admin\Dashboard {
         {
         }
         /**
+         * Whether the legacy vendor store settings page is preferred.
+         *
+         * The preference is the site-wide `dokan_appearance` admin option, not a
+         * per-user setting — `$user_id` only guards anonymous contexts, mirroring
+         * {@see self::is_product_editor_legacy_preferred()}. The stored default is
+         * legacy, and the admin setup wizard flips it to latest, so an upgraded
+         * site keeps the legacy form until an admin opts in.
+         *
+         * @since 5.3.0
+         *
+         * @param int $user_id Optional. Defaults to current user.
+         *
+         * @return bool
+         */
+        public function is_store_settings_legacy_preferred(int $user_id = 0): bool
+        {
+        }
+        /**
          * Build the new (React) product editor URL.
          *
          * @since 5.0.0
@@ -7295,6 +7313,30 @@ namespace WeDevs\Dokan\Admin\Settings\Migration\Transformer {
          * @return array{first:int,second:int}
          */
         private function reshape($value): array
+        {
+        }
+    }
+    /**
+     * Maps the pre-4.0.2 `on`/`off` enable-selling values to `automatically`/`manually`.
+     *
+     * Sites that never re-saved the setting since 4.0.2 still store `on`/`off`, which
+     * matches no option of the `vendor_auto_enable_selling` radio, so nothing showed
+     * as selected. Mirrors {@see \WeDevs\Dokan\Utilities\AdminSettings::get_new_seller_enable_selling_status()}.
+     *
+     * @since 5.3.0
+     */
+    final class EnableSellingStatusTransformer implements \WeDevs\Dokan\Admin\Settings\Migration\Transformer\TransformerInterface
+    {
+        /**
+         * {@inheritDoc}
+         */
+        public function to_new($legacy_value)
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function to_legacy($new_value)
         {
         }
     }
@@ -24733,6 +24775,20 @@ namespace WeDevs\Dokan\Product {
         {
         }
         /**
+         * Give a new variation its product's vendor as author.
+         *
+         * WooCommerce stamps whoever creates it, so a variation an admin adds would fall outside the vendor's scope.
+         *
+         * @since 5.3.0
+         *
+         * @param array $data Post data WooCommerce inserts for the variation.
+         *
+         * @return array
+         */
+        public function set_new_variation_author_to_vendor($data)
+        {
+        }
+        /**
          * Callback for Ajax Action Initialization
          *
          * @since 3.8.2
@@ -25207,6 +25263,23 @@ namespace WeDevs\Dokan\Product {
          * @param array $attrs
          */
         public function __construct($attrs = null)
+        {
+        }
+        /**
+         * Whether a value holds a PHP object, directly or inside its serialized form at any depth.
+         *
+         * Product meta is stored as-is, so a serialized PHP object left in it would be turned back into
+         * a live object by a later maybe_unserialize() call and run its magic methods. Attribute data is
+         * only ever plain arrays and scalars, so an object is always unwanted and must not be persisted.
+         * Decoding with `allowed_classes => false` keeps this check itself safe.
+         *
+         * @since 5.3.0
+         *
+         * @param mixed $value Value to inspect.
+         *
+         * @return bool
+         */
+        public static function contains_php_object($value)
         {
         }
         /**
@@ -27754,6 +27827,22 @@ namespace WeDevs\Dokan\REST {
          * @return true|WP_Error
          */
         protected function is_target_user_allowed(int $target_id)
+        {
+        }
+        /**
+         * Whether a requested email differs from the customer's current login email.
+         *
+         * Re-sending the current email is not a change. A non-string value (possible in batch items,
+         * which skip request validation) counts as a change, so it is rejected before sanitize_email().
+         *
+         * @since 5.3.0
+         *
+         * @param mixed $new_email   Requested email, or null when the field is absent.
+         * @param int   $customer_id Target customer ID.
+         *
+         * @return bool
+         */
+        protected function is_email_change($new_email, int $customer_id): bool
         {
         }
         /**
@@ -31103,6 +31192,191 @@ namespace WeDevs\Dokan\REST {
         {
         }
     }
+    /**
+     * Vendor Store Settings REST Controller.
+     *
+     * GET /dokan/v1/vendor-settings/store — the flat-array schema with values for
+     * the current vendor. PUT saves a flat key-value map through the legacy save
+     * pipeline (both Pro seams fire), returning the refreshed schema.
+     *
+     * @since 5.3.0
+     */
+    class VendorStoreSettingsController extends \WeDevs\Dokan\REST\DokanBaseVendorController
+    {
+        /**
+         * Route base.
+         *
+         * @var string
+         */
+        protected $rest_base = 'vendor-settings';
+        /**
+         * Value mapper instance.
+         *
+         * @var ValueMapper
+         */
+        protected \WeDevs\Dokan\Vendor\Settings\ValueMapper $mapper;
+        /**
+         * Settings writer instance.
+         *
+         * @var StoreSettingsWriter
+         */
+        protected \WeDevs\Dokan\Vendor\Settings\StoreSettingsWriter $writer;
+        /**
+         * Constructor.
+         *
+         * @param ValueMapper|null         $mapper Optional mapper instance (for testing).
+         * @param StoreSettingsWriter|null $writer Optional writer instance (for testing).
+         */
+        public function __construct(?\WeDevs\Dokan\Vendor\Settings\ValueMapper $mapper = null, ?\WeDevs\Dokan\Vendor\Settings\StoreSettingsWriter $writer = null)
+        {
+        }
+        /**
+         * Register REST routes.
+         *
+         * @since 5.3.0
+         *
+         * @return void
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Permission check — same capability the legacy store settings page uses.
+         *
+         * @since 5.3.0
+         *
+         * @return bool
+         */
+        public function check_permission()
+        {
+        }
+        /**
+         * GET handler — flat schema with values for the acting vendor.
+         *
+         * @since 5.3.0
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function get_items($request)
+        {
+        }
+        /**
+         * PUT handler — validate, sanitize, and persist flat values through the
+         * legacy save pipeline. Returns the refreshed schema on success.
+         *
+         * Validation failures return `400` with an `errors` map keyed by field id,
+         * which plugin-ui merges into per-field error state.
+         *
+         * @since 5.3.0
+         *
+         * @param WP_REST_Request $request Request object.
+         *
+         * @return WP_REST_Response|WP_Error
+         */
+        public function update_item($request)
+        {
+        }
+        /**
+         * Build the filtered schema response for a vendor.
+         *
+         * @since 5.3.0
+         *
+         * @param int $vendor_id Vendor user ID.
+         *
+         * @return array
+         */
+        protected function get_response_schema(int $vendor_id): array
+        {
+        }
+        /**
+         * Resolve the acting vendor, or a 404 error when the user owns no store.
+         *
+         * @since 5.3.0
+         *
+         * @return int|WP_Error Vendor user ID, or an error response.
+         */
+        protected function resolve_vendor_id()
+        {
+        }
+        /**
+         * Reduce a submitted key to its schema field id.
+         *
+         * The plugin-ui engine emits dot-path keys (`page.subpage.field_id`) that
+         * mirror its internal tree; the schema is keyed by the leaf id alone.
+         *
+         * @since 5.3.0
+         *
+         * @param string $key Submitted key.
+         *
+         * @return string Leaf field id.
+         */
+        protected function normalize_field_key($key): string
+        {
+        }
+        /**
+         * Index the schema's field elements by id.
+         *
+         * @since 5.3.0
+         *
+         * @param array $schema Flat schema elements.
+         *
+         * @return array Field elements keyed by id.
+         */
+        protected function get_fields_by_id(array $schema): array
+        {
+        }
+        /**
+         * Validate a sanitized value against the field's declared rules.
+         *
+         * Runs in order: the declarative `validations`, the field's optional
+         * `validation_func` closure, then the `dokan_rest_vendor_settings_validate_field`
+         * filter. A `validation_func` gets `( $value, $all_values, $vendor_id )` and
+         * returns `true`, `false`, a message, or a list of messages — so multi-error
+         * and cross-field checks live on the field that owns them.
+         *
+         * @since 5.3.0
+         *
+         * @param array $field      The field schema element.
+         * @param mixed $value      The sanitized value.
+         * @param array $all_values Every sanitized value keyed by field id.
+         * @param int   $vendor_id  Vendor user ID.
+         *
+         * @return string[] Error messages (empty when valid).
+         */
+        protected function validate_field_value(array $field, $value, array $all_values = [], int $vendor_id = 0): array
+        {
+        }
+        /**
+         * Evaluate one declarative rule against a value.
+         *
+         * @since 5.3.0
+         *
+         * @param string $rule    Rule name (`required`, `not_empty`, `min_value`, `max_value`).
+         * @param mixed  $value   The sanitized value.
+         * @param array  $params  Rule parameters (`min`/`max`, positional or keyed).
+         * @param string $message Custom message; falls back to a built-in default.
+         *
+         * @return string|null Error message when the rule fails, null otherwise.
+         */
+        protected function validate_rule(string $rule, $value, array $params, string $message): ?string
+        {
+        }
+        /**
+         * Sanitize a submitted value based on the field variant.
+         *
+         * @since 5.3.0
+         *
+         * @param array $field The field schema element.
+         * @param mixed $value The raw submitted value.
+         *
+         * @return mixed Sanitized value.
+         */
+        protected function sanitize_field_value(array $field, $value)
+        {
+        }
+    }
 }
 namespace WeDevs\Dokan\Traits {
     trait RESTResponseError
@@ -33563,6 +33837,22 @@ namespace WeDevs\Dokan\Shortcodes {
         {
         }
         /**
+         * Attach the layout config (sidebar nav, vendor, site info) to the registered script.
+         *
+         * Deliberately runs at enqueue time, not at registration: the nav's
+         * new/legacy gates read `dokan_appearance`, whose flat-settings overlay is
+         * only filtered in at `init` priority 999 — long after this class registers
+         * its assets at `init` 99. Building the nav there hands the app the
+         * pre-overlay (legacy) URLs.
+         *
+         * @since 5.3.0
+         *
+         * @return void
+         */
+        protected function add_dashboard_layout_config(): void
+        {
+        }
+        /**
          * Enqueue React vendor dashboard assets when viewing the seller dashboard.
          *
          * @since 4.2.0
@@ -35259,6 +35549,25 @@ namespace WeDevs\Dokan\Utilities {
         {
         }
     }
+    class MapUtil
+    {
+        /**
+         * Parses a stored map location string into usable coordinates.
+         *
+         * A location is only meaningful when it holds both a latitude and a longitude.
+         * Values such as an empty string or a bare `,` separator mean "no location",
+         * so callers can fall back to their own default instead of a hardcoded one.
+         *
+         * @since 5.3.0
+         *
+         * @param string $map_location Comma separated latitude, longitude pair.
+         *
+         * @return array|false Trimmed `latitude` and `longitude`, or false when unusable.
+         */
+        public static function parse_location($map_location)
+        {
+        }
+    }
     class OrderUtil
     {
         /**
@@ -36192,6 +36501,380 @@ namespace WeDevs\Dokan\Vendor {
          * @return array|\WP_Error
          */
         public function deactivate($vendor_id)
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Vendor\Settings\Schema {
+    /**
+     * Vendor Store Settings flat-array schema.
+     *
+     * Builds the flat `SettingsElement[]` list (page → subpage → section cards →
+     * fields) consumed by the plugin-ui `<Settings>` engine on the vendor
+     * dashboard Store settings page. Field values are populated inline from the
+     * vendor's `dokan_profile_settings` user meta — the storage keys and value
+     * shapes stay byte-identical to the legacy store form (see
+     * plugin-internal-tasks#2115).
+     *
+     * Presentation follows the Figma Store page: every section renders as its own
+     * collapsible card (title + helper description) with full-width stacked
+     * fields; cross-plugin card order is controlled via `priority` so Pro can
+     * slot its cards (e.g. Store Biography before Terms & Conditions).
+     *
+     * Conditional blocks are gated server-side with the same checks the legacy
+     * `templates/settings/store-form.php` used, so the schema never contains a
+     * field the vendor is not allowed to edit.
+     *
+     * Extension point (mirrors `dokan_get_admin_settings_schema` on the admin side):
+     *
+     *     apply_filters( 'dokan_get_vendor_settings_schema', $elements, $vendor_id )
+     *
+     * @since 5.3.0
+     */
+    class StoreSettingsSchema
+    {
+        /**
+         * Build the flat schema with populated values for a vendor.
+         *
+         * @since 5.3.0
+         *
+         * @param int $vendor_id Vendor user ID.
+         *
+         * @return array Flat list of settings elements.
+         */
+        public static function get_schema(int $vendor_id): array
+        {
+        }
+        /**
+         * Show/hide dependency pair: reveal a field only while another equals a value.
+         *
+         * Mirrors the admin schema convention (a `===`/`!==` show/hide couple).
+         *
+         * @since 5.3.0
+         *
+         * @param string $key   Controlling field id.
+         * @param mixed  $value Value that reveals the dependent field.
+         *
+         * @return array Two-rule set for a field's `dependencies`.
+         */
+        protected static function visible_when(string $key, $value): array
+        {
+        }
+        /**
+         * Page and subpage skeleton the section cards hang from.
+         *
+         * @since 5.3.0
+         *
+         * @return array
+         */
+        protected static function structure(): array
+        {
+        }
+        /**
+         * Group the page's cards under the line tabs.
+         *
+         * Runs after the schema filter, so the one extension surface covers tabs
+         * too: a section (or section-less card field) placed via
+         * `dokan_get_vendor_settings_schema` picks its tab by declaring `tab_id`,
+         * and a custom tab is just an injected `type => tab` element. Cards that
+         * declare nothing fall back to General — the engine renders only the
+         * active tab's children, so nothing may be left tabless. Tabs that end up
+         * with no cards are dropped.
+         *
+         * @since 5.3.0
+         *
+         * @param array $elements Flat schema elements, schema filter applied.
+         *
+         * @return array
+         */
+        protected static function group_into_tabs(array $elements): array
+        {
+        }
+        /**
+         * The Store page's line tabs, in strip order.
+         *
+         * @since 5.3.0
+         *
+         * @return array
+         */
+        protected static function base_tabs(): array
+        {
+        }
+        /**
+         * Valid tab ids: the base tabs plus any injected through the schema filter.
+         *
+         * @since 5.3.0
+         *
+         * @param array $elements Flat schema elements.
+         * @param array $tabs     Base tabs.
+         *
+         * @return string[]
+         */
+        protected static function known_tab_ids(array $elements, array $tabs): array
+        {
+        }
+        /**
+         * Whether an element is a store-subpage card that belongs under a tab: a
+         * section, or a section-less card field (e.g. Live Chat).
+         *
+         * @since 5.3.0
+         *
+         * @param array $element Schema element.
+         *
+         * @return bool
+         */
+        protected static function is_tab_member(array $element): bool
+        {
+        }
+        /**
+         * Branding card: store title, banner, and logo.
+         *
+         * @since 5.3.0
+         *
+         * @param array $info Vendor store info (`dokan_get_store_info()`).
+         *
+         * @return array
+         */
+        protected static function branding(array $info): array
+        {
+        }
+        /**
+         * Crop config for a `vendor_image` field — the picker crops to exactly this size.
+         *
+         * @since 5.3.0
+         *
+         * @param int $width  Target crop width.
+         * @param int $height Target crop height.
+         *
+         * @return array
+         */
+        protected static function crop_config(int $width, int $height): array
+        {
+        }
+        /**
+         * Store Information card: phone and email visibility.
+         *
+         * @since 5.3.0
+         *
+         * @param array $info Vendor store info.
+         *
+         * @return array
+         */
+        protected static function store_information(array $info): array
+        {
+        }
+        /**
+         * Store Locations card — the single-address form Lite ships.
+         *
+         * Extensions that own the address UI (Pro's delivery-time store pickup
+         * renders a multi-location table) replace this section through the
+         * `dokan_get_vendor_settings_schema` filter rather than Lite standing
+         * itself down for them.
+         *
+         * @since 5.3.0
+         *
+         * @param array $info Vendor store info.
+         *
+         * @return array
+         */
+        protected static function address(array $info): array
+        {
+        }
+        /**
+         * Store Map card — only when a map provider API key is configured, same
+         * gate as the legacy form (`dokan_has_map_api_key()`).
+         *
+         * @since 5.3.0
+         *
+         * @param array $info Vendor store info.
+         *
+         * @return array
+         */
+        protected static function map(array $info): array
+        {
+        }
+        /**
+         * Store Schedule card — gated by the admin appearance option, same as legacy.
+         *
+         * @since 5.3.0
+         *
+         * @param array $info Vendor store info.
+         *
+         * @return array
+         */
+        protected static function schedule(array $info): array
+        {
+        }
+        /**
+         * Terms & Conditions card — only when the admin allows vendor ToC.
+         * Renders last on the page (priority 90), collapsed by default.
+         *
+         * @since 5.3.0
+         *
+         * @param array $info Vendor store info.
+         *
+         * @return array
+         */
+        protected static function terms_and_conditions(array $info): array
+        {
+        }
+        /**
+         * Catalog mode card — only when the admin enabled the feature; sub-fields
+         * follow the same per-option admin gates as the legacy render.
+         *
+         * @since 5.3.0
+         *
+         * @param int $vendor_id Vendor user ID.
+         *
+         * @return array
+         */
+        protected static function catalog_mode(int $vendor_id): array
+        {
+        }
+    }
+}
+namespace WeDevs\Dokan\Vendor\Settings {
+    /**
+     * Sanitizer + validator for the vendor store schedule (`dokan_store_time`).
+     *
+     * The Store settings schema wires these as the `dokan_store_time` field's
+     * `sanitize_callback` and `validation_func`, so the REST controller stays
+     * variant-agnostic and the schedule rules live next to the field that owns
+     * them.
+     *
+     * @since 5.3.0
+     */
+    class StoreScheduleValidator
+    {
+        /**
+         * Normalize a submitted schedule into the exact legacy shape: per-day
+         * `{ status: 'open'|'close', opening_time: string[], closing_time: string[] }`
+         * with canonical `g:i a` strings. Closed days carry empty time arrays.
+         *
+         * @since 5.3.0
+         *
+         * @param mixed $value Submitted schedule keyed by day.
+         *
+         * @return array
+         */
+        public static function sanitize($value): array
+        {
+        }
+        /**
+         * Validate a normalized schedule: open days need matching time pairs, each
+         * in `g:i a` format with the opening time before the closing time (the
+         * full-day `12:00 am`–`11:59 pm` pair satisfies this).
+         *
+         * @since 5.3.0
+         *
+         * @param mixed $value      Normalized schedule keyed by day.
+         * @param array $all_values Every field value keyed by id (stored values overlaid with the submitted ones).
+         *
+         * @return string[] Error messages (empty when valid).
+         */
+        public static function validate($value, array $all_values = []): array
+        {
+        }
+        /**
+         * Validate the opening/closing time pairs of a single open day.
+         *
+         * @since 5.3.0
+         *
+         * @param string $day_label Translated day name for messages.
+         * @param array  $day_data  Normalized day entry.
+         *
+         * @return string[] Error messages for the day (empty when valid).
+         */
+        protected static function validate_open_day(string $day_label, array $day_data): array
+        {
+        }
+    }
+    /**
+     * The one write path for vendor Store settings.
+     *
+     * Replays the exact legacy pipeline from
+     * `Dashboard\Templates\Settings::insert_settings_info()` so every Pro consumer
+     * on the two seams keeps working: shallow merge → `dokan_store_name` mirror →
+     * `dokan_store_profile_settings_args` filter → canonical meta write →
+     * `dokan_store_profile_saved` action (which also invalidates the vendor cache).
+     *
+     * @since 5.3.0
+     */
+    class StoreSettingsWriter
+    {
+        /**
+         * Persist a legacy-keyed slice of store settings for a vendor.
+         *
+         * @since 5.3.0
+         *
+         * @param int   $vendor_id Vendor user ID.
+         * @param array $slice     Legacy-keyed values to merge in.
+         *
+         * @return array The full merged `dokan_profile_settings` array.
+         */
+        public function save(int $vendor_id, array $slice): array
+        {
+        }
+    }
+    /**
+     * Maps sanitized flat field values (keyed by schema field id) onto the legacy
+     * `dokan_profile_settings` slice.
+     *
+     * The flat array is a presentation schema, not a storage schema: every value
+     * lands in the exact legacy key/shape the store form has always written, so
+     * all existing readers (store templates, REST v1/v2, Pro read-modify-write
+     * sites) keep working unchanged.
+     *
+     * @since 5.3.0
+     */
+    class ValueMapper
+    {
+        /**
+         * Convert sanitized flat values into a legacy profile-settings slice.
+         *
+         * @since 5.3.0
+         *
+         * @param array $sanitized    Sanitized values keyed by field id.
+         * @param array $prev         The vendor's current `dokan_profile_settings` array.
+         * @param array $fields_by_id Schema field elements keyed by id.
+         *
+         * @return array Legacy-keyed slice ready for a shallow merge.
+         */
+        public function to_legacy(array $sanitized, array $prev, array $fields_by_id): array
+        {
+        }
+        /**
+         * Map one sanitized field onto its legacy key/value pair(s).
+         *
+         * Most fields land under a single `legacy_key`; the composite map field
+         * expands to two top-level keys and the address merges over its previous
+         * subkeys.
+         *
+         * @since 5.3.0
+         *
+         * @param string $id    Field id.
+         * @param mixed  $value Sanitized value.
+         * @param array  $prev  The vendor's current profile settings.
+         * @param array  $field The field schema element.
+         *
+         * @return array Partial legacy slice to merge in.
+         */
+        protected function legacy_entry(string $id, $value, array $prev, array $field): array
+        {
+        }
+        /**
+         * Build the nested `catalog_mode` array from the toggles this schema owns,
+         * preserving keys other plugins own — they apply their own rules on the
+         * `dokan_store_profile_settings_args` seam the writer fires.
+         *
+         * @since 5.3.0
+         *
+         * @param array $sanitized Sanitized values keyed by field id.
+         * @param array $prev      The vendor's current profile settings.
+         *
+         * @return array|null Nested catalog_mode array, or null when untouched.
+         */
+        protected function catalog_mode_slice(array $sanitized, array $prev): ?array
         {
         }
     }
@@ -37160,7 +37843,7 @@ namespace WeDevs\Dokan\Vendor {
         /**
          * Get the shop location
          *
-         * @return array
+         * @return string|null
          */
         public function get_location()
         {
@@ -38005,7 +38688,7 @@ namespace WeDevs\Dokan {
          * @var array $template_dependencies List of template dependencies.
          * [ 'route' => [ ['slug' => 'template-slug', 'name' => 'template-name' (Optional), 'args' = [] (Optional)  ] ] ]
          */
-        protected array $template_dependencies = ['withdraw' => [['slug' => 'withdraw/withdraw-dashboard'], ['slug' => 'withdraw/withdraw'], ['slug' => 'withdraw/header'], ['slug' => 'withdraw/status-listing'], ['slug' => 'withdraw/pending-request-listing'], ['slug' => 'withdraw/approved-request-listing'], ['slug' => 'withdraw/cancelled-request-listing'], ['slug' => 'withdraw/tmpl-withdraw-request-popup'], ['slug' => 'withdraw/request-form'], ['slug' => 'withdraw/pending-request-listing-dashboard']]];
+        protected array $template_dependencies = ['settings/store' => [['slug' => 'settings/store-form'], ['slug' => 'settings/store-time'], ['slug' => 'settings/address-form'], ['slug' => 'maps/dokan-maps-with-search']], 'withdraw' => [['slug' => 'withdraw/withdraw-dashboard'], ['slug' => 'withdraw/withdraw'], ['slug' => 'withdraw/header'], ['slug' => 'withdraw/status-listing'], ['slug' => 'withdraw/pending-request-listing'], ['slug' => 'withdraw/approved-request-listing'], ['slug' => 'withdraw/cancelled-request-listing'], ['slug' => 'withdraw/tmpl-withdraw-request-popup'], ['slug' => 'withdraw/request-form'], ['slug' => 'withdraw/pending-request-listing-dashboard']]];
         /**
          * Forcefully resolved dependencies.
          *
