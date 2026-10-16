@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.3.0';
+        public $version = '5.3.1';
         /**
          * Instance of self
          *
@@ -20165,7 +20165,7 @@ namespace WeDevs\Dokan\Exceptions {
          *
          * @since 2.9.16
          *
-         * @var string
+         * @var string|\WP_Error
          */
         protected $error_code = '';
         /**
@@ -20188,7 +20188,7 @@ namespace WeDevs\Dokan\Exceptions {
          *
          * @since 2.9.16
          *
-         * @return string
+         * @return string|\WP_Error
          */
         final public function get_error_code()
         {
@@ -30036,6 +30036,23 @@ namespace WeDevs\Dokan\REST {
         {
         }
         /**
+         * Keep each still-attached file on its stored download id.
+         *
+         * The product editor sends a file's attachment id as `id`; an unchanged URL keeps its stored id so buyers' permissions stay valid.
+         * Ids are queued per URL, so two files sharing one URL each keep their own id instead of collapsing into one.
+         *
+         * @since 5.3.1
+         *
+         * @param WC_Product $product    Product being saved, still holding its stored downloads.
+         * @param array      $downloads  Downloads from the request.
+         * @param int        $deprecated Deprecated variation id, passed through to WooCommerce.
+         *
+         * @return WC_Product
+         */
+        protected function save_downloadable_files($product, $downloads, $deprecated = 0)
+        {
+        }
+        /**
          * Populate $_POST with resolved request params so legacy hooks
          * (e.g. dokan_new_product_added, dokan_product_updated consumers)
          * that read from $_POST continue to work.
@@ -31385,6 +31402,7 @@ namespace WeDevs\Dokan\Traits {
          * Send REST error response
          *
          * @since 3.0.0
+         * @since 5.3.1 Return the wrapped WP_Error when the error code is a WP_Error.
          *
          * @param \Exception $e
          * @param string     $default_message
