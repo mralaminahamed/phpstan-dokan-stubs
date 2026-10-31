@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.3.2';
+        public $version = '5.3.3';
         /**
          * Instance of self
          *
@@ -18992,7 +18992,15 @@ namespace WeDevs\Dokan\Emails {
          *
          * @var string
          */
-        private $from_email;
+        private $reply_to_email = '';
+        /**
+         * Reply name
+         *
+         * @since 5.3.3
+         *
+         * @var string
+         */
+        private $reply_to_name = '';
         /**
          * Constructor.
          */
@@ -19024,11 +19032,13 @@ namespace WeDevs\Dokan\Emails {
         {
         }
         /**
-         * Get the from address for outgoing emails.
+         * Get email headers, with the contact form submitter as the only Reply-to (also replaces any added via `woocommerce_email_headers`).
+         *
+         * @since 5.3.3
          *
          * @return string
          */
-        public function get_from_address($from_email = '')
+        public function get_headers()
         {
         }
         /**
@@ -29444,6 +29454,30 @@ namespace WeDevs\Dokan\REST {
         {
         }
         /**
+         * Whether the current user may see a product's vendor-only fields (download files, earning, purchase note, meta data).
+         *
+         * @since 5.3.3
+         *
+         * @param WC_Product $product Product instance.
+         *
+         * @return bool
+         */
+        protected function can_view_private_product_data($product): bool
+        {
+        }
+        /**
+         * Product meta entries that any caller may see, opted in through `dokan_rest_public_product_meta_keys`.
+         *
+         * @since 5.3.3
+         *
+         * @param WC_Product $product Product instance.
+         *
+         * @return array
+         */
+        protected function get_public_meta_data($product): array
+        {
+        }
+        /**
          * Prepare object for database mapping
          *
          * @param WP_REST_Request $request
@@ -29964,6 +29998,19 @@ namespace WeDevs\Dokan\REST {
          * @return WC_Data|WP_Error
          */
         protected function prepare_object_for_database($request, $creating = false)
+        {
+        }
+        /**
+         * Apply the vendor's default product status when a vendor asks for a live status, as the v1 API does.
+         *
+         * @since 5.3.3
+         *
+         * @param WC_Data $product          Product assembled from the request, not yet saved.
+         * @param bool    $status_requested Whether the request sets the product's status.
+         *
+         * @return void
+         */
+        protected function enforce_publish_moderation($product, bool $status_requested): void
         {
         }
         /**
@@ -32301,6 +32348,22 @@ namespace WeDevs\Dokan\ReverseWithdrawal {
         {
         }
         /**
+         * Reject coupons while a reverse withdrawal payment is in the cart.
+         *
+         * @since 5.3.3
+         *
+         * @param bool          $valid
+         * @param \WC_Coupon    $coupon
+         * @param \WC_Discounts $discounts
+         *
+         * @throws \Exception When the cart holds a reverse withdrawal payment; WooCommerce shows the message as the coupon error.
+         *
+         * @return bool
+         */
+        public function prevent_coupon_on_reverse_withdrawal_payment($valid, $coupon, $discounts)
+        {
+        }
+        /**
          * Remove seller name on cart and other areas
          *
          * @since 3.5.1
@@ -32524,6 +32587,18 @@ namespace WeDevs\Dokan\ReverseWithdrawal {
          * @return float|bool false if meta key not found
          */
         public static function get_balance_from_order(\WC_Abstract_Order $order)
+        {
+        }
+        /**
+         * Get the amount an order actually collected towards the reverse withdrawal balance.
+         *
+         * @since 5.3.3
+         *
+         * @param \WC_Abstract_Order $order
+         *
+         * @return float
+         */
+        public static function get_collected_amount_from_order(\WC_Abstract_Order $order): float
         {
         }
         /**
@@ -35874,6 +35949,18 @@ namespace WeDevs\Dokan\Utilities {
          *             or if vendor ID cannot be determined.
          */
         public static function get_vendor_id_for_user(int $user_id = 0): int
+        {
+        }
+        /**
+         * Check whether the current user may manage the given user's vendor account on this site.
+         *
+         * @since 5.3.3
+         *
+         * @param int $user_id Target user ID.
+         *
+         * @return bool
+         */
+        public static function current_user_can_manage_vendor(int $user_id): bool
         {
         }
     }
@@ -42925,6 +43012,19 @@ namespace {
      * @return array
      */
     function dokan_get_dashboard_nav(): array
+    {
+    }
+    /**
+     * SPA routes under a dashboard menu the admin switched off (Menu Manager, Pro).
+     *
+     * Legacy pages are refused server-side on `dokan_dashboard_shortcode_query_vars`; the hash
+     * router cannot be, so the vendor dashboard gets this list and renders "no permission" itself.
+     *
+     * @since 5.3.3
+     *
+     * @return string[] Routes without surrounding slashes, e.g. `settings/social`.
+     */
+    function dokan_get_restricted_dashboard_routes(): array
     {
     }
     /**
