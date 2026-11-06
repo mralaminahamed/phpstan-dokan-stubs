@@ -30,7 +30,7 @@ namespace {
          *
          * @var string
          */
-        public $version = '5.3.3';
+        public $version = '5.3.4';
         /**
          * Instance of self
          *
@@ -1051,9 +1051,11 @@ namespace WeDevs\Dokan\Abilities {
         {
         }
         /**
-         * Permission for a single product: published is public; otherwise owner or admin only.
+         * Permission for a single product: published is readable by any signed-in caller; otherwise
+         * owner or admin only.
          *
          * @since 5.0.15
+         * @since 5.3.4 An anonymous caller keeps WooCommerce's own answer.
          *
          * @param bool   $permission Incoming permission.
          * @param string $context    Request context.
@@ -1403,8 +1405,8 @@ namespace WeDevs\Dokan\Abilities\Support {
      * server, another plugin in-process, or WP-CLI. Scoping deliberately follows the Ability rather
      * than the transport: an ability call that never touches an MCP URL is still scoped.
      *
-     * A URI check (preferring WooCommerce's own detection when present) is kept as a secondary
-     * signal, and the result is filterable via `dokan_is_ability_context`.
+     * A check of the REST route WordPress is serving is kept as a secondary signal, and the result
+     * is filterable via `dokan_is_ability_context`.
      *
      * @since 5.0.15
      */
@@ -1535,18 +1537,16 @@ namespace WeDevs\Dokan\Abilities\Support {
         {
         }
         /**
-         * Whether the request targets a known MCP endpoint.
+         * Whether the request is being served by a known MCP endpoint.
          *
-         * Prefers WooCommerce's own detection when present; otherwise (or when it reports false,
-         * e.g. for a future `/dokan/mcp` endpoint) falls back to a URI check.
+         * Matches the REST route WordPress dispatches (`rest_route`), not the raw request URI.
          *
          * @since 5.0.15
-         *
-         * @param string $request_uri The current request URI.
+         * @since 5.3.4 Reads the dispatched REST route instead of the request URI.
          *
          * @return bool
          */
-        protected static function matches_mcp_endpoint(string $request_uri): bool
+        protected static function matches_mcp_endpoint(): bool
         {
         }
         /**
@@ -4005,6 +4005,115 @@ namespace WeDevs\Dokan\Admin\Dashboard\Pages {
          * @inheritDoc
          */
         abstract public function register(): void;
+    }
+    /**
+     * Black Friday / Cyber Monday (BFCM) campaign page.
+     *
+     * Owns the seasonal "Black Friday" submenu entry. On Lite the page sells Pro; when Dokan Pro
+     * ships its own upgrade page for the same route, this class only contributes the menu entry.
+     *
+     * @since 5.3.4
+     *
+     * @todo BFCM-2026-REMOVE: seasonal Black Friday / Cyber Monday page. Remove manually after the campaign ends (Dec 5, 2026), together with assets/images/black-friday; nothing switches itself off.
+     */
+    class BlackFriday extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
+    {
+        /**
+         * Dashboard route (also the URL fragment `#/black-friday`).
+         *
+         * @since 5.3.4
+         */
+        const ROUTE = 'black-friday';
+        /**
+         * Script and style handle.
+         *
+         * @since 5.3.4
+         */
+        const HANDLE = 'dokan-black-friday';
+        /**
+         * Purchase page for Lite users during BFCM.
+         *
+         * @since 5.3.4
+         *
+         * @var string
+         */
+        const DEAL_URL = 'https://dokan.co/wordpress/pricing/';
+        /**
+         * Build a campaign link tagged with the BFCM UTM parameters.
+         *
+         * @since 5.3.4
+         *
+         * @param string $content Value for `utm_content`, identifying the clicked CTA.
+         * @param string $url     Destination; defaults to the Dokan pricing page.
+         *
+         * @return string
+         */
+        public static function cta_url(string $content, string $url = ''): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function get_id(): string
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function menu(string $capability, string $position): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function settings(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function scripts(): array
+        {
+        }
+        /**
+         * @inheritDoc
+         */
+        public function styles(): array
+        {
+        }
+        /**
+         * Register the Lite page assets.
+         *
+         * @since 5.3.4
+         *
+         * @return void
+         */
+        public function register(): void
+        {
+        }
+        /**
+         * Whether Dokan Pro renders its own upgrade page on this route.
+         *
+         * @since 5.3.4
+         *
+         * @return bool
+         */
+        protected function has_pro_page(): bool
+        {
+        }
+        /**
+         * Whether the campaign page is hidden.
+         *
+         * An older Pro without its own upgrade page must not fall back to the Lite
+         * offer, since that pitches the free-user deal to a paying Pro customer.
+         *
+         * @since 5.3.4
+         *
+         * @return bool
+         */
+        protected function is_hidden(): bool
+        {
+        }
     }
     class Extensions extends \WeDevs\Dokan\Admin\Dashboard\Pages\AbstractPage
     {
@@ -8573,6 +8682,20 @@ namespace WeDevs\Dokan\Admin\Settings\Schema {
         {
         }
         /**
+         * Why a commission amount cannot be saved: which box is empty, and that 0 is allowed.
+         *
+         * @since 5.3.4
+         *
+         * @param string $name       Field or category name the message starts with.
+         * @param mixed  $percentage Percentage value.
+         * @param mixed  $flat       Fixed fee value.
+         *
+         * @return string|true The message, or true when both boxes are filled.
+         */
+        private static function commission_amount_error(string $name, $percentage, $flat)
+        {
+        }
+        /**
          * Resolve registered AI providers for the given kind ('text' | 'image').
          *
          * Returns an empty array when the Intelligence module is not loaded or
@@ -9722,6 +9845,20 @@ namespace WeDevs\Dokan\Admin {
          * @return void|false
          */
         public function add_meta_fields($user)
+        {
+        }
+        /**
+         * Report a store URL another user already has on the admin profile screen.
+         *
+         * @since 5.3.4
+         *
+         * @param \WP_Error $errors Errors shown on the profile screen.
+         * @param bool      $update Whether an existing user is being saved.
+         * @param object    $user   User data being saved.
+         *
+         * @return void
+         */
+        public function validate_store_url($errors, $update, $user)
         {
         }
         /**
@@ -18545,6 +18682,8 @@ namespace WeDevs\Dokan\DependencyManagement\Providers {
             \WeDevs\Dokan\Admin\Dashboard\Pages\Tools::class,
             \WeDevs\Dokan\Admin\Dashboard\Pages\Status::class,
             \WeDevs\Dokan\Admin\Dashboard\Pages\ProFeatures::class,
+            \WeDevs\Dokan\Admin\Dashboard\Pages\BlackFriday::class,
+            // TODO BFCM-2026-REMOVE: seasonal page, remove after the campaign.
             \WeDevs\Dokan\Admin\Dashboard\Pages\Withdraw::class,
             \WeDevs\Dokan\Admin\Dashboard\Pages\Vendors::class,
             \WeDevs\Dokan\Admin\Dashboard\Pages\ReverseWithdrawal::class,
@@ -18782,7 +18921,7 @@ namespace WeDevs\Dokan\DependencyManagement\Providers {
          * Tag for services added to the container.
          */
         public const TAG = 'ajax-service';
-        protected $services = [\WeDevs\Dokan\Models\VendorBalance::class, \WeDevs\Dokan\Models\VendorOrderStats::class, \WeDevs\Dokan\Models\AdminDashboardStats::class, \WeDevs\Dokan\Models\DataStore\VendorBalanceStore::class, \WeDevs\Dokan\Models\DataStore\VendorOrderStatsStore::class, \WeDevs\Dokan\Models\DataStore\AdminDashboardStatsStore::class];
+        protected $services = [\WeDevs\Dokan\Models\VendorBalance::class, \WeDevs\Dokan\Models\VendorOrderStats::class, \WeDevs\Dokan\Models\AdminDashboardStats::class, \WeDevs\Dokan\Models\DataStore\VendorBalanceStore::class, \WeDevs\Dokan\Models\DataStore\VendorOrderStatsStore::class, \WeDevs\Dokan\Models\DataStore\AdminDashboardStatsStore::class, \WeDevs\Dokan\Models\DataStore\VendorCustomerStore::class];
         /**
          * {@inheritDoc}
          *
@@ -19647,6 +19786,32 @@ namespace WeDevs\Dokan\Emails {
          * @return void
          */
         public function trigger($vendor_id, $due_status = null)
+        {
+        }
+        /**
+         * Fill the email with sample data for the WooCommerce email preview and "Send a test email".
+         *
+         * @since 5.3.4
+         *
+         * @param WC_Email $email The email being previewed.
+         *
+         * @return WC_Email
+         */
+        public function prepare_email_for_preview($email)
+        {
+        }
+        /**
+         * Fill the {month}, {year} and {store_name} placeholders.
+         *
+         * The invoice covers the previous calendar month.
+         *
+         * @since 5.3.4
+         *
+         * @param string $store_name Store name shown in the subject and body.
+         *
+         * @return void
+         */
+        protected function set_invoice_placeholders($store_name)
         {
         }
         /**
@@ -22558,6 +22723,40 @@ namespace WeDevs\Dokan\Models\DataStore {
         }
     }
     /**
+     * Read-only data store for the registered customers who have an order from a vendor.
+     *
+     * @since 5.3.4
+     */
+    class VendorCustomerStore extends \WeDevs\Dokan\Models\DataStore\BaseDataStore
+    {
+        /**
+         * {@inheritDoc}
+         */
+        protected function get_fields_with_format(): array
+        {
+        }
+        /**
+         * {@inheritDoc}
+         */
+        public function get_table_name(): string
+        {
+        }
+        /**
+         * Get the SQL selecting a vendor's customer IDs, for use in an `IN ( ... )` clause.
+         *
+         * Matches dokan_customer_has_order_from_this_seller() defaults, without the dokan_get_vendor_orders_* filters.
+         *
+         * @since 5.3.4
+         *
+         * @param int $seller_id Seller ID.
+         *
+         * @return string Prepared, single-column SELECT of user IDs, or `SELECT 0` when there can be none.
+         */
+        public function get_customer_ids_sql_by_seller(int $seller_id): string
+        {
+        }
+    }
+    /**
      * Vendor Order Stats Store Class
      *
      * @since 4.1.0
@@ -23767,6 +23966,24 @@ namespace WeDevs\Dokan\Order {
     class EmailHooks
     {
         /**
+         * Order meta holding the customer emails to skip while WooCommerce defers emails.
+         *
+         * @since 5.3.4
+         */
+        const SYNCED_STATUS_META = '_dokan_synced_status';
+        /**
+         * Flag for an auto-completed Suborder whose completed email is still queued.
+         *
+         * @since 5.3.4
+         */
+        const AUTO_COMPLETED = 'auto-completed';
+        /**
+         * Default seconds a flag stays valid, so a queued email that never runs cannot block later emails.
+         *
+         * @since 5.3.4
+         */
+        const FLAG_LIFETIME = DAY_IN_SECONDS;
+        /**
          * Class constructor
          *
          * @since 3.8.0
@@ -23783,6 +24000,136 @@ namespace WeDevs\Dokan\Order {
          * @return void
          */
         public function prevent_sending_multiple_email()
+        {
+        }
+        /**
+         * Flag a status Dokan is about to save onto an order, so its deferred customer email is skipped.
+         *
+         * @since 5.3.4
+         *
+         * @param WC_Order $order  Parent order or Suborder.
+         * @param string   $status Status being synced, with or without the "wc-" prefix.
+         *
+         * @return void
+         */
+        public static function flag_synced_status(\WC_Order $order, string $status)
+        {
+        }
+        /**
+         * Mark a Suborder Dokan is about to auto-complete, while its completed email is still queued.
+         *
+         * @since 5.3.4
+         *
+         * @param WC_Order $order Suborder being auto-completed.
+         *
+         * @return void
+         */
+        public static function flag_auto_completed(\WC_Order $order)
+        {
+        }
+        /**
+         * Skip the queued completed email of an auto-completed Suborder.
+         *
+         * @since 5.3.4
+         *
+         * @param WC_Order $order Suborder.
+         *
+         * @return bool Whether its completed email was still queued and is now skipped.
+         */
+        public static function skip_auto_completed_email(\WC_Order $order): bool
+        {
+        }
+        /**
+         * Add one flag per queued email to skip.
+         *
+         * @since 5.3.4
+         *
+         * @param WC_Order $order  Order object.
+         * @param string   $status Status of the email to skip.
+         *
+         * @return bool Whether a flag was added.
+         */
+        protected static function add_flag(\WC_Order $order, string $status): bool
+        {
+        }
+        /**
+         * Build a flag for a status, stamped with the current time.
+         *
+         * @since 5.3.4
+         *
+         * @param string $status Flagged status.
+         *
+         * @return array{status: string, time: int}
+         */
+        protected static function new_flag(string $status): array
+        {
+        }
+        /**
+         * Customer order emails skipped for a status Dokan syncs onto an order.
+         *
+         * @since 5.3.4
+         *
+         * @return array<string, string> WooCommerce email ID => order status.
+         */
+        protected static function synced_status_emails(): array
+        {
+        }
+        /**
+         * Seconds a flag stays valid.
+         *
+         * @since 5.3.4
+         *
+         * @return int
+         */
+        protected static function flag_lifetime(): int
+        {
+        }
+        /**
+         * Get an order's flags that have not expired.
+         *
+         * @since 5.3.4
+         *
+         * @param WC_Order $order Order object.
+         *
+         * @return array<int, array{status: string, time: int}>
+         */
+        protected static function get_flags(\WC_Order $order): array
+        {
+        }
+        /**
+         * Whether WooCommerce queues transactional emails instead of sending them right away.
+         *
+         * @since 5.3.4
+         *
+         * @return bool
+         */
+        protected static function emails_are_deferred(): bool
+        {
+        }
+        /**
+         * Disable a customer order email when Dokan flagged its status on the order.
+         *
+         * @since 5.3.4
+         *
+         * @param bool          $enabled Whether the email is enabled.
+         * @param WC_Order|null $order   Order the email is for.
+         *
+         * @return bool
+         */
+        public function skip_synced_status_email($enabled, $order)
+        {
+        }
+        /**
+         * Save the remaining flags of an order.
+         *
+         * @since 5.3.4
+         *
+         * @param WC_Order $order Order object.
+         * @param array    $flags Flags to keep.
+         *
+         * @return void
+         */
+        protected static function save_flags(\WC_Order $order, array $flags)
         {
         }
         /**
@@ -24143,6 +24490,33 @@ namespace WeDevs\Dokan\Order {
          * @return int[]|null on failure
          */
         public function get_customer_order_ids_by_seller($customer_id, $seller_id)
+        {
+        }
+        /**
+         * Get the SQL selecting the registered customers who have an order from a seller.
+         *
+         * Matches dokan_customer_has_order_from_this_seller() defaults, without the dokan_get_vendor_orders_* filters.
+         *
+         * @since 5.3.4
+         *
+         * @param int $seller_id Seller ID.
+         *
+         * @return string Single-column SELECT of user IDs, for use in an `IN ( ... )` clause.
+         */
+        public function get_customer_ids_sql_by_seller(int $seller_id): string
+        {
+        }
+        /**
+         * Limit a user query to the registered customers who have an order from a seller.
+         *
+         * @since 5.3.4
+         *
+         * @param \WP_User_Query $query     User query, from its `pre_user_query` action.
+         * @param int            $seller_id Seller ID.
+         *
+         * @return void
+         */
+        public function restrict_user_query_to_seller_customers(\WP_User_Query $query, int $seller_id): void
         {
         }
         /**
@@ -27880,6 +28254,30 @@ namespace WeDevs\Dokan\REST {
          * @return WP_Error|WP_REST_Response
          */
         public function get_items($request)
+        {
+        }
+        /**
+         * Tag the customer list query with the vendor, so only that query gets restricted.
+         *
+         * @since 5.3.4
+         *
+         * @param array $prepared_args WP_User_Query arguments.
+         *
+         * @return array
+         */
+        public function mark_vendor_customer_query($prepared_args)
+        {
+        }
+        /**
+         * Limit the customer list to the vendor's own customers in SQL, so the rows and the total headers match.
+         *
+         * @since 5.3.4
+         *
+         * @param WP_User_Query $query User query.
+         *
+         * @return void
+         */
+        public function restrict_query_to_vendor_customers($query)
         {
         }
         /**
@@ -32708,6 +33106,20 @@ namespace WeDevs\Dokan\ReverseWithdrawal {
         {
         }
         /**
+         * Get the due date for the current month's reverse withdrawal payment.
+         *
+         * Billing day and due period both count from the first day of the month.
+         *
+         * @since 5.3.4
+         *
+         * @param \DateTimeImmutable $current_date
+         *
+         * @return string 'immediate' once the due date has passed, otherwise Y-m-d
+         */
+        public static function get_monthly_due_date($current_date)
+        {
+        }
+        /**
          * This method will check if a vendors need to pay their unpaid balance
          *
          * @since 3.5.1
@@ -35949,6 +36361,31 @@ namespace WeDevs\Dokan\Utilities {
          *             or if vendor ID cannot be determined.
          */
         public static function get_vendor_id_for_user(int $user_id = 0): int
+        {
+        }
+        /**
+         * Normalize a shop URL the way wp_update_user() normalizes a nicename.
+         *
+         * @since 5.3.4
+         *
+         * @param string $shop_url Raw shop URL.
+         *
+         * @return string
+         */
+        public static function sanitize_shop_url(string $shop_url): string
+        {
+        }
+        /**
+         * Check whether a shop URL is free to use as a user nicename.
+         *
+         * @since 5.3.4
+         *
+         * @param string $shop_url        Raw shop URL.
+         * @param int    $exclude_user_id User allowed to keep this nicename.
+         *
+         * @return bool
+         */
+        public static function is_shop_url_available(string $shop_url, int $exclude_user_id = 0): bool
         {
         }
         /**
